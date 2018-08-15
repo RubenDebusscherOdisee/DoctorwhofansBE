@@ -7,15 +7,16 @@ body {
 	height: auto;
 	    background-color: white;
 }
+.newsitem{width:100%;display:inline-block;}
 .singular_list_item {float:right;list-style-type:none;}
-.main_quote{border:2px solid black;display:inline-block;border-radius:10px;    margin-top: 2em;
+.main_quote{border:2px solid black;display:inline-block;border-radius:10px;    margin-top: 2em;width: 100%;
 }
 #labelspan{font-size:0.9em;}
 .quote_picture{float: right;
-    width: 23%;
+    width: 35%;
     margin-bottom: 2em;
     margin-right: 4em;
-    margin-top: -3em;}
+    margin-top: 0em;display:inline-block;}
 .cleared_both{clear:both;}
 .inline_block_vid{display:inline;}
 .linkerquote,.rechterquote{width:48%;}
@@ -561,14 +562,12 @@ footer {
 }
 
 div .L {
-	float: left;
-	width: 70%;
+	width:57%;
 	margin-left: 14px
 }
 
 div .R {
-	float: right;
-	width: 70%;
+	width: 57%;
 	margin-left: 0px
 }
 
@@ -918,11 +917,12 @@ iframe {
 
 .romanai {
 	width: 44%;
+	margin-right:0;margin-left:0;
 }
 
 .romanaii {
 	float: right;
-	width: 56%;
+	width: 56%;margin-right:0;margin-left:0;
 }
 
 iframe {
@@ -1001,6 +1001,7 @@ input[type=text],input[type=email]{    border: 1px solid darkgray;
 	.col-6 img {
 		width: 100%
 	}
+	.quote_picture{float:initial;}
 	.detailcompanion {
 		width: 100%
 	}
@@ -1782,7 +1783,7 @@ input[type=checkbox]#show-menu {
 		width: auto;
 		text-indent: -2.333em;
 		padding-left: 2.333em;
-		height:1.5em
+		height:1em
 	}
 	.accessible-megamenu .accessible-megamenu-panel a:hover,
 	.accessible-megamenu .accessible-megamenu-panel a: focus {
