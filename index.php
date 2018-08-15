@@ -1,5 +1,5 @@
 <?php session_start();$_SESSION["name"];$_SESSION["Status"]="Anoniem";$_SESSION["Taal"];$_SESSION["Menu"];
-$ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
+$ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
 <!Doctype html>
 <?php 
     
@@ -52,7 +52,7 @@ $ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
         
         <!--<script src="js/jquery-2.1.0.min.js"></script>-->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
-        <script src="../js/jquery-accessibleMegaMenu.js" async></script>
+        <script src="../js/jquery-accessibleMegaMenu.js"></script>
         <script src="../js/app.js"></script>
         <script>
         var uploadImg;
@@ -66,27 +66,37 @@ $ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
             var zoekterm = "<?php echo $zoekterm ?>";
             $(document).ready(function(){
                 //kijk na of de pagina bestaat
-                if (menu !=="Quotes"){
-                    checkmenu(menu);
-                }
+                checkmenu(menu);
                 
              contentophalen(taal,menu,id,parent,child);
+             if(menu==="Contact"){
+                    
+                    $("#txtEditor").Editor();
+                }
                 if (menu!=="Home"){
                     getpad(menu);
                     
                 } 
-                if(menu==="Contact"){
-                    
-                    $("#txtEditor").Editor();
+                if(menu==="Home"){
+  
+                    $('footer').prepend("<p class='quote'></p>");
+                    GetOneRandomQuote();
+                }
+                if(menu==="News"){
+                    GetNews();
+                }
+                
+                if(menu==="Companions"){
+                    $(".col-6").append('<div class="open-close"></div>');
+                    companionsophalen(taal,menu,id,parent,child)
                 }
             }
-                
-                );
+        );
    
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" async></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async></script>
-		<script src="../js/editor.js" async></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="../js/editor.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link href="../opmaak/editor.css" type="text/css" rel="stylesheet"/>	
@@ -323,35 +333,7 @@ $ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
                     </script>
                     <?php
                 }
-                if ( !$_SESSION['loggedin'] )
-                {
-                    ?>
-                            <script>$('.privaat').hide();</script>
-                    <?php
-                }else{
-                    ?>
-                            <script>$('.privaat').show();</script>
-                    <?php
-                }
-                if(isset($_POST['verzenden'])){
-                    $bericht=$_POST['Bericht'];
-                    $bericht->real_escape_string;
-                    $naam=$_SESSION['name'];
-                    $naam->real_escape_string;
-                    $topic=$_POST['Topic'];
-                    $subtopic=$_POST['subtopic'];
-                    require('connect.php');
-                    $queryidentificatie="SELECT * FROM Gebruikers WHERE Gebruikersnaam = '$naam'";
-                    $resultidentificatie=mysqli_query($verbinding,$queryidentificatie);
-                    $rowidentificatie=$resultidentificatie->fetch_assoc();
-                    if(mysqli_num_rows($resultidentificatie)==1){
-                        $query4="INSERT INTO Berichten ( 'bericht', 'gebruiker') VALUES ( '$bericht', '$naam')";
-                        $result4=mysqli_query($verbinding,$query4);
-                        echo"bericht verzonden";
-                    }else{
-                        echo"Gelieve eerst in te loggen";
-                    }
-                }
+
                 if(isset($_POST['zoeken'])){
                     $zoekterm = $_POST['zoekterm'];
                 ?>
@@ -391,47 +373,14 @@ $ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
         <article class="under">
             <?php
                 if($menu=='Contact'){
-                    require("Content/Contact.php");
+                    require("php/Contact.php");
                 }
                 if($menu=='Events'){
-                    require("Kalender.php");
+                    require("php/Kalender.php");
                 }
-                if($menu=='Companions'){
-            ?>
-                    <div class="open-close">
-            <script type=text/javascript>
-                var taal = '<?php echo $taal ?>';
-                var menu = '<?php echo $menu ?>';
-                var id = '<?php echo $id ?>';
-                var parent = '<?php echo $parent ?>';
-                var child = "<?php echo $child ?>";
-                $(document).ready(companionsophalen(taal,menu,id,parent,child));
-            </script>
-        </div>
-            <?php
-    
-            }
-                if($menu=='Profiel'){
-                    
-            ?>
-                    <script type=text/javascript>
-                    
-                        taal = '<?php echo $taal ?>';
-                        menu = '<?php echo $menu ?>';
-                        User_ID = '<?php echo $User_ID ?>';
-                        $(document).ready(Userophalen(taal,menu,User_ID));
-                    </script>
-            <?php
-                }
-                //if($menu=='Video'){
-                   // require("Content/Videos.php");
-                //}
-                if($menu=='News'){
-                    require("Content/News.php");
-                }
-                if($menu=='Registreren'){
-                    require("Content/Registreren.php");
-                }
+                
+                
+
             ?>
         </article>
         
@@ -447,34 +396,6 @@ $ingevuld=false;$overeenkomst=false;include_once('functions.php');?>
                         break;
             }
            
-            if($menu=="Home"){
-            ?>
-
-            <p class=quote>
-                <?php 
-                    $num=Rand(3,27);
-                    require("connect.php");
-                    $sql="select SUBSTRING( Quote, 1, 70) AS Quote, Personage, Aflevering,id from QuotesTabel where id = '$num'";
-                    $result=mysqli_query($verbinding,$sql);
-                    while($row=$result->fetch_assoc()){
-                ?>
-                        <?=$row['Quote']?> ...
-                        <br>
-                        <a href="../Quotes/" class='link' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes',<?=$row['id']?>)>Lees meer</a>
-                        <span>
-                            <br>
-                            <?=$row['Personage']?>
-                        </span>
-                        <br>
-                        <span>
-                            <?=$row['Aflevering']?>
-                        </span>
-                <?php
-                    }
-                ?>
-            </p>
-            <?php
-            }
             ?>
             <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present
                 <br> The web pages on this site are for educational and entertainment purposes only.
