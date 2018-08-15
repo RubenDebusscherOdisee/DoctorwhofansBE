@@ -29,7 +29,7 @@
 
         // Build the email content.
         $email_content = "Name: $name\n";
-        $email_content .= "Reply to:\n$mailtoreply\n";
+        $email_content .= "Reply to:\n$mailToReply\n";
         $email_content .= "Message:\n$message\n";
 
         // Build the email headers.
