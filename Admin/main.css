@@ -1,0 +1,85 @@
+* { box-sizing: border-box; word-break:break-word;}
+body {
+  font: 16px Arial; 
+  background-color:lightsteelblue
+}
+
+.NONACTIEF{background-color:red;}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+table{width:100%;border:1px solid black;border-collapse:collapse;height:6em;}
+th{background-color:lightblue; border-collapse:collapse;border:1px solid black;padding:0;margin:0;}
+tr{ border-collapse:collapse;border:1px solid black}
+td{ border-collapse:collapse;border:1px solid black;}
+table th {
+   
+}
+
+
+
+textarea{color:black;width:56em}
+#N_W textarea{height:8em;}
+.IDItem,#nextID{width:3.5em;}
+.PTItem, #TypePagina{width:7em;}
+.PageItem, #PAgeToAdd{width:7em;}
+.TItem,#Type{width:5em;}
+.WItem{width:47em;}
+.TAItem{width:5em;}
+#Klasse{width:4em;}
+button {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9; 
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+
+
+
+
+@media only screen and (max-width: 828px) {
+    th{width:8em;}
+    .IDItem,#nextID{width:3em;}
+.PTItem, #TypePagina{width:7em;}
+.PageItem, #PAgeToAdd{width:5em;}
+.TItem{width:11em;}
+.WItem{width:30em;}
+.TAItem{width:5em;}
+textarea,.WItem{width:28em}
+}
