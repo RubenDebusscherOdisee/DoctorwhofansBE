@@ -459,7 +459,7 @@ a:not(nav):hover {
 
 .WikiItem {
 	float: left;
-	margin-left: -0.6em;
+	margin-left: 0.4em;
 	list-style-type: none;
 }
 
