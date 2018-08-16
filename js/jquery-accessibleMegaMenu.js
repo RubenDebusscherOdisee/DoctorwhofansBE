@@ -8,11 +8,10 @@ var currentTopic;
 var user;
 var UID = 0;
 var toon = "false";
-var slideIndex = 2;
+var slideIndex = 1;
 var ip;
 var session;
 var CONTENTID;
-
 if (jQuery) {
 
 	(function ($) {
@@ -31,7 +30,6 @@ if (jQuery) {
 
 	}(jQuery));
 }
-
 (function ($, window, document) {
 
 	"use strict";
@@ -1107,7 +1105,6 @@ if (jQuery) {
 	});
 
 }(jQuery, window, document))
-
 function ip_callback() {
 
 	$.get("/php/getIp.php", function (data) {
@@ -1115,7 +1112,6 @@ function ip_callback() {
 	})
 
 }
-
 function checkmenu(menu) {
 
 	ip_callback();
@@ -1195,7 +1191,6 @@ function checkmenu(menu) {
 	});
 
 }
-
 function zoeken(taal, menu, id, parent, child, zoekterm, ip, UID) {
 
 	$.ajax({
@@ -1242,7 +1237,6 @@ function zoeken(taal, menu, id, parent, child, zoekterm, ip, UID) {
 	});
 
 }
-
 function getpad(menu) {
 
 	$.ajax({
@@ -1289,7 +1283,6 @@ function getpad(menu) {
 	});
 
 }
-
 function random() {
 	$.ajax({
 		type: "GET",
@@ -1323,7 +1316,6 @@ function random() {
 	});
 
 }
-
 function getchildren(menu) {
 
 	$.ajax({
@@ -1367,7 +1359,6 @@ function getchildren(menu) {
 	});
 
 }
-
 function videozoeken(taal, menu, id, parent, child, zoekterm) {
 
 	$.ajax({
@@ -1399,7 +1390,6 @@ function videozoeken(taal, menu, id, parent, child, zoekterm) {
 	});
 
 }
-
 function quotezoeken(taal, menu, id, parent, child, zoekterm) {
 
 	$.ajax({
@@ -1431,7 +1421,6 @@ function quotezoeken(taal, menu, id, parent, child, zoekterm) {
 	});
 
 }
-
 function companionsophalen(taal, menu, id, parent, child) {
 
 	$.ajax({
@@ -1625,7 +1614,6 @@ function companionsophalen(taal, menu, id, parent, child) {
 	});
 
 }
-
 function videosophalen(menu, id) {
 
 	$.ajax({
@@ -1700,7 +1688,6 @@ function videosophalen(menu, id) {
 	});
 
 }
-
 function quotesophalen(menu, id) {
 
 	$.ajax({
@@ -1791,7 +1778,6 @@ function quotesophalen(menu, id) {
 	});
 
 }
-
 function GetNews() {
 
 	$.ajax({
@@ -1832,13 +1818,9 @@ function GetNews() {
 	});
 
 }
-
 function GetQuotesByEpisode(Episode) {
-
 	console.log(Episode);
-
 }
-
 function GetOneRandomQuote() {
 
 	$.ajax({
@@ -2222,21 +2204,15 @@ function contentophalen(taal, menu, id, parent, child) {
 					}
 
 				} else if (resultaat.data[i].A_Pagina_Type === "Slide") {
-
 					for (j = 0; j < resultaat.data.length; j += 1) {
-
 						if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
-
-							$(".slideshow-container").prepend("<div class='mySlides fade'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
-
-
-
+							$(".slideshow-container").append("<div class='mySlides fade'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
+							
 						}
-
 					}
-
-
-
+					setTimeout(function() {						
+						showSlides(slideIndex);	
+					}, 1000);
 				} else {
 
 					var j;
@@ -2572,7 +2548,8 @@ $(function () {
 })
 
 $(document).ready(function () {
-
+	
+	
 	$('.open-close').on('click', '.opner', function (event) {
 
 		$(this).closest('.holder').find('.opner').toggleClass('active');
@@ -2623,11 +2600,6 @@ function off() {
 
 	document.getElementById("overlay_Afbeelding").style.display = "none";
 
-}
-
-if ($('.path').text().indexOf('Pictures') != -1) {
-
-	showSlides(slideIndex);
 }
 
 function plusSlides(n) {

@@ -68,8 +68,8 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 //kijk na of de pagina bestaat
                 checkmenu(menu);
                 
-             contentophalen(taal,menu,id,parent,child);
-             if(menu==="Contact"){
+                contentophalen(taal,menu,id,parent,child);
+                if(menu==="Contact"){
                     
                     $("#txtEditor").Editor();
                 }
@@ -77,11 +77,13 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     getpad(menu);
                     
                 } 
+                
                 if(menu==="Home"){
   
                     $('footer').prepend("<p class='quote'></p>");
                     GetOneRandomQuote();
                 }
+
                 if(menu==="News"){
                     GetNews();
                 }
