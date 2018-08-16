@@ -264,7 +264,7 @@ body {
 }
 
 .item {
-	margin-left:0em;
+	margin-left: 0em;
 }
 
 .item a {
@@ -460,7 +460,7 @@ a:not(nav):hover {
 .WikiItem {
 	float: left;
 	margin-left: -0.6em;
-	list-style-type:none;
+	list-style-type: none;
 }
 
 .WikiItem.content {
@@ -500,7 +500,6 @@ sup {
 	background-color: yellow;
 }
 
-.open-close.holder.header:nth-child(odd) {}
 
 .open-close.holder.header:nth-child(even) {
 	background-color: green;
@@ -729,7 +728,7 @@ sup {
 
 #loading_div {
 	width: 100%;
-	clear:both;
+	clear: both;
 }
 
 #loading {
@@ -876,7 +875,7 @@ span.LQuote {
 	width: 26%;
 	float: right;
 	clear: right;
-	border-collapse:collapse;
+	border-collapse: collapse;
 	margin-top: -80px;
 	background-color: #206090;
 	padding: 0.25em;
@@ -889,7 +888,7 @@ span.LQuote {
 	width: 15%;
 	background-color: #206090;
 	color: yellow;
-	border-collapse:collapse;
+	border-collapse: collapse;
 	text-align: center;
 	padding-bottom: 1;
 }
@@ -1017,7 +1016,7 @@ footer a,
 	box-sizing: border-box
 }
 
-.row: after {
+.row:after {
 	clear: both;
 	display: block;
 }
@@ -1135,13 +1134,13 @@ header {
 
 .foto {
 	width: 30%;
-	display: inline
+	display: inline-block;
 }
 
 .rechts {
 	float: right;
 	clear: right;
-	display: inline
+	display: block
 }
 
 .links {
@@ -1472,7 +1471,7 @@ input[type=email] {
 	display: block
 }
 
-. access checkbox {
+.access checkbox {
 	display: block
 }
 
@@ -1641,7 +1640,7 @@ footer.toegankelijk {
 	text-decoration: underline
 }
 
-#overlay .link.toegankelijk.visited: visited {
+#overlay .link.toegankelijk.visited:visited {
 	color: #800080;
 	cursor: auto;
 	text-decoration: underline
@@ -1702,6 +1701,7 @@ label {
 		margin-right: 0;
 	}
 	#loading {
+		animation: rotateRight 2.5s infinite linear;
 		-webkit-animation: rotateRight 2.5s infinite linear;
 		display: block;
 		margin: auto;
@@ -1802,7 +1802,7 @@ input[type=checkbox]#show-menu {
 		margin-left: 0;
 	}
 	.upDown {
-		# float: right;
+		float: right;
 		width: 8%;
 		clear: right;
 	}
@@ -1837,11 +1837,11 @@ input[type=checkbox]#show-menu {
 		width: 100%
 	}
 	ol li {
-		calc(100%/3)
+		width: calc(100%/3);
 	}
 	.accessible-megamenu .accessible-megamenu-panel.cols-4b {
-		width:100%;
-		left:0;
+		width: 100%;
+		left: 0;
 		border-top-left-radius: 3px;
 		height: 90em;
 		clear: none;
@@ -1941,7 +1941,7 @@ input[type=checkbox]#show-menu {
 		border-right: 1px solid #b3b3b3;
 		border-right-color: rgba(0, 0, 0, 0.3);
 	}
-	.accessible-megamenu: focus {
+	.accessible-megamenu:focus {
 		outline: 2px solid rgba(34, 95, 215, 0.3);
 		-moz-outline-radius: 3px
 	}
@@ -1958,12 +1958,12 @@ input[type=checkbox]#show-menu {
 		z-index: inherit
 	}
 	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]: focus {
+	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
 		color: #333 !important;
 		outline-offset: -1px
 	}
 	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]: focus,
+	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
 	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
 		margin-left: 0;
 		background: #f5f8fa none;
@@ -1977,10 +1977,10 @@ input[type=checkbox]#show-menu {
 		background: #f5f8fa none;
 		padding-bottom: 2px
 	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item: first-child a[aria-haspopup] {
+	.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
 		border-bottom-left-radius: 3px
 	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item: first-child a[aria-haspopup].open {
+	.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
 		border-bottom-left-radius: 0px;
 		border-left: 1px solid #b3b3b3;
 		border-left-color: rgba(0, 0, 0, 0.3);
@@ -2089,7 +2089,7 @@ input[type=checkbox]#show-menu {
 		border-left: 1px solid rgba(0, 0, 0, 0.3);
 		box-shadow: inset 1px 0 0 #fff
 	}
-	.accessible-megamenu .accessible-megamenu-panel>ol>li: first-of-type {
+	.accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
 		padding-left: 0;
 		border-left: none;
 		box-shadow: none
@@ -2115,12 +2115,12 @@ input[type=checkbox]#show-menu {
 		height: 1em
 	}
 	.accessible-megamenu .accessible-megamenu-panel a:hover,
-	.accessible-megamenu .accessible-megamenu-panel a: focus {
+	.accessible-megamenu .accessible-megamenu-panel a:focus {
 		color: #225FD7;
 		text-decoration: underline
 	}
 	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
-	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a: focus {
+	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
 		color: #333
 	}
 	.accessible-megamenu .accessible-megamenu-panel hr {
@@ -2135,9 +2135,8 @@ input[type=checkbox]#show-menu {
 	margin-left: 24em
 }
 
-.cols-4bmargin-left: 4em
-}
-
+.cols-4b {
+	margin-left: 4em
 }
 
 .zoeken {
@@ -2157,7 +2156,7 @@ input[type=checkbox]#show-menu {
 .zoekknop {
 	width: 40px;
 	height: 40px;
-	background: url(https: //cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
+	background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
 	background-size: 40px 40px;
 	border-style: none
 }
@@ -2234,7 +2233,7 @@ input[type=checkbox]#show-menu {
 	vertical-align: middle
 }
 
-.accessible-megamenu: focus {
+.accessible-megamenu:focus {
 	outline: 2px solid rgba(34, 95, 215, 0.3);
 	-moz-outline-radius: 3px
 }
@@ -2253,13 +2252,13 @@ input[type=checkbox]#show-menu {
 }
 
 .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]: focus {
+.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
 	color: #333 !important;
 	outline-offset: -1px
 }
 
 .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]: focus,
+.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
 .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
 	margin-left: 0;
 	background: #f5f8fa none;
@@ -2275,11 +2274,11 @@ input[type=checkbox]#show-menu {
 	padding-bottom: 2px
 }
 
-.accessible-megamenu .accessible-megamenu-top-nav-item: first-child a[aria-haspopup] {
+.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
 	border-bottom-left-radius: 3px
 }
 
-.accessible-megamenu .accessible-megamenu-top-nav-item: first-child a[aria-haspopup].open {
+.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
 	border-bottom-left-radius: 0px;
 	border-left: 1px solid #b3b3b3;
 	border-left-color: rgba(0, 0, 0, 0.3);
@@ -2320,9 +2319,7 @@ input[type=checkbox]#show-menu {
 	border-bottom-left-radius: 3px
 }
 
-.accessible-megamenu .accessible-megamenu-panel .standaard {
-	/*left: -1px*/
-}
+
 
 .accessible-megamenu-panel .zoekmenu {
 	right: -1px;
@@ -2407,7 +2404,7 @@ input[type=checkbox]#show-menu {
 	margin-bottom: 1em
 }
 
-.accessible-megamenu .accessible-megamenu-panel>ol>li: first-of-type {
+.accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
 	padding-left: 0;
 	border-left: none;
 	box-shadow: none
@@ -2436,13 +2433,13 @@ input[type=checkbox]#show-menu {
 }
 
 .accessible-megamenu .accessible-megamenu-panel a:hover,
-.accessible-megamenu .accessible-megamenu-panel a: focus {
+.accessible-megamenu .accessible-megamenu-panel a:focus {
 	color: #225FD7;
 	text-decoration: underline
 }
 
 .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
-.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a: focus {
+.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
 	color: #333
 }
 
@@ -2514,7 +2511,7 @@ nav form {
 		width: 100%
 	}
 	ol li {
-		calc(100%/3)
+		width:calc(100%/3)
 	}
 	.accessible-megamenu .accessible-megamenu-panel.cols-4b {
 		width: 100%;
@@ -2546,5 +2543,6 @@ nav form {
 	margin-left: 24em
 }
 
-.cols-4bmargin-left: 4em
+.cols-4b{
+	margin-left: 4em
 }
