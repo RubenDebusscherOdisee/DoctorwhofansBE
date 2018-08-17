@@ -451,7 +451,12 @@ a:not(nav):hover {
 .flip {
 	transform: rotate(-180deg);
 }
-
+#Voetnoot {
+	width: 89%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .WikiRule {
 	clear: both;
 	margin-left: 2px;

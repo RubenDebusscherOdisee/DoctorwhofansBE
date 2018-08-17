@@ -24,7 +24,7 @@
     $zoekterm = "%{$_GET['zoekterm']}%";
     //bind de parameters aan hun ?(op volgorde s=string, i=integer,d=double,b=blob(packets))
 	if(!$stmt1->bind_param("sss",$zoekterm,$zoekterm,$zoekterm)){
-	    die("Statement binding failed: " . $conn->connect_error)
+	    die("Statement binding failed: " . $conn->connect_error);
 	}
     //voer de query uit
 	if(!$stmt1->execute()){
