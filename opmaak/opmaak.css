@@ -1,2553 +1,2598 @@
-body {
-	font-family: Calibri;
-	font-size: 20px;
-	color: black;
-	padding: 0px;
-	margin: 0px;
-	height: auto;
-	background-color: white;
-}
-
-.newsitem {
-	width: 100%;
-	display: inline-block;
-}
-
-.singular_list_item {
-	float: right;
-	list-style-type: none;
-}
-
-.main_quote {
-	border: 2px solid black;
-	display: inline-block;
-	border-radius: 10px;
-	margin-top: 2em;
-	width: 100%;
-}
-
-#labelspan {
-	font-size: 0.9em;
-}
-
-.quote_picture {
-	float: right;
-	width: 35%;
-	margin-bottom: 2em;
-	margin-right: 4em;
-	margin-top: 0em;
-	display: block;
-}
-
-.cleared_both {
-	clear: both;
-}
-
-.inline_block_vid {
-	display: inline;
-}
-
-.linkerquote,
-.rechterquote {
-	width: 48%;
-}
-
-.linkerquote {
-	float: right;
-}
-
-.OverzichtItem {
-	display: inline-block;
-	width: 20%;
-}
-
-.quoteitem {
-	border: 1px solid yellow;
-	padding-bottom: 1em;
-	display: inline-block;
-	height: auto;
-	margin-top: 1em;
-	padding-left: 3em;
-	clear: both;
-	width: 100%;
-}
-
-.quotetext {
-	max-width: 50%;
-	display: inline-block;
-}
-
-.Inleiding {
-	width: 75%;
-}
-
-.addtopic {
-	float: right;
-}
-
-.addtopic fieldset input {
-	color: black;
-}
-
-.topics {
-	width: 100%;
-	clear: both;
-}
-
-.topics h3 {
-	display: initial;
-}
-
-.topics a {
-	display: block;
-}
-
-.smalltext {
-	width: 73%;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-.Half {
-	width: 50%;
-	float: left;
-}
-
-.Half ul {
-	list-style-type: none;
-}
-
-.Rechts {
-	float: right;
-}
-
-.WikiItemTitel {
-	width: 100%;
-	text-align: center;
-	background-color: lightblue;
-	color: black;
-	clear: both;
-}
-
-.Missing {
-	color: yellow;
-	background-color: red;
-}
-
-.foto_met_text {
-	border: 2px solid black;
-	max-width: 27%;
-	padding: 7px;
-	background-color: #206090;
-	color: white;
-}
-
-.foto_met_text img {
-	width: 100%
-}
-
-.slideshow-container {
-	max-width: 100%;
-	position: relative;
-	margin: auto;
-}
-
-.slideshow-container:first-child {
-	display: block;
-}
-
-.mySlides {
-	display: none;
-}
-
-.hide {
-	display: none;
-}
-
-.prev,
-.next {
-	cursor: pointer;
-	position: absolute;
-	top: 50%;
-	width: auto;
-	margin-top: -22px;
-	padding: 16px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
-}
-
-.next {
-	right: 0;
-	border-radius: 3px 0 0 3px;
-}
-
-.prev:hover,
-.next:hover {
-	background-color: rgba(0, 0, 0, 0.8);
-}
-
-.text {
-	color: #f2f2f2;
-	padding: 8px 12px;
-	bottom: 8px;
-	width: 100%;
-}
-
-.fade {
-	-webkit-animation-name: fade;
-	-webkit-animation-duration: 1.5s;
-	animation-name: fade;
-	animation-duration: 1.5s;
-	opacity: 1;
-}
-
-.fade img {
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	width: 40%;
-}
-
-@-webkit-keyframes fade {
-	from {
-		opacity: .4
-	}
-	to {
-		opacity: 1
-	}
-}
-
-@keyframes fade {
-	from {
-		opacity: 1
-	}
-	to {
-		opacity: .4
-	}
-}
-
-.open-close .holder .opner:hover {
-	color: white;
-}
-
-.open-close .holder .opner {
-	display: block;
-	padding: 10px 25px;
-	color: black;
-	text-decoration: none;
-}
-
-.path {
-	font-size: 1em;
-	height: 0em;
-	margin-left: 1em;
-}
-
-.path span {
-	background-color: #206090;
-	padding: 7px;
-	border-radius: 9px;
-}
-
-.eerste {
-	margin-left: -4em;
-}
-
-.itemsSitemap {
-	display: block;
-	list-style-type: none;
-}
-
-.item {
-	margin-left: 0em;
-}
-
-.item a {
-	margin-left: 1em;
-}
-
-.SitemapButton {
-	width: 2em;
-	color: black;
-}
-
-.hidden {
-	display: none;
-}
-
-.leftcleared {
-	clear: left;
-}
-
-.Doctor {
-	width: 15%;
-	margin-left: 3.7em;
-}
-
-nav ol li *:not(img) {
-	color: black;
-	text-decoration: none;
-	vertical-align: center;
-	padding-left: 1%;
-	text-align: center;
-}
-
-.messages {
-	clear: both;
-}
-
-.message {
-	display: table;
-	width: 100%;
-	border: 1px yellow solid;
-	border-collapse: collapse
-}
-
-.Gebruiker_Message {
-	float: left;
-	display: table-cell;
-	width: 8%;
-	border: 1px yellow solid;
-	border-collapse: collapse;
-}
-
-.Gebruiker_Message img {
-	width: 100%
-}
-
-.Message_message {
-	margin-left: 16%;
-	width: 85%;
-	clear: right;
-}
-
-#overlay_Afbeelding {
-	position: fixed;
-	/* Sit on top of the page content */
-	display: none;
-	/* Hidden by default */
-	width: 100%;
-	/* Full width (cover the whole page) */
-	height: 100%;
-	/* Full height (cover the whole page) */
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	/* Black background with opacity */
-	z-index: 2;
-	/* Specify a stack order in case you're using a different order for other elements */
-	cursor: pointer;
-	/* Add a pointer on hover */
-}
-
-#overlay_Afbeelding_text {
-	background-color: white;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	font-size: 1em;
-	color: Black;
-	width: 90%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-}
-
-nav ol li a:hover,
-nav ol li a i:hover,
-nav ol li a:focus,
-nav ol li a i:focus {
-	color: red;
-}
-
-nav ol li a:hover,
-nav ol li a i:hover,
-nav ol li a:focus,
-nav ol li a i:focus {
-	color: red;
-}
-
-nav ol li div ol li ol li *:hover {
-	color: red;
-}
-
-*:not(.upDown).toegankelijk {
-	color: black;
-	background-color: white;
-	border-style: 2px solid black;
-}
-
-.result a.toegankelijk {
-	color: blue;
-}
-
-#WikiDetails a,
-.path a,
-#Inhoud a {
-	color: white;
-	text-decoration: underline;
-}
-
-#WikiDetails a:hover,
-.path a:hover,
-#Inhoud a:hover {
-	color: white;
-	text-decoration: none;
-}
-
-.slide a:not(nav):hover {
-	text-decoration: none;
-	background-color: white;
-	color: Red;
-}
-
-a:not(nav, #WikiDetails, .path, #Inhoud) {
-	color: Red;
-	text-decoration: none;
-}
-
-a:not(nav):hover {
-	background-color: #023079;
-	text-decoration: none;
-	border-radius: 5px;
-	color: white;
-}
-
-.access fieldset button {
-	color: black;
-}
-
-.gefixeerd {
-	position: fixed;
-	bottom: 5px;
-	left: 5px;
-}
-
-.item {
-	display: block;
-}
-
-.opner {
-	font-size: 2em;
-	font-weight: bold;
-}
-
-.opner span {
-	font-size: 1em;
-}
-
-.opner img {
-	-moz-transition: transform 1s;
-	-webkit-transition: transform 1s;
-	transition: transform 1s;
-}
-
-.flip {
-	transform: rotate(-180deg);
-}
-#Voetnoot {
-	width: 89%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.WikiRule {
-	clear: both;
-	margin-left: 2px;
-}
-
-.WikiItem {
-	float: left;
-	margin-left: 0.4em;
-	list-style-type: none;
-}
-
-.WikiItem.content {
-	float: right;
-	margin-left: 0;
-	max-width: 51%;
-	text-align: right;
-}
-
-.WikiItem.content.List {
-	float: right;
-	margin-left: 0;
-	max-width: 47%;
-	list-style-type: none;
-	padding-left: 0;
-}
-
-.avatar {
-	width: 20%;
-	float: left;
-	border: 1px solid yellow;
-}
-
-.user_Info {
-	padding-left: 20%;
-}
-
-sup {
-	font-size: 0.8em;
-}
-
-.header {
-	width: 100%;
-	color: black;
-	height: 3.5em;
-	border: 1px solid black;
-	background-color: yellow;
-}
-
-
-.open-close.holder.header:nth-child(even) {
-	background-color: green;
-}
-
-.upDown {
-	float: right;
-	max-width: 3%;
-	clear: right;
-}
-
-.result.companion h3 {
-	text-align: center
-}
-
-.result.companion div {
-	text-align: center;
-	width: 25%;
-	display: inline-block;
-}
-
-.result.companion.slide {
-	display: inline;
-}
-
-.companions {
-	width: 10%;
-}
-
-.none {
-	display: none
-}
-
-.dropdown {
-	color: #444444;
-	font-size: 17px
-}
-
-#calender_section {
-	width: 700px;
-	margin: 30px auto 0
-}
-
-#calender_section h2 {
-	background-color: #000090;
-	color: #444444;
-	font-size: 17px;
-	text-align: center;
-	line-height: 40px
-}
-
-#calender_section h2 a {
-	color: #F58220;
-	float: none
-}
-
-#calender_section_top {
-	width: 100%;
-	float: left;
-	margin-top: 20px
-}
-
-#calender_section_top ul {
-	padding: 0;
-	list-style-type: none
-}
-
-#calender_section_top ul li {
-	float: left;
-	display: block;
-	width: 99px;
-	border-right: 1px solid #fff;
-	text-align: center;
-	font-size: 14px;
-	min-height: 0;
-	background: none;
-	box-shadow: none;
-	margin: 0;
-	padding: 0
-}
-
-#calender_section_bot {
-	width: 100%;
-	margin-top: 20px;
-	float: left;
-	border-left: 1px solid #ccc;
-	border-bottom: 1px solid #ccc
-}
-
-#calender_section_bot ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	display: block
-}
-
-#calender_section_bot ul li {
-	float: left;
-	width: 14%;
-	height: 80px;
-	text-align: center;
-	border-top: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	min-height: 0;
-	background: none;
-	box-shadow: none;
-	margin: 0;
-	padding: 0;
-	position: relative
-}
-
-#calender_section_bot ul li span {
-	margin-top: 7px;
-	float: left;
-	margin-left: 7px;
-	text-align: center
-}
-
-.grey {
-	background-color: #DDDDDD !important
-}
-
-.light_sky {
-	background-color: #B9FFFF !important
-}
-
-.date_cell {
-	cursor: pointer;
-	cursor: hand
-}
-
-.date_cell:hover {
-	background: #DDDDDD !important
-}
-
-.date_popup_wrap {
-	position: absolute;
-	width: 143px;
-	height: 115px;
-	z-index: 9999;
-	top: -115px;
-	left: -55px;
-	background: #DDDDDD no-repeat top left;
-	color: #666 !important
-}
-
-.events_window {
-	overflow: hidden;
-	overflow-y: auto;
-	width: 133px;
-	height: 115px;
-	margin-top: 28px;
-	margin-left: 25px
-}
-
-.event_wrap {
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	border-bottom: solid 1px #E4E4E7;
-	font-size: 12px;
-	padding: 3px
-}
-
-.date_window {
-	margin-top: 20px;
-	margin-bottom: 2px;
-	padding: 5px;
-	font-size: 16px;
-	margin-left: 9px;
-	margin-right: 14px
-}
-
-.popup_event {
-	margin-bottom: 2px;
-	padding: 2px;
-	font-size: 16px;
-	width: 100%
-}
-
-.popup_event a {
-	color: #000000 !important
-}
-
-.packeg_box a {
-	color: #F58220;
-	float: right
-}
-
-@media only screen and (max-width: 828px) {
-	.Gebruiker_Message {
-		width: 30%;
-	}
-	.WikiRule {
-		width: 100%;
-		clear: both;
-		display: block;
-	}
-	.WikiRule ul {
-		float: right;
-		min-width: 50%;
-		max-width: 100%;
-	}
-	.WikiRule span {
-		float: right;
-		min-width: 45%;
-		max-width: 100%;
-	}
-	.WikiRule ul li {
-		margin-bottom: 0;
-	}
-	.upDown {
-		float: right;
-		width: 8%;
-		clear: right;
-	}
-	#calender_section {
-		width: 100%
-	}
-	#calender_section_top ul li {
-		width: 14%
-	}
-	#calender_section_bot ul li {
-		width: 14%
-	}
-}
-
-#loading_div {
-	width: 100%;
-	clear: both;
-}
-
-#loading {
-	transform-origin: 50% 50%;
-	animation: 2s rotateRight infinite linear;
-	display: block;
-	margin: auto;
-	width: 5%
-}
-
-@keyframes rotateRight {
-	100% {
-		transform: rotate(360deg)
-	}
-}
-
-html,
-body {
-	max-width: 100%;
-	overflow-x: hidden
-}
-
-.news {
-	max-width: 93%
-}
-
-footer {
-	height: auto;
-	width: 95%;
-	clear: both;
-	margin-top: 10px;
-	text-align: center;
-	min-height: 18em;
-	margin-left: 4%;
-}
-
-.back-to-top {
-	position: fixed;
-	bottom: 1em;
-	right: 8em;
-	text-decoration: none;
-	color: #000000;
-	font-size: 12px;
-	padding: 0px;
-	display: none
-}
-
-.close {
-	padding-right: 1m;
-	text-decoration: none;
-	color: #000000;
-	font-size: 12px;
-	padding: 0px
-}
-
-.back-to-top:hover {
-	opacity: 0.96;
-	text-decoration: none
-}
-
-.back_to_top_IMG {
-	border-radius: 5px;
-	width: 5em;
-	height: 5em
-}
-
-#header {
-	height: auto;
-	background-color: #FFFFFF;
-	width: 100%;
-	margin: 0px auto;
-	margin-top: 120
-}
-
-div .L {
-	width: 57%;
-	margin-left: 14px
-}
-
-div .R {
-	width: 57%;
-	margin-left: 0px
-}
-
-img.LQuote {
-	float: right;
-	margin-right: 2%
-}
-
-img .RQuote {
-	float: left
-}
-
-.image-right {
-	float: right
-}
-
-.image-left {
-	float: left;
-	margin-left: 48px
-}
-
-span.L {
-	display: inline
-}
-
-span.R {
-	display: inline
-}
-
-span.RQuote {
-	float: right
-}
-
-span.LQuote {
-	float: left;
-	font-size: 1em;
-}
-
-.LNews {
-	width: 36%;
-	float: left;
-	margin-left: 1em;
-	margin-right: 1em
-}
-
-.RNews {
-	width: 36%;
-	float: right;
-	margin-left: 1em;
-	margin-right: 1em
-}
-
-.small {
-	width: 20%
-}
-
-.medium {
-	width: 28%
-}
-
-#WikiDetails {
-	border: 4px solid yellow;
-	width: 26%;
-	float: right;
-	clear: right;
-	border-collapse: collapse;
-	margin-top: -80px;
-	background-color: #206090;
-	padding: 0.25em;
-	margin-left: 1em;
-	color: yellow;
-}
-
-#Inhoud {
-	border: 4px solid yellow;
-	width: 15%;
-	background-color: #206090;
-	color: yellow;
-	border-collapse: collapse;
-	text-align: center;
-	padding-bottom: 1;
-}
-
-#Inhoud ul,
-#Inhoud ol {
-	list-style-type: none;
-	padding-left: 1em;
-	text-align: left;
-}
-
-.Wiki_Foto {
-	width: 70%;
-	margin-left: 15%;
-	margin-right: 15%;
-	padding-bottom: 1em;
-	padding-top: 0.5em;
-}
-
-p.item {
-	margin-left: 15px;
-	width: auto;
-	display: inline-block;
-	max-width: 98%;
-	min-width: 20%;
-}
-
-p.topic {
-	clear: both;
-	width: 100%;
-}
-
-p {
-	margin-left: 15px;
-	width: auto;
-	max-width: 100%;
-	min-width: 20%
-}
-
-.menubar {
-	height: 0;
-	background-color: #696969;
-	width: 100%;
-	margin: 0 0 0 0;
-	z-index: 1000
-}
-
-.zoekfunctie {
-	width: 25%;
-	background-color: #FFFFFF;
-	height: 20px
-}
-
-.zoeken {
-	width: 25%
-}
-
-.zoekterm {
-	border-style: none;
-	height: 30px;
-	width: 70%;
-	margin-left: 2px;
-	padding-left: 3px
-}
-
-#overlay .link:hover {
-	background-color: #FF0000;
-	border: 2px solid;
-	cursor: auto;
-	text-decoration: underline
-}
-
-.disclaimer {
-	clear: both
-}
-
-.zoekknop {
-	width: 30px;
-	height: 30px;
-	background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
-	background-size: 30px 30px;
-	border-style: none
-}
-
-#foto_taal_button {
-	vertical-align: sub;
-}
-
-.foto_taal_button {
-	vertical-align: sub;
-}
-
-.zoeken_menu {
-	width: 90%
-}
-
-.companionFoto {
-	width: 65%;
-}
-
-.quote_short {
-	float: left;
-	padding-top: 1em
-}
-
-.col-6 a {
-	font-size: 1em;
-	text-decoration: underline;
-	padding: 4px;
-}
-
-footer a,
-.quote a {
-	padding: 4px;
-	text-decoration: underline;
-}
-
-.prev,
-.next {
-	color: black;
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box
-}
-
-.row:after {
-	clear: both;
-	display: block;
-}
-
-[class*="col-"] {
-	float: left;
-	padding: 10px
-}
-
-.full {
-	width: 100%;
-	clear: both
-}
-
-.col-3 {
-	height: auto;
-	background-color: #000090;
-	width: 18%;
-	float: left;
-	padding-top: 15px;
-	padding-left: 10px;
-	padding-right: 15px
-}
-
-.col-6 {
-	width: 95%;
-	height: auto;
-	float: right;
-	text-decoration: none;
-	display: none
-}
-
-.under {
-	width: 98%;
-	height: auto;
-	float: right;
-	text-decoration: none;
-	margin-right: 1%;
-	display: none
-}
-
-.col-6 h1 {
-	display: block;
-	font-size: 2em;
-	margin-top: 0.67em;
-	margin-bottom: 0.67em;
-	margin-left: 0;
-	margin-right: 0;
-	font-weight: 700
-}
-
-header h2 {
-	display: block;
-	font-size: 1.5em;
-	margin-top: 0.83em;
-	margin-bottom: 0.83em;
-	margin-left: 0;
-	margin-right: 0;
-	font-weight: 700
-}
-
-header {
-	margin-left: 1%
-}
-
-.mededeling {
-	width: 30%;
-	float: left;
-	text-align: initial
-}
-
-.taal_link {
-	float: right;
-	width: 5%;
-	border: 1px solid silver
-}
-
-.foto_taal {
-	float: right;
-	width: 100%
-}
-
-.quote {
-	width: 20%;
-	margin-right: 5%;
-	float: right;
-	text-align: initial;
-	padding: 2px;
-	clear: right;
-	font-style: italic;
-	border: 2px solid black
-}
-
-.quote span {
-	margin-left: 0.3em
-}
-
-.detailcompanion {
-	float: right;
-	width: 20%;
-	clear: both
-}
-
-.rechtop {
-	width: 100%;
-}
-
-.tekst {
-	width: 70%
-}
-
-.smalletekst {
-	width: 65%
-}
-
-.foto {
-	width: 30%;
-	display: inline-block;
-}
-
-.rechts {
-	float: right;
-	clear: right;
-	display: block
-}
-
-.links {
-	float: left;
-	clear: left;
-	max-width: 71%;
-}
-
-p.links {
-	max-width: 70%
-}
-
-.foto_center {
-	display: block;
-	margin: auto
-}
-
-.center {
-	text-align: center
-}
-
-video,
-iframe {
-	max-width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	display: block
-}
-
-.romanai {
-	width: 44%;
-	margin-right: 0;
-	margin-left: 0;
-}
-
-.romanaii {
-	float: right;
-	width: 56%;
-	margin-right: 0;
-	margin-left: 0;
-}
-
-iframe {
-	margin: auto;
-	top: 50%;
-	left: 50%;
-}
-
-.video_beschrijving {
-	float: right;
-	clear: right;
-	width: 50%;
-	margin-left: 0em;
-	margin-right: 1em
-}
-
-.keuze {
-	width: 13%;
-	display: inline-block;
-}
-
-.thumbnail {
-	width: 100%
-}
-
-.Spoilercontent {
-	display: none;
-	float: right;
-	clear: both
-}
-
-input[type=text],
-input[type=email] {
-	border: 1px solid darkgray;
-}
-
-.Spoiler {
-	float: right;
-}
-
-#SendEmailButton {
-	color: black;
-	float: right;
-	margin-right: 0.35em;
-	font-size: 1.75em;
-}
-
-@media only screen and (max-width: 350px) {
-	.path {
-		height: 3em;
-	}
-}
-
-@media only screen and (max-width: 828px) {
-	#SendEmailButton {
-		font-size: 1em;
-		width: 50%;
-		margin: 0 25%;
-	}
-	#NameLabel {
-		margin-top: 1em;
-		display: inline-block;
-	}
-	.back-to-top {
-		bottom: 6em;
-		right: 1em;
-	}
-	.Wiki_Foto {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.path {
-		height: 2em;
-	}
-	.path span {
-		line-height: 2em;
-	}
-	.foto_met_text {
-		max-width: 100%;
-	}
-	.links {
-		max-width: 100%;
-	}
-	.Inleiding {
-		width: 100%;
-	}
-	p {
-		width: 100%;
-	}
-	.OverzichtItem {
-		width: 50%;
-	}
-	.upDown {
-		float: right;
-		width: 8%;
-		clear: right;
-	}
-	.nav a {
-		color: black;
-		cursor: auto;
-		text-decoration: none;
-	}
-	#WikiDetails {
-		margin-top: 0;
-	}
-	.video_beschrijving {
-		float: left;
-		clear: both;
-		width: 100%;
-		margin-left: 0em;
-		margin-right: 0em
-	}
-	[class*="col-"] {
-		width: 100%
-	}
-	.col-6 img {
-		width: 100%
-	}
-	.quote_picture {
-		float: initial;
-	}
-	.detailcompanion {
-		width: 100%
-	}
-	.rechtop {
-		width: 100%;
-		margin-right: 5px
-	}
-	.tekst {
-		width: 100%
-	}
-	.smalletekst {
-		width: 100%
-	}
-	#header {
-		display: none
-	}
-	p,
-	p.links {
-		margin-left: 0px;
-		max-width: 100%
-	}
-	#WikiDetails {
-		width: 100%
-	}
-	.col-3 {
-		display: none
-	}
-	.sidebar_mobile {
-		display: block;
-		width: 100%
-	}
-	.col-6 img,
-	.under img:not(.upDown) {
-		width: 100%;
-		clear: both
-	}
-	.back_to_top {
-		bottom: 5px;
-		right: 7em
-	}
-	.back_to_top_IMG {
-		width: 4em;
-		height: 4em
-	}
-	#footer {
-		height: auto
-	}
-	.quote {
-		width: 100%;
-		margin-left: 0px;
-		float: left
-	}
-	.mededeling {
-		width: 100%;
-		margin-left: 0px;
-		float: left
-	}
-	.zoekfunctie {
-		width: 90%;
-		background-color: #FFFFFF;
-		height: 20px
-	}
-	.zoeken {
-		width: 90%
-	}
-	.zoekterm {
-		border-style: none;
-		height: 30px;
-		width: 98%;
-		margin-left: 2px;
-		padding-left: 3px
-	}
-	.zoekknop {
-		width: 30px;
-		height: 30px;
-		background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
-		background-size: 30px 30px;
-		border-style: none
-	}
-	.R {
-		margin-left: 0em;
-		margin-right: 0em
-	}
-	div .R {
-		float: left;
-		width: 100%;
-		margin-left: 0px
-	}
-	.L {
-		margin-left: 0em;
-		margin-right: 0em
-	}
-	.LNews {
-		width: 100%;
-		float: left;
-		margin-left: 0em;
-		margin-right: 0em
-	}
-	.RNews {
-		width: 100%;
-		float: right;
-		margin-left: 0em;
-		margin-right: 0em
-	}
-	.companionFoto {
-		width: 100%
-	}
-	.companion {
-		width: 100%;
-		display: inline-block
-	}
-	.thumbnail {
-		width: calc(100%/2)
-	}
-}
-
-@media only screen and (max-width: 350px) {
-	.path {
-		height: 4em;
-	}
-}
-
-@media only screen and (max-width: 240px) {
-	.path {
-		height: 6em;
-	}
-}
-
-@media only screen and (max-width: 180px) {
-	.path {
-		height: 8em;
-	}
-	.OverzichtItem {
-		width: 100%
-	}
-}
-
-@media only screen and (max-width: 140px) {
-	.path {
-		height: 12em;
-	}
-}
-
-@media only screen and (max-width: 100px) {
-	.path {
-		height: 16em;
-	}
-}
-
-@media only screen and (max-width: 90px) {
-	.path {
-		height: 18em;
-	}
-}
-
-@media only screen and (max-width: 52px) {
-	.path {
-		height: 24em;
-	}
-}
-
-.access {
-	text-align: left
-}
-
-.access {
-	display: block
-}
-
-.access checkbox {
-	display: block
-}
-
-body .toegankelijk {
-	background-color: #FFFFFF;
-	text-align: left;
-	color: #000000;
-	font-family: sans-serif
-}
-
-h1.toegankelijk {
-	font-size: 1.675rem;
-	font-weight: 300;
-	font-style: normal;
-	display: block;
-	margin-top: 0.67em;
-	margin-left: 0;
-	margin-right: 0;
-	text-align: left;
-	font-family: sans-serif;
-	color: #000000
-}
-
-footer.toegankelijk {
-	color: #000000;
-	background-color: #FFFFFF
-}
-
-.quote.toegankelijk {
-	margin-left: auto;
-	text-align: initial;
-	background-color: #FFFFFF;
-	color: #000000
-}
-
-.mededeling.toegankelijk {
-	color: #000000;
-	background-color: #FFFFFF
-}
-
-.col-6.toegankelijk {
-	color: #000000;
-	background-color: #FFFFFF
-}
-
-.col-6 .link.toegankelijk {
-	text-decoration: underline;
-	color: #0000FF;
-	font-size: 22px
-}
-
-.col-6 a.toegankelijk {
-	text-decoration: underline;
-	color: #0000FF;
-	font-size: 22px
-}
-
-.link.toegankelijk {
-	text-decoration: underline;
-	color: #0000FF;
-	cursor: auto;
-	text-align: left
-}
-
-.link.toegankelijk:hover {
-	text-decoration: underline;
-	color: #800080;
-	cursor: auto;
-	text-align: left
-}
-
-.setting {
-	color: #FFFF00;
-	background-color: #000090
-}
-
-.setting.toegankelijk {
-	color: #000000;
-	background-color: #FFFFFF
-}
-
-#SendMessageButton {
-	color: black;
-	float: right;
-}
-
-@font-face {
-	font-family: 'Doctor';
-	src: url('../fonts/Doctor.svg') format('svg'), url('../fonts/Doctor.woff') format('woff'), url('../fonts/Doctor.eot') format('eot'), url('../fonts/Doctor.ttf') format('truetype')
-}
-
-#overlay_background {
-	width: 100%;
-	height: 100vh;
-	position: absolute;
-	top: 0;
-	opacity: 0.5;
-	background-color: #000000;
-	bottom: 0;
-	display: none
-}
-
-#overlay h1 {
-	text-align: center;
-	color: #ff0;
-	font-family: 'Doctor';
-	text-align: center;
-	font-weight: 400;
-	font-size: 5em;
-	margin-bottom: 10px
-}
-
-#overlay h2 {
-	font-family: Doctor;
-	font-weight: 400;
-	margin: 0;
-	padding: 0;
-	font-size: 4.2em
-}
-
-#overlay .access.toegankelijk,
-#overlay .access {
-	text-align: left
-}
-
-#overlay h1.toegankelijk {
-	color: #000;
-	display: block;
-	font-family: sans-serif;
-	font-size: 2em;
-	font-weight: 700;
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: .67em;
-	text-align: left
-}
-
-#overlay h2.toegankelijk {
-	display: block;
-	font-family: sans-serif;
-	font-size: 1.5em;
-	font-weight: 700;
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: .83em
-}
-
-#overlay .link {
-	color: #fff;
-	font-size: 2em;
-	line-height: 1em;
-	text-decoration: none
-}
-
-#overlay .link.toegankelijk {
-	color: #0000FF;
-	cursor: auto;
-	text-align: left;
-	text-decoration: underline
-}
-
-#overlay .link.toegankelijk:hover {
-	color: #800080;
-	cursor: auto;
-	text-align: left;
-	text-decoration: underline
-}
-
-#overlay .link.toegankelijk.visited:visited {
-	color: #800080;
-	cursor: auto;
-	text-decoration: underline
-}
-
-#overlay .talen {
-	clear: both;
-	padding-top: 1.5em;
-	width: 100%
-}
-
-#overlay .talen.toegankelijk {
-	display: block;
-	float: left;
-	padding-top: 1.5em;
-	text-align: center;
-	width: 100%
-}
-
-#overlay .taal {
-	margin-top: 2em
-}
-
-.taal.toegankelijk {
-	margin-left: 0;
-	width: 50%
-}
-
-label {
-	font-size: 2em;
-	min-width: 5em;
-}
-
-.close_IMG {
-	border-radius: 5px
-}
-
-#overlay {
-	position: absolute;
-	left: 9em;
-	right: auto;
-	top: 4em;
-	width: 70%;
-	height: 80%;
-	text-align: center;
-	z-index: 1000;
-	align-content: center;
-	background-color: #000090;
-	display: none
-}
-
-@media only screen and (max-width: 828px) {
-	.keuze {
-		width: 30%
-	}
-	.Wiki_Foto {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	#loading {
-		animation: rotateRight 2.5s infinite linear;
-		-webkit-animation: rotateRight 2.5s infinite linear;
-		display: block;
-		margin: auto;
-		width: 15%
-	}
-	.upDown {
-		float: right;
-		width: 8%;
-		clear: right;
-	}
-	#Inhoud {
-		width: 100%;
-		margin-top: 1%;
-	}
-	#overlay {
-		position: absolute;
-		left: 2%;
-		right: 2%;
-		top: 2em;
-		width: 96%;
-		height: 80%;
-		text-align: center;
-		z-index: 1000;
-		align-content: center;
-		background-color: #000090;
-		display: none
-	}
-	#overlay h1 {
-		text-align: center;
-		color: #ff0;
-		font-family: 'Doctor';
-		text-align: center;
-		font-weight: 400;
-		font-size: 2em;
-		line-height: 1em;
-		margin-top: .1em
-	}
-	#overlay h2 {
-		font-family: Doctor;
-		font-weight: 400;
-		margin: 0;
-		padding: 0;
-		font-size: 1.8em
-	}
-	#overlay .taal {
-		margin-left: 0;
-		width: 100%
-	}
-	#overlay .taal img {
-		width: 10%
-	}
-	label {
-		font-size: 1em;
-		clear: right
-	}
-	.taal_link {
-		float: right;
-		width: 15%;
-		border: 1px solid silver
-	}
-}
-
-input[type=checkbox]#show-menu {
-	display: none
-}
-
-#menulist {
-	display: block
-}
-
-.megamenu {
-	display: block
-}
-
-.show-menu {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-decoration: none;
-	color: #fff;
-	background: #696969;
-	text-align: center;
-	padding: 0px 0;
-	display: none;
-}
-
-@media only screen and (max-width: 828px) {
-	.Wiki_Foto {
-		width: 100%;
-		margin-left: 0;
-		margin-right: 0;
-		padding-bottom: 1em;
-		padding-top: 0.5em;
-	}
-	.WikiItem.content.List {
-		display: block;
-		margin-top: 0;
-		width: 100%;
-		float: right;
-		margin-left: 0;
-	}
-	.upDown {
-		float: right;
-		width: 8%;
-		clear: right;
-	}
-	nav {
-		width: 100%
-	}
-	li {
-		width: 100%
-	}
-	.cols-4 {
-		width: 100%;
-		height: auto
-	}
-	.cols-4b {
-		width: 100%;
-		height: auto;
-		margin-left: 4em
-	}
-	.accessible-megamenu {
-		height: 32em;
-		width: 100%
-	}
-	.accessible-megamenu-panel-group {
-		width: 100%;
-		clear: both;
-		margin-left: 8em
-	}
-	p {
-		width: 100%
-	}
-	ol {
-		width: 100%
-	}
-	ol li {
-		width: calc(100%/3);
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4b {
-		width: 100%;
-		left: 0;
-		border-top-left-radius: 3px;
-		height: 90em;
-		clear: none;
-		display: inline-block
-	}
-	.accessible-megamenu-panel-group {
-		clear: none;
-		display: inline-block;
-		font-size: 0.7em
-	}
-	.accessible-megamenu-panel.cols-4 {
-		height: 820em
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4 {
-		width: 100%;
-		left: 0;
-		border-top-left-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-3 {
-		width: 100%
-	}
-}
-
-@media screen and (max-width: 1000px) {
-	.OverzichtItem {
-		width: 33%;
-	}
-	nav ul {
-		position: static;
-		display: none
-	}
-	.WikiItem.content.List {
-		display: block;
-		margin-top: 0;
-		width: 139%;
-		float: left;
-		margin-left: 16%;
-	}
-	li {
-		margin-bottom: 1px
-	}
-	ul li,
-	li a {
-		width: 100%
-	}
-	.show-menu {
-		display: block
-	}
-	.megamenu {
-		display: none
-	}
-	.accessible-megamenu {
-		position: relative;
-		display: block;
-		box-sizing: border-box;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		height: 3.18em;
-		color: #454545;
-		background-color: #dfe2e2;
-		border-color: #b3b3b3;
-		border-color: rgba(0, 0, 0, 0.3);
-		border-style: solid;
-		border-width: 0 1px 1px;
-		width: 100%
-	}
-	.accessible-megamenu h1,
-	.accessible-megamenu h4 {
-		font-size: 1em;
-		display: inline;
-		margin: 0;
-		padding: 0;
-		line-height: inherit
-	}
-	.accessible-megamenu h2,
-		{
-		font-size: 1.5em;
-		display: inline;
-		margin: 0;
-		padding: 0;
-		line-height: 1.5em
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item {
-		text-align: center;
-		position: relative;
-		display: none;
-		box-sizing: border-box;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		height: 3.18em;
-		float: left;
-		color: #454545 !important;
-		text-shadow: 0 1px 0 #fff;
-		-moz-text-shadow: 0 1px 0 #fff;
-		border-right: 1px solid #b3b3b3;
-		border-right-color: rgba(0, 0, 0, 0.3);
-	}
-	.accessible-megamenu:focus {
-		outline: 2px solid rgba(34, 95, 215, 0.3);
-		-moz-outline-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup] {
-		position: relative;
-		display: block;
-		line-height: 3em;
-		height: 3em;
-		padding-left: 0.769em;
-		padding-right: 0.769em;
-		color: #454545 !important;
-		text-decoration: none;
-		box-shadow: inset 1px 1px 0 #fff;
-		z-index: inherit
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
-		color: #333 !important;
-		outline-offset: -1px
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
-		margin-left: 0;
-		background: #f5f8fa none;
-		background: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
-		background: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
-		background: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
-		background: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
-		z-index: 1002
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
-		background: #f5f8fa none;
-		padding-bottom: 2px
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
-		border-bottom-left-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
-		border-bottom-left-radius: 0px;
-		border-left: 1px solid #b3b3b3;
-		border-left-color: rgba(0, 0, 0, 0.3);
-		left: -1px;
-		margin-right: -1px
-	}
-	.accessible-megamenu .accessible-megamenu-panel {
-		position: absolute;
-		display: block;
-		left: -1px;
-		color: #454545;
-		margin: 0;
-		padding: 0 0.769em 0.769em;
-		line-height: normal;
-		background-color: #f5f8fa;
-		background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
-		background-image: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
-		background-image: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
-		background-image: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
-		cursor: default;
-		-webkit-box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-		-moz-box-shadow: 0 4px 6px -2px -moz-rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-		box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-		visibility: hidden;
-		top: -9999em;
-		max-height: 0px;
-		overflow: hidden;
-		opacity: 0;
-		-webkit-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-		-moz-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-		-ms-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-		-o-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-		transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-		border: 1px solid #b3b3b3;
-		border-color: rgba(0, 0, 0, 0.3);
-		border-top-right-radius: 3px;
-		border-bottom-right-radius: 3px;
-		border-bottom-left-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.open {
-		visibility: visible;
-		top: 3em;
-		max-height: 600px;
-		opacity: 1;
-		z-index: 1001;
-		-webkit-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-		-moz-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-		-ms-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-		-o-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-		transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s
-	}
-	.accessible-megamenu .accessible-megamenu-panel a {
-		display: inline-block;
-		font-size: .92em;
-		line-height: 1.2em;
-		text-decoration: none;
-		color: #225FD7;
-		font-weight: 700;
-		text-decoration: none;
-		margin-bottom: 0.5em
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4 {
-		width: 878px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li {
-		width: 22%
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4b {
-		width: 60em;
-		left: 0;
-		border-top-left-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
-		width: 50%
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-3 {
-		width: 724px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li {
-		width: 30%
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-1 {
-		width: 615px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li {
-		width: auto
-	}
-	.accessible-megamenu .accessible-megamenu-panel ol {
-		display: block;
-		list-style: none;
-		margin: 0;
-		padding: 0
-	}
-	.accessible-megamenu .accessible-megamenu-panel ol>li {
-		position: relative;
-		list-style: none;
-		margin: 0;
-		padding: 0
-	}
-	.accessible-megamenu .accessible-megamenu-panel>ol>li {
-		float: left;
-		display: block;
-		margin-right: 1em;
-		margin-bottom: 1em;
-		padding-left: 1em;
-		border-left: 1px solid rgba(0, 0, 0, 0.3);
-		box-shadow: inset 1px 0 0 #fff
-	}
-	.accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
-		padding-left: 0;
-		border-left: none;
-		box-shadow: none
-	}
-	.accessible-megamenu .accessible-megamenu-panel>p {
-		color: #454545;
-		font-size: 1.2em;
-		line-height: 1.1em
-	}
-	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a {
-		font-weight: 700;
-		color: #454545;
-		font-size: 1.2em;
-		margin-bottom: 6px;
-		padding-top: .4em;
-		padding-bottom: 0;
-		line-height: 1.1em
-	}
-	.accessible-megamenu .accessible-megamenu-panel ol ol>li>a {
-		width: auto;
-		text-indent: -2.333em;
-		padding-left: 2.333em;
-		height: 1em
-	}
-	.accessible-megamenu .accessible-megamenu-panel a:hover,
-	.accessible-megamenu .accessible-megamenu-panel a:focus {
-		color: #225FD7;
-		text-decoration: underline
-	}
-	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
-	.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
-		color: #333
-	}
-	.accessible-megamenu .accessible-megamenu-panel hr {
-		border-width: 1px 0px;
-		border-style: solid;
-		border-top-color: rgba(0, 0, 0, 0.3);
-		border-bottom-color: #fff
-	}
-}
-
-.accessible-megamenu-panel-group {
-	margin-left: 24em
-}
-
-.cols-4b {
-	margin-left: 4em
-}
-
-.zoeken {
-	width: 9%
-}
-
-.zoekterm {
-	border-style: none;
-	height: 30px;
-	width: 60%;
-	margin-left: 2px;
-	padding-left: 1em;
-	margin-top: 1em;
-	vertical-align: top
-}
-
-.zoekknop {
-	width: 40px;
-	height: 40px;
-	background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
-	background-size: 40px 40px;
-	border-style: none
-}
-
-.zoek_menu li {
-	float: right
-}
-
-.zoekfomulier {
-	width: 100%
-}
-
-.accessible-megamenu {
-	position: relative;
-	display: block;
-	box-sizing: border-box;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	height: 3.18em;
-	color: #454545;
-	background-color: #dfe2e2;
-	border-color: #b3b3b3;
-	border-color: rgba(0, 0, 0, 0.3);
-	border-style: solid;
-	border-width: 0 1px 1px;
-	width: 100%
-}
-
-.accessible-megamenu h1,
-.accessible-megamenu h4 {
-	font-size: 1em;
-	display: inline;
-	margin: 0;
-	padding: 0;
-	line-height: inherit
-}
-
-.accessible-megamenu h2,
-	{
-	font-size: 1.5em;
-	display: inline;
-	margin: 0;
-	padding: 0;
-	line-height: 1.5em
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item {
-	text-align: center;
-	position: relative;
-	display: block;
-	box-sizing: border-box;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	height: 3.077em;
-	color: #454545 !important;
-	text-shadow: 0 1px 0 #fff;
-	-moz-text-shadow: 0 1px 0 #fff;
-	border-right: 1px solid #b3b3b3;
-	border-right-color: rgba(0, 0, 0, 0.3)
-}
-
-.accessible-megamenu .standaard {
-	float: left
-}
-
-.accessible-megamenu .zoekmenu {
-	float: right;
-	right: -1px
-}
-
-.accessible-megamenu .zoekmenu i {
-	vertical-align: middle
-}
-
-.accessible-megamenu:focus {
-	outline: 2px solid rgba(34, 95, 215, 0.3);
-	-moz-outline-radius: 3px
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup] {
-	position: relative;
-	display: block;
-	line-height: 3em;
-	height: 3em;
-	padding-left: 0.769em;
-	padding-right: 0.769em;
-	color: #454545 !important;
-	text-decoration: none;
-	box-shadow: inset 1px 1px 0 #fff;
-	z-index: inherit
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
-	color: #333 !important;
-	outline-offset: -1px
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
-	margin-left: 0;
-	background: #f5f8fa none;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
-	background: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
-	background: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
-	background: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
-	z-index: 1002
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
-	background: #f5f8fa none;
-	padding-bottom: 2px
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
-	border-bottom-left-radius: 3px
-}
-
-.accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
-	border-bottom-left-radius: 0px;
-	border-left: 1px solid #b3b3b3;
-	border-left-color: rgba(0, 0, 0, 0.3);
-	left: -1px;
-	margin-right: -1px
-}
-
-.accessible-megamenu .accessible-megamenu-panel {
-	position: absolute;
-	display: block;
-	color: #454545;
-	margin: 0;
-	padding: 0 0.769em 0.769em;
-	line-height: normal;
-	background-color: #f5f8fa;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
-	background-image: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
-	background-image: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
-	background-image: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
-	cursor: default;
-	-webkit-box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-	-moz-box-shadow: 0 4px 6px -2px -moz-rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-	box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
-	visibility: hidden;
-	top: -9999em;
-	max-height: 0px;
-	overflow: hidden;
-	opacity: 0;
-	-webkit-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-	-moz-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-	-ms-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-	-o-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-	transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
-	border: 1px solid #b3b3b3;
-	border-color: rgba(0, 0, 0, 0.3);
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px
-}
-
-
-
-.accessible-megamenu-panel .zoekmenu {
-	right: -1px;
-	width: 15em
-}
-
-.accessible-megamenu .accessible-megamenu-panel.open {
-	visibility: visible;
-	top: 3em;
-	max-height: 600px;
-	opacity: 1;
-	z-index: 1001;
-	-webkit-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-	-moz-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-	-ms-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-	-o-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
-	transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s
-}
-
-.accessible-megamenu .accessible-megamenu-panel a {
-	display: inline-block;
-	font-size: .92em;
-	line-height: 1.2em;
-	text-decoration: none;
-	color: #225FD7;
-	font-weight: 700;
-	text-decoration: none;
-	margin-bottom: 0.5em
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-4 {
-	width: 878px
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li {
-	width: 22%
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-4b {
-	width: 40em;
-	left: 0;
-	border-top-left-radius: 3px
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
-	width: 29%
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-3 {
-	width: 25em
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li {
-	width: 40%
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-1 {
-	width: 615px
-}
-
-.accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li {
-	width: auto
-}
-
-.accessible-megamenu .accessible-megamenu-panel ol {
-	display: block;
-	list-style: none;
-	margin: 0;
-	padding: 0
-}
-
-.accessible-megamenu .accessible-megamenu-panel ol>li {
-	position: relative;
-	list-style: none;
-	margin: 0;
-	padding: 0
-}
-
-.accessible-megamenu .accessible-megamenu-panel>ol>li {
-	float: left;
-	display: block;
-	margin-bottom: 1em
-}
-
-.accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
-	padding-left: 0;
-	border-left: none;
-	box-shadow: none
-}
-
-.accessible-megamenu .accessible-megamenu-panel>p {
-	color: #454545;
-	font-size: 1.2em;
-	line-height: 1.1em
-}
-
-.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a {
-	font-weight: 700;
-	color: #454545;
-	font-size: 1.2em;
-	margin-bottom: 6px;
-	padding-top: .4em;
-	padding-bottom: 0;
-	line-height: 1.1em
-}
-
-.accessible-megamenu .accessible-megamenu-panel ol ol>li>a {
-	width: auto;
-	text-indent: -2.333em;
-	padding-left: 2.333em;
-}
-
-.accessible-megamenu .accessible-megamenu-panel a:hover,
-.accessible-megamenu .accessible-megamenu-panel a:focus {
-	color: #225FD7;
-	text-decoration: underline
-}
-
-.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
-.accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
-	color: #333
-}
-
-.accessible-megamenu .accessible-megamenu-panel hr {
-	border-width: 1px 0px;
-	border-style: solid;
-	border-top-color: rgba(0, 0, 0, 0.3);
-	border-bottom-color: #fff
-}
-
-nav form {
-	width: 100%;
-	clear: both;
-	margin-top: 1em
-}
-
-.zoeklabel {
-	color: #000000;
-}
-
-.accessible-megamenu .accessible-megamenu-panel ol ol>li>a:hover {
-	color: white;
-	background-color: #023079;
-	text-decoration: underline;
-	width: -webkit-fill-available;
-}
-
-@media only screen and (max-width: 828px) {
-	.upDown {
-		float: right;
-		width: 8%;
-		clear: right;
-	}
-	nav {
-		width: 100%
-	}
-	li {
-		width: 100%
-	}
-	.cols-4 {
-		width: 100%;
-		height: auto
-	}
-	.cols-4b {
-		width: 100%;
-		height: auto;
-		margin-left: 4em
-	}
-	.accessible-megamenu {
-		height: 32em;
-		width: 100%
-	}
-	.accessible-megamenu-panel-group {
-		width: 100%;
-		clear: both;
-		margin-left: 8em
-	}
-	.accessible-megamenu-panel-group ol li a img {
-		padding-left: 0em;
-	}
-	nav form {
-		width: 100%;
-		clear: both
-	}
-	p {
-		width: 100%
-	}
-	ol {
-		width: 100%
-	}
-	ol li {
-		width:calc(100%/3)
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4b {
-		width: 100%;
-		left: 0;
-		border-top-left-radius: 3px;
-		height: 90em;
-		clear: none;
-		display: inline-block
-	}
-	.accessible-megamenu-panel-group {
-		clear: none;
-		display: inline-block;
-		font-size: 0.7em
-	}
-	.accessible-megamenu-panel.cols-4 {
-		height: 820em
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-4 {
-		width: 100%;
-		left: 0;
-		border-top-left-radius: 3px
-	}
-	.accessible-megamenu .accessible-megamenu-panel.cols-3 {
-		width: 100%
-	}
-}
-
-.accessible-megamenu-panel-group {
-	margin-left: 24em
-}
-
-.cols-4b{
-	margin-left: 4em
-}
+                            body {
+                                font-family: Calibri;
+                                font-size: 20px;
+                                color: black;
+                                padding: 0px;
+                                margin: 0px;
+                                height: auto;
+                                background-color: white;
+                            }
+                            
+                            .newsitem {
+                                width: 100%;
+                                display: inline-block;
+                            }
+                            
+                            .singular_list_item {
+                                float: right;
+                                list-style-type: none;
+                            }
+                            
+                            .main_quote {
+                                border: 2px solid black;
+                                display: inline-block;
+                                border-radius: 10px;
+                                margin-top: 2em;
+                                width: 100%;
+                            }
+                            
+                            #labelspan {
+                                font-size: 0.9em;
+                            }
+                            
+                            .quote_picture {
+                                float: right;
+                                width: 35%;
+                                margin-bottom: 2em;
+                                margin-right: 4em;
+                                margin-top: 0em;
+                                display: block;
+                            }
+                            
+                            .cleared_both {
+                                clear: both;
+                            }
+                            
+                            .inline_block_vid {
+                                display: inline;
+                            }
+                            
+                            .linkerquote,
+                            .rechterquote {
+                                width: 48%;
+                            }
+                            
+                            .linkerquote {
+                                float: right;
+                            }
+                            
+                            .OverzichtItem {
+                                display: inline-block;
+                                width: 20%;
+                            }
+                            
+                            .quoteitem {
+                                border: 1px solid yellow;
+                                padding-bottom: 1em;
+                                display: inline-block;
+                                height: auto;
+                                margin-top: 1em;
+                                padding-left: 3em;
+                                clear: both;
+                                width: 100%;
+                            }
+                            
+                            .quotetext {
+                                max-width: 50%;
+                                display: inline-block;
+                            }
+                            
+                            .Inleiding {
+                                width: 75%;
+                            }
+                            
+                            .addtopic {
+                                float: right;
+                            }
+                            
+                            .addtopic fieldset input {
+                                color: black;
+                            }
+                            
+                            .topics {
+                                width: 100%;
+                                clear: both;
+                            }
+                            
+                            .topics h3 {
+                                display: initial;
+                            }
+                            
+                            .topics a {
+                                display: block;
+                            }
+                            
+                            .smalltext {
+                                width: 73%;
+                            }
+                            
+                            * {
+                                box-sizing: border-box;
+                            }
+                            
+                            .Half {
+                                width: 50%;
+                                float: left;
+                            }
+                            
+                            .Half ul {
+                                list-style-type: none;
+                            }
+                            
+                            .Rechts {
+                                float: right;
+                            }
+                            
+                            .WikiItemTitel {
+                                width: 100%;
+                                text-align: center;
+                                background-color: lightblue;
+                                color: black;
+                                clear: both;
+                            }
+                            
+                            .Missing {
+                                color: yellow;
+                                background-color: red;
+                            }
+                            
+                            .foto_met_text {
+                                border: 2px solid black;
+                                max-width: 27%;
+                                padding: 7px;
+                                background-color: #206090;
+                                color: white;
+                            }
+                            
+                            .foto_met_text img {
+                                width: 100%
+                            }
+                            
+                            .slideshow-container {
+                                max-width: 100%;
+                                position: relative;
+                                margin: auto;
+                            }
+                            
+                            .slideshow-container:first-child {
+                                display: block;
+                            }
+                            
+                            .mySlides {
+                                display: none;
+                            }
+                            
+                            .hide {
+                                display: none;
+                            }
+                            
+                            .prev,
+                            .next {
+                                cursor: pointer;
+                                position: absolute;
+                                top: 50%;
+                                width: auto;
+                                margin-top: -22px;
+                                padding: 16px;
+                                color: white;
+                                font-weight: bold;
+                                font-size: 18px;
+                                transition: 0.6s ease;
+                                border-radius: 0 3px 3px 0;
+                            }
+                            
+                            .next {
+                                right: 0;
+                                border-radius: 3px 0 0 3px;
+                            }
+                            
+                            .prev:hover,
+                            .next:hover {
+                                background-color: rgba(0, 0, 0, 0.8);
+                            }
+                            
+                            .text {
+                                color: #f2f2f2;
+                                padding: 8px 12px;
+                                bottom: 8px;
+                                width: 100%;
+                            }
+                            
+                            .fade {
+                                -webkit-animation-name: fade;
+                                -webkit-animation-duration: 1.5s;
+                                animation-name: fade;
+                                animation-duration: 1.5s;
+                                opacity: 1;
+                            }
+                            
+                            .fade img {
+                                margin-left: auto;
+                                margin-right: auto;
+                                display: block;
+                                width: 40%;
+                            }
+                            
+                            @-webkit-keyframes fade {
+                                from {
+                                    opacity: .4
+                                }
+                                to {
+                                    opacity: 1
+                                }
+                            }
+                            
+                            @keyframes fade {
+                                from {
+                                    opacity: 1
+                                }
+                                to {
+                                    opacity: .4
+                                }
+                            }
+                            
+                            .open-close .holder .opner:hover {
+                                color: white;
+                            }
+                            
+                            .open-close .holder .opner {
+                                display: block;
+                                padding: 10px 25px;
+                                color: black;
+                                text-decoration: none;
+                            }
+                            
+                            .path {
+                                font-size: 1em;
+                                height: 0em;
+                                margin-left: 1em;
+                            }
+                            
+                            .path span {
+                                background-color: #206090;
+                                padding: 7px;
+                                border-radius: 9px;
+                            }
+                            
+                            .eerste {
+                                margin-left: -4em;
+                            }
+                            
+                            .itemsSitemap {
+                                display: block;
+                                list-style-type: none;
+                            }
+                            
+                            .item {
+                                margin-left: 0em;
+                            }
+                            
+                            .item a {
+                                margin-left: 1em;
+                            }
+                            
+                            .SitemapButton {
+                                width: 2em;
+                                color: black;
+                            }
+                            
+                            .hidden {
+                                display: none;
+                            }
+                            
+                            .leftcleared {
+                                clear: left;
+                            }
+                            
+                            .Doctor {
+                                width: 15%;
+                                margin-left: 3.7em;
+                            }
+                            
+                            nav ol li *:not(img) {
+                                color: black;
+                                text-decoration: none;
+                                vertical-align: center;
+                                padding-left: 1%;
+                                text-align: center;
+                            }
+                            
+                            .messages {
+                                clear: both;
+                            }
+                            
+                            .message {
+                                display: table;
+                                width: 100%;
+                                border: 1px yellow solid;
+                                border-collapse: collapse
+                            }
+                            
+                            .Gebruiker_Message {
+                                float: left;
+                                display: table-cell;
+                                width: 8%;
+                                border: 1px yellow solid;
+                                border-collapse: collapse;
+                            }
+                            
+                            .Gebruiker_Message img {
+                                width: 100%
+                            }
+                            
+                            .Message_message {
+                                margin-left: 16%;
+                                width: 85%;
+                                clear: right;
+                            }
+                            
+                            #overlay_Afbeelding {
+                                position: fixed;
+                                /* Sit on top of the page content */
+                                display: none;
+                                /* Hidden by default */
+                                width: 100%;
+                                /* Full width (cover the whole page) */
+                                height: 100%;
+                                /* Full height (cover the whole page) */
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                /* Black background with opacity */
+                                z-index: 2;
+                                /* Specify a stack order in case you're using a different order for other elements */
+                                cursor: pointer;
+                                /* Add a pointer on hover */
+                            }
+                            
+                            #overlay_Afbeelding_text {
+                                background-color: white;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-size: 1em;
+                                color: Black;
+                                width: 90%;
+                                transform: translate(-50%, -50%);
+                                -ms-transform: translate(-50%, -50%);
+                            }
+                            
+                            nav ol li a:hover,
+                            nav ol li a i:hover,
+                            nav ol li a:focus,
+                            nav ol li a i:focus {
+                                color: red;
+                            }
+                            
+                            nav ol li a:hover,
+                            nav ol li a i:hover,
+                            nav ol li a:focus,
+                            nav ol li a i:focus {
+                                color: red;
+                            }
+                            
+                            nav ol li div ol li ol li *:hover {
+                                color: red;
+                            }
+                            
+                            *:not(.upDown).toegankelijk {
+                                color: black;
+                                background-color: white;
+                                border-style: 2px solid black;
+                            }
+                            
+                            .result a.toegankelijk {
+                                color: blue;
+                            }
+                            
+                            #WikiDetails a,
+                            .path a,
+                            #Inhoud a {
+                                color: white;
+                                text-decoration: underline;
+                            }
+                            
+                            #WikiDetails a:hover,
+                            .path a:hover,
+                            #Inhoud a:hover {
+                                color: white;
+                                text-decoration: none;
+                            }
+                            
+                            .slide a:not(nav):hover {
+                                text-decoration: none;
+                                background-color: white;
+                                color: Red;
+                            }
+                            
+                            a:not(nav, #WikiDetails, .path, #Inhoud) {
+                                color: Red;
+                                text-decoration: none;
+                            }
+                            
+                            a:not(nav):hover {
+                                background-color: #023079;
+                                text-decoration: none;
+                                border-radius: 5px;
+                                color: white;
+                            }
+                            
+                            .access fieldset button {
+                                color: black;
+                            }
+                            
+                            .gefixeerd {
+                                position: fixed;
+                                bottom: 5px;
+                                left: 5px;
+                            }
+                            
+                            .item {
+                                display: block;
+                            }
+                            
+                            .opner {
+                                font-size: 2em;
+                                font-weight: bold;
+                            }
+                            
+                            .opner span {
+                                font-size: 1em;
+                            }
+                            
+                            .opner img {
+                                -moz-transition: transform 1s;
+                                -webkit-transition: transform 1s;
+                                transition: transform 1s;
+                            }
+                            
+                            .flip {
+                                transform: rotate(-180deg);
+                            }
+                            
+                            #Voetnoot {
+                                width: 89%;
+                                display: block;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+                            
+                            .WikiRule {
+                                clear: both;
+                                margin-left: 2px;
+                            }
+                            
+                            .WikiItem {
+                                float: left;
+                                margin-left: 0.4em;
+                                list-style-type: none;
+                            }
+                            
+                            .WikiItem.content {
+                                float: right;
+                                margin-left: 0;
+                                max-width: 51%;
+                                text-align: right;
+                            }
+                            
+                            .WikiItem.content.List {
+                                float: right;
+                                margin-left: 0;
+                                max-width: 47%;
+                                list-style-type: none;
+                                padding-left: 0;
+                            }
+                            
+                            .avatar {
+                                width: 20%;
+                                float: left;
+                                border: 1px solid yellow;
+                            }
+                            
+                            .user_Info {
+                                padding-left: 20%;
+                            }
+                            
+                            sup {
+                                font-size: 0.8em;
+                            }
+                            
+                            .header {
+                                width: 100%;
+                                color: black;
+                                height: 3.5em;
+                                border: 1px solid black;
+                                background-color: yellow;
+                            }
+                            
+                            .open-close.holder.header:nth-child(even) {
+                                background-color: green;
+                            }
+                            
+                            .upDown {
+                                float: right;
+                                max-width: 3%;
+                                clear: right;
+                            }
+                            
+                            .result.companion h3 {
+                                text-align: center
+                            }
+                            
+                            .result.companion div {
+                                text-align: center;
+                                width: 25%;
+                                display: inline-block;
+                            }
+                            
+                            .result.companion.slide {
+                                display: inline;
+                            }
+                            
+                            .companions {
+                                width: 10%;
+                            }
+                            
+                            .none {
+                                display: none
+                            }
+                            
+                            .dropdown {
+                                color: #444444;
+                                font-size: 17px
+                            }
+                            
+                            #calender_section {
+                                width: 700px;
+                                margin: 30px auto 0
+                            }
+                            
+                            #calender_section h2 {
+                                background-color: #000090;
+                                color: #444444;
+                                font-size: 17px;
+                                text-align: center;
+                                line-height: 40px
+                            }
+                            
+                            #calender_section h2 a {
+                                color: #F58220;
+                                float: none
+                            }
+                            
+                            #calender_section_top {
+                                width: 100%;
+                                float: left;
+                                margin-top: 20px
+                            }
+                            
+                            #calender_section_top ul {
+                                padding: 0;
+                                list-style-type: none
+                            }
+                            
+                            #calender_section_top ul li {
+                                float: left;
+                                display: block;
+                                width: 99px;
+                                border-right: 1px solid #fff;
+                                text-align: center;
+                                font-size: 14px;
+                                min-height: 0;
+                                background: none;
+                                box-shadow: none;
+                                margin: 0;
+                                padding: 0
+                            }
+                            
+                            #calender_section_bot {
+                                width: 100%;
+                                margin-top: 20px;
+                                float: left;
+                                border-left: 1px solid #ccc;
+                                border-bottom: 1px solid #ccc
+                            }
+                            
+                            #calender_section_bot ul {
+                                margin: 0;
+                                padding: 0;
+                                list-style-type: none;
+                                display: block
+                            }
+                            
+                            #calender_section_bot ul li {
+                                float: left;
+                                width: 14%;
+                                height: 80px;
+                                text-align: center;
+                                border-top: 1px solid #ccc;
+                                border-right: 1px solid #ccc;
+                                min-height: 0;
+                                background: none;
+                                box-shadow: none;
+                                margin: 0;
+                                padding: 0;
+                                position: relative
+                            }
+                            
+                            #calender_section_bot ul li span {
+                                margin-top: 7px;
+                                float: left;
+                                margin-left: 7px;
+                                text-align: center
+                            }
+                            
+                            .grey {
+                                background-color: #DDDDDD !important
+                            }
+                            
+                            .light_sky {
+                                background-color: #B9FFFF !important
+                            }
+                            
+                            .date_cell {
+                                cursor: pointer;
+                                cursor: hand
+                            }
+                            
+                            .date_cell:hover {
+                                background: #DDDDDD !important
+                            }
+                            
+                            .date_popup_wrap {
+                                position: absolute;
+                                width: 143px;
+                                height: 115px;
+                                z-index: 9999;
+                                top: -115px;
+                                left: -55px;
+                                background: #DDDDDD no-repeat top left;
+                                color: #666 !important
+                            }
+                            
+                            .events_window {
+                                overflow: hidden;
+                                overflow-y: auto;
+                                width: 133px;
+                                height: 115px;
+                                margin-top: 28px;
+                                margin-left: 25px
+                            }
+                            
+                            .event_wrap {
+                                margin-bottom: 10px;
+                                padding-bottom: 10px;
+                                border-bottom: solid 1px #E4E4E7;
+                                font-size: 12px;
+                                padding: 3px
+                            }
+                            
+                            .date_window {
+                                margin-top: 20px;
+                                margin-bottom: 2px;
+                                padding: 5px;
+                                font-size: 16px;
+                                margin-left: 9px;
+                                margin-right: 14px
+                            }
+                            
+                            .popup_event {
+                                margin-bottom: 2px;
+                                padding: 2px;
+                                font-size: 16px;
+                                width: 100%
+                            }
+                            
+                            .popup_event a {
+                                color: #000000 !important
+                            }
+                            
+                            .packeg_box a {
+                                color: #F58220;
+                                float: right
+                            }
+                            
+                            @media only screen and (max-width: 828px) {
+                                .socialmedia {
+                                    width: 100%;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
+                                .socialmedia a {
+                                    width: 46%
+                                }
+                                .Gebruiker_Message {
+                                    width: 30%;
+                                }
+                                .WikiRule {
+                                    width: 100%;
+                                    clear: both;
+                                    display: block;
+                                }
+                                .WikiRule ul {
+                                    float: right;
+                                    min-width: 50%;
+                                    max-width: 100%;
+                                }
+                                .WikiRule span {
+                                    float: right;
+                                    min-width: 45%;
+                                    max-width: 100%;
+                                }
+                                .WikiRule ul li {
+                                    margin-bottom: 0;
+                                }
+                                .upDown {
+                                    float: right;
+                                    width: 8%;
+                                    clear: right;
+                                }
+                                #calender_section {
+                                    width: 100%
+                                }
+                                #calender_section_top ul li {
+                                    width: 14%
+                                }
+                                #calender_section_bot ul li {
+                                    width: 14%
+                                }
+                            }
+                            
+                            #loading_div {
+                                width: 100%;
+                                clear: both;
+                            }
+                            
+                            #loading {
+                                transform-origin: 50% 50%;
+                                animation: 2s rotateRight infinite linear;
+                                display: block;
+                                margin: auto;
+                                width: 5%
+                            }
+                            
+                            @keyframes rotateRight {
+                                100% {
+                                    transform: rotate(360deg)
+                                }
+                            }
+                            
+                            html,
+                            body {
+                                max-width: 100%;
+                                overflow-x: hidden
+                            }
+                            
+                            .news {
+                                max-width: 93%
+                            }
+                            
+                            footer {
+                                height: auto;
+                                width: 95%;
+                                clear: both;
+                                margin-top: 10px;
+                                text-align: center;
+                                min-height: 18em;
+                                margin-left: 4%;
+                            }
+                            
+                            .back-to-top {
+                                position: fixed;
+                                bottom: 1em;
+                                right: 8em;
+                                text-decoration: none;
+                                color: #000000;
+                                font-size: 12px;
+                                padding: 0px;
+                                display: none
+                            }
+                            
+                            .close {
+                                padding-right: 1m;
+                                text-decoration: none;
+                                color: #000000;
+                                font-size: 12px;
+                                padding: 0px
+                            }
+                            
+                            .back-to-top:hover {
+                                opacity: 0.96;
+                                text-decoration: none
+                            }
+                            
+                            .back_to_top_IMG {
+                                border-radius: 5px;
+                                width: 5em;
+                                height: 5em
+                            }
+                            
+                            #header {
+                                height: auto;
+                                background-color: #FFFFFF;
+                                width: 100%;
+                                margin: 0px auto;
+                                margin-top: 120
+                            }
+                            
+                            div .L {
+                                width: 57%;
+                                margin-left: 14px
+                            }
+                            
+                            div .R {
+                                width: 57%;
+                                margin-left: 0px
+                            }
+                            
+                            img.LQuote {
+                                float: right;
+                                margin-right: 2%
+                            }
+                            
+                            img .RQuote {
+                                float: left
+                            }
+                            
+                            .image-right {
+                                float: right
+                            }
+                            
+                            .image-left {
+                                float: left;
+                                margin-left: 48px
+                            }
+                            
+                            span.L {
+                                display: inline
+                            }
+                            
+                            span.R {
+                                display: inline
+                            }
+                            
+                            span.RQuote {
+                                float: right
+                            }
+                            
+                            span.LQuote {
+                                float: left;
+                                font-size: 1em;
+                            }
+                            
+                            .LNews {
+                                width: 36%;
+                                float: left;
+                                margin-left: 1em;
+                                margin-right: 1em
+                            }
+                            
+                            .RNews {
+                                width: 36%;
+                                float: right;
+                                margin-left: 1em;
+                                margin-right: 1em
+                            }
+                            
+                            .small {
+                                width: 20%
+                            }
+                            
+                            .medium {
+                                width: 28%
+                            }
+                            
+                            #WikiDetails {
+                                border: 4px solid yellow;
+                                width: 26%;
+                                float: right;
+                                clear: right;
+                                border-collapse: collapse;
+                                margin-top: -80px;
+                                background-color: #206090;
+                                padding: 0.25em;
+                                margin-left: 1em;
+                                color: yellow;
+                            }
+                            
+                            #Inhoud {
+                                border: 4px solid yellow;
+                                width: 15%;
+                                background-color: #206090;
+                                color: yellow;
+                                border-collapse: collapse;
+                                text-align: center;
+                                padding-bottom: 1;
+                            }
+                            
+                            #Inhoud ul,
+                            #Inhoud ol {
+                                list-style-type: none;
+                                padding-left: 1em;
+                                text-align: left;
+                            }
+                            
+                            .Wiki_Foto {
+                                width: 70%;
+                                margin-left: 15%;
+                                margin-right: 15%;
+                                padding-bottom: 1em;
+                                padding-top: 0.5em;
+                            }
+                            
+                            p.item {
+                                margin-left: 15px;
+                                width: auto;
+                                display: inline-block;
+                                max-width: 98%;
+                                min-width: 20%;
+                            }
+                            
+                            p.topic {
+                                clear: both;
+                                width: 100%;
+                            }
+                            
+                            p {
+                                margin-left: 15px;
+                                width: auto;
+                                max-width: 100%;
+                                min-width: 20%
+                            }
+                            
+                            .menubar {
+                                height: 0;
+                                background-color: #696969;
+                                width: 100%;
+                                margin: 0 0 0 0;
+                                z-index: 1000
+                            }
+                            
+                            .zoekfunctie {
+                                width: 25%;
+                                background-color: #FFFFFF;
+                                height: 20px
+                            }
+                            
+                            .zoeken {
+                                width: 25%
+                            }
+                            
+                            .zoekterm {
+                                border-style: none;
+                                height: 30px;
+                                width: 70%;
+                                margin-left: 2px;
+                                padding-left: 3px
+                            }
+                            
+                            #overlay .link:hover {
+                                background-color: #FF0000;
+                                border: 2px solid;
+                                cursor: auto;
+                                text-decoration: underline
+                            }
+                            
+                            .disclaimer {
+                                clear: both
+                            }
+                            
+                            .zoekknop {
+                                width: 30px;
+                                height: 30px;
+                                background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
+                                background-size: 30px 30px;
+                                border-style: none
+                            }
+                            
+                            #foto_taal_button {
+                                vertical-align: sub;
+                            }
+                            
+                            .foto_taal_button {
+                                vertical-align: sub;
+                            }
+                            
+                            .zoeken_menu {
+                                width: 90%
+                            }
+                            
+                            .companionFoto {
+                                width: 65%;
+                            }
+                            
+                            .quote_short {
+                                float: left;
+                                padding-top: 1em
+                            }
+                            
+                            .col-6 a {
+                                font-size: 1em;
+                                text-decoration: underline;
+                                padding: 4px;
+                            }
+                            
+                            footer a,
+                            .quote a {
+                                padding: 4px;
+                                text-decoration: underline;
+                            }
+                            
+                            .prev,
+                            .next {
+                                color: black;
+                                text-decoration: none;
+                            }
+                            
+                            * {
+                                box-sizing: border-box
+                            }
+                            
+                            .row:after {
+                                clear: both;
+                                display: block;
+                            }
+                            
+                            [class*="col-"] {
+                                float: left;
+                                padding: 10px
+                            }
+                            
+                            .full {
+                                width: 100%;
+                                clear: both
+                            }
+                            
+                            .col-3 {
+                                height: auto;
+                                background-color: #000090;
+                                width: 18%;
+                                float: left;
+                                padding-top: 15px;
+                                padding-left: 10px;
+                                padding-right: 15px
+                            }
+                            
+                            .col-6 {
+                                width: 95%;
+                                height: auto;
+                                float: right;
+                                text-decoration: none;
+                                display: none
+                            }
+                            
+                            .under {
+                                width: 98%;
+                                height: auto;
+                                float: right;
+                                text-decoration: none;
+                                margin-right: 1%;
+                                display: none
+                            }
+                            
+                            .col-6 h1 {
+                                display: block;
+                                font-size: 2em;
+                                margin-top: 0.67em;
+                                margin-bottom: 0.67em;
+                                margin-left: 0;
+                                margin-right: 0;
+                                font-weight: 700
+                            }
+                            
+                            header h2 {
+                                display: block;
+                                font-size: 1.5em;
+                                margin-top: 0.83em;
+                                margin-bottom: 0.83em;
+                                margin-left: 0;
+                                margin-right: 0;
+                                font-weight: 700
+                            }
+                            
+                            header {
+                                margin-left: 1%
+                            }
+                            
+                            .mededeling {
+                                width: 30%;
+                                float: left;
+                                text-align: initial
+                            }
+                            
+                            .taal_link {
+                                float: right;
+                                width: 5%;
+                                border: 1px solid silver
+                            }
+                            
+                            .foto_taal {
+                                float: right;
+                                width: 100%
+                            }
+                            
+                            .quote {
+                                width: 20%;
+                                margin-right: 5%;
+                                float: right;
+                                text-align: initial;
+                                padding: 2px;
+                                clear: right;
+                                font-style: italic;
+                                border: 2px solid black
+                            }
+                            
+                            .quote span {
+                                margin-left: 0.3em
+                            }
+                            
+                            .detailcompanion {
+                                float: right;
+                                width: 20%;
+                                clear: both
+                            }
+                            
+                            .rechtop {
+                                width: 100%;
+                            }
+                            
+                            .tekst {
+                                width: 70%
+                            }
+                            
+                            .smalletekst {
+                                width: 65%
+                            }
+                            
+                            .foto {
+                                width: 30%;
+                                display: inline-block;
+                            }
+                            
+                            .rechts {
+                                float: right;
+                                clear: right;
+                                display: block
+                            }
+                            
+                            .links {
+                                float: left;
+                                clear: left;
+                                max-width: 71%;
+                            }
+                            
+                            p.links {
+                                max-width: 70%
+                            }
+                            
+                            .foto_center {
+                                display: block;
+                                margin: auto
+                            }
+                            
+                            .center {
+                                text-align: center
+                            }
+                            
+                            video,
+                            iframe {
+                                max-width: 100%;
+                                margin-left: auto;
+                                margin-right: auto;
+                                display: block
+                            }
+                            
+                            .romanai {
+                                width: 44%;
+                                margin-right: 0;
+                                margin-left: 0;
+                            }
+                            
+                            .romanaii {
+                                float: right;
+                                width: 56%;
+                                margin-right: 0;
+                                margin-left: 0;
+                            }
+                            
+                            iframe {
+                                margin: auto;
+                                top: 50%;
+                                left: 50%;
+                            }
+                            
+                            .video_beschrijving {
+                                float: right;
+                                clear: right;
+                                width: 50%;
+                                margin-left: 0em;
+                                margin-right: 1em
+                            }
+                            
+                            .keuze {
+                                width: 13%;
+                                display: inline-block;
+                            }
+                            
+                            .keuze p {
+                                margin-left: 0;
+                            }
+                            
+                            .thumbnail {
+                                width: 100%
+                            }
+                            
+                            .Spoilercontent {
+                                display: none;
+                                float: right;
+                                clear: both
+                            }
+                            
+                            input[type=text],
+                            input[type=email] {
+                                border: 1px solid darkgray;
+                            }
+                            
+                            .Spoiler {
+                                float: right;
+                            }
+                            
+                            #SendEmailButton {
+                                color: black;
+                                float: right;
+                                margin-right: 0.35em;
+                                font-size: 1.75em;
+                            }
+                            
+                            @media only screen and (max-width: 350px) {
+                                .path {
+                                    height: 3em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 828px) {
+                                #SendEmailButton {
+                                    font-size: 1em;
+                                    width: 50%;
+                                    margin: 0 25%;
+                                }
+                                #NameLabel {
+                                    margin-top: 1em;
+                                    display: inline-block;
+                                }
+                                .back-to-top {
+                                    bottom: 6em;
+                                    right: 1em;
+                                }
+                                .Wiki_Foto {
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                }
+                                .path {
+                                    height: 2em;
+                                }
+                                .path span {
+                                    line-height: 2em;
+                                }
+                                .foto_met_text {
+                                    max-width: 100%;
+                                }
+                                .links {
+                                    max-width: 100%;
+                                }
+                                .Inleiding {
+                                    width: 100%;
+                                }
+                                p {
+                                    width: 100%;
+                                }
+                                .OverzichtItem {
+                                    width: 50%;
+                                }
+                                .upDown {
+                                    float: right;
+                                    width: 8%;
+                                    clear: right;
+                                }
+                                .nav a {
+                                    color: black;
+                                    cursor: auto;
+                                    text-decoration: none;
+                                }
+                                #WikiDetails {
+                                    margin-top: 0;
+                                }
+                                .video_beschrijving {
+                                    float: left;
+                                    clear: both;
+                                    width: 100%;
+                                    margin-left: 0em;
+                                    margin-right: 0em
+                                }
+                                [class*="col-"] {
+                                    width: 100%
+                                }
+                                .col-6 img {
+                                    width: 100%
+                                }
+                                .quote_picture {
+                                    float: initial;
+                                }
+                                .detailcompanion {
+                                    width: 100%
+                                }
+                                .rechtop {
+                                    width: 100%;
+                                    margin-right: 5px
+                                }
+                                .tekst {
+                                    width: 100%
+                                }
+                                .smalletekst {
+                                    width: 100%
+                                }
+                                #header {
+                                    display: none
+                                }
+                                p,
+                                p.links {
+                                    margin-left: 0px;
+                                    max-width: 100%
+                                }
+                                #WikiDetails {
+                                    width: 100%
+                                }
+                                .col-3 {
+                                    display: none
+                                }
+                                .sidebar_mobile {
+                                    display: block;
+                                    width: 100%
+                                }
+                                .col-6 img,
+                                .under img:not(.upDown) {
+                                    width: 100%;
+                                    clear: both
+                                }
+                                .back_to_top {
+                                    bottom: 5px;
+                                    right: 7em
+                                }
+                                .back_to_top_IMG {
+                                    width: 4em;
+                                    height: 4em
+                                }
+                                #footer {
+                                    height: auto
+                                }
+                                .quote {
+                                    width: 100%;
+                                    margin-left: 0px;
+                                    float: left
+                                }
+                                .mededeling {
+                                    width: 100%;
+                                    margin-left: 0px;
+                                    float: left
+                                }
+                                .zoekfunctie {
+                                    width: 90%;
+                                    background-color: #FFFFFF;
+                                    height: 20px
+                                }
+                                .zoeken {
+                                    width: 90%
+                                }
+                                .zoekterm {
+                                    border-style: none;
+                                    height: 30px;
+                                    width: 98%;
+                                    margin-left: 2px;
+                                    padding-left: 3px
+                                }
+                                .zoekknop {
+                                    width: 30px;
+                                    height: 30px;
+                                    background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
+                                    background-size: 30px 30px;
+                                    border-style: none
+                                }
+                                .R {
+                                    margin-left: 0em;
+                                    margin-right: 0em
+                                }
+                                div .R {
+                                    float: left;
+                                    width: 100%;
+                                    margin-left: 0px
+                                }
+                                .L {
+                                    margin-left: 0em;
+                                    margin-right: 0em
+                                }
+                                .LNews {
+                                    width: 100%;
+                                    float: left;
+                                    margin-left: 0em;
+                                    margin-right: 0em
+                                }
+                                .RNews {
+                                    width: 100%;
+                                    float: right;
+                                    margin-left: 0em;
+                                    margin-right: 0em
+                                }
+                                .companionFoto {
+                                    width: 100%
+                                }
+                                .companion {
+                                    width: 100%;
+                                    display: inline-block
+                                }
+                                .thumbnail {
+                                    width: calc(100%/2)
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 350px) {
+                                .path {
+                                    height: 4em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 240px) {
+                                .path {
+                                    height: 6em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 180px) {
+                                .path {
+                                    height: 8em;
+                                }
+                                .OverzichtItem {
+                                    width: 100%
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 140px) {
+                                .path {
+                                    height: 12em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 100px) {
+                                .path {
+                                    height: 16em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 90px) {
+                                .path {
+                                    height: 18em;
+                                }
+                            }
+                            
+                            @media only screen and (max-width: 52px) {
+                                .path {
+                                    height: 24em;
+                                }
+                            }
+                            
+                            .access {
+                                text-align: left
+                            }
+                            
+                            .access {
+                                display: block
+                            }
+                            
+                            .access checkbox {
+                                display: block
+                            }
+                            
+                            body .toegankelijk {
+                                background-color: #FFFFFF;
+                                text-align: left;
+                                color: #000000;
+                                font-family: sans-serif
+                            }
+                            
+                            h1.toegankelijk {
+                                font-size: 1.675rem;
+                                font-weight: 300;
+                                font-style: normal;
+                                display: block;
+                                margin-top: 0.67em;
+                                margin-left: 0;
+                                margin-right: 0;
+                                text-align: left;
+                                font-family: sans-serif;
+                                color: #000000
+                            }
+                            
+                            footer.toegankelijk {
+                                color: #000000;
+                                background-color: #FFFFFF
+                            }
+                            
+                            .quote.toegankelijk {
+                                margin-left: auto;
+                                text-align: initial;
+                                background-color: #FFFFFF;
+                                color: #000000
+                            }
+                            
+                            .mededeling.toegankelijk {
+                                color: #000000;
+                                background-color: #FFFFFF
+                            }
+                            
+                            .col-6.toegankelijk {
+                                color: #000000;
+                                background-color: #FFFFFF
+                            }
+                            
+                            .col-6 .link.toegankelijk {
+                                text-decoration: underline;
+                                color: #0000FF;
+                                font-size: 22px
+                            }
+                            
+                            .col-6 a.toegankelijk {
+                                text-decoration: underline;
+                                color: #0000FF;
+                                font-size: 22px
+                            }
+                            
+                            .link.toegankelijk {
+                                text-decoration: underline;
+                                color: #0000FF;
+                                cursor: auto;
+                                text-align: left
+                            }
+                            
+                            .link.toegankelijk:hover {
+                                text-decoration: underline;
+                                color: #800080;
+                                cursor: auto;
+                                text-align: left
+                            }
+                            
+                            .setting {
+                                color: #FFFF00;
+                                background-color: #000090
+                            }
+                            
+                            .setting.toegankelijk {
+                                color: #000000;
+                                background-color: #FFFFFF
+                            }
+                            
+                            #SendMessageButton {
+                                color: black;
+                                float: right;
+                            }
+                            
+                            @font-face {
+                                font-family: 'Doctor';
+                                src: url('../fonts/Doctor.svg') format('svg'), url('../fonts/Doctor.woff') format('woff'), url('../fonts/Doctor.eot') format('eot'), url('../fonts/Doctor.ttf') format('truetype')
+                            }
+                            
+                            #overlay_background {
+                                width: 100%;
+                                height: 100vh;
+                                position: absolute;
+                                top: 0;
+                                opacity: 0.5;
+                                background-color: #000000;
+                                bottom: 0;
+                                display: none
+                            }
+                            
+                            #overlay h1 {
+                                text-align: center;
+                                color: #ff0;
+                                font-family: 'Doctor';
+                                text-align: center;
+                                font-weight: 400;
+                                font-size: 5em;
+                                margin-bottom: 10px
+                            }
+                            
+                            #overlay h2 {
+                                font-family: Doctor;
+                                font-weight: 400;
+                                margin: 0;
+                                padding: 0;
+                                font-size: 4.2em
+                            }
+                            
+                            #overlay .access.toegankelijk,
+                            #overlay .access {
+                                text-align: left
+                            }
+                            
+                            #overlay h1.toegankelijk {
+                                color: #000;
+                                display: block;
+                                font-family: sans-serif;
+                                font-size: 2em;
+                                font-weight: 700;
+                                margin-left: 0;
+                                margin-right: 0;
+                                margin-top: .67em;
+                                text-align: left
+                            }
+                            
+                            #overlay h2.toegankelijk {
+                                display: block;
+                                font-family: sans-serif;
+                                font-size: 1.5em;
+                                font-weight: 700;
+                                margin-left: 0;
+                                margin-right: 0;
+                                margin-top: .83em
+                            }
+                            
+                            #overlay .link {
+                                color: #fff;
+                                font-size: 2em;
+                                line-height: 1em;
+                                text-decoration: none
+                            }
+                            
+                            #overlay .link.toegankelijk {
+                                color: #0000FF;
+                                cursor: auto;
+                                text-align: left;
+                                text-decoration: underline
+                            }
+                            
+                            #overlay .link.toegankelijk:hover {
+                                color: #800080;
+                                cursor: auto;
+                                text-align: left;
+                                text-decoration: underline
+                            }
+                            
+                            #overlay .link.toegankelijk.visited:visited {
+                                color: #800080;
+                                cursor: auto;
+                                text-decoration: underline
+                            }
+                            
+                            #overlay .talen {
+                                clear: both;
+                                padding-top: 1.5em;
+                                width: 100%
+                            }
+                            
+                            #overlay .talen.toegankelijk {
+                                display: block;
+                                float: left;
+                                padding-top: 1.5em;
+                                text-align: center;
+                                width: 100%
+                            }
+                            
+                            #overlay .taal {
+                                margin-top: 2em
+                            }
+                            
+                            .taal.toegankelijk {
+                                margin-left: 0;
+                                width: 50%
+                            }
+                            
+                            label {
+                                font-size: 2em;
+                                min-width: 5em;
+                            }
+                            
+                            .close_IMG {
+                                border-radius: 5px
+                            }
+                            
+                            #overlay {
+                                position: absolute;
+                                left: 9em;
+                                right: auto;
+                                top: 4em;
+                                width: 70%;
+                                height: 80%;
+                                text-align: center;
+                                z-index: 1000;
+                                align-content: center;
+                                background-color: #000090;
+                                display: none
+                            }
+                            
+                            @media only screen and (max-width: 828px) {
+                                .keuze {
+                                    width: 30%
+                                }
+                                .Wiki_Foto {
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                }
+                                #loading {
+                                    animation: rotateRight 5.5s infinite linear;
+                                    -webkit-animation: rotateRight 5.5s infinite linear;
+                                    display: block;
+                                    margin: auto;
+                                    width: 8%
+                                }
+                                .upDown {
+                                    float: right;
+                                    width: 8%;
+                                    clear: right;
+                                }
+                                #Inhoud {
+                                    width: 100%;
+                                    margin-top: 1%;
+                                }
+                                #overlay {
+                                    position: absolute;
+                                    left: 2%;
+                                    right: 2%;
+                                    top: 2em;
+                                    width: 96%;
+                                    height: 80%;
+                                    text-align: center;
+                                    z-index: 1000;
+                                    align-content: center;
+                                    background-color: #000090;
+                                    display: none
+                                }
+                                #overlay h1 {
+                                    text-align: center;
+                                    color: #ff0;
+                                    font-family: 'Doctor';
+                                    text-align: center;
+                                    font-weight: 400;
+                                    font-size: 2em;
+                                    line-height: 1em;
+                                    margin-top: .1em
+                                }
+                                #overlay h2 {
+                                    font-family: Doctor;
+                                    font-weight: 400;
+                                    margin: 0;
+                                    padding: 0;
+                                    font-size: 1.8em
+                                }
+                                #overlay .taal {
+                                    margin-left: 0;
+                                    width: 100%
+                                }
+                                #overlay .taal img {
+                                    width: 10%
+                                }
+                                label {
+                                    font-size: 1em;
+                                    clear: right
+                                }
+                                .taal_link {
+                                    float: right;
+                                    width: 15%;
+                                    border: 1px solid silver
+                                }
+                            }
+                            
+                            input[type=checkbox]#show-menu {
+                                display: none
+                            }
+                            
+                            #menulist {
+                                display: block
+                            }
+                            
+                            .megamenu {
+                                display: block
+                            }
+                            
+                            .show-menu {
+                                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                text-decoration: none;
+                                color: #fff;
+                                background: #696969;
+                                text-align: center;
+                                padding: 0px 0;
+                                display: none;
+                            }
+                            
+                            @media only screen and (max-width: 828px) {
+                                .Wiki_Foto {
+                                    width: 100%;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                    padding-bottom: 1em;
+                                    padding-top: 0.5em;
+                                }
+                                .WikiItem.content.List {
+                                    display: block;
+                                    margin-top: 0;
+                                    width: 100%;
+                                    float: right;
+                                    margin-left: 0;
+                                }
+                                .upDown {
+                                    float: right;
+                                    width: 8%;
+                                    clear: right;
+                                }
+                                nav {
+                                    width: 100%
+                                }
+                                li {
+                                    width: 100%
+                                }
+                                .cols-4 {
+                                    width: 100%;
+                                    height: auto
+                                }
+                                .cols-4b {
+                                    width: 100%;
+                                    height: auto;
+                                    margin-left: 4em
+                                }
+                                .accessible-megamenu {
+                                    height: 32em;
+                                    width: 100%
+                                }
+                                .accessible-megamenu-panel-group {
+                                    width: 100%;
+                                    clear: both;
+                                    margin-left: 8em
+                                }
+                                p {
+                                    width: 100%
+                                }
+                                ol {
+                                    width: 100%
+                                }
+                                ol li {
+                                    width: calc(100%/3);
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4b {
+                                    width: 100%;
+                                    left: 0;
+                                    border-top-left-radius: 3px;
+                                    height: 90em;
+                                    clear: none;
+                                    display: inline-block
+                                }
+                                .accessible-megamenu-panel-group {
+                                    clear: none;
+                                    display: inline-block;
+                                    font-size: 0.7em
+                                }
+                                .accessible-megamenu-panel.cols-4 {
+                                    height: 820em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4 {
+                                    width: 100%;
+                                    left: 0;
+                                    border-top-left-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-3 {
+                                    width: 100%
+                                }
+                            }
+                            
+                            @media screen and (max-width: 1000px) {
+                                .OverzichtItem {
+                                    width: 33%;
+                                }
+                                nav ul {
+                                    position: static;
+                                    display: none
+                                }
+                                .WikiItem.content.List {
+                                    display: block;
+                                    margin-top: 0;
+                                    width: 139%;
+                                    float: left;
+                                    margin-left: 16%;
+                                }
+                                li {
+                                    margin-bottom: 1px
+                                }
+                                ul li,
+                                li a {
+                                    width: 100%
+                                }
+                                .show-menu {
+                                    display: block
+                                }
+                                .megamenu {
+                                    display: none
+                                }
+                                .accessible-megamenu {
+                                    position: relative;
+                                    display: block;
+                                    box-sizing: border-box;
+                                    list-style: none;
+                                    margin: 0;
+                                    padding: 0;
+                                    height: 3.18em;
+                                    color: #454545;
+                                    background-color: #dfe2e2;
+                                    border-color: #b3b3b3;
+                                    border-color: rgba(0, 0, 0, 0.3);
+                                    border-style: solid;
+                                    border-width: 0 1px 1px;
+                                    width: 100%
+                                }
+                                .accessible-megamenu h1,
+                                .accessible-megamenu h4 {
+                                    font-size: 1em;
+                                    display: inline;
+                                    margin: 0;
+                                    padding: 0;
+                                    line-height: inherit
+                                }
+                                .accessible-megamenu h2,
+                                {
+                                    font-size: 1.5em;
+                                    display: inline;
+                                    margin: 0;
+                                    padding: 0;
+                                    line-height: 1.5em
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item {
+                                    text-align: center;
+                                    position: relative;
+                                    display: none;
+                                    box-sizing: border-box;
+                                    list-style: none;
+                                    margin: 0;
+                                    padding: 0;
+                                    height: 3.18em;
+                                    float: left;
+                                    color: #454545 !important;
+                                    text-shadow: 0 1px 0 #fff;
+                                    -moz-text-shadow: 0 1px 0 #fff;
+                                    border-right: 1px solid #b3b3b3;
+                                    border-right-color: rgba(0, 0, 0, 0.3);
+                                }
+                                .accessible-megamenu:focus {
+                                    outline: 2px solid rgba(34, 95, 215, 0.3);
+                                    -moz-outline-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup] {
+                                    position: relative;
+                                    display: block;
+                                    line-height: 3em;
+                                    height: 3em;
+                                    padding-left: 0.769em;
+                                    padding-right: 0.769em;
+                                    color: #454545 !important;
+                                    text-decoration: none;
+                                    box-shadow: inset 1px 1px 0 #fff;
+                                    z-index: inherit
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
+                                    color: #333 !important;
+                                    outline-offset: -1px
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
+                                    margin-left: 0;
+                                    background: #f5f8fa none;
+                                    background: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
+                                    background: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    background: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    background: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    z-index: 1002
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
+                                    background: #f5f8fa none;
+                                    padding-bottom: 2px
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
+                                    border-bottom-left-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
+                                    border-bottom-left-radius: 0px;
+                                    border-left: 1px solid #b3b3b3;
+                                    border-left-color: rgba(0, 0, 0, 0.3);
+                                    left: -1px;
+                                    margin-right: -1px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel {
+                                    position: absolute;
+                                    display: block;
+                                    left: -1px;
+                                    color: #454545;
+                                    margin: 0;
+                                    padding: 0 0.769em 0.769em;
+                                    line-height: normal;
+                                    background-color: #f5f8fa;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
+                                    background-image: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    background-image: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    background-image: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                    cursor: default;
+                                    -webkit-box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                    -moz-box-shadow: 0 4px 6px -2px -moz-rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                    box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                    visibility: hidden;
+                                    top: -9999em;
+                                    max-height: 0px;
+                                    overflow: hidden;
+                                    opacity: 0;
+                                    -webkit-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                    -moz-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                    -ms-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                    -o-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                    transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                    border: 1px solid #b3b3b3;
+                                    border-color: rgba(0, 0, 0, 0.3);
+                                    border-top-right-radius: 3px;
+                                    border-bottom-right-radius: 3px;
+                                    border-bottom-left-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.open {
+                                    visibility: visible;
+                                    top: 3em;
+                                    max-height: 600px;
+                                    opacity: 1;
+                                    z-index: 1001;
+                                    -webkit-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                    -moz-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                    -ms-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                    -o-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                    transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel a {
+                                    display: inline-block;
+                                    font-size: .92em;
+                                    line-height: 1.2em;
+                                    text-decoration: none;
+                                    color: #225FD7;
+                                    font-weight: 700;
+                                    text-decoration: none;
+                                    margin-bottom: 0.5em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4 {
+                                    width: 878px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li {
+                                    width: 22%
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4b {
+                                    width: 60em;
+                                    left: 0;
+                                    border-top-left-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
+                                    width: 50%
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-3 {
+                                    width: 724px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li {
+                                    width: 30%
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-1 {
+                                    width: 615px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li {
+                                    width: auto
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel ol {
+                                    display: block;
+                                    list-style: none;
+                                    margin: 0;
+                                    padding: 0
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel ol>li {
+                                    position: relative;
+                                    list-style: none;
+                                    margin: 0;
+                                    padding: 0
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel>ol>li {
+                                    float: left;
+                                    display: block;
+                                    margin-right: 1em;
+                                    margin-bottom: 1em;
+                                    padding-left: 1em;
+                                    border-left: 1px solid rgba(0, 0, 0, 0.3);
+                                    box-shadow: inset 1px 0 0 #fff
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
+                                    padding-left: 0;
+                                    border-left: none;
+                                    box-shadow: none
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel>p {
+                                    color: #454545;
+                                    font-size: 1.2em;
+                                    line-height: 1.1em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a {
+                                    font-weight: 700;
+                                    color: #454545;
+                                    font-size: 1.2em;
+                                    margin-bottom: 6px;
+                                    padding-top: .4em;
+                                    padding-bottom: 0;
+                                    line-height: 1.1em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel ol ol>li>a {
+                                    width: auto;
+                                    text-indent: -2.333em;
+                                    padding-left: 2.333em;
+                                    height: 1em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel a:hover,
+                                .accessible-megamenu .accessible-megamenu-panel a:focus {
+                                    color: #225FD7;
+                                    text-decoration: underline
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
+                                .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
+                                    color: #333
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel hr {
+                                    border-width: 1px 0px;
+                                    border-style: solid;
+                                    border-top-color: rgba(0, 0, 0, 0.3);
+                                    border-bottom-color: #fff
+                                }
+                            }
+                            
+                            .accessible-megamenu-panel-group {
+                                margin-left: 24em
+                            }
+                            
+                            .cols-4b {
+                                margin-left: 4em
+                            }
+                            
+                            .zoeken {
+                                width: 9%
+                            }
+                            
+                            .zoekterm {
+                                border-style: none;
+                                height: 30px;
+                                width: 60%;
+                                margin-left: 2px;
+                                padding-left: 1em;
+                                margin-top: 1em;
+                                vertical-align: top
+                            }
+                            
+                            .zoekknop {
+                                width: 40px;
+                                height: 40px;
+                                background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
+                                background-size: 40px 40px;
+                                border-style: none
+                            }
+                            
+                            .zoek_menu li {
+                                float: right
+                            }
+                            
+                            .zoekfomulier {
+                                width: 100%
+                            }
+                            
+                            .accessible-megamenu {
+                                position: relative;
+                                display: block;
+                                box-sizing: border-box;
+                                list-style: none;
+                                margin: 0;
+                                padding: 0;
+                                height: 3.18em;
+                                color: #454545;
+                                background-color: #dfe2e2;
+                                border-color: #b3b3b3;
+                                border-color: rgba(0, 0, 0, 0.3);
+                                border-style: solid;
+                                border-width: 0 1px 1px;
+                                width: 100%
+                            }
+                            
+                            .accessible-megamenu h1,
+                            .accessible-megamenu h4 {
+                                font-size: 1em;
+                                display: inline;
+                                margin: 0;
+                                padding: 0;
+                                line-height: inherit
+                            }
+                            
+                            .accessible-megamenu h2,
+                            {
+                                font-size: 1.5em;
+                                display: inline;
+                                margin: 0;
+                                padding: 0;
+                                line-height: 1.5em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item {
+                                text-align: center;
+                                position: relative;
+                                display: block;
+                                box-sizing: border-box;
+                                list-style: none;
+                                margin: 0;
+                                padding: 0;
+                                height: 3.077em;
+                                color: #454545 !important;
+                                text-shadow: 0 1px 0 #fff;
+                                -moz-text-shadow: 0 1px 0 #fff;
+                                border-right: 1px solid #b3b3b3;
+                                border-right-color: rgba(0, 0, 0, 0.3)
+                            }
+                            
+                            .accessible-megamenu .standaard {
+                                float: left
+                            }
+                            
+                            .accessible-megamenu .zoekmenu {
+                                float: right;
+                                right: -1px
+                            }
+                            
+                            .accessible-megamenu .zoekmenu i {
+                                vertical-align: middle
+                            }
+                            
+                            .accessible-megamenu:focus {
+                                outline: 2px solid rgba(34, 95, 215, 0.3);
+                                -moz-outline-radius: 3px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup] {
+                                position: relative;
+                                display: block;
+                                line-height: 3em;
+                                height: 3em;
+                                padding-left: 0.769em;
+                                padding-right: 0.769em;
+                                color: #454545 !important;
+                                text-decoration: none;
+                                box-shadow: inset 1px 1px 0 #fff;
+                                z-index: inherit
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus {
+                                color: #333 !important;
+                                outline-offset: -1px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:hover,
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup]:focus,
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
+                                margin-left: 0;
+                                background: #f5f8fa none;
+                                background: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
+                                background: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                background: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                background: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                z-index: 1002
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item a[aria-haspopup].open {
+                                background: #f5f8fa none;
+                                padding-bottom: 2px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup] {
+                                border-bottom-left-radius: 3px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-top-nav-item:first-child a[aria-haspopup].open {
+                                border-bottom-left-radius: 0px;
+                                border-left: 1px solid #b3b3b3;
+                                border-left-color: rgba(0, 0, 0, 0.3);
+                                left: -1px;
+                                margin-right: -1px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel {
+                                position: absolute;
+                                display: block;
+                                color: #454545;
+                                margin: 0;
+                                padding: 0 0.769em 0.769em;
+                                line-height: normal;
+                                background-color: #f5f8fa;
+                                background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f8fa), to(#e3e5e5));
+                                background-image: -moz-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                background-image: -ms-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                background-image: -o-linear-gradient(top, #f5f8fa, #e3e5e5);
+                                cursor: default;
+                                -webkit-box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                -moz-box-shadow: 0 4px 6px -2px -moz-rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                box-shadow: 0 4px 6px -2px rgba(0, 0, 0, .5), inset 1px 1px 0 #fff;
+                                visibility: hidden;
+                                top: -9999em;
+                                max-height: 0px;
+                                overflow: hidden;
+                                opacity: 0;
+                                -webkit-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                -moz-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                -ms-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                -o-transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                transition: opacity 250ms ease 250ms, max-height 500ms ease, visibility 0s linear 500ms, top 0s linear 500ms;
+                                border: 1px solid #b3b3b3;
+                                border-color: rgba(0, 0, 0, 0.3);
+                                border-top-right-radius: 3px;
+                                border-bottom-right-radius: 3px;
+                                border-bottom-left-radius: 3px
+                            }
+                            
+                            .accessible-megamenu-panel .zoekmenu {
+                                right: -1px;
+                                width: 15em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.open {
+                                visibility: visible;
+                                top: 3em;
+                                max-height: 600px;
+                                opacity: 1;
+                                z-index: 1001;
+                                -webkit-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                -moz-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                -ms-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                -o-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
+                                transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel a {
+                                display: inline-block;
+                                font-size: .92em;
+                                line-height: 1.2em;
+                                text-decoration: none;
+                                color: #225FD7;
+                                font-weight: 700;
+                                text-decoration: none;
+                                margin-bottom: 0.5em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-4 {
+                                width: 878px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li {
+                                width: 22%
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-4b {
+                                width: 40em;
+                                left: 0;
+                                border-top-left-radius: 3px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
+                                width: 29%
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-3 {
+                                width: 25em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li {
+                                width: 40%
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-1 {
+                                width: 615px
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li {
+                                width: auto
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel ol {
+                                display: block;
+                                list-style: none;
+                                margin: 0;
+                                padding: 0
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel ol>li {
+                                position: relative;
+                                list-style: none;
+                                margin: 0;
+                                padding: 0
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel>ol>li {
+                                float: left;
+                                display: block;
+                                margin-bottom: 1em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel>ol>li:first-of-type {
+                                padding-left: 0;
+                                border-left: none;
+                                box-shadow: none
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel>p {
+                                color: #454545;
+                                font-size: 1.2em;
+                                line-height: 1.1em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a {
+                                font-weight: 700;
+                                color: #454545;
+                                font-size: 1.2em;
+                                margin-bottom: 6px;
+                                padding-top: .4em;
+                                padding-bottom: 0;
+                                line-height: 1.1em
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel ol ol>li>a {
+                                width: auto;
+                                text-indent: -2.333em;
+                                padding-left: 2.333em;
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel a:hover,
+                            .accessible-megamenu .accessible-megamenu-panel a:focus {
+                                color: #225FD7;
+                                text-decoration: underline
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:hover,
+                            .accessible-megamenu .accessible-megamenu-panel>ol>li>h3>a:focus {
+                                color: #333
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel hr {
+                                border-width: 1px 0px;
+                                border-style: solid;
+                                border-top-color: rgba(0, 0, 0, 0.3);
+                                border-bottom-color: #fff
+                            }
+                            
+                            nav form {
+                                width: 100%;
+                                clear: both;
+                                margin-top: 1em
+                            }
+                            
+                            .zoeklabel {
+                                color: #000000;
+                            }
+                            
+                            .accessible-megamenu .accessible-megamenu-panel ol ol>li>a:hover {
+                                color: white;
+                                background-color: #023079;
+                                text-decoration: underline;
+                                width: -webkit-fill-available;
+                            }
+                            
+                            .socialmedia {
+                                display: block;
+                                margin-left: auto;
+                                margin-right: auto;
+                                width: 20%;
+                            }
+                            
+                            .socialmedia img {
+                                width: 100%;
+                            }
+                            
+                            .socialmedia a:hover {
+                                border-radius: 100%;
+                                width: 25%;
+                            }
+                            
+                            .socialmedia a {
+                                display: inline-block;
+                                width: 25%;
+                                border-radius: 100%;
+                            }
+                            
+                            @media only screen and (max-width: 828px) {
+                                .upDown {
+                                    float: right;
+                                    width: 8%;
+                                    clear: right;
+                                }
+                                nav {
+                                    width: 100%
+                                }
+                                li {
+                                    width: 100%
+                                }
+                                .cols-4 {
+                                    width: 100%;
+                                    height: auto
+                                }
+                                .cols-4b {
+                                    width: 100%;
+                                    height: auto;
+                                    margin-left: 4em
+                                }
+                                .accessible-megamenu {
+                                    height: 32em;
+                                    width: 100%
+                                }
+                                .accessible-megamenu-panel-group {
+                                    width: 100%;
+                                    clear: both;
+                                    margin-left: 8em
+                                }
+                                .accessible-megamenu-panel-group ol li a img {
+                                    padding-left: 0em;
+                                }
+                                nav form {
+                                    width: 100%;
+                                    clear: both
+                                }
+                                p {
+                                    width: 100%
+                                }
+                                ol {
+                                    width: 100%
+                                }
+                                ol li {
+                                    width: calc(100%/3)
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4b {
+                                    width: 100%;
+                                    left: 0;
+                                    border-top-left-radius: 3px;
+                                    height: 90em;
+                                    clear: none;
+                                    display: inline-block
+                                }
+                                .accessible-megamenu-panel-group {
+                                    clear: none;
+                                    display: inline-block;
+                                    font-size: 0.7em
+                                }
+                                .accessible-megamenu-panel.cols-4 {
+                                    height: 820em
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-4 {
+                                    width: 100%;
+                                    left: 0;
+                                    border-top-left-radius: 3px
+                                }
+                                .accessible-megamenu .accessible-megamenu-panel.cols-3 {
+                                    width: 100%
+                                }
+                                .loading_img {
+                                    width: 5%;
+                                }
+                                .socialmedia {
+                                    width: 100%;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
+                            }
+                            
+                            .accessible-megamenu-panel-group {
+                                margin-left: 24em
+                            }
+                            
+                            .cols-4b {
+                                margin-left: 4em
+                            }
+                            
+                            .loading_img {
+                                width: 2%;
+                            }

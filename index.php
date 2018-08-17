@@ -2,7 +2,6 @@
 $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
 <!Doctype html>
 <?php 
-    
     if(isset($_GET['taal'])){
         if (is_numeric($_GET['taal'])) {
             $_SESSION["Taal"]='NL';
@@ -12,9 +11,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             $_SESSION["Taal"]=$_GET['taal'];
         }
     }else if ($_SESSION["Taal"] ==null){
-        $_SESSION["Taal"]='NL';
-        
-        
+        $_SESSION["Taal"]='NL';  
     }else{
         $_SESSION["Taal"]=$_SESSION["Taal"];
     }
@@ -27,12 +24,23 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
         }
     }else if ($_SESSION["Menu"] ==null){
         $_SESSION["Menu"]='Home';
-        
     }else{
         $_SESSION["Menu"]=$_SESSION["Menu"];
     }
     $menu = $_SESSION["Menu"];
-    $id=0;if(isset($_GET['id'])){$id=$_GET['id'];}$parent="null";if(isset($_GET['parent'])){$parent=$_GET['parent'];}$child="null";if(isset($_GET['child'])){$child=$_GET['child'];}?>
+    $id=0;
+    if(isset($_GET['id'])){
+        $id=$_GET['id'];
+    }
+    $parent="null";
+    if(isset($_GET['parent'])){
+        $parent=$_GET['parent'];
+    }
+    $child="null";
+    if(isset($_GET['child'])){
+        $child=$_GET['child'];
+    }
+?>
 <html lang="nl">
     <head>
         <title>
@@ -49,9 +57,6 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel=icon href="../images/favicon.ico" type="Images/ico">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        
-        <!--<script src="js/jquery-2.1.0.min.js"></script>-->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
         <script src="../js/jquery-accessibleMegaMenu.js"></script>
         <script src="../js/app.js"></script>
         <script>
@@ -65,36 +70,27 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             var child = "<?php echo $child ?>";
             var zoekterm = "<?php echo $zoekterm ?>";
             $(document).ready(function(){
-                //kijk na of de pagina bestaat
                 checkmenu(menu);
-                
                 contentophalen(taal,menu,id,parent,child);
                 if(menu==="Contact"){
-                    
                     $("#txtEditor").Editor();
                 }
                 if (menu!=="Home"){
                     getpad(menu);
-                    
                 } 
-                
                 if(menu==="Home"){
-  
                     $('footer').prepend("<p class='quote'></p>");
                     GetOneRandomQuote();
                 }
-
                 if(menu==="News"){
                     GetNews();
-                }
-                
+                }      
                 if(menu==="Companions"){
                     $(".col-6").append('<div class="open-close"></div>');
                     companionsophalen(taal,menu,id,parent,child)
                 }
             }
         );
-   
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -103,7 +99,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link href="../opmaak/editor.css" type="text/css" rel="stylesheet"/>	
 		<link rel=stylesheet href="../opmaak/opmaak.css" />
-	   <link href="../opmaak/themify-icons.css" rel="stylesheet">
+        <link href="../opmaak/themify-icons.css" rel="stylesheet">
         <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script>
             jQuery(document).ready(
@@ -125,18 +121,14 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             });
             jQuery(".taal_link").click(function(f){f.preventDefault();jQuery("html, body").animate({scrollTop:0},b);var e=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;document.getElementById("overlay_background").style.height=e;jQuery("#overlay_background, #overlay").fadeIn(b);d();return false});jQuery(".close").click(function(e){e.preventDefault();jQuery("#overlay_background, #overlay").fadeOut(b);a();return false});function a(){document.documentElement.style.overflow="auto";document.body.scroll="yes"}function d(){document.documentElement.style.overflow="hidden";document.body.scroll="no"}});$(function(){$("#foto_taal_button").click(function(){function a(){document.getElementById("overlay").style.display="block";document.getElementById("overlay_background").style.display="block"}function b(){document.getElementById("overlay").style.display="none";document.getElementById("overlay_background").style.display="none"}})});setTimeout(
                 function(){
-                    $("#loading_div").fadeOut(100);
+                    $("#loading_div").fadeOut(300);
                     setTimeout(function(){
-                        $(".col-6").fadeIn(100);
-                        $(".under").fadeIn(100)
-                        
+                        $(".col-6").fadeIn(300);
+                        $(".under").fadeIn(300)                
                     },100)
                     
                 },1500);
-                $(".footer a:first-child").css("background-color", "yellow");
-                    
-        </script>
-        
+        </script>        
     </head>
     <body class=init>
         <input type=checkbox id=show-menu role=button class=show_menu_checkbox>
@@ -312,12 +304,12 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                     </form>
             		</div>
             	</li>
-</ol>
+            </ol>
         </nav>
-        <div id=loading_div>
-            <img id=loading src="../images/ledtorch.1498524411.png" style="width:2%" alt="Laden">
-        </div>
         <div class="path"></div>
+        <div id=loading_div>
+            <img id=loading src="../images/ledtorch.1498524411.png" class="loading_img" alt="Laden">
+        </div>
         <article class=col-6>
             <?php
             
@@ -380,9 +372,6 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 if($menu=='Events'){
                     require("php/Kalender.php");
                 }
-                
-                
-
             ?>
         </article>
         
@@ -399,6 +388,10 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             }
            
             ?>
+            <p class="socialmedia">
+                <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img src="../images/Social/facebook_logo.png" alt="Facebook Logo"/></a>
+                <a href="https://github.com/RubenDebusscherOdisee/DoctorwhofansBE" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo"alt="Github Logo"/></a>
+            </p>
             <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present
                 <br> The web pages on this site are for educational and entertainment purposes only.
                 <br> All other copyrights are property of their respective holders.
