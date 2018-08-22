@@ -48,12 +48,11 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
         </title>
         <meta name=author content="Ruben Debuscher" />
         <meta charset=UTF-8 />
-        <meta http-equiv=X-UA-Compatible content="IE=edge">
-        <meta http-equiv=X-UA-Compatible content="chrome=1">
-        <meta name=description lang=nl content="Doctor who is een fenomeen, wereldwijd.  Tijd dat de nederlandstalige fans nu ook een eigen platform krijgen." />
+        <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
+        <meta name=description lang=nl content="Doctor who is een fenomeen, wereldwijd.  Tijd dat de nederlandstalige fans nu ook een eigen platform krijgen. Hier vind je meer info over <?php echo $title;?>." />
         <META NAME="ROBOTS" CONTENT="NOYDIR, NOODP, NOARCHIVE"/>
         <meta name=viewport content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv=Content-Type content="text/html; charset=utf-8" />
+        <!--<meta http-equiv=Content-Type content="text/html; charset=utf-8" />-->
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel=icon href="../images/favicon.ico" type="Images/ico">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -137,16 +136,16 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             <ol>
                 <li class="standaard" style="width:10%">
                     <span>
-                        <a href="https://www.doctorwhofans.be/Home/" aria-label="Home"><img style="width:60px" src="../images/gallifreyan_black.png" alt="Logo" /></a>
+                        <a href="https://www.doctorwhofans.be/Home/" aria-label="Home"><img style="width:60px" src="../images/gallifreyan_black.png" alt="Logo of Doctorwhofans Belgium" /></a>
                     </span>
             		<div class="cols-4" style="display:none;"></div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#" aria-label="who is Who?">who is Who <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+            		<span><a href="#" aria-label="who is Who?"><h1>who is Who</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
             		<div class="cols-4b standaard">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
-            					<span>Doctors</span>
+            					<h2>Doctors</h2>
             					<ol>
             						<li><a href="../First_Doctor/">First Doctor</a></li>
             						<li><a href="../Second_Doctor/">Second Doctor</a></li>
@@ -166,7 +165,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             					</ol>
             				</li>
             				<li class="accessible-megamenu-panel-group">
-            					<span>Characters</span>
+            					<h2>Characters</h2>
             					<ol>
             					    <li>
             						    
@@ -192,7 +191,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             					</ol>
             				</li>
             				<li class="accessible-megamenu-panel-group">
-            				    <span>Concepts and other things</span>
+            				    <h2>Concepts and other things</h2>
             					<ol>
                                     <li><a href="../Species/">Species</a></li>
                                     <li><a href="../TARDIS/" style="padding-left:0em;"><img src="../images/tardis.png" alt="TARDIS logo"/>T.A.R.D.I.S</a></li>
@@ -211,11 +210,11 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             		</div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+            		<span><a href="#"><h1>Series</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
             		<div class="cols-3 standaard">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
-            					<span>the Show</span>
+            					<h2>the Show</h2>
             					<ol>
             						
                                     <li><a href="../Synopsis/">Synopsis</a></li>
@@ -223,6 +222,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                     <li><a href="../History/">History</a></li>
                                     <li><a href="../Crew/">Crew</a></li>
                                     <li><a href="../Cast/">Cast</a></li>
+                                    <li><a href="../Characters/">Characters</a></li>
                                     <li><a href="../Music/"><i class="fa fa-music" aria-hidden="true"></i> Music</a></li>
                                     <li>
                                         <hr> </li>
@@ -231,17 +231,16 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             					</ol>
             				</li>
             				<li class="accessible-megamenu-panel-group">
-            					<span>Media</span>
+            					<h2>Media</h2>
             					<ol>
             						
                                     <li><a href="../DVD/">DVD</a></li>
                                     <li><a href="../Books/"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
                                     <li><a href="../Comics/">Comics</a></li>
                                     <li><a href="../Audio/">Audio</a></li>
-                                    <li><a href="../Non_Fiction/"><span class="fa-stack">
-                                            <i class="fa fa-book fa-stack-1x" aria-hidden="true"></i>
-                                            <i class="fa fa-ban fa-stack-2x text-danger" aria-hidden="true"></i>
-                                        </span> Non-fiction</a></li>
+                                    <li><a href="../Non_Fiction/"> Non-fiction</a></li>
+                                    <li><a href="../Magazines/">Magazines</a></li>
+                                    <li><a href="../Varia/">Varia</a></li>
                                     <li>
                                         <hr> </li>
                                     <li><a href="../Merchandise/">Merchandise</a></li>
@@ -252,17 +251,22 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             		</div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+            		<span><a href="#"><h1>Fans</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
             		<div class="cols-3">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
+            				    <h2>Understanding the show</h2>
             					<ol>
             						
                                     <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a></li>
                                     <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a></li>
                                     <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i> Transcripts</a></li>
-                                    <li>
-                                        <hr> </li>
+                                </ol>
+                                
+            				</li>
+            				<li class="accessible-megamenu-panel-group">
+            				    <h2>Understanding the fans</h2>
+            				    <ol>
                                     <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a></li>
                                     <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a></li>
                                     <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i>Links</a></li>
@@ -379,18 +383,18 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
        <hr>
             <?php
             switch($taal){
-                    case 'NL':echo"<p class='mededeling'> Momenteel is 'Doctor Who Fans België' in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p>";
+                    case 'NL':?><p class='mededeling'> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?php;
                         break;
-                    case 'ENG':echo"<p class='mededeling'> At this moment, 'Doctor Who Fans Belgium' is still under construction. In the case there might be any questions, propositions, or additional information to provide, please feel free to contact me.  Requests or submissions related to the videos, pictures, etc. are welcome as well.  Contact informationis provided on the corresponding page. You will also be able to contact us directly from that page.</p>";
+                    case 'ENG':?><p class='mededeling'> At this moment, <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans Belgium</a> is still under construction. In the case there might be any questions, propositions, or additional information to provide, please feel free to contact me.  Requests or submissions related to the videos, pictures, etc. are welcome as well.  Contact informationis provided on the corresponding page. You will also be able to contact us directly from that page.</p><?php;
                         break;
-                    default:echo"<p class=mededeling> Momenteel is 'Doctor Who Fans België' in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p>";
+                    default:?><p class=mededeling> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?php;
                         break;
             }
            
             ?>
             <p class="socialmedia">
                 <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img src="../images/Social/facebook_logo.png" alt="Facebook Logo"/></a>
-                <a href="https://github.com/RubenDebusscherOdisee/DoctorwhofansBE" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo"alt="Github Logo"/></a>
+                <a href="https://github.com/RubenDebusscherOdisee/DoctorwhofansBE" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo"/></a>
             </p>
             <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present
                 <br> The web pages on this site are for educational and entertainment purposes only.
@@ -410,8 +414,8 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 
                 <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder Afbeeldingen</button>
                 <button class="RemoveImages hide" id="RestoreImages" type="button" onclick="RestoreImg()">Toon Afbeeldingen</button>
-
-                <a href="#" class="link" onclick="show()"><img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class ="taal_link foto_taal_button"/></a>
+                <input type="submit" style="display:none"/>
+                <button class="taal_link" type="button" title="taalkeuze"><img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class ="taal_link"/></button>
             </fieldset>
         </form>
         <script async src="../js/toegang.js"></script>
@@ -432,7 +436,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             </div>
             <div class=taal>
                 <?php
-                    echo'<a href=../ENG/ class="link">';
+                    echo'<a href="../ENG/" class="link">';
                 ?>
                     <img src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels." class="foto_taal_button"/>
                     English

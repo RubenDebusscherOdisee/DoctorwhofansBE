@@ -1671,11 +1671,11 @@ function videosophalen(menu, id) {
 
                 if (resultaat.data[i].SPOILER === 1) {
 
-                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_block_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;background-color:red' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;background-color:red' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
 
                 } else {
 
-                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_block_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
 
                 }
 
@@ -2179,44 +2179,41 @@ function contentophalen(taal, menu, id, parent, child) {
 
             }
 
-            if (resultaat.data[i].A_Type === "Ondertitel") {
+            if (resultaat.data[i].A_Type === "Kop2") {
 
                 if (resultaat.data[i].A_Pagina_Type === "Wikititel") {
-
                     $("#Inhoud ul").append("<li><a href='#" + resultaat.data[i].A_Waarde + "' >" + resultaat.data[i].A_Waarde + "</a></li>");
-
-
-
                 }
-
-                $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_Waarde + "'>" + resultaat.data[i].A_Waarde + "</h2>");
-
+                
+                $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h2>");
             }
-
+            if (resultaat.data[i].A_Type === "Kop3") {
+                $(".col-6").append("<h3 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h3>");
+            }
+            if (resultaat.data[i].A_Type === "Kop4") {
+                $(".col-6").append("<h4 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h4>");
+            }
+            if (resultaat.data[i].A_Type === "Kop5") {
+                $(".col-6").append("<h5 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h5>");
+            }
+            if (resultaat.data[i].A_Type === "Kop6") {
+                $(".col-6").append("<h6 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h6>");
+            }
+            if (resultaat.data[i].A_Type === "Lijst") {
+                $(".col-6").append("<hli class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h6>");
+            }
             if (resultaat.data[i].A_Pagina_Type === "Overzicht") {
-
                 $(".col-6").append("<div class='topics'></div>");
-
                 getchildren(menu);
-
             }
-
             if (resultaat.data[i].A_Type === "Afbeelding") {
-
                 if (resultaat.data[i].A_Pagina_Type === "Wiki") {
-
                     var j;
-
                     for (j = 0; j < resultaat.data.length; j += 1) {
-
                         if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Bijschrijft" || resultaat.data[j].A_Type === "Alt")) {
-
                             $("#WikiDetails").prepend("<div><img src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + "' title='" + resultaat.data[j].A_Waarde + " ' alt='" + resultaat.data[j].A_Waarde + "'></div>");
-
                         }
-
                     }
-
                 } else if (resultaat.data[i].A_Pagina_Type === "Slide") {
                     for (j = 0; j < resultaat.data.length; j += 1) {
                         if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
