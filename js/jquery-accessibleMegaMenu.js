@@ -74,473 +74,238 @@ if (jQuery) {
                 70: "f",
                 71: "g",
                 72: "h",
-
                 73: "i",
-
                 74: "j",
-
                 75: "k",
-
                 76: "l",
-
                 77: "m",
-
                 78: "n",
-
                 79: "o",
-
                 80: "p",
-
                 81: "q",
-
                 82: "r",
-
                 83: "s",
-
                 84: "t",
-
                 85: "u",
-
                 86: "v",
-
                 87: "w",
-
                 88: "x",
-
                 89: "y",
-
                 90: "z",
-
                 96: "0",
-
                 97: "1",
-
                 98: "2",
-
                 99: "3",
-
                 100: "4",
-
                 101: "5",
-
                 102: "6",
-
                 103: "7",
-
                 104: "8",
-
                 105: "9",
-
                 190: "."
-
             }
-
         };
-
-
-
     function AccessibleMegaMenu(element, options) {
-
         this.element = element;
-
         this.settings = $.extend({}, defaults, options);
-
         this._defaults = defaults;
-
         this._name = pluginName;
-
         this.mouseTimeoutID = null;
-
         this.focusTimeoutID = null;
-
         this.mouseFocused = false;
-
         this.justFocused = false;
-
         this.init();
-
     }
-
     AccessibleMegaMenu.prototype = (function() {
-
         var uuid = 0,
-
             keydownTimeoutDuration = 1000,
-
             keydownSearchString = "",
-
             isTouch = typeof window.hasOwnProperty === "function" && !!window.hasOwnProperty("ontouchstart"),
-
             _getPlugin, _addUniqueId, _togglePanel, _clickHandler, _clickOutsideHandler, _DOMAttrModifiedHandler, _focusInHandler, _focusOutHandler, _keyDownHandler, _mouseDownHandler, _mouseOverHandler, _mouseOutHandler, _toggleExpandedEventHandlers;
-
         _getPlugin = function(element) {
-
             return $(element).closest(':data(plugin_' + pluginName + ')').data("plugin_" + pluginName);
-
         };
-
         _addUniqueId = function(element) {
-
             element = $(element);
-
             var settings = this.settings;
-
             if (!element.attr("id")) {
-
                 element.attr("id", settings.uuidPrefix + "-" + new Date().getTime() + "-" + (++uuid));
-
             }
-
         };
-
         _togglePanel = function(event, hide) {
-
             var target = $(event.target),
-
                 that = this,
-
                 settings = this.settings,
-
                 menu = this.menu,
-
                 topli = target.closest('.' + settings.topNavItemClass),
-
                 panel = target.hasClass(settings.panelClass) ? target : target.closest('.' + settings.panelClass),
-
                 newfocus;
-
             _toggleExpandedEventHandlers.call(this, true);
-
             if (hide) {
-
                 topli = menu.find('.' + settings.topNavItemClass + ' .' + settings.openClass + ':first').closest('.' + settings.topNavItemClass);
-
                 if (!(topli.is(event.relatedTarget) || topli.has(event.relatedTarget).length > 0)) {
-
                     if ((event.type === 'mouseout' || event.type === 'focusout') && topli.has(document.activeElement).length > 0) {
-
                         return;
-
                     }
-
                     topli.find('[aria-expanded]').attr('aria-expanded', 'false').removeClass(settings.openClass).filter('.' + settings.panelClass).attr('aria-hidden', 'true');
-
                     if ((event.type === 'keydown' && event.keyCode === Keyboard.ESCAPE) || event.type === 'DOMAttrModified') {
-
                         newfocus = topli.find(':tabbable:first');
-
                         setTimeout(function() {
-
                             menu.find('[aria-expanded].' + that.settings.panelClass).off('DOMAttrModified.accessible-megamenu');
-
                             newfocus.focus();
-
                             that.justFocused = false;
-
                         }, 99);
-
                     }
-
                 } else if (topli.length === 0) {
-
                     menu.find('[aria-expanded=true]').attr('aria-expanded', 'false').removeClass(settings.openClass).filter('.' + settings.panelClass).attr('aria-hidden', 'true');
-
                 }
-
             } else {
-
                 clearTimeout(that.focusTimeoutID);
-
                 topli.siblings().find('[aria-expanded]').attr('aria-expanded', 'false').removeClass(settings.openClass).filter('.' + settings.panelClass).attr('aria-hidden', 'true');
-
                 topli.find('[aria-expanded]').attr('aria-expanded', 'true').addClass(settings.openClass).filter('.' + settings.panelClass).attr('aria-hidden', 'false');
-
                 if (event.type === 'mouseover' && target.is(':tabbable') && topli.length === 1 && panel.length === 0 && menu.has(document.activeElement).length > 0) {
-
                     target.focus();
-
                     that.justFocused = false;
-
                 }
-
                 _toggleExpandedEventHandlers.call(that);
-
             }
-
         };
-
         _clickHandler = function(event) {
-
             var target = $(event.target).closest(':tabbable'),
-
                 topli = target.closest('.' + this.settings.topNavItemClass),
-
                 panel = target.closest('.' + this.settings.panelClass);
-
             if (topli.length === 1 && panel.length === 0 && topli.find('.' + this.settings.panelClass).length === 1) {
-
                 if (!target.hasClass(this.settings.openClass)) {
-
                     //event.preventDefault();
-
                     //event.stopPropagation();
-
                     _togglePanel.call(this, event);
-
                     this.justFocused = false;
-
                 } else {
-
                     if (this.justFocused) {
-
                         event.preventDefault();
-
                         event.stopPropagation();
-
                         this.justFocused = false;
-
                     } else if (isTouch && !target.is("a")) {
-
                         event.preventDefault();
-
                         event.stopPropagation();
-
                         _togglePanel.call(this, event, target.hasClass(this.settings.openClass));
-
                     }
-
                 }
-
             }
-
         };
-
         _clickOutsideHandler = function(event) {
-
             if ($(event.target).closest(this.menu).length === 0) {
-
                 event.preventDefault();
-
                 event.stopPropagation();
-
                 _togglePanel.call(this, event, true);
-
             }
-
         };
-
         _DOMAttrModifiedHandler = function(event) {
-
             if (event.originalEvent.attrName === 'aria-expanded' && event.originalEvent.newValue === 'false' && $(event.target).hasClass(this.settings.openClass)) {
-
                 event.preventDefault();
-
                 event.stopPropagation();
-
                 _togglePanel.call(this, event, true);
-
             }
-
         };
-
         _focusInHandler = function(event) {
-
             clearTimeout(this.focusTimeoutID);
-
-            var target = $(event.target),
-
-                panel = target.closest('.' + this.settings.panelClass);
-
+            var target = $(event.target),panel = target.closest('.' + this.settings.panelClass);
             target.addClass(this.settings.focusClass).on('click.accessible-megamenu', $.proxy(_clickHandler, this));
-
             this.justFocused = !this.mouseFocused;
-
             this.mouseFocused = false;
-
             if (this.panels.not(panel).filter('.' + this.settings.openClass).length) {
-
                 _togglePanel.call(this, event);
-
             }
-
         };
-
         _focusOutHandler = function(event) {
-
             this.justFocused = false;
-
             var that = this,
-
                 target = $(event.target),
-
                 topli = target.closest('.' + this.settings.topNavItemClass),
-
                 keepOpen = false;
-
             target.removeClass(this.settings.focusClass).off('click.accessible-megamenu');
-
             if (window.cvox) {
-
                 that.focusTimeoutID = setTimeout(function() {
-
                     window.cvox.Api.getCurrentNode(function(node) {
-
                         if (topli.has(node).length) {
-
                             clearTimeout(that.focusTimeoutID);
-
                         } else {
-
                             that.focusTimeoutID = setTimeout(function(scope, event, hide) {
-
                                 _togglePanel.call(scope, event, hide);
-
                             }, 275, that, event, true);
-
                         }
-
                     });
-
                 }, 25);
-
             } else {
-
                 that.focusTimeoutID = setTimeout(function() {
-
                     _togglePanel.call(that, event, true);
-
                 }, 300);
-
             }
-
         };
-
         _keyDownHandler = function(event) {
-
             var that = (this.constructor === AccessibleMegaMenu) ? this : _getPlugin(this),
-
                 settings = that.settings,
-
                 target = $($(this).is('.' + settings.hoverClass + ':tabbable') ? this : event.target),
-
                 menu = that.menu,
-
                 topnavitems = that.topnavitems,
-
                 topli = target.closest('.' + settings.topNavItemClass),
-
                 tabbables = menu.find(':tabbable'),
-
                 panel = target.hasClass(settings.panelClass) ? target : target.closest('.' + settings.panelClass),
-
                 panelGroups = panel.find('.' + settings.panelGroupClass),
-
                 currentPanelGroup = target.closest('.' + settings.panelGroupClass),
-
                 next, keycode = event.keyCode || event.which,
-
                 start, i, o, label, found = false,
-
                 newString = Keyboard.keyMap[event.keyCode] || '',
-
                 regex, isTopNavItem = (topli.length === 1 && panel.length === 0);
-
             if (target.is("input:focus, select:focus, textarea:focus, button:focus")) {
-
                 return;
-
             }
-
             if (target.is('.' + settings.hoverClass + ':tabbable')) {
-
                 $('html').off('keydown.accessible-megamenu');
-
             }
-
             switch (keycode) {
-
                 case Keyboard.ESCAPE:
-
                     _togglePanel.call(that, event, true);
-
                     break;
-
                 case Keyboard.DOWN:
-
                     event.preventDefault();
-
                     if (isTopNavItem) {
-
                         _togglePanel.call(that, event);
-
                         found = (topli.find('.' + settings.panelClass + ' :tabbable:first').focus().length === 1);
-
                     } else {
-
                         found = (tabbables.filter(':gt(' + tabbables.index(target) + '):first').focus().length === 1);
-
                     }
-
                     if (!found && window.opera && opera.toString() === "[object Opera]" && (event.ctrlKey || event.metaKey)) {
-
                         tabbables = $(':tabbable');
-
                         i = tabbables.index(target);
-
                         found = ($(':tabbable:gt(' + $(':tabbable').index(target) + '):first').focus().length === 1);
-
                     }
-
                     break;
-
                 case Keyboard.UP:
-
                     event.preventDefault();
-
                     if (isTopNavItem && target.hasClass(settings.openClass)) {
-
                         _togglePanel.call(that, event, true);
-
                         next = topnavitems.filter(':lt(' + topnavitems.index(topli) + '):last');
-
                         if (next.children('.' + settings.panelClass).length) {
-
                             found = (next.children().attr('aria-expanded', 'true').addClass(settings.openClass).filter('.' + settings.panelClass).attr('aria-hidden', 'false').find(':tabbable:last').focus() === 1);
-
                         }
-
                     } else if (!isTopNavItem) {
-
                         found = (tabbables.filter(':lt(' + tabbables.index(target) + '):last').focus().length === 1);
-
                     }
-
                     if (!found && window.opera && opera.toString() === "[object Opera]" && (event.ctrlKey || event.metaKey)) {
-
                         tabbables = $(':tabbable');
-
                         i = tabbables.index(target);
-
                         found = ($(':tabbable:lt(' + $(':tabbable').index(target) + '):first').focus().length === 1);
 
                     }
-
                     break;
-
                 case Keyboard.RIGHT:
-
                     event.preventDefault();
-
                     if (isTopNavItem) {
-
                         found = (topnavitems.filter(':gt(' + topnavitems.index(topli) + '):first').find(':tabbable:first').focus().length === 1);
-
                     } else {
-
                         if (panelGroups.length && currentPanelGroup.length) {
-
                             found = (panelGroups.filter(':gt(' + panelGroups.index(currentPanelGroup) + '):first').find(':tabbable:first').focus().length === 1);
-
                         }
 
                         if (!found) {
@@ -1046,7 +811,6 @@ if (jQuery) {
     });
 
 }(jQuery, window, document))
-
 function ip_callback() {
 
     $.get("/php/getIp.php", function(data) {
@@ -1054,7 +818,6 @@ function ip_callback() {
     })
 
 }
-
 function checkmenu(menu) {
 
     ip_callback();
@@ -1134,7 +897,6 @@ function checkmenu(menu) {
     });
 
 }
-
 function zoeken(taal, menu, id, parent, child, zoekterm, ip, UID) {
 
     $.ajax({
@@ -1181,7 +943,6 @@ function zoeken(taal, menu, id, parent, child, zoekterm, ip, UID) {
     });
 
 }
-
 function getpad(menu) {
 
     $.ajax({
@@ -1228,7 +989,6 @@ function getpad(menu) {
     });
 
 }
-
 function random() {
     $.ajax({
         type: "GET",
@@ -1262,7 +1022,6 @@ function random() {
     });
 
 }
-
 function getchildren(menu) {
 
     $.ajax({
@@ -1306,7 +1065,6 @@ function getchildren(menu) {
     });
 
 }
-
 function videozoeken(taal, menu, id, parent, child, zoekterm) {
 
     $.ajax({
@@ -1338,7 +1096,6 @@ function videozoeken(taal, menu, id, parent, child, zoekterm) {
     });
 
 }
-
 function quotezoeken(taal, menu, id, parent, child, zoekterm) {
 
     $.ajax({
@@ -1370,7 +1127,6 @@ function quotezoeken(taal, menu, id, parent, child, zoekterm) {
     });
 
 }
-
 function companionsophalen(taal, menu, id, parent, child) {
 
     $.ajax({
@@ -1564,7 +1320,6 @@ function companionsophalen(taal, menu, id, parent, child) {
     });
 
 }
-
 function videosophalen(menu, id) {
 
     $.ajax({
@@ -1639,7 +1394,6 @@ function videosophalen(menu, id) {
     });
 
 }
-
 function quotesophalen(menu, id) {
 
     $.ajax({
@@ -1679,7 +1433,6 @@ function quotesophalen(menu, id) {
         }
     }).fail(function(response, statusText, xhr) {}).always(function() {});
 }
-
 function GetNews() {
 
     $.ajax({
@@ -1720,7 +1473,30 @@ function GetNews() {
     });
 
 }
+function GetQuotesByCharacter(Character) {
+    console.log(Character);
+    Character = Character.trim();
+    $.ajax({
+        type: "GET",
+        url: "/php/quotesophalenbyCharacter.php?Character=" + Character,
+        dataType: 'json',
+        cache: false
+    }).done(function(resultaat) {
+        if (resultaat.data.length === 0) {
+            $("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
 
+        } else {
+            for (i = 0; i < resultaat.data.length; i++) {
+                $("#Quotes").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");
+            }
+
+        }
+
+
+    }).fail(function(response, statusText, xhr) {
+        $("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
+    }).always(function() {});
+}
 function GetQuotesByEpisode(Episode) {
     console.log(Episode);
     Episode = Episode.trim();
@@ -1731,18 +1507,18 @@ function GetQuotesByEpisode(Episode) {
         cache: false
     }).done(function(resultaat) {
         if (resultaat.data.length === 0) {
-            $("#QuotesEpisode").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
+            $("#Quotes").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
 
         } else {
             for (i = 0; i < resultaat.data.length; i++) {
-                $("#QuotesEpisode").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");
+                $("#Quotes").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");
             }
 
         }
 
 
     }).fail(function(response, statusText, xhr) {
-        $("#QuotesEpisode").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
+        $("#Quotes").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
     }).always(function() {});
 }
 
@@ -1815,286 +1591,153 @@ function contentophalen(taal, menu, id, parent, child) {
                 $(".under").append("<div id='Voetnoot'><h2>Voetnoten</h2><ul></ul></div>");
 
                 $("#WikiDetails").append("<div id='Items'></div>");
-
             }
-
-            if (resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel") {
-
+            if (resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel"||resultaat.data[i].A_Type === "CharacterTitel") {
                 $(".col-6").prepend("<h1>" + resultaat.data[i].A_Waarde + "</h1>");
-
                 if (resultaat.data[i].A_Type === "EpisodeTitel") {
-
-                    $(".under").prepend("<div id='QuotesEpisode'></div>");
-
-
-                    $("#QuotesEpisode").prepend("<h2>Quotes</h2>");
-
+                    $(".under").prepend("<div id='Under_Upper'>")
+                    $("#Under_Upper").append("<div id='Quotes'></div>");
+                    $("#Under_Upper").append("<div id='Downloads'><h2>Downloads</h2></div>");
+                    $("#Quotes").append("<h2>Quotes</h2>");
                     var Episode = resultaat.data[i].A_Waarde;
-
                     GetQuotesByEpisode(Episode);
-
-                    $(".under").prepend("<div id='Downloads'><h2>Downloads</h2></div>");
-
                     if (taal === "NL") {
-
-                        $("#Extras").append('<p>Hier komen extra bronnen, zoals de transcripts en download voor oa. de ondertitels.');
-
+                        $("#Downloads").append('<p>Hier komen extra bronnen, zoals de transcripts en download voor oa. de ondertitels.');
                     } else {
-
-                        $("#Extras").append('<p>You can find a variety of downloads here for this episode, like subtitbles and transcripts, as soon as they are available.</p>');
-
+                        $("#Downloads").append('<p>You can find a variety of downloads here for this episode, like subtitbles and transcripts, as soon as they are available.</p>');
                     }
-
-
-
                 }
-
+                if (resultaat.data[i].A_Type === "CharacterTitel") {
+                    $(".under").prepend("<div id='Under_Upper'>")
+                    $("#Under_Upper").append("<div id='Quotes'></div>");
+                    $("#Quotes").append("<h2>Quotes</h2>");
+                    var Character = resultaat.data[i].A_Waarde;
+                    GetQuotesByCharacter(Character);
+                }
             }
-
             if (resultaat.data[i].A_Type === "EpisodeStatus") {
-
                 $("#Items").prepend("<div class='WikiItemTitel " + resultaat.data[i].A_Klasse + "'>Status: " + resultaat.data[i].A_Waarde + "</div>");
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeDoctorList") {
-
                 $("#Items").append("<div class=WikiItemTitel>Cast</div>");
-
                 $("#Items").append("<span class=WikiRule>Doctor: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeCompanionList") {
-
                 $("#Items").append("<span class=WikiRule>Companions: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeOtherList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<span class=WikiRule>Anderen: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
-
                 } else {
-
                     $("#Items").append("<span class=WikiRule>Others: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeDirectorList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiItemTitel>Productie</div>");
-
                     $("#Items").append("<div class=WikiRule>Geregisseerd door: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiItemTitel>Production</div>");
-
                     $("#Items").append("<div class=WikiRule>Directed by: <ul class='singular_list_item>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodePrevious") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiItemTitel'>Chronologie</div>");
-
                     $("#Items").append("<div class='Chronologie'></div>");
-
                     $(".Chronologie").append("<div class='Half'>Vorige aflevering:<br>" + resultaat.data[i].A_Waarde + "</div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiItemTitel'>Chronology</div>");
-
                     $("#Items").append("<div class='Chronologie'></div>");
-
                     $(".Chronologie").append("<div class='Half'>Previous episode:<br>" + resultaat.data[i].A_Waarde + "</div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeNext") {
-
                 if (taal === "NL") {
-
                     $(".Chronologie").append("<div class='Half Rechts'>Volgende aflevering:<br>" + resultaat.data[i].A_Waarde + "</div>");
-
                 } else {
-
                     $(".Chronologie").append("<div class='Half Rechts'>Next episode:<br>" + resultaat.data[i].A_Waarde + "</div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeWriterList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Geschreven door: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Written by: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeEditorList") {
-
                 $("#Items").append("<div class=WikiRule>Script editor: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeProducerList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Geproduced door: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Produced by: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeComposerList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Incidentele componist : <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Incidental music composer: <ul>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeProductionCode") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Productiecode : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Production Code : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeSeries") {
-
                 $("#Items").append("<div class=WikiRule>Series : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeLength") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Lengte : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Length : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeDateStarted") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Startdatum : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Date Started : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "EpisodeDateEnded") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class=WikiRule>Einddatum : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class=WikiRule>Date Ended : <span>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "Inleiding") {
-
                 $(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");
-
                 $(".col-6").append("<div id='Inhoud'>Inhoudstafel<ul></ul><ol></ol></div>");
-
-                if ($('.under').text().indexOf('Downloads') != -1) {
-
-                    $("#Inhoud ol").append("<li><a href='#Downloads'>Downloads</a></li>");
-
-                }
-
                 if ($('.under').text().indexOf('Quotes') != -1) {
-
-                    $("#Inhoud ol").append("<li><a href='#QuotesEpisode'>Quotes</a></li>");
-
+                    $("#Inhoud ol").append("<li><a href='#Quotes'>Quotes</a></li>");
                 }
-
+                if ($('.under').text().indexOf('Downloads') != -1) {
+                    $("#Inhoud ol").append("<li><a href='#Downloads'>Downloads</a></li>");
+                }
                 $("#Inhoud ol").append("<li><a href='#Voetnoot'>Voetnoten</a></li>");
-
             }
-
             if (resultaat.data[i].A_Type === "Tekst") {
-
                 $(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");
-
             }
-
             if (resultaat.data[i].A_Type === "Losse_Code") {
-
                 $(".col-6").append(resultaat.data[i].A_Waarde);
-
             }
-
             if (resultaat.data[i].A_Type === "Voetnoot") {
-
                 $("#Voetnoot").append("<p class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</p>");
-
             }
-
             if (resultaat.data[i].A_Type === "Kop2") {
-
                 if (resultaat.data[i].A_Pagina_Type === "Wikititel") {
                     $("#Inhoud ul").append("<li><a href='#" + resultaat.data[i].A_Waarde + "' >" + resultaat.data[i].A_Waarde + "</a></li>");
                 }
-
                 $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h2>");
             }
             if (resultaat.data[i].A_Type === "Kop3") {
@@ -2128,423 +1771,209 @@ function contentophalen(taal, menu, id, parent, child) {
                     for (j = 0; j < resultaat.data.length; j += 1) {
                         if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
                             $(".slideshow-container").append("<div class='mySlides fade'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
-
                         }
                     }
                     setTimeout(function() {
                         showSlides(slideIndex);
                     }, 1000);
                 } else {
-
                     var j;
-
                     for (j = 0; j < resultaat.data.length; j += 1) {
-
                         if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
-
                             $(".col-6").append("<div id='" + resultaat.data[i].A_ID + "' class='foto_met_text " + resultaat.data[i].A_Klasse + "'></div>");
-
                             $("#" + resultaat.data[i].A_ID).append("<img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " title='" + resultaat.data[j].A_Waarde + "'>");
-
                             $("#" + resultaat.data[i].A_ID).append("<p class='" + resultaat.data[j].A_Klasse + "'>" + resultaat.data[j].A_Waarde + "</p>");
-
-
-
                         }
-
                     }
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemPlayedBy") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Gespeeld door:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Played by:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemPlayedByList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Gespeeld door:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Played by:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "AantalSeizoenen") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Aantal seizoenen:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Number of Seasons</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "Verschijningen") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Aantal <br>verschijningen:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Number of<br>appearances:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "Periode") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Periode: </span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Tenure:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemFirstEpisode") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Eerste Aflevering:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>First Episode:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemLastEpisode") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Laatste Aflevering:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Last Episode:</span><span class='WikiItem content'>" + resultaat.data[i].A_Waarde + "</span></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemFirstEpisodeList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Eerste Aflevering:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>First Episode:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "WikiItemLastEpisodeList") {
-
                 if (taal === "NL") {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Laatste Aflevering:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 } else {
-
                     $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Last Episode:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
                 }
-
             }
-
             if (resultaat.data[i].A_Type === "CompanionList") {
-
                 $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Companions:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
             }
-
             if (resultaat.data[i].A_Type === "SeriesList") {
-
                 $("#Items").append("<div class='WikiRule'><span class='WikiItem'>Series:</span><ul class='WikiItem content List'>" + resultaat.data[i].A_Waarde + "</ul></div>");
-
             }
-
-
-
-
-
             if (resultaat.data[i].A_Type === "Form") {
-
                 $(".col-6").append(resultaat.data[i].A_Waarde);
-
             }
-
-
-
         }
-
     }).fail(function(response, statusText, xhr) {
-
     }).always(function() {
-
     });
-
 }
-
 (function($) {
-
     'use strict';
-
     $.fn.fitVids = function(options) {
-
         var settings = {
-
             customSelector: null,
-
             ignore: null
-
         };
-
         if (!document.getElementById('fit-vids-style')) {
-
             var head = document.head || document.getElementsByTagName('head')[0];
-
             var css = '.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}';
-
             var div = document.createElement("div");
-
             div.innerHTML = '<p>x</p><style id="fit-vids-style">' + css + '</style>';
-
             head.appendChild(div.childNodes[1]);
-
         }
-
         if (options) {
-
             $.extend(settings, options);
-
         }
-
         return this.each(function() {
-
             var selectors = ['iframe[src*="player.vimeo.com"]', 'iframe[src*="youtube.com"]', 'iframe[src*="youtube-nocookie.com"]', 'iframe[src*="kickstarter.com"][src*="video.html"]', 'object', 'embed'];
-
             if (settings.customSelector) {
-
                 selectors.push(settings.customSelector);
-
             }
-
             var ignoreList = '.fitvidsignore';
-
             if (settings.ignore) {
-
                 ignoreList = ignoreList + ', ' + settings.ignore;
-
             }
-
             var $allVideos = $(this).find(selectors.join(','));
-
             $allVideos = $allVideos.not('object object');
-
             $allVideos = $allVideos.not(ignoreList);
-
             $allVideos.each(function() {
-
                 var $this = $(this);
-
                 if ($this.parents(ignoreList).length > 0) {
-
                     return;
-
                 }
-
                 if (this.tagName.toLowerCase() === 'embed' && $this.parent('object').length || $this.parent('.fluid-width-video-wrapper').length) {
-
                     return;
-
                 }
-
                 if ((!$this.css('height') && !$this.css('width')) && (isNaN($this.attr('height')) || isNaN($this.attr('width')))) {
-
                     $this.attr('height', 9);
-
                     $this.attr('width', 16);
-
                 }
-
                 var height = (this.tagName.toLowerCase() === 'object' || ($this.attr('height') && !isNaN(parseInt($this.attr('height'), 10)))) ? parseInt($this.attr('height'), 10) : $this.height(),
-
                     width = !isNaN(parseInt($this.attr('width'), 10)) ? parseInt($this.attr('width'), 10) : $this.width(),
-
                     aspectRatio = height / width;
-
                 if (!$this.attr('name')) {
-
                     var videoName = 'fitvid' + $.fn.fitVids._count;
-
                     $this.attr('name', videoName);
-
                     $.fn.fitVids._count++;
-
                 }
-
                 $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width-video-wrapper').css('padding-top', (aspectRatio * 100) + '%');
-
                 $this.removeAttr('height').removeAttr('width');
-
             });
-
         });
-
     };
-
     $.fn.fitVids._count = 0;
-
 })(window.jQuery || window.Zepto)
-
 $(function() {
-
     jQuery(".SitemapButton").click(function() {
-
         jQuery(this).parent().next().toggle();
-
         if (jQuery(this).parent().next().attr('display') === 'none' || jQuery(this).text() == "+") {
-
             jQuery(this).text("-");
-
         } else if (jQuery(this).parent().next().attr('display') === 'block' || jQuery(this).text() == "-") {
             jQuery(this).text("+");
         }
-
-
-
     });
-
     $('input[type="checkbox"]').click(function() {
-
         if (this.className == "show_menu_checkbox") {
-
             if ($(this).is(":checked")) {
-
                 $('.megamenu').show();
-
             } else {
-
                 $('.megamenu').hide();
-
             }
-
         }
-
     });
-
 })
-
 $(document).ready(function() {
-
-
     $('.open-close').on('click', '.opner', function(event) {
-
         $(this).closest('.holder').find('.opner').toggleClass('active');
-
         $(this).closest('.holder').find('.slide').slideToggle(20);
-
         event.preventDefault();
-
     });
-
     $('.active').closest('.holder').find('.slide').slideDown(20);
-
-
-
-
-
 })
-
 function Spoilertonen(content) {
-
     stopVideos();
-
     $('#' + content).toggle();
-
-
-
 }
-
 function stopVideos() {
-
     $("iframe").each(function() {
-
         var src = $(this).attr('src');
-
         $(this).attr('src', src);
-
     });
-
 }
-
 function on() {
-
     document.getElementById("overlay_Afbeelding").style.display = "block";
-
 }
-
 function off() {
-
     document.getElementById("overlay_Afbeelding").style.display = "none";
-
 }
-
 function plusSlides(n) {
-
     showSlides(slideIndex += n);
-
 }
-
 function showSlides(n) {
-
     var i;
-
     var slides = document.getElementsByClassName("mySlides");
-
     if (n > slides.length) {
-        slideIndex = 1
+       slideIndex = 1
     }
-
     for (i = 0; i < slides.length; i++) {
-
         slides[i].style.display = "none";
-
     }
-
     slides[slideIndex - 1].style.display = "block";
-
 }

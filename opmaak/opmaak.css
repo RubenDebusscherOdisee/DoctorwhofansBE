@@ -718,11 +718,11 @@ sup {
         min-width: 50%;
         max-width: 100%;
     }
-    .WikiRule span {
+   /* .WikiRule span {
         float: right;
         min-width: 45%;
         max-width: 100%;
-    }
+    }*/
     .WikiRule ul li {
         margin-bottom: 0;
     }
@@ -1894,7 +1894,6 @@ input[type=checkbox]#show-menu {
         display: block;
         margin-top: 0;
         width: 139%;
-        float: left;
         margin-left: 16%;
     }
     li {
@@ -2238,7 +2237,7 @@ input[type=checkbox]#show-menu {
 }
 
 .accessible-megamenu .standaard {
-    float: left
+    float: left;
 }
 
 .accessible-megamenu .zoekmenu {
@@ -2344,7 +2343,7 @@ input[type=checkbox]#show-menu {
 .accessible-megamenu .accessible-megamenu-panel.open {
     visibility: visible;
     top: 3em;
-    max-height: 600px;
+    max-height: 33em;
     opacity: 1;
     z-index: 1001;
     -webkit-transition: opacity 250ms ease, max-height 500ms ease, visibility 0s linear 0s, top 0s linear 0s;
@@ -2505,6 +2504,14 @@ nav form {
 }
 
 @media only screen and (max-width: 828px) {
+    .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
+    width: 48%
+}
+
+    .accessible-megamenu-panel-group ol li {width:100%;}
+    .accessible-megamenu .standaard {
+    width:100%;
+}
     .upDown {
         float: right;
         width: 8%;

@@ -184,8 +184,8 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                         <li>
                                             <a href="../Torchwood/"><img src="../images/Torchwood.png" alt="Torchwood logo" /> Torchwood</a>
                                         </li>
-                                        <li>
-                                            <a href="../Sarah_Jane_Adventures/"><img src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a>
+                                        <li style="padding-bottom: 2em;">
+                                            <a href="../Sarah_Jane_Adventures/"><img src="../images/SJA.png" alt="Sarah Jane Adventures logo"/> Sarah Jane Adventures</a>
                                         </li>
                                         <li><a href="../Class/"><img src="../images/Class.png" alt="Class logo" /> Class</a></li>
             					</ol>
@@ -194,9 +194,9 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             				    <h2>Concepts and other things</h2>
             					<ol>
                                     <li><a href="../Species/">Species</a></li>
-                                    <li><a href="../TARDIS/" style="padding-left:0em;"><img src="../images/tardis.png" alt="TARDIS logo"/>T.A.R.D.I.S</a></li>
-                                    <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a></li>
-                                    <li>
+                                    <li style="padding-bottom: 2em;"><a href="../TARDIS/" style="padding-left:0em;"><img src="../images/tardis.png" alt="TARDIS logo"/>T.A.R.D.I.S</a></li>
+                                    <li style="padding-bottom: 0em;"><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a></li>
+                                    <li style="padding-bottom: 1em;">
                                             <a href="../UNIT/"><img src="../images/UNIT.png" alt="UNIT logo" /> UN.I.T</a>
                                         </li>
                                     <li><a href="../Places/"><i class="fa fa-compass" aria-hidden="true"></i> Places</a></li>
