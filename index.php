@@ -141,7 +141,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             		<div class="cols-4" style="display:none;"></div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#" aria-label="who is Who?"><h1>who is Who</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+            		<h1><a href="#" aria-label="who is Who?">who is Who <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
             		<div class="cols-4b standaard">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
@@ -210,7 +210,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             		</div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#"><h1>Series</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+                <h1><a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
             		<div class="cols-3 standaard">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
@@ -251,7 +251,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             		</div>
             	</li>
             	<li class="standaard">
-            		<span><a href="#"><h1>Fans</h1> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></span>
+            		<h1><a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
             		<div class="cols-3">
             			<ol>
             				<li class="accessible-megamenu-panel-group">
