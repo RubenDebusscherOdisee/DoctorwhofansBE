@@ -13,125 +13,66 @@ var ip;
 var session;
 var CONTENTID;
 if (jQuery) {
-
     (function($) {
-
         $(document).ready(function() {
-
             $('.megamenu').accessibleMegaMenu();
-
             setTimeout(function() {
-
                 $('body').removeClass('init');
-
-            }, 500);
-
+            }, 100);
         });
-
     }(jQuery));
 }
 (function($, window, document) {
-
     "use strict";
-
     var pluginName = "accessibleMegaMenu",
-
         defaults = {
-
             uuidPrefix: "accessible-megamenu",
-
             menuClass: "accessible-megamenu",
-
             topNavItemClass: "accessible-megamenu-top-nav-item",
-
             panelClass: "accessible-megamenu-panel",
-
             panelGroupClass: "accessible-megamenu-panel-group",
-
             hoverClass: "hover",
-
             focusClass: "focus",
-
             openClass: "open",
-
             openDelay: 0,
-
             closeDelay: 250
-
         },
-
         Keyboard = {
-
             BACKSPACE: 8,
-
             COMMA: 188,
-
             DELETE: 46,
-
             DOWN: 40,
-
             END: 35,
-
             ENTER: 13,
-
             ESCAPE: 27,
-
             HOME: 36,
-
             LEFT: 37,
-
             PAGE_DOWN: 34,
-
             PAGE_UP: 33,
-
             PERIOD: 190,
-
             RIGHT: 39,
-
             SPACE: 32,
-
             TAB: 9,
-
             UP: 38,
-
             keyMap: {
-
                 48: "0",
-
                 49: "1",
-
                 50: "2",
-
                 51: "3",
-
                 52: "4",
-
                 53: "5",
-
                 54: "6",
-
                 55: "7",
-
                 56: "8",
-
                 57: "9",
-
                 59: ";",
-
                 65: "a",
-
                 66: "b",
-
                 67: "c",
-
                 68: "d",
-
                 69: "e",
-
                 70: "f",
-
                 71: "g",
-
                 72: "h",
 
                 73: "i",
@@ -1702,92 +1643,41 @@ function videosophalen(menu, id) {
 function quotesophalen(menu, id) {
 
     $.ajax({
-
         type: "GET",
-
         url: "/php/quotesophalen.php?menu=" + menu + "&id=" + id,
-
         dataType: 'json',
         cache: false
-
     }).done(function(resultaat) {
-
         $(".col-6").append("<div class='main_quote' style=''></div>");
-
         $(".col-6").append("<div class='selectie'></div>");
-
         $(".selectie").append("<div class='linkerquote'></div>");
-
         $(".selectie").append("<div class='rechterquote'></div>");
-
         if (id === "0") {
-
             id = Math.floor((Math.random() * resultaat.data.length) + 1);
-
         } else {
             id = id;
         }
-
         for (i = 0; i < resultaat.data.length; i++) {
-
             //populeer zoekvelden om snel een selectie te maken op basis van personage/aflevering
-
             if (id === resultaat.data[i].id) {
-
                 $(".main_quote").append("<h1>" + resultaat.data[i].Aflevering + "</h1>");
-
                 $(".main_quote").append("<div><img class='quote_picture' src='" + resultaat.data[i].QuotePic + "'/><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
-
             } else {
-
                 var quote = resultaat.data[i].Quote;
-
                 var quote_short = quote.substring(0, 60);
-
                 if (quote_short.indexOf('<br>') >= 0) {
-
                     var quote_short_zonder_enter = quote_short.substring(0, quote_short.indexOf('<br'));
-
                 } else {
-
-                    var quote_short_zonder_enter = quote_short
-
+                    var quote_short_zonder_enter = quote_short;
                 }
-
-
-
                 if (i % 2 === 0) {
-
                     $(".linkerquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote_short_zonder_enter + "</a></div>");
-
-
-
                 } else {
-
                     $(".rechterquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote_short_zonder_enter + "</a></div>");
-
-
-
                 }
-
             }
-
-
-
-
-
-
-
         }
-
-
-
-    }).fail(function(response, statusText, xhr) {
-
-    }).always(function() {
-
-    });
-
+    }).fail(function(response, statusText, xhr) {}).always(function() {});
 }
 
 function GetNews() {
@@ -1833,6 +1723,27 @@ function GetNews() {
 
 function GetQuotesByEpisode(Episode) {
     console.log(Episode);
+    Episode = Episode.trim();
+    $.ajax({
+        type: "GET",
+        url: "/php/quotesophalenbyEpisode.php?Episode=" + Episode,
+        dataType: 'json',
+        cache: false
+    }).done(function(resultaat) {
+        if (resultaat.data.length === 0) {
+            $("#QuotesEpisode").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
+
+        } else {
+            for (i = 0; i < resultaat.data.length; i++) {
+                $("#QuotesEpisode").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");
+            }
+
+        }
+
+
+    }).fail(function(response, statusText, xhr) {
+        $("#QuotesEpisode").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
+    }).always(function() {});
 }
 
 function GetOneRandomQuote() {
@@ -1915,7 +1826,6 @@ function contentophalen(taal, menu, id, parent, child) {
 
                     $(".under").prepend("<div id='QuotesEpisode'></div>");
 
-                    $("#QuotesEpisode").html("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>")
 
                     $("#QuotesEpisode").prepend("<h2>Quotes</h2>");
 
@@ -2184,7 +2094,7 @@ function contentophalen(taal, menu, id, parent, child) {
                 if (resultaat.data[i].A_Pagina_Type === "Wikititel") {
                     $("#Inhoud ul").append("<li><a href='#" + resultaat.data[i].A_Waarde + "' >" + resultaat.data[i].A_Waarde + "</a></li>");
                 }
-                
+
                 $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h2>");
             }
             if (resultaat.data[i].A_Type === "Kop3") {
