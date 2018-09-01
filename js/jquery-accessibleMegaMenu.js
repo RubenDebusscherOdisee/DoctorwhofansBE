@@ -1612,7 +1612,7 @@ function contentophalen(taal, menu, id, parent, child) {
                     $("#Under_Upper").append("<div id='Quotes'></div>");
                     $("#Quotes").append("<h2>Quotes</h2>");
                     var Character = resultaat.data[i].A_Waarde;
-                    GetQuotesByCharacter(Character);
+                    GetQuotesByCharacter(menu.split('_').join(' '));
                 }
             }
             if (resultaat.data[i].A_Type === "EpisodeStatus") {
@@ -1753,10 +1753,10 @@ function contentophalen(taal, menu, id, parent, child) {
                 $(".col-6").append("<h6 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h6>");
             }
             if (resultaat.data[i].A_Type === "Lijst") {
-                $(".col-6").append("<hli class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h6>");
+                $(".col-6").append("<ul class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</ul>");
             }
             if (resultaat.data[i].A_Pagina_Type === "Overzicht") {
-                $(".col-6").append("<div class='topics'></div>");
+                $(".under").append("<div class='topics'></div>");
                 getchildren(menu);
             }
             if (resultaat.data[i].A_Type === "Afbeelding") {

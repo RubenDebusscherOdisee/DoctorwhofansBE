@@ -1,20 +1,9 @@
-<html>
-    <head>
-        <title>Administratorspanel</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="main.css">
-        <meta name=viewport content="width=device-width, initial-scale=1.0"/>
-        <script src="main.js"></script>
+    <div>
         <script>$(document).ready(function(){
                  GetListLinks();
                 });</script>
-        
-<style></style>
-    </head>
-    <body>
-        <h1>Welcome administrator</h1>
-        <h2>Volledige sitemap</h2>
-        <a href="https://www.doctorwhofans.be/Admin/index.html"><h2>Terug naar de site</h2></a>
+        <h2>Controles</h2>
+        <h3>Kijk of pagina voorkomt in content(rood=komt voor op andere pagina's, wit= geen references)</h3>
         <?php
             function fetchCategoryTreeList($parent = 0, $user_tree_array = '') {
 $verbinding =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be", "RicatechApp", "doctorwhofans_be");
@@ -48,8 +37,7 @@ $verbinding =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be", "Ricat
                 echo  $r;
             }  
         ?>
-        
+        <h3>Kijk of pagina bestaat(groen= pagina bestaat, wit=pagina bestaat niet)/</h3>
         <ul id=Links></ul>
         <ol id=items></ol>
-    </body>
-</html>
+    </div>

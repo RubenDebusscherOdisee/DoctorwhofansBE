@@ -117,10 +117,16 @@ function GetListLinks(){
         console.log("Content Opgehaald");
         var links = document.getElementsByTagName("a");
         for(var i=0; i<links.length; i++) {
-            LINK_ARRAY.push(links[i].href);
+            if(links[i].text.includes("?")===false){
+                LINK_ARRAY.push(links[i].href);
+            }
+            
         }
-        for (i = 1; i < LINK_ARRAY.length; i++){
-            LINK_Short.push(LINK_ARRAY[i].substr(29, LINK_ARRAY[i].length-30));
+        for (var j = 0; j < LINK_ARRAY.length; j++){
+            if(LINK_ARRAY[j].includes("?")===false && LINK_ARRAY[j].includes("doctorwhofans.be")===true){
+                LINK_Short.push(LINK_ARRAY[j].substr(29, LINK_ARRAY[j].length-30));
+            }
+            
         }
         $.each(LINK_Short, function(i, el){
             if($.inArray(el, uniquelinks) === -1){
@@ -144,17 +150,10 @@ function GetListLinks(){
             //Maak dus een pagina aan voor deze items
             //goal:alles groen
             //$("#items").append("<li class='"+uniquelinks[i]+"'>"+uniquelinks[i]+"</li>");
-            $("."+ids[i]).css('background-color','green');
+            $("."+ids[i]).css('display','none');
         }
     })
 }
-
-
-
-
-
-
-
 //Kijk elke seconde na of het aantal items hetzelfde is (uitbreiding: kijk na of de inhoud van het object hetzelfde is) zo nee, laat gebruiker weten dat er nieuwe content is en haal die op
 function GetContent(){
     event.preventDefault();

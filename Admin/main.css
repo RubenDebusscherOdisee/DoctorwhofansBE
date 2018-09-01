@@ -68,8 +68,9 @@ input[type=submit] {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
-
-
+h1{display:block;}
+a{display:inline-block;    padding: 0 2% 0 2%;
+}
 
 
 

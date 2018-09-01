@@ -16,13 +16,23 @@
     </head>
     <body>
         <?php
-            echo $_SERVER['REMOTE_USER'] 
+            echo $_SERVER['REMOTE_USER']
+            
         ?>
-        <h1>Welcome administrator</h1>
-        <h2>Voeg een pagina toe (uitgebreid)</h2>
-        <a href="Addpage.php"><h2>Voeg content toe aan een pagina</h2></a>
-        <a href="FullMap.php"><h2>Volledige map</h2></a>
-        <a href="https://www.doctorwhofans.be"><h2>Terug naar de site</h2></a>
-
+        <h1>Voeg een pagina toe (uitgebreid)</h1>
+        <a href="index.php?menu=AddContent">Voeg content toe aan een pagina</a>
+        <a href="index.php?menu=FullMap">Volledige map</a>
+        <a href="index.php?menu=CheckPage">Kijk of pagina bestaat/Kijk of paina voorkomt in content</a>
+        <a href="https://discord.gg/d7jBgTx">Join the discord server</a>
+        <?php
+            switch($_GET['menu']){
+                case 'AddContent':
+                    require("Addpage.php");break;
+                case 'FullMap':
+                    require("FullMap.php");break;
+                case 'CheckPage':
+                    require("CheckIfPageExists.php");break;
+            }
+        ?>
     </body>
 </html>
