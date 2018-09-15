@@ -206,7 +206,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 <li class="zoekmenu">
                     <span><a href="#"><i class="fa fa-search fa-2x" aria-hidden="true" title="Zoeken"></i> Zoeken</a></span>
                     <div class="cols-3 zoekmenu">
-                        <form action="" method="post" class="zoekformulier">
+                        <form method="post" class="zoekformulier">
                             <label for="zoekterm" class="zoeklabel">Zoeken: </label>
                             <input class="zoekterm" type="text" name="zoekterm" placeholder="Zoeken..." value="" title="zoeken" id="zoekterm"/>
                             <button class="zoekknop" type="submit" title="Zoeken" name="zoeken" onclick="ZoekPagina()" value=" " style="margin-top:0.5em;"></button>
@@ -259,7 +259,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             ?>
             <p class="socialmedia">
                 <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img src="../images/Social/facebook_logo.png" alt="Facebook Logo"/></a>
-                <a href="https://github.com/RubenDebusscherOdisee/DoctorwhofansBE" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo"/></a><br>
+                <a href="https://rubendebusscherodisee.github.io/DoctorwhofansBE/" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo"/></a><br>
                 <a href="../Sitemap/" class="link">Sitemap</a>
             </p>
             <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present

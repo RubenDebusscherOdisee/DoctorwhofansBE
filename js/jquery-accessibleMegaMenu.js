@@ -626,6 +626,7 @@ function zoeken(taal, menu, zoekterm, ip, UID) {
     }).done(
         function(resultaat) {
             $("#resultset1").append("<div class ='result slide' id='resultcontent'></div>");
+            $("#resultcontent").hide();
             var i;
             for (i = 0; i < resultaat.data.length; i += 1) {
                 if(resultaat.data[i].link.indexOf("Forum") >= 0) {
@@ -695,6 +696,7 @@ function videozoeken(taal, menu, zoekterm) {
         dataType: 'json'
     }).done(function(resultaat) {
         $("#resultset2").append("<div class ='result slide' id='resultvideo'></div>");
+        $("#resultvideo").hide();
         var i;
         for (i = 0; i < resultaat.data.length; i += 1) {
             $("#resultvideo").append("<a href='../Video/' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ")  ><h3>" + resultaat.data[i].Video_Name + "</h3</a>");
@@ -712,6 +714,7 @@ function quotezoeken(taal, menu, zoekterm) {
         dataType: 'json'
     }).done(function(resultaat) {
         $("#resultset3").append("<div class ='result slide' id='resultQuote'></div>");
+        $("#resultQuote").hide();
         var i;
         for (i = 0; i < resultaat.data.length; i += 1) {
             $("#resultQuote").append("<a href='../Quotes/' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")><h3>" + resultaat.data[i].Aflevering + "</h3</a>");

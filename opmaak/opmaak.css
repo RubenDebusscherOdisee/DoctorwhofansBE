@@ -398,7 +398,7 @@ nav ol li div ol li ol li *:hover {
 .result a.toegankelijk {
     color: blue;
 }
-
+.result p{color: yellow}
 #WikiDetails a,
 .path a,
 #Inhoud a {
@@ -419,10 +419,10 @@ nav ol li div ol li ol li *:hover {
     color: Red;
 }
 
-a:not(nav, #WikiDetails, .path, #Inhoud) {
+/*a:not(nav, #WikiDetails, .path, #Inhoud) {
     color: Red;
     text-decoration: none;
-}
+}*/
 
 a:not(nav):hover {
     background-color: #023079;

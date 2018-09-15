@@ -1,7 +1,7 @@
-AuthName "Please enter your credentials to gain acces"
-AuthType Basic
-AuthUserFile /customers/e/a/c/doctorwhofans.be/httpd.www/Admin/.htpasswd
-AuthGroupFile /dev/null 
-require valid-user
-
-ErrorDocument 404 https://doctorwhofans.be/Admin/notfound.html
+AuthName "Please enter your credentials to gain acces"
+AuthType Basic
+AuthUserFile /customers/e/a/c/doctorwhofans.be/httpd.www/Admin/.htpasswd
+AuthGroupFile /dev/null 
+require valid-user
+
+ErrorDocument 404 https://doctorwhofans.be/Admin/notfound.html

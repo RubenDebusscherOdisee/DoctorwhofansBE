@@ -1,0 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+--INSERT INTO serials_companions (SC_serial_id,SC_companion_id) VALUES (156,'');
+
+
+
+
+
+
+
+
+
+
+
