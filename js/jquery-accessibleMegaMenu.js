@@ -613,7 +613,12 @@ function checkmenu(menu) {
                 var e=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
                 document.getElementById("overlay_background").style.height=e;
                 jQuery("#overlay_background, #overlay_Zoeken").fadeIn(500);
+                $('html, body').css({
+                    overflow: 'hidden',
+                    height: '100%'
+                });
                 return false
+                
     }
 }
 function zoeken(taal, menu, zoekterm, ip, UID) {
