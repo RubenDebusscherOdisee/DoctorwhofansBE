@@ -1,6 +1,6 @@
 This is the github page for the Private repository "DoctorwhofansBE".  
 
-To become a collaborator, send an email to email@doctorwhofans.be. 
+To become a collaborator, send an email to admin@doctorwhofans.be. 
 
 This mail must include:
   1. Your name
