@@ -72,11 +72,11 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     <div class="cols-4" style="display:none;"></div>
                 </li>
                 <li class="standaard">
-                    <h1><a href="#" aria-label="who is Who?">who is Who <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
+                    <h2><a href="#" aria-label="who is Who?">who is Who <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h2>
                     <div class="cols-4b standaard">
                         <ol>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Doctors</h2>
+                                <h3>Doctors</h3>
                                 <ol>
                                     <li><a href="../First_Doctor/">First Doctor</a></li>
                                     <li><a href="../Second_Doctor/">Second Doctor</a></li>
@@ -96,7 +96,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                 </ol>
                             </li>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Characters</h2>
+                                <h3>Characters</h3>
                                 <ol>
                                     <li>
                                         <a href="../Companions/" aria-label="Companions">
@@ -115,7 +115,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                 </ol>
                             </li>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Concepts and other things</h2>
+                                <h3>Concepts and other things</h3>
                                 <ol>
                                     <li><a href="../Species/">Species</a></li>
                                     <li style="padding-bottom: 2em;"><a href="../TARDIS/" style="padding-left:0em;"><img src="../images/tardis.png" alt="TARDIS logo"/>T.A.R.D.I.S</a></li>
@@ -131,11 +131,11 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     </div>
                 </li>
                 <li class="standaard">
-                    <h1><a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
+                    <h2><a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h2>
                     <div class="cols-3 standaard">
                         <ol>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>the Show</h2>
+                                <h3>the Show</h3>
                                 <ol>
                                     <li><a href="../Synopsis/">Synopsis</a></li>
                                     <li><a href="../Episodes/">Episodes</a></li>
@@ -149,7 +149,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                 </ol>
                             </li>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Media</h2>
+                                <h3>Media</h3>
                                 <ol>
                                     <li><a href="../DVD/">DVD</a></li>
                                     <li><a href="../Books/"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
@@ -166,11 +166,11 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     </div>
                 </li>
                 <li class="standaard">
-                    <h1><a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h1>
+                    <h2><a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h2>
                     <div class="cols-3">
                         <ol>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Understanding the show</h2>
+                                <h3>Understanding the show</h3>
                                 <ol>
                                     <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a></li>
                                     <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a></li>
@@ -178,7 +178,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                                 </ol>
                             </li>
                             <li class="accessible-megamenu-panel-group">
-                                <h2>Understanding the fans</h2>
+                                <h3>Understanding the fans</h3>
                                 <ol>
                                     <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a></li>
                                     <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a></li>
@@ -247,20 +247,20 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
         </article>
         <footer id=footer>
         <hr>
-            <?php
+            <?
             switch($taal){
-                    case 'NL':?><p class='mededeling'> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?php;
+                    case "NL":?><p class='mededeling'> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?;
                         break;
-                    case 'ENG':?><p class='mededeling'> At this moment, <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans Belgium</a> is still under construction. In the case there might be any questions, propositions, or additional information to provide, please feel free to contact me.  Requests or submissions related to the videos, pictures, etc. are welcome as well.  Contact informationis provided on the corresponding page. You will also be able to contact us directly from that page.</p><?php;
+                    case "ENG":?><p class='mededeling'> At this moment, <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans Belgium</a> is still under construction. In the case there might be any questions, propositions, or additional information to provide, please feel free to contact me.  Requests or submissions related to the videos, pictures, etc. are welcome as well.  Contact informationis provided on the corresponding page. You will also be able to contact us directly from that page.</p><?;
                         break;
-                    default:?><p class=mededeling> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?php;
+                    default:?><p class=mededeling> Momenteel is <a href="https://www.doctorwhofans.be/Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina.  Hier kan je ons ook rechtstreeks contacteren via het formulier. </p><?;
                         break;
             }
             ?>
             <p class="socialmedia">
                 <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img src="../images/Social/facebook_logo.png" alt="Facebook Logo"/></a>
                 <a href="https://rubendebusscherodisee.github.io/DoctorwhofansBE/" target="_blank"><img src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo"/></a><br>
-                <a href="../Sitemap/" class="link">Sitemap</a>
+                <a href="../Sitemap/" class=" socialmedia_full link" style="width:100%;">Sitemap</a>
             </p>
             <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present
                 <br> The web pages on this site are for educational and entertainment purposes only.
@@ -277,6 +277,8 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 <button class="print hide" id=printClose type="button" onclick="Closeprint()">Close Print</button>
                 <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder Afbeeldingen</button>
                 <button class="RemoveImages hide" id="RestoreImages" type="button" onclick="RestoreImg()">Toon Afbeeldingen</button>
+                <input type="button" id="increase" value="+">
+                <input type="button" id="decrease" value="-">
                 <input type="submit" style="display:none"/>
                 <button class="taal_link" type="button" title="taalkeuze"><img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class ="taal_link"/></button>
             </fieldset>

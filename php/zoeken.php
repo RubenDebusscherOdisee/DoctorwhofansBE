@@ -11,8 +11,9 @@
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}
-    $menu = $_GET['menu'];$taal = $_GET['taal'];$zoekterm = "%{$_GET['zoekterm']}%";
-	if(!$stmt1->bind_param("sssss",$zoekterm,$zoekterm,$taal,$zoekterm,$zoekterm)){
+	$menu = $_GET['menu'];$taal = $_GET['taal'];$zoekterm = "%{$_GET['zoekterm']}%";
+	$zoektermgesplitst=str_replace(' ', '%', $zoekterm);
+	if(!$stmt1->bind_param("sssss",$zoektermgesplitst,$zoektermgesplitst,$taal,$zoektermgesplitst,$zoektermgesplitst)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}
 	if(!$stmt1->execute()){

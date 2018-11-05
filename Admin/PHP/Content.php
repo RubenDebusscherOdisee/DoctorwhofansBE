@@ -20,6 +20,8 @@
 	}
 	$Pagina=$_POST['Pagina'];
  
+    //$Naam="rubendemeno@meno.com";
+
   
   
     if(!$stmt1->bind_param("s",$Pagina)){

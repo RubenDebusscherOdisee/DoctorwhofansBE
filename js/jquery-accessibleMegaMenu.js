@@ -736,46 +736,46 @@ function companionsophalen(taal, menu,id) {
         dataType: 'json'
     }).done(function(resultaat) {
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D1'>");
-        $("#D1").append("<div class='header'><a class='opner' href='#'>First Doctor<img class='upDown' src='../images/up_down.png'alt='up-down First Doctor'/></a></div>");
+        $("#D1").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D1') href='#First'>First Doctor<img class='upDown' src='../images/up_down.png'alt='up-down First Doctor'/></a></div>");
         $("#D1").append("<div class ='result companion slide' id='resultD1'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D2'>");
-        $("#D2").append("<div class='header'><a class='opner' href='#'>Second Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Second Doctor'/></a></div>");
+        $("#D2").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D2') href='#Second'>Second Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Second Doctor'/></a></div>");
         $("#D2").append("<div class ='result companion slide' id='resultD2'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D3'>");
-        $("#D3").append("<div class='header'><a class='opner' href='#'>Third Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Third Doctor'/></a></div>");
+        $("#D3").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D3') href='#Third'>Third Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Third Doctor'/></a></div>");
         $("#D3").append("<div class ='result companion slide' id='resultD3'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D4'>");
-        $("#D4").append("<div class='header'><a class='opner' href='#'>Fourth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fourth Doctor'/></a></div>");
+        $("#D4").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D4') href='#Fourth'>Fourth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fourth Doctor'/></a></div>");
         $("#D4").append("<div class ='result companion slide' id='resultD4'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D5'>");
-        $("#D5").append("<div class='header'><a class='opner' href='#'>Fifth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fifth Doctor'/></a></div>");
+        $("#D5").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D5') href='#Fifth'>Fifth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fifth Doctor'/></a></div>");
         $("#D5").append("<div class ='result companion slide' id='resultD5'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D6'>");
-        $("#D6").append("<div class='header'><a class='opner' href='#'>Sixth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Sixth Doctor'/></a></div>");
+        $("#D6").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D6') href='#Sixth'>Sixth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Sixth Doctor'/></a></div>");
         $("#D6").append("<div class ='result companion slide' id='resultD6'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D7'>");
-        $("#D7").append("<div class='header'><a class='opner' href='#'>Seventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Seventh Doctor'/></a></div>");
+        $("#D7").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D7') href='#Seventh'>Seventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Seventh Doctor'/></a></div>");
         $("#D7").append("<div class ='result companion slide' id='resultD7'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D8'>");
-        $("#D8").append("<div class='header'><a class='opner' href='#'>Eighth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eighth Doctor'/></a></div>");
+        $("#D8").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D8') href='#Eighth'>Eighth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eighth Doctor'/></a></div>");
         $("#D8").append("<div class ='result companion slide' id='resultD8'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='DW'>");
-        $("#DW").append("<div class='header'><a class='opner' href='#'>War Doctor<img class='upDown' src='../images/up_down.png'alt='up-down War Doctor'/></a></div>");
+        $("#DW").append("<div class='header'><a class='opner' onclick=ToggleCompanion('DW') href='#War'>War Doctor<img class='upDown' src='../images/up_down.png'alt='up-down War Doctor'/></a></div>");
         $("#DW").append("<div class ='result companion slide' id='resultDW'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D9'>");
-        $("#D9").append("<div class='header'><a class='opner' href='#'>Ninth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Ninth Doctor'/></a></div>");
+        $("#D9").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D9') href='#'>Ninth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Ninth Doctor'/></a></div>");
         $("#D9").append("<div class ='result companion slide' id='resultD9'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D10'>");
-        $("#D10").append("<div class='header'><a class='opner' href='#'>Tenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Tenth Doctor'/></a></div>");
+        $("#D10").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D10') href='#'>Tenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Tenth Doctor'/></a></div>");
         $("#D10").append("<div class ='result companion slide' id='resultD10'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D11'>");
-        $("#D11").append("<div class='header'><a class='opner' href='#'>Eleventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eleventh Doctor'/></a></div>");
+        $("#D11").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D11') href='#'>Eleventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eleventh Doctor'/></a></div>");
         $("#D11").append("<div class ='result companion slide' id='resultD11'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D12'>");
-        $("#D12").append("<div class='header'><a class='opner' href='#'>Twelfth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Twelfth Doctor'/></a></div>");
+        $("#D12").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D12') href='#'>Twelfth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Twelfth Doctor'/></a></div>");
         $("#D12").append("<div class ='result companion slide' id='resultD12'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D13'>");
-        $("#D13").append("<div class='header'><a class='opner' href='#'>Thirteenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Thirteenth Doctor'/></a></div>");
+        $("#D13").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D13') href='#'>Thirteenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Thirteenth Doctor'/></a></div>");
         $("#D13").append("<div class ='result companion slide' id='resultD13'></div>");
         var i;
         for (i = 0; i < resultaat.data.length; i += 1) {
@@ -1256,14 +1256,12 @@ $(function() {
         }
     });
 })
-$(document).ready(function() {
-    $('.open-close').on('click', '.opner', function(event) {
-        $(this).closest('.holder').find('.opner').toggleClass('active');
-        $(this).closest('.holder').find('.slide').slideToggle(20);
-        event.preventDefault();
-    });
-    $('.active').closest('.holder').find('.slide').slideDown(20);
-})
+
+function ToggleCompanion(Doctor){
+    event.preventDefault();
+    $("#result"+Doctor).slideToggle();
+}
+
 function Spoilertonen(content) {
     stopVideos();
     $('#' + content).toggle();

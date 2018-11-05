@@ -74,3 +74,25 @@ function RestoreImg(){
     $('#RestoreImages').addClass('hide');
     $('#RemoveImages').removeClass('hide');
 }
+$(function() {
+    $("#increase").click(function() {
+      $(".col-6,.under,footer").children().each(function() {
+        var size = parseInt($(this).css("font-size"));
+        size = size + 1 + "px";
+        $(this).css({
+          'font-size': size
+        });
+      });
+    });
+  });
+  $(function() {
+    $("#decrease").click(function() {
+      $(".col-6,.under,footer").children().each(function() {
+        var size = parseInt($(this).css("font-size"));
+        size = size - 1 + "px";
+        $(this).css({
+          'font-size': size
+        });
+      });
+    });
+  });
