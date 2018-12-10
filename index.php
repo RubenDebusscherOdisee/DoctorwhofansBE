@@ -291,17 +291,17 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             <div class="open-close">
                 <div class="resultset holder" style="border:1px solid yelllow" id="resultset1">
                     <div class="header" style="width:100%;background-color:yellow;color:black">
-                        <a class="opner" href="#">Pages</a>
+                        <a class="opner" href="#" onClick="ToggleResult('resultcontent')">Pages</a>
                     </div>
                 </div>
                 <div class="resultset second holder" style="border:1px solid yelllow" id="resultset2">
                     <div class="header" style="width:100%;background-color:yellow;color:black">
-                        <a class="opner" href="#">Videos</a>
+                        <a class="opner" href="#" onClick="ToggleResult('resultvideo')">Videos</a>
                     </div>
                 </div>
                 <div class="resultset third holder" style="border:1px solid yelllow" id="resultset3">
                     <div class="header" style="width:100%;background-color:yellow;color:black">
-                        <a class="opner" href="#">Quotes</a>
+                        <a class="opner" href="#" onClick="ToggleResult('resultQuote')">Quotes</a>
                     </div>
                 </div>
             </div>

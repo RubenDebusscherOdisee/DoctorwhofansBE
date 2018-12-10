@@ -1262,6 +1262,11 @@ function ToggleCompanion(Doctor){
     $("#result"+Doctor).slideToggle();
 }
 
+function ToggleResult(kader){
+    event.preventDefault();
+    $("#"+kader).slideToggle();
+}
+
 function Spoilertonen(content) {
     stopVideos();
     $('#' + content).toggle();
