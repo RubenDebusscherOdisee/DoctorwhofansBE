@@ -12,6 +12,7 @@
 	    die("Statement preparing failed: " . $conn->error);
 	}
 	$menu =$_GET['menu'];
+	
 	if(!$stmt1->bind_param("s",$menu)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}

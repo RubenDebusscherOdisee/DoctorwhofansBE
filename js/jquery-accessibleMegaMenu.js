@@ -2,16 +2,7 @@ var aantalrecords;
 var img;
 var eerdermenu;
 var taal;
-var menu;
-var currentTopic;
-var user;
-var UID = 0;
-var toon = "false";
-var slideIndex = 1;
-var ip;
-var session;
-var CONTENTID;
-var zoekterm;
+var menu;var currentTopic;var user;var UID = 0;var toon = "false";var slideIndex = 1;var ip;var session;var CONTENTID;var zoekterm;
 if(jQuery) {
     (function($) {
         $(document).ready(function() {
@@ -596,8 +587,6 @@ function checkmenu(menu) {
     }).always(function() {
     });
 }
-
-
  function ZoekPagina(){
     event.preventDefault();
     $("#resultcontent").remove();
@@ -984,6 +973,10 @@ function contentophalen(taal, menu) {
                 $("#Items").append("<div class=WikiItemTitel>Cast</div>");
                 $("#Items").append("<span class=WikiRule>Doctor: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
             }
+            if(resultaat.data[i].A_Type === "EpisodeStoryDetails") {
+                $("#Items").append("<div class=WikiItemTitel>Story</div>");
+                $("#Items").append("<span class=WikiRule>Main setting: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
+            }
             if(resultaat.data[i].A_Type === "EpisodeCompanionList") {
                 $("#Items").append("<span class=WikiRule>Companions: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
             }
@@ -1262,9 +1255,9 @@ function ToggleCompanion(Doctor){
     $("#result"+Doctor).slideToggle();
 }
 
-function ToggleResult(kader){
+function ToggleResult(div){
     event.preventDefault();
-    $("#"+kader).slideToggle();
+    $("#"+div).slideToggle();
 }
 
 function Spoilertonen(content) {

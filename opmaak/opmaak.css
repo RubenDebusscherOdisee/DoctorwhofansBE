@@ -73,14 +73,15 @@ body {
 }
 
 .quoteitem {
-    border: 1px solid yellow;
+    border: 3px solid yellow;
     padding-bottom: 1em;
-    display: inline-block;
+    display: inline-flex;
     height: auto;
-    margin-top: 1em;
-    padding-left: 3em;
-    clear: both;
-    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 31%;
+    min-width: 25%;
+    border-radius: 10px;
 }
 
 .quotetext {
@@ -705,6 +706,7 @@ sup {
     color: #F58220;
     float: right
 }
+
 
 @media only screen and (max-width: 828px) {
     .socialmedia {
@@ -1353,7 +1355,7 @@ input[type=email] {
         max-width: 100%
     }
     #WikiDetails {
-        width: 100%
+        width: 50%
     }
     .col-3 {
         display: none
@@ -2204,7 +2206,11 @@ input[type=checkbox]#show-menu {
 .zoekfomulier {
     width: 100%
 }
+@media only screen and (max-width: 450px) {
+    #WikiDetails{width:100%
 
+    }
+}
 .accessible-megamenu {
     position: relative;
     display: block;
@@ -2576,6 +2582,7 @@ a .socialmedia_full:hover {
         width: 100%;
         clear: both
     }
+    .quoteitem{width: 100%}
     p {
         width: 100%
     }

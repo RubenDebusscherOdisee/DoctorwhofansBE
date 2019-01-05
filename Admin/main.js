@@ -123,10 +123,9 @@ function GetListLinks(){
             
         }
         for (var j = 0; j < LINK_ARRAY.length; j++){
-            if(LINK_ARRAY[j].includes("?")===false && LINK_ARRAY[j].includes("doctorwhofans.be")===true){
+            if(LINK_ARRAY[j].includes("?")===false && LINK_ARRAY[j].includes("doctorwhofans.be")===true && LINK_ARRAY[j].includes("API")===false){
                 LINK_Short.push(LINK_ARRAY[j].substr(29, LINK_ARRAY[j].length-30));
             }
-            
         }
         $.each(LINK_Short, function(i, el){
             if($.inArray(el, uniquelinks) === -1){

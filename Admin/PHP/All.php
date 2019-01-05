@@ -13,7 +13,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from alles");
+	$stmt1 = $conn->prepare("SELECT * from alles limit 0,50");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 
