@@ -910,6 +910,22 @@ function GetQuotesByEpisode(Episode) {
         $("#Quotes").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
     }).always(function() {});
 }
+function GetDownloadsByEpisode(Episode) {
+    Episode = Episode.trim();
+    $.ajax({
+        type: "GET",
+        url: "/php/downloadsophalenbyEpisode.php?Episode=" + Episode,
+        dataType: 'json',
+        cache: false
+    }).done(function(resultaat) {
+        if(resultaat.data.length === 0) {$("#Downloads").append("<p>Er werden voor deze aflevering nog geen downloads gevonden.</p>");}else{
+            for (i = 0; i < resultaat.data.length; i++) {
+                $("#Downloads").append("<p>" + resultaat.data[i].download_Type + ": <a href='"+resultaat.data[i].download_link+"' target='_blank'>"+resultaat.data[i].download_Naam+"</a> ("+resultaat.data[i].download_Taal+") <a href='"+resultaat.data[i].download_link+"' download>Direct Download</a></p>");}
+        }
+    }).fail(function(response, statusText, xhr) {
+        $("#Downloads").append("<p>Er werden voor deze aflevering nog geen downloads gevonden.</p>");
+    }).always(function() {});
+}
 function GetOneRandomQuote() {
     $.ajax({
         type: "GET",
@@ -955,8 +971,8 @@ function contentophalen(taal, menu) {
                     $("#Quotes").append("<h2>Quotes</h2>");
                     var Episode = resultaat.data[i].A_Waarde;
                     GetQuotesByEpisode(Episode);
-                    if(taal === "NL") {$("#Downloads").append('<p>Hier komen extra bronnen, zoals de transcripts en download voor oa. de ondertitels.');
-                    }else{$("#Downloads").append('<p>You can find a variety of downloads here for this episode, like subtitbles and transcripts, as soon as they are available.</p>');}
+                    GetDownloadsByEpisode(Episode);
+                    
                 }
                 if(resultaat.data[i].A_Type === "CharacterTitel") {
                     $(".under").prepend("<div id='Under_Upper'>")
