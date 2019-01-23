@@ -23,6 +23,7 @@
         <a href="index.php?menu=AddContent">Voeg content toe aan een pagina</a>
         <a href="index.php?menu=FullMap">Volledige map</a>
         <a href="index.php?menu=CheckPage">Kijk of pagina bestaat/Kijk of paina voorkomt in content</a>
+        <a href="index.php?menu=Addpagina">Voeg een pagina toe</a>
         <a href="https://discord.gg/d7jBgTx">Join the discord server</a>
         <?php
             switch($_GET['menu']){
@@ -32,6 +33,10 @@
                     require("FullMap.php");break;
                 case 'CheckPage':
                     require("CheckIfPageExists.php");break;
+                case 'Addpagina':
+                    require("addpagina.php");break;
+                default:
+                    require("FullMap.php");break;
             }
         ?>
     </body>

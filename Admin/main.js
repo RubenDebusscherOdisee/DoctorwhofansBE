@@ -153,6 +153,29 @@ function GetListLinks(){
         }
     })
 }
+
+
+
+
+
+
+function GetPagesasselect(){
+    $.ajax({
+        type: "POST",
+        url: "PHP/GetpagesAsselect.php",
+        dataType: 'json'
+    }).done(
+        function(resultaat) {
+            var i;
+            for (i = 0; i < resultaat.data.length; i += 1) {
+                $('#selectie').append("<option value="+resultaat.data[i].id+">"+resultaat.data[i].treeitem+"</option>");
+            }
+    }).fail(function(response, statusText, xhr) {
+        console.log("Fout : " + statusText);
+    }).always(function() {
+    
+    })
+}
 //Kijk elke seconde na of het aantal items hetzelfde is (uitbreiding: kijk na of de inhoud van het object hetzelfde is) zo nee, laat gebruiker weten dat er nieuwe content is en haal die op
 function GetContent(){
     event.preventDefault();
