@@ -13,7 +13,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT CONCAT(REPEAT('-', level - 1), CAST(hi.topic AS CHAR)) AS treeitem, topic,parent_id, level,hi.id FROM (SELECT  hierarchy_connect_by_parent_eq_prior_id(id) AS id, @level AS level FROM (SELECT  @start_with := 0,@id := @start_with,@level := 0) vars, Topics WHERE  @id IS NOT NULL) ho JOIN Topics hi ON hi.id = ho.id");
+	$stmt1 = $conn->prepare("SELECT CONCAT(REPEAT('-', level - 1), CAST(hi.topic AS CHAR)) AS treeitem, topic,parent_id, level,link, hi.id FROM (SELECT  hierarchy_connect_by_parent_eq_prior_id(id) AS id, @level AS level FROM (SELECT  @start_with := 0,@id := @start_with,@level := 0) vars, Topics WHERE  @id IS NOT NULL) ho JOIN Topics hi ON hi.id = ho.id");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 

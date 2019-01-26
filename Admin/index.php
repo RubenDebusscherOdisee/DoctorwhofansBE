@@ -15,16 +15,18 @@
 
     </head>
     <body>
-        <?php
-            echo $_SERVER['REMOTE_USER']
-            
-        ?>
-        <h1>Voeg een pagina toe (uitgebreid)</h1>
-        <a href="index.php?menu=AddContent">Voeg content toe aan een pagina</a>
-        <a href="index.php?menu=FullMap">Volledige map</a>
-        <a href="index.php?menu=CheckPage">Kijk of pagina bestaat/Kijk of paina voorkomt in content</a>
-        <a href="index.php?menu=Addpagina">Voeg een pagina toe</a>
-        <a href="https://discord.gg/d7jBgTx">Join the discord server</a>
+        <header>
+            <img src="../images/gallifreyan_black.png" alt="Logo" class="logo"/>
+            <h1 class="inline_titel">Admin Panel</h1>
+        </header>
+        <nav>
+            <a href="index.php?menu=AddContent">Voeg content toe aan een pagina</a>
+            <a href="index.php?menu=FullMap">Volledige map</a>
+            <a href="index.php?menu=CheckPage">Kijk of pagina bestaat/Kijk of paina voorkomt in content</a>
+            <a href="index.php?menu=Addpagina">Voeg een pagina toe</a>
+            <a href="https://discord.gg/d7jBgTx">Join the discord server</a>
+        </nav>
+        <article>
         <?php
             switch($_GET['menu']){
                 case 'AddContent':
@@ -39,5 +41,6 @@
                     require("FullMap.php");break;
             }
         ?>
+        </article>   
     </body>
 </html>

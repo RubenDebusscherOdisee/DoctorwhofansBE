@@ -18,7 +18,10 @@ table th {
    
 }
 
-
+.logo{width: 5%;display:inline-block}
+.inline_titel{    width: 90%;
+  float: right;
+  margin: 0;}
 
 textarea{color:black;width:56em}
 #N_W textarea{height:8em;}
