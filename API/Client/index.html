@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><link rel=manifest href=static/manifest.json><style>html, body{margin: 0;padding: 0;font-family:Verdana, Geneva, sans-serif}
+      header{width: 100%;background-color: black;position:fixed;top: 0}
+      header h1{color: white;float:right;margin-right: 1%;margin-top: 0vh}
+      header img{width: 5%;}
+      @media only screen and (max-width: 660px) {
+        header h1{font-size: 1em;float: right;width: auto;max-width: 65%;}
+        header img{width: 25%;margin-left: 0.5em;margin-top: 0.2em;}
+      }</style><script>if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('static/sw.js').then(function(registration) {
+              // Registration was successful
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+              // registration failed :(
+              console.log('ServiceWorker registration failed: ', err);
+            });
+          });
+        }</script><meta name=description content=WHOpi><meta name=viewport content="width=device-width,initial-scale=1"><title>WHOpi</title><link href=/static/css/app.dbb0a30141546af21a0499927585ac2e.css rel=stylesheet></head><body><header><img src=static/img/logo.png alt=Logo><h1>Doctor Who: The Definitive guide</h1></header><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.0605eb0cb2ea1268abee.js></script><script type=text/javascript src=/static/js/app.daf5fcd054b910d9e11e.js></script></body></html>
