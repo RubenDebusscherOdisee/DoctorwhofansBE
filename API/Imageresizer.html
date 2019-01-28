@@ -1,0 +1,26 @@
+<html>
+    <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <script>
+            $.ajax({
+                        type: "GET",
+                        url: "Serials.php",
+                        dataType: 'json',
+                        cache: false
+                    }).done(function(resultaat) {
+                        for(i = 0; i < resultaat.Serials.length; i++) {
+                            if(resultaat.Serials[i].image !==""){
+                                $('#Foto').append("<img src='"+resultaat.Serials[i].image+"' style='width:9em;'/>")
+                            }
+                        }
+                        
+                    }).fail(function(response, statusText, xhr) {
+                    }).always(function() {
+                    });
+        </script>
+    </head>
+    <body>
+        <div id="Foto"></div>
+    </body>
+</html>

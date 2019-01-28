@@ -17,9 +17,11 @@ dbConfig.php
 Video
 downloads
 docs
-API
 static
 BingSiteAuth.xml
 mywotc4ee383b4fd1fb56c9e0.html
 google63e6797a7a7595bf.html
 DW.sql
+API/Client
+API/core
+API/images
