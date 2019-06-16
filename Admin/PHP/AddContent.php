@@ -7,7 +7,7 @@
 	$topic['data'] = "Geen topic gevonden.";
 	mysqli_set_charset($conn,'utf8');
 	
-	$stmt = $conn->prepare("INSERT INTO alles (A_Pagina, A_Pagina_Type, A_Type,A_Waarde,A_Actief,A_TIMESTAMP,A_Taal,A_Klasse,A_Hoort_Bij) VALUES (?,?,?,?,'1',CURRENT_TIMESTAMP,?,?,?)");
+	$stmt = $conn->prepare("INSERT INTO alles (A_Pagina, A_Pagina_Type, A_Type,A_Waarde,A_Actief,A_TIMESTAMP,A_Taal,A_Klasse,A_Hoort_Bij,A_Level) VALUES (?,?,?,?,'1',CURRENT_TIMESTAMP,?,?,?,?)");
 
 //    $stmt = $conn->prepare("select * from Users");
 	if(!$stmt){
@@ -19,13 +19,14 @@
     $type=$_POST['Type'];
     $waarde=$_POST['Waarde'];
     $taal=$_POST['Taal'];
+    $Level = $_POST['Level'];
     $klasse=$_POST['Klasse'];
     $Hoort_Bij=$_POST['IDHB'];
     //$naam="D
 //TODO
   
   
-    if(!$stmt->bind_param("ssssssi",$pagina, $paginaType,$type, $waarde,$taal,$klasse,$Hoort_Bij)){
+    if(!$stmt->bind_param("ssssssii",$pagina, $paginaType,$type, $waarde,$taal,$klasse,$Hoort_Bij,$Level)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}
 	

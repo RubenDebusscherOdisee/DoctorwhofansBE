@@ -13,7 +13,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT A.A_ID,B.A_ID,A.A_WAARDE,B.A_Waarde FROM `alles`A left outer join alles B on A.A_ID=B.A_Hoort_Bij where A.A_Type='Afbeelding'and B.A_Waarde is null");
+	$stmt1 = $conn->prepare("SELECT A.A_ID as id1,B.A_ID as id2,A.A_WAARDE as waarde1,B.A_Waarde as waarde2, A.A_Pagina as Pagina FROM `alles`A left outer join alles B on A.A_ID=B.A_Hoort_Bij where A.A_Type='Afbeelding'and B.A_Waarde is null");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 

@@ -14,7 +14,7 @@ var CurrentIP;
 
 function CreateTable() {
     $('#AddContent').prepend('<table id="Content"></table>');
-    $('#Content').append('<tr><td>ID</td><td>Pagina</td><td>Type Pagina</td><td>Type Item</td><td>Waarde</td><td>Taal</td><td>Klasse</td><td>Hoort bij welk record?</td></tr>');
+    $('#Content').append('<tr><td>ID</td><td>Pagina</td><td>Type Pagina</td><td>Type Item</td><td>Waarde</td><td>Taal</td><td>Level</td><td>Klasse</td><td>Hoort bij welk record?</td></tr>');
 }
 
 function GetImagesWithOutAlt() {
@@ -29,7 +29,7 @@ function GetImagesWithOutAlt() {
             } else {
                 var i;
                 for (i = 0; i < resultaat.data.length; i += 1) {
-                    AZA_Array.push(resultaat.data[i].A.A_ID);
+                    AZA_Array.push(resultaat.data[i].id1);
                 }
             }
 
@@ -128,6 +128,7 @@ function AddContent() {
     content.Type = $('#Type').val();
     content.Waarde = $('#Waarde').val();
     content.Taal = $('#Taal').val();
+    content.Level = $('#LevelWaarde').val();
     content.Klasse = $('#Klasse').val();
     content.IDHB = $('#IDHB').val();
 
@@ -241,6 +242,7 @@ function GetContent() {
                 row += "<td class='TItem'>" + resultaat.data[i].A_Type + "</td>";
                 row += "<td class='WItem'><textarea disabled>" + resultaat.data[i].A_Waarde + "</textarea></td>";
                 row += "<td class='TAItem'>" + resultaat.data[i].A_Taal + "</td>";
+                row += "<td class='Level'>"+ resultaat.data[i].A_Level +"</td>";
                 row += "<td>" + resultaat.data[i].A_Klasse + "</td><td>" + resultaat.data[i].A_Hoort_Bij + "</td>";
                 if (resultaat.data[i].A_Actief == 0) {
                     $('#Content').append("<tr class='NONACTIEF'>" + row + "<tr>");
@@ -263,13 +265,14 @@ function GetContent() {
 }
 
 function CreateFields() {
-    $('#Content').append("<tr>  <td id='N_ID'></td>     <td id='N_Page'></td><td id='N_TP'></td><td id='N_TI'></td><td id='N_W'></td><td id='N_T'></td><td id='N_K'></td><td id='N_IDHB'></td><tr>");
+    $('#Content').append("<tr>  <td id='N_ID'></td>     <td id='N_Page'></td><td id='N_TP'></td><td id='N_TI'></td><td id='N_W'></td><td id='N_T'></td><td id='Level'></td><td id='N_K'></td><td id='N_IDHB'></td><tr>");
     $('#N_ID').append('<form autocomplete="off"><div class="autocomplete"><input type="number" name="id" id="nextID" disabled></div></form>');
     $('#N_Page').append('<form autocomplete="off"><div class="autocomplete"><input type="text" name="PageToAdd" id="PageToAdd" disabled></div></form>');
     $('#N_TP').append('<form autocomplete="off"><div class="autocomplete"><input id="TypePagina" type="text" name="TypePagina" placeholder="Type Pagina"></div></form>');
     $('#N_TI').append('<form autocomplete="off"><div class="autocomplete"><input id="Type" type="text" name="Type" placeholder="Type"></div></form>');
     $('#N_W').append('<textarea id="Waarde"></textarea>');
     $('#N_T').append('<select id="Taal"><option value="null">null</option><option value="NL">NL</option><option value="ENG">ENG</option></select>');
+    $('#Level').append('<input id="LevelWaarde" type="number" name="Level" placeholder="0" value="0" width=4/>');
     $('#N_K').append('<form autocomplete="off"><div class="autocomplete"><input id="Klasse" type="text" name="Klasse" placeholder="Klasse"></div></form>');
     $('#N_IDHB').append('<form autocomplete="off"><div class="autocomplete"><input id="IDHB" type="text" name="IDHB" placeholder="Id hoort bij (Alt of bijschrijft afbeelding)"></div></form>');
     autocomplete(document.getElementById("Type"), T_Array);
@@ -296,6 +299,7 @@ function GetAllContent() {
                 row += "<td class='TItem'>" + resultaat.data[i].A_Type + "</td>";
                 row += "<td class='WItem'><textarea disabled>" + resultaat.data[i].A_Waarde + "</textarea></td>";
                 row += "<td class='TAItem'>" + resultaat.data[i].A_Taal + "</td>";
+                row += "<td class='Level'>"+ resultaat.data[i].A_Level +"</td>";
                 row += "<td>" + resultaat.data[i].A_Klasse + "</td><td>" + resultaat.data[i].A_Hoort_Bij + "</td>";
                 if (resultaat.data[i].A_Actief == 0) {
                     $('#Content').append("<tr class='NONACTIEF'>" + row + "<tr>");
@@ -317,7 +321,8 @@ function GetMissingpages() {
     $.ajax({
         type: "GET",
         url: "PHP/Titles.php",
-        dataType: 'json'
+        dataType: 'json',
+        cache:false
     }).done(
         function(resultaat) {
             var i;

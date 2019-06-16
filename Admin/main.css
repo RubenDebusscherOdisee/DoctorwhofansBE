@@ -22,8 +22,8 @@ table th {
 .inline_titel{    width: 90%;
   float: right;
   margin: 0;}
-
-textarea{color:black;width:56em}
+#LevelWaarde{width:5em;}
+textarea{color:black;width:49em;min-height: 5em;max-height: 9em;}
 #N_W textarea{height:8em;}
 .IDItem,#nextID{width:3.5em;}
 .PTItem, #TypePagina{width:7em;}

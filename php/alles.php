@@ -14,7 +14,7 @@
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("select * from alles where (A_Pagina = ? and A_Actief =1 and A_Taal = ?) OR (A_TAAl ='null' and A_Pagina = ? and A_Actief =1) ORDER BY A_level,A_ID");
+	$stmt1 = $conn->prepare("select * from alles where A_Pagina = ? and A_Actief  and (A_Taal ='null' or A_Taal=?) ORDER BY A_level asc, A_ID asc");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
@@ -23,7 +23,7 @@
     $menu = $_GET['menu'];
     $taal = $_GET['taal'];
     //bind de parameters aan hun ?(op volgorde s=string, i=integer,d=double,b=blob(packets))
-	if(!$stmt1->bind_param("sss",$menu,$taal,$menu)){
+	if(!$stmt1->bind_param("ss",$menu,$taal)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}
     //voer de query uit
