@@ -552,6 +552,11 @@ function ip_callback() {
     })
 }
 function checkmenu(menu) {
+    if(menu=="API"){
+        event.preventDefault();
+        window.location.href = "https://www.doctorwhofans.be/API/index.html";
+        return;
+    }
     ip_callback();
     $.ajax({
         type: "GET",

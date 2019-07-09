@@ -1,50 +1,72 @@
-* { box-sizing: border-box; word-break:break-word;}
-body {
-  font: 16px Arial; 
-  background-color:lightsteelblue
+.NONACTIEF {
+  background-color: red;
 }
 
-.NONACTIEF{background-color:red;}
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  width: 100%;
 }
-table{width:100%;border:1px solid black;border-collapse:collapse;height:6em;}
-th{background-color:lightblue; border-collapse:collapse;border:1px solid black;padding:0;margin:0;}
-tr{ border-collapse:collapse;border:1px solid black}
-td{ border-collapse:collapse;border:1px solid black;}
-table th {
-   
+.autocomplete label{    display: inline-block;
+  max-width: 100%;
+  margin-bottom: 18px;
+  font-weight: 700;
+  margin-left: 2em;
+  margin-right: 3em;}
+  .autocomplete label:first-of-type{margin-left: 0%}
+
+
+.table-responsive {
+  min-width: 95%;
+  margin: auto;
 }
 
-.logo{width: 5%;display:inline-block}
-.inline_titel{    width: 90%;
+.modal-dialog {
+  width: 90% !important;
+}
+
+.modal-body {
+  min-height: 30em !important;
+}
+
+.logo {
+  width: 5%;
+  display: inline-block
+}
+
+#A_Waarde{
+  width: 99%;
+  height: 22em;
+  resize:none;
+}
+.inline_titel {
+  width: 90%;
   float: right;
-  margin: 0;}
-#LevelWaarde{width:5em;}
-textarea{color:black;width:49em;min-height: 5em;max-height: 9em;}
-#N_W textarea{height:8em;}
-.IDItem,#nextID{width:3.5em;}
-.PTItem, #TypePagina{width:7em;}
-.PageItem, #PAgeToAdd{width:7em;}
-.TItem,#Type{width:5em;}
-.WItem{width:47em;}
-.TAItem{width:5em;}
-#Klasse{width:4em;}
+  margin: 0;
+}
+
+td {
+  min-width: 1em;
+}
+
+textarea {
+  width: 100%;
+  min-height: 5em;
+}
+
 button {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
 }
-input[type=text] {
-  background-color: #f1f1f1;
+
+table button {
+  float: right;
 }
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-}
+
+
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -56,34 +78,30 @@ input[type=submit] {
   left: 0;
   right: 0;
 }
+
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
-  background-color: #fff; 
-  border-bottom: 1px solid #d4d4d4; 
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
 }
+
 .autocomplete-items div:hover {
   /*when hovering an item:*/
-  background-color: #e9e9e9; 
+  background-color: #e9e9e9;
 }
+
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important; 
-  color: #ffffff; 
-}
-h1{display:block;}
-a{display:inline-block;    padding: 0 2% 0 2%;
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
 
+h1 {
+  display: block;
+}
 
-
-@media only screen and (max-width: 828px) {
-    th{width:8em;}
-    .IDItem,#nextID{width:3em;}
-.PTItem, #TypePagina{width:7em;}
-.PageItem, #PAgeToAdd{width:5em;}
-.TItem{width:11em;}
-.WItem{width:30em;}
-.TAItem{width:5em;}
-textarea,.WItem{width:28em}
+a {
+  display: inline-block;
+  padding: 0 2% 0 2%;
 }
