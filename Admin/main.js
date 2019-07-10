@@ -202,7 +202,14 @@ function GetContent() {
     $('#Content').remove();
     CreateTable();
     var data = {};
+
     data.Pagina = $('#Page').val();
+    if ($('#Page').val()==""){
+        data.Pagina=$('#A_Pagina').val();
+    }else if($('#A_Pagina').val()==""&& $('#Page').val()==""){
+        GetAllContent();
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "PHP/Content.php",
