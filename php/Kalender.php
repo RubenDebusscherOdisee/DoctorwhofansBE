@@ -16,6 +16,8 @@
             $sqlKalender = " SELECT * FROM `events` WHERE `status` = 1 and `date` >= current_date()";
             $sqlKalender .= " ORDER BY date";
             $resultkalender = mysqli_query($db,$sqlKalender);
+
+    
             if( ! $resultkalender ){ 
             }else{
                 while ($rowkalender = $resultkalender->fetch_assoc()){
@@ -24,33 +26,8 @@
                     <?php
                 }
             }
-            echo"<h2>Verjaardagen</h2>";
-            $sqlBirthday = " SELECT *, extract(month from `date`) as month , extract(day from `date`) as day, (TIMESTAMPDIFF(YEAR, date, CURDATE())+1) AS age FROM `events` WHERE `status` = 1 and verjaardag = 1";
-            $sqlBirthday .= " ORDER BY date";
-            $resultBirthDay = mysqli_query($db,$sqlBirthday);
-            if( ! $resultBirthDay ){ 
-            }else{
-                while ($rowBirthDay = $resultBirthDay->fetch_assoc()){
-                    if (substr($rowBirthDay['age'],-1)==1){
-                      ?>
-                    <p style="clear:both;min-width:auto; width:100%;"><span><?=$rowBirthDay['day']?> / <?=$rowBirthDay['month']?> : <?=$rowBirthDay['age']?>st <?=$rowBirthDay['title']?></span></p>
-                    <?php  
-                    }else if(substr($rowBirthDay['age'],-1)==2){
-                        ?>
-                    <p style="clear:both;min-width:auto; width:100%;"><span><?=$rowBirthDay['day']?> / <?=$rowBirthDay['month']?> : <?=$rowBirthDay['age']?>nd <?=$rowBirthDay['title']?></span></p>
-                    <?php 
-                    }else if(substr($rowBirthDay['age'],-1)==3){
-                        ?>
-                    <p style="clear:both;min-width:auto; width:100%;"><span><?=$rowBirthDay['day']?> / <?=$rowBirthDay['month']?> : <?=$rowBirthDay['age']?>rd <?=$rowBirthDay['title']?></span></p>
-                    <?php 
-                    }else{
-                        ?>
-                    <p style="clear:both;min-width:auto; width:100%;"><span><?=$rowBirthDay['day']?> / <?=$rowBirthDay['month']?> : <?=$rowBirthDay['age']?>th <?=$rowBirthDay['title']?></span></p>
-                    <?php 
-                        
-                    }
-                }
-            }
+            
+            
         }
 
         

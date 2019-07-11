@@ -2,7 +2,12 @@
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
     header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+	header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+	
+	header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
+	header('Cache-Control: no-store, no-cache, must-revalidate');
+	header('Cache-Control: post-check=0, pre-check=0', FALSE);
+	header('Pragma: no-cache');
   
     require("connect.php");
 	if ($conn->connect_error) {

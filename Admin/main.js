@@ -12,6 +12,15 @@ var LogItem = {};
 var Id =0;
 
 
+
+/**
+ * @todo allow users to add new values to the records
+ * @body allow users to make for example a new page type and notify someone with access to the files over discord in order to add this to the handling file.
+ */
+
+function addNewItem(){}
+
+
 function CreateTable() {
     $('#AddContent').prepend('<div class="table-responsive"><table class="table" id="Content"></table></div>');
     $('#Content').append('<tr><th>ID</th><th>Waarde</th><th>Actie</th></tr>');
