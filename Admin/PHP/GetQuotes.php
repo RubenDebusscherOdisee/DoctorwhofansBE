@@ -13,20 +13,12 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from alles where A_Pagina=?");
+	$stmt1 = $conn->prepare("SELECT * from QuotesTabel");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 
 	}
-	$Pagina=$_POST['Pagina'];
- 
-    //$Naam="rubendemeno@meno.com";
-
-  
-  
-    if(!$stmt1->bind_param("s",$Pagina)){
-	    die("Statement binding failed: " . $conn->connect_error);
-	}
+	$menu =$_GET['menu'];
 	
 	if(!$stmt1->execute()){
 	    die("Statement execution failed: " . $stmt1->error);

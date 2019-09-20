@@ -9,8 +9,12 @@
         <meta name=viewport content="width=device-width, initial-scale=1.0"/>
         <script src="main.js"></script>
         <script src="Fields.js"></script>
+        <script src="Quotes.js"></script>
+
 
         <script>
+            CurrentUser = "<?php echo $_SERVER['REMOTE_USER'] ;?>";
+            CurrentIP = "<?php echo $_SERVER['REMOTE_ADDR'] ;?>";
             $(document).ready(function(){
                 getArrays();
                  
@@ -29,6 +33,7 @@
             <a href="index.php?menu=FullMap">Volledige map</a>
             <a href="index.php?menu=CheckPage">Kijk of pagina bestaat/Kijk of paina voorkomt in content</a>
             <a href="index.php?menu=Addpagina">Voeg een pagina toe</a>
+            <a href="index.php?menu=Quotes">Manage Quotes</a>
             <a href="https://discord.gg/d7jBgTx">Join the discord server</a>
         </nav>
         <article>
@@ -42,6 +47,8 @@
                     require("CheckIfPageExists.php");break;
                 case 'Addpagina':
                     require("addpagina.php");break;
+                case 'Quotes':
+                    require("Quotes.php");break;
                 default:
                     require("FullMap.php");break;
             }

@@ -12,6 +12,7 @@ function addAcces(){
             $('.setting').addClass('toegankelijk');
             $('#toegang').addClass('hide');
             $('#toegangRemove').removeClass('hide');
+            $('*').addClass('toegankelijk');
         
     }
     
@@ -25,44 +26,41 @@ function removeAccess(){
             $('.setting').removeClass('toegankelijk');
              $('#toegang').removeClass('hide');
             $('#toegangRemove').addClass('hide');
+            $('*').removeClass('toegankelijk');
+            
 }
-function printContent(){
-    addAcces();
-    $('header').hide();
-	$('nav').hide();
-	$('footer').hide();
-    $('.toegang').hide();
-	$('.RemoveImages').hide();
-	$('.path').hide();
-	$('.taal_link').hide();
-	$('.access fieldset').children().hide();
-	$('#printClose').removeClass('hide');
-	$('#printClose').show();
-    $('.access').addClass("gefixeerd");
 
-
-
-	setTimeout("window.print()", 200);
-    
-}
+window.addEventListener("afterprint", Closeprint);
 
 function Closeprint(){
-    removeAccess();
-    $('header').show();
-	$('nav').show();
-	$('footer').show();
-    $('.toegang').show();
-	$('.RemoveImages').show();
-	$('.path').show();
-	$('.taal_link').show();
-	$('.access fieldset').children().show();
-	$('#printClose').addClass('hide');
-	$('#printClose').hide();
-    $('.access').removeClass("gefixeerd");
+  $('nav').show();
+  $('.path').show();
+  $('.access').show();
+  $('footer').show();
+  $('.back-to-top').show();
+  $('#WikiDetails').css("width","26%");
+  $('#WikiDetails').css("margin-top","-5em");
+  $('#Inhoud').css("width","max-content");
+
+}
+
+$("BODY")[0].onbeforeprint = function() {printContent()};
+function printContent(){
+  $('nav').hide();
+  $('.path').hide();
+  $('.access').hide();
+  $('footer').hide();
+  $('.back-to-top').hide();
+  $('#WikiDetails').css("width","100%");
+  $('#WikiDetails').css("margin-top","1em");
+
+  $('#Inhoud').css("width","100%");
+
 
 
 
 }
+
 
 function RemoveImg(){
     $('img').hide();

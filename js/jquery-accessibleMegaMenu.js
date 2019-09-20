@@ -881,12 +881,13 @@ function GetNews() {
             $("#" + resultaat.data[i].id).append("<h3>" + resultaat.data[i].Datum + "</h3>");
             $("#" + resultaat.data[i].id).append("<img src='" + resultaat.data[i].Foto + "' alt='" + resultaat.data[i].alt + "' class='" + resultaat.data[i].Class + "'/><span class='" + resultaat.data[i].Class_Text + "'>" + resultaat.data[i].Bericht + "</span>");
         }
+         
     }).fail(function(response, statusText, xhr) {
     }).always(function() {
     });
+    
 }
 function GetQuotesByCharacter(Character) {
-    console.log(Character);
     Character = Character.trim();
     $.ajax({
         type: "GET",
@@ -964,7 +965,7 @@ function contentophalen(taal, menu) {
             }
             if(resultaat.data[i].A_Pagina_Type === "WikiPagina") {
                 $(".col-6").append("<div id='WikiDetails'></div>");
-                $(".under").append("<div id='Voetnoot'><h2>Voetnoten</h2><ul></ul></div>");
+                $(".under").append("<div id='Voetnoot'><h2>Voetnoten</h2><ol></ol></div>");
                 $("#WikiDetails").append("<div id='Items'></div>");
             }
             if(resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel"||resultaat.data[i].A_Type === "CharacterTitel") {
@@ -994,9 +995,12 @@ function contentophalen(taal, menu) {
                 $("#Items").append("<div class=WikiItemTitel>Cast</div>");
                 $("#Items").append("<span class=WikiRule>Doctor: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
             }
-            if(resultaat.data[i].A_Type === "EpisodeStoryDetails") {
+            if(resultaat.data[i].A_Type === "EpisodeMainSetting") {
                 $("#Items").append("<div class=WikiItemTitel>Story</div>");
                 $("#Items").append("<span class=WikiRule>Main setting: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
+            }
+            if(resultaat.data[i].A_Type === "EpisodeMainEnemy") {
+                $("#Items").append("<span class=WikiRule>Main Enemy: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
             }
             if(resultaat.data[i].A_Type === "EpisodeCompanionList") {
                 $("#Items").append("<span class=WikiRule>Companions: <ul>" + resultaat.data[i].A_Waarde + "</ul></span>");
@@ -1061,26 +1065,28 @@ function contentophalen(taal, menu) {
             }
             if(resultaat.data[i].A_Type === "Inleiding") {
                 $(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");
-                $(".col-6").append("<div id='Inhoud'>Inhoudstafel<ul></ul><ol></ol></div>");
-                if($('.under').text().indexOf('Quotes') != -1) {$("#Inhoud ol").append("<li><a href='#Quotes'>Quotes</a></li>");}
-                if($('.under').text().indexOf('Downloads') != -1) {$("#Inhoud ol").append("<li><a href='#Downloads'>Downloads</a></li>");}
-                $("#Inhoud ol").append("<li><a href='#Voetnoot'>Voetnoten</a></li>");
+                $(".col-6").append("<div id='Inhoud'>Inhoudstafel<ol></ol></div>");
             }
             if(resultaat.data[i].A_Type === "Tekst") {$(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");}
             if(resultaat.data[i].A_Type === "Losse_Code") {$(".col-6").append(resultaat.data[i].A_Waarde);}
-            if(resultaat.data[i].A_Type === "Voetnoot") {$("#Voetnoot").append("<p class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</p>");}
+            if(resultaat.data[i].A_Type === "VoetnootItem") {$("#Voetnoot ol").append("<li class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</li>");}
+            if(resultaat.data[i].A_Type === "Voetnoot") {$("#Voetnoot ol").append(resultaat.data[i].A_Waarde);}
+
             if(resultaat.data[i].A_Type === "Kop2") {
-                if(resultaat.data[i].A_Pagina_Type === "Wikititel") {
-                    $("#Inhoud ul").append("<li><a href='#" + resultaat.data[i].A_ID + "' >" + resultaat.data[i].A_Waarde + "</a></li>");}
-                $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + " anchor' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h2>");
+                
+                    $(".col-6").append("<h2 class='" + resultaat.data[i].A_Klasse + " anchor' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h2>");
             }
             if(resultaat.data[i].A_Type === "Kop3") {
+                
                 $(".col-6").append("<h3 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h3>");}
             if(resultaat.data[i].A_Type === "Kop4") {
+                
                 $(".col-6").append("<h4 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h4>");}
             if(resultaat.data[i].A_Type === "Kop5") {
+                
                 $(".col-6").append("<h5 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h5>");}
             if(resultaat.data[i].A_Type === "Kop6") {
+                
                 $(".col-6").append("<h6 class='" + resultaat.data[i].A_Klasse + "' id='" + resultaat.data[i].A_ID + "'>" + resultaat.data[i].A_Waarde + "</h6>");
             }
             if(resultaat.data[i].A_Type === "Lijst") {
@@ -1190,10 +1196,26 @@ function contentophalen(taal, menu) {
             if(resultaat.data[i].A_Type === "Form") {
                 $(".col-6").append(resultaat.data[i].A_Waarde);
             }
+                
+            
         }
+        $("#Inhoud ol").toc({content: "article", headings: "h2,h3,h4,h5,h6"});
+         $('a[href^="http"]').each(function() {
+                    console.log(this);
+                    var link = $(this).attr("href");
+                    if (link.indexOf("doctorwhofans.be") === -1 && link.indexOf("https://www.facebook.com/DoctorWhoFansBE/") === -1 && link.indexOf("https://rubendebusscherodisee.github.io/DoctorwhofansBE/") === -1 ) {
+                        $(this).after('<sup><a href="'+link+'" target="_blank" title="open in a new tab"><i class="fa fa-external-link" aria-hidden="true"></i></a></sup>')
+                    }
+
+                });
+
     }).fail(function(response, statusText, xhr) {
     }).always(function() {
+        
     });
+        
+   
+
 }
 (function($) {
     'use strict';
@@ -1260,16 +1282,12 @@ $(function() {
             jQuery(this).text("+");
         }
     });
-    $('input[type="checkbox"]').click(function() {
-        if(this.className == "show_menu_checkbox") {
-            if($(this).is(":checked")) {
-                $('.megamenu').show();
-            }else{
-                $('.megamenu').hide();
-            }
-        }
-    });
+    
 })
+
+function ToggleMenu(){
+    $('.megamenu').slideToggle();
+}
 
 function ToggleCompanion(Doctor){
     event.preventDefault();
@@ -1311,3 +1329,5 @@ function showSlides(n) {
     }
     slides[slideIndex - 1].style.display = "block";
 }
+
+

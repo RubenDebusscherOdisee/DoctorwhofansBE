@@ -39,10 +39,11 @@ function populateFields(item) {
     ItemToUpdate.IP=CurrentIP
     removeprevious();
     $('#A_ID').html("ID: " + result.data[item].A_ID);
-    $("#A_Pagina").val(result.data[item].A_Pagina);
+    $("#A_Pagina").val(result.data[item].link);
     //$("#A_Pagina_Type").val(result.data[item].A_Pagina_Type);
     $('#A_Pagina_Type option[value="' + result.data[item].A_Pagina_Type + '"]').attr('selected', 'selected');
-    $('#A_Type option[value="' + result.data[item].A_Type + '"]').attr('selected', 'selected');
+    $('#A_Type').val(result.data[item].A_Type);
+    //$('#A_Type option[value="' + result.data[item].A_Type + '"]').attr('selected', 'selected');
     $('#A_Taal option[value="' + result.data[item].A_Taal + '"]').attr('selected', 'selected');
     $('#A_Actief option[value="' + result.data[item].A_Actief + '"]').attr('selected', 'selected');
     $("#A_Waarde").val(result.data[item].A_Waarde);
@@ -168,7 +169,7 @@ function GetTypes() {
             var i;
             for (i = 0; i < resultaat.data.length; i += 1) {
                 Types_Array.push(resultaat.data[i].Type);
-                $("#A_Type").append("<option value=" + resultaat.data[i].Type + ">" + resultaat.data[i].Type + "</option>")
+                //$("#A_Type").append("<option value=" + resultaat.data[i].Type + ">" + resultaat.data[i].Type + "</option>")
 
             }
         }).fail(function (response, statusText, xhr) {

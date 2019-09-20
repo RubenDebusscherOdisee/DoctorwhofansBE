@@ -13,7 +13,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from alles where (A_Type='Titel'or A_Type='EpisodeTitel' or A_Type='CharacterTitel') and A_Actief=1");
+	$stmt1 = $conn->prepare("SELECT * from alles inner join Topics on A_Pagina=id where (A_Type='Titel'or A_Type='EpisodeTitel' or A_Type='CharacterTitel') and A_Actief=1");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 

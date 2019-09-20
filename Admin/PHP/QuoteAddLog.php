@@ -5,14 +5,13 @@
     }
     $topic['data'] = "Geen topic gevonden.";
     mysqli_set_charset($conn, 'utf8');
-    $stmt = $conn->prepare("INSERT INTO Alles_Logs (LOG_USER, Type, LOG_RECORD,LOG_Timestamp,LOG_IP) VALUES (?,'Insert Record',?,CURRENT_TIMESTAMP,?)");
+    $stmt = $conn->prepare("INSERT INTO QuotesTabel_Logs (LOG_USER, Type, LOG_RECORD,LOG_Timestamp,LOG_IP) VALUES (?,'Insert Record',(SELECT id FROM QuotesTabel ORDER BY id DESC LIMIT 1),CURRENT_TIMESTAMP,?)");
     if (!$stmt) {
         die("Statement prepare failed: " . $conn->connect_error);
     }
     $User = $_POST['User'];
     $IP = $_POST['IP'];
-    $Record = $_POST['Record'];
-    if (!$stmt->bind_param("sis", $User, $Record, $IP)) {
+    if (!$stmt->bind_param("ss", $User, $IP)) {
         die("Statement binding failed: " . $conn->connect_error);
     }
     if (!$stmt->execute()) {

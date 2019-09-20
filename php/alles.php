@@ -14,7 +14,7 @@
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("select * from alles where A_Pagina = ? and A_Actief  and (A_Taal ='null' or A_Taal=?) ORDER BY A_level asc, A_ID asc");
+	$stmt1 = $conn->prepare("select * from alles inner join Topics on A_Pagina=id where link = ? and A_Actief  and (A_Taal ='null' or A_Taal=?) ORDER BY A_level asc, A_ID asc");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);

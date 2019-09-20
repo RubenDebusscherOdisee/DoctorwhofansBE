@@ -1,10 +1,6 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-    header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-  
-    require("connect.php");
+    require("../../cors.php");
+	require("../../connect.php");
 	if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
@@ -13,7 +9,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from alles limit 0,50");
+	$stmt1 = $conn->prepare("SELECT * from alles inner join Topics on A_Pagina=id limit 0,50");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 

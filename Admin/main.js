@@ -11,8 +11,6 @@ var result = [];
 var LogItem = {};
 var Id =0;
 
-
-
 /**
  * @todo allow users to add new values to the records
  * @body allow users to make for example a new page type and notify someone with access to the files over discord in order to add this to the handling file.
@@ -54,7 +52,7 @@ function LogInput() {
 
     $.ajax({
         type: "POST",
-        url: "https://www.doctorwhofans.be/Admin/PHP/AddLog.php",
+        url: "https://www.doctorwhofans.be/Admin/PHP/Content/Add/AddContentLog.php",
         dataType: 'json',
         data: LogItem
     }).done(function (resultaat) {
@@ -121,7 +119,7 @@ function AddContent() {
 
     $.ajax({
         type: "POST",
-        url: "https://www.doctorwhofans.be/Admin/PHP/AddContent.php",
+        url: "https://www.doctorwhofans.be/Admin/PHP/Content/Add/AddContent.php",
         dataType: 'json',
         data: content
     }).done(function (resultaat) {
@@ -157,7 +155,7 @@ function GetListLinks() {
 
             }
             for (var j = 0; j < LINK_ARRAY.length; j++) {
-                if (LINK_ARRAY[j].includes("?") === false && LINK_ARRAY[j].includes("doctorwhofans.be") === true && LINK_ARRAY[j].includes("API") === false) {
+                if (LINK_ARRAY[j].includes("?") === false && LINK_ARRAY[j].includes("doctorwhofans.be") === true && LINK_ARRAY[j].includes("API") === false && LINK_ARRAY[j].includes("Admin") === false && LINK_ARRAY[j].includes("mailto") === false) {
                     LINK_Short.push(LINK_ARRAY[j].substr(29, LINK_ARRAY[j].length - 30));
                 }
             }
@@ -219,9 +217,10 @@ function GetContent() {
         GetAllContent();
         return;
     }
+    data.LANG=$('#LANG').val()
     $.ajax({
         type: "POST",
-        url: "PHP/Content.php",
+        url: "PHP/Content/Get/Content.php",
         dataType: 'json',
         data: data
     }).done(
@@ -234,8 +233,6 @@ function GetContent() {
             //CreateFields();
             //$("#PageToAdd").val($('#Page').val());
         })
-
-
 }
 
 
@@ -258,7 +255,7 @@ function GetAllContent() {
     CreateTable();
     $.ajax({
         type: "GET",
-        url: "PHP/All.php",
+        url: "PHP/Content/Get/All.php",
         dataType: 'json'
     }).done(function (resultaat) {
         populateTable(resultaat);
@@ -280,7 +277,7 @@ function GetMissingpages() {
         function (resultaat) {
             var i;
             for (i = 0; i < resultaat.data.length; i += 1) {
-                $("#" + resultaat.data[i].A_Pagina).css("background-color", "lightsteelblue");
+                $("#" + resultaat.data[i].link).css("background-color", "lightsteelblue");
 
 
 

@@ -7,7 +7,7 @@
 	$topic['data'] = "Geen topic gevonden.";
 	mysqli_set_charset($conn,'utf8');
 	
-	$stmt = $conn->prepare("UPDATE alles SET A_Pagina = ?, A_Pagina_Type = ?,A_Type=?,A_Waarde=?,A_Actief=?,A_Taal=?,A_Klasse=?,A_Hoort_Bij=?,A_Level=? WHERE A_ID =?");
+	$stmt = $conn->prepare("UPDATE alles SET A_Pagina = (select id from Topics where link=?), A_Pagina_Type = ?,A_Type=?,A_Waarde=?,A_Actief=?,A_Taal=?,A_Klasse=?,A_Hoort_Bij=?,A_Level=? WHERE A_ID =?");
 
 	if(!$stmt){
 	    die("Statement prepare failed: " . $conn->connect_error);

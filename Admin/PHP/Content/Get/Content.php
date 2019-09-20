@@ -1,10 +1,8 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-    header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+    require("../../cors.php");
+
   
-    require("connect.php");
+    require("../../connect.php");
 	if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
@@ -13,12 +11,21 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from alles inner join Topics on A_Pagina=id where A_Waarde like '%<a href%' and A_Actief=1");
+	$stmt1 = $conn->prepare("SELECT * from alles inner join Topics on A_Pagina=id where link=? and (A_Taal=? or A_taal='null') order by A_level,A_ID");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 
 	}
-	$menu =$_GET['menu'];
+	$Pagina=$_POST['Pagina'];
+	$LANG=$_POST['LANG'];
+ 
+    //$Naam="rubendemeno@meno.com";
+
+  
+  
+    if(!$stmt1->bind_param("ss",$Pagina,$LANG)){
+	    die("Statement binding failed: " . $conn->connect_error);
+	}
 	
 	if(!$stmt1->execute()){
 	    die("Statement execution failed: " . $stmt1->error);

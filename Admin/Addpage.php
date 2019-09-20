@@ -1,7 +1,6 @@
 <div>
     <script>
-        CurrentUser = "<?php echo $_SERVER['REMOTE_USER'] ;?>";
-        CurrentIP = "<?php echo $_SERVER['REMOTE_ADDR'] ;?>";
+        
         $(document).ready(function () {
             //getArrays();
             GetAllContent();
@@ -10,7 +9,12 @@
     <h2 id="Add">Voeg content toe aan een pagina</h2>
     <form autocomplete="off" style="float:right;margin-top:-3em;">
         <div class="autocomplete" style="width:300px;">
+            <select id="LANG">
+                <option val=NL>NL</option>
+                <option val=ENG>ENG</option>
+            </select>
             <input id="Page" type="text" name="Page" placeholder="Page" style="width:100%">
+            
         </div>
         <button role="button" class="btn btn-primary" onclick="GetContent()">Vraag de Items op</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" onclick="populateForNewRecord()" data-target="#myModal">
@@ -40,7 +44,7 @@
                             <label for="A_Pagina_Type">Pagina type: </label>
                             <select id="A_Pagina_Type"></select>
                             <label for="A_Type">Type item: </label>
-                            <select id="A_Type"></select>
+                            <input type=text id="A_Type"/>
                             <label for="A_Taal">Taal: </label>
                             <select id="A_Taal"></select>
                             
@@ -76,6 +80,8 @@
     autocomplete(document.getElementById("Page"), Pagina_Array);
     autocomplete(document.getElementById("A_Pagina"), Pagina_Array);
     autocomplete(document.getElementById("A_Klasse"), Klassen_Array);
+    autocomplete(document.getElementById("A_Type"), Types_Array);
+
 
 
 

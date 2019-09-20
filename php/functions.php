@@ -58,7 +58,7 @@ function getCalender($year = '',$month = ''){
                         //Include db configuration file
                         include 'dbConfig.php';
                         //Get number of events based on the current date
-                        $result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 union SELECT  title FROM `BirthDays` WHERE BirthDays.date ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+1,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+2,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+3,SUBSTRING(date,5)) ='".$currentDate."'");
+                        $result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 union SELECT  title FROM V_Birthdays WHERE V_Birthdays.date ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+1,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+2,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+3,SUBSTRING(date,5)) ='".$currentDate."'");
                       //$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 union SELECT concat((TIMESTAMPDIFF(YEAR, date, CURRENT_DATE())+1), 'th ',title) as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE()),SUBSTRING(date,5)) ='".$currentDate."'");
                         $eventNum = $result->num_rows;
                         //Define date cell color
@@ -78,7 +78,8 @@ function getCalender($year = '',$month = ''){
                         echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
                         echo '<div class="date_window">';
                         echo '<div class="popup_event">Events ('.$eventNum.')</div>';
-                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" class="link">view events</a>':'';
+                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" class="link" style="color: white;
+                        font-size: 1.3em;">view events</a>':'';
                         echo '</div></div>';
                         
                         echo '</li>';
@@ -186,7 +187,7 @@ function getEvents($date = ''){
     $eventListHTML = '';
     $date = $date?$date:date("Y-m-d");
     //Get events based on the current date
-    $result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1 union SELECT  title FROM `BirthDays` where BirthDays.date ='".$date."'");
+    $result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1 union SELECT  title FROM V_Birthdays where V_Birthdays.date ='".$date."'");
     if($result->num_rows > 0){
         $eventListHTML = '<h2 style="background-color:white;">Events on '.date("l, d M Y",strtotime($date)).'</h2>';
         $eventListHTML .= '<ul>';
