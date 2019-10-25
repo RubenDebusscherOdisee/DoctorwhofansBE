@@ -1,0 +1,1 @@
+{"included":{"xataface\/findwidgets\/date.js":"\/customers\/e\/a\/c\/doctorwhofans.be\/httpd.www\/admin\/xataface\/modules\/g2\/js\/xataface\/findwidgets\/date.js"},"dependencies":[],"dependencyContents":{"xataface\/findwidgets\/date.js":"\/customers\/e\/a\/c\/doctorwhofans.be\/httpd.www\/admin\/xataface\/modules\/g2\/js\/xataface\/findwidgets\/date.js"},"cssIncludes":[]}

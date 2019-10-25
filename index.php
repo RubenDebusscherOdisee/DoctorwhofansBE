@@ -1,15 +1,35 @@
-<?php session_start();$_SESSION["name"];$_SESSION["Status"]="Anoniem";$_SESSION["Taal"];$_SESSION["Menu"];
-$ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
+<?php session_start();$_SESSION["Menu"];include_once('php/functions.php');?>
 <!Doctype html>
 <?php 
-    if(isset($_GET['taal'])){if (is_numeric($_GET['taal'])) {$_SESSION["Taal"]='NL';} else if($_SESSION["Taal"]!=$_GET['taal']){$_SESSION["Taal"]=$_GET['taal'];}else{$_SESSION["Taal"]=$_GET['taal'];}}else if ($_SESSION["Taal"] ==null){$_SESSION["Taal"]='NL';}else{$_SESSION["Taal"]=$_SESSION["Taal"];}$taal = $_SESSION["Taal"];if(isset($_GET['menu'])){if (is_numeric($_GET['menu'])) {$_SESSION["Menu"]='Home';}else{$_SESSION["Menu"]=$_GET['menu'];}}else if ($_SESSION["Menu"] ==null){$_SESSION["Menu"]='Home';}else{$_SESSION["Menu"]=$_SESSION["Menu"];}$menu = $_SESSION["Menu"];
+    if(isset($_GET['menu'])){
+        if (is_numeric($_GET['menu'])) {
+            $_SESSION["Menu"]='Home';
+        }else{
+            $_SESSION["Menu"]=$_GET['menu'];
+        }
+    }else if ($_SESSION["Menu"] ==null){
+        $_SESSION["Menu"]='Home';
+    }else{
+        $_SESSION["Menu"]=$_SESSION["Menu"];
+    }
+    $menu = $_SESSION["Menu"];
 ?>
 <html lang="nl">
 <head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-107369097-3');
+    </script>
     <title>
-        <?php $title = str_replace("_", " ", $menu);echo $title; if(isset($_GET['taal'])){echo" ";echo $_GET['taal'];}?>
+        <?php $title = str_replace("_", " ", $menu);echo $title. " | Doctor Who Fans BE";?>
     </title>
-    <meta name=author content="Ruben Debuscher" />
+    <meta name=author content="Ruben Debusscher" />
     <meta charset=UTF-8 />
     <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
     <meta name=description lang=nl
@@ -20,37 +40,23 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel=icon href="../images/favicon.ico" type="Images/ico" async>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="../js/jquery-accessibleMegaMenu.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="../js/cookies.js"></script>
     <script src="../js/jquery.toc.js"></script>
     <script src="../js/jquery.toc.min.js"></script>
+    <script src="../js/main.js"></script>
     <script src="../js/app.js" async></script>
     <script>
         var id;
         session = "<?php echo session_id();?>";
-        taal = '<?php echo $_SESSION["Taal"]; ?>';
         menu = '<?php echo $menu ;?>';
         $(document).ready(function () {
-            checkmenu(menu);
-            if (menu === "Contact") {
-                $("#txtEditor").Editor();
+            if(getCookie("lang")==""){
+                setCookie("lang", "nl", 30);
             }
-            if (menu !== "Home") {
-                getpad(menu);
-            }
-            if (menu === "Home") {
-                $('.path').remove();
-                $('footer').prepend("<p class='quote'></p>");
-                GetOneRandomQuote();
-            }
-            if (menu === "News") {
-                GetNews();
-            }
-            if (menu === "Companions") {
-                $(".col-6").append('<div class="open-close"></div>');
-                companionsophalen(taal, menu, id)
-            }
-            contentophalen(taal, menu);
+            renderpage(getCookie("lang"),menu)
         });
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async></script>
@@ -58,12 +64,15 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async>
     <link href="../opmaak/editor.css" type="text/css" rel="stylesheet" async />
+    <link rel=stylesheet href="../opmaak/nav.css" async />
     <link rel=stylesheet href="../opmaak/opmaak.css" async />
     <link href="../opmaak/themify-icons.css" rel="stylesheet" async>
     <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         async>
     <script async>
         $(document).ready(function () {
+            if ($(window).width() < 800) {
+                $('nav').hide();}
             $('input[type=text]').on('keydown', function (e) {
                 if (e.which == 13) {
                     e.preventDefault();
@@ -142,178 +151,138 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
         }, 1500);
     </script>
 </head>
-<body class=init>
+<body class=init onload="">
     <button role=button onclick="ToggleMenu()" id=show-menu> <i class="fa fa-navicon"></i> Menu&nbsp;&nbsp; </button>
-    <nav class=megamenu>
-        <ol>
-            <li class="standaard first-item">
-                <span><a href="../Home/" aria-label="Home"><img src="../images/gallifreyan_black.png"
-                            alt="Logo of Doctorwhofans Belgium" /></a>
-                </span>
-                <div class="cols-4" style="display:none;"></div>
+    
+    <nav>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="../Home/" aria-label="Home"><img src="../images/gallifreyan_black.png" alt="Logo of Doctorwhofans Belgium" id="Logo"/> Home</a>
             </li>
-            <li class="standaard">
-                <h2><a href="#" aria-label="who is Who?">who is Who <i class="fa fa-arrow-down"
-                            aria-hidden="true"></i></a></h2>
-                <div class="cols-4b standaard">
-                    <ol>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>Doctors</h3>
-                            <ol>
-                                <li><a href="../First_Doctor/">First Doctor</a></li>
-                                <li><a href="../Second_Doctor/">Second Doctor</a></li>
-                                <li><a href="../Third_Doctor/">Third Doctor</a></li>
-                                <li><a href="../Fourth_Doctor/">Fourth Doctor</a></li>
-                                <li><a href="../Fifth_Doctor/">Fifth Doctor</a></li>
-                                <li><a href="../Sixth_Doctor/">Sixth Doctor</a></li>
-                                <li><a href="../Seventh_Doctor/">Seventh Doctor</a></li>
-                                <li><a href="../Eighth_Doctor/">Eighth Doctor</a></li>
-                                <li>
-                                    <hr>
-                                </li>
-                                <li><a href="../War_Doctor/">The War Doctor</a></li>
-                                <li><a href="../Ninth_Doctor/">Ninth Doctor</a></li>
-                                <li><a href="../Tenth_Doctor/">Tenth Doctor</a></li>
-                                <li><a href="../Eleventh_Doctor/">Eleventh Doctor</a></li>
-                                <li><a href="../Twelfth_Doctor/">Twelfth Doctor</a></li>
-                                <li><a href="../Thirteenth_Doctor/">Thirteenth Doctor</a></li>
-                            </ol>
+            <li class="nav-item">
+                <a href="#">who is Who? <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                <div class="sub-nav">
+                    <ul class="sub-nav-group">
+                        <h3>Doctors</h3>
+                        <li><a href="../First_Doctor/">First Doctor</a></li>
+                        <li><a href="../Second_Doctor/">Second Doctor</a></li>
+                        <li><a href="../Third_Doctor/">Third Doctor</a></li>
+                        <li><a href="../Fourth_Doctor/">Fourth Doctor</a></li>
+                        <li><a href="../Fifth_Doctor/">Fifth Doctor</a></li>
+                        <li><a href="../Sixth_Doctor/">Sixth Doctor</a></li>
+                        <li><a href="../Seventh_Doctor/">Seventh Doctor</a></li>
+                        <li><a href="../Eighth_Doctor/">Eighth Doctor</a></li>
+                        <li>
+                            <hr>
                         </li>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>Characters</h3>
-                            <ol>
-                                <li>
-                                    <a href="../Companions/" aria-label="Companions">
-                                        <span class="fa-layers fa-fw" style="margin-right: -1em;">
-                                            <i class="fa fa-male" data-fa-transform="right:18"></i>
-                                            <i class="fa fa-female" data-fa-transform="left-18"></i>
-                                        </span>Companions
-                                    </a>
-                                </li>
-                                <li><a href="../Villains/">Villains</a></li>
-                                <li><a href="../Allies/">Allies</a></li>
-                                <li>
-                                    <hr>
-                                </li>
-                                <li><a href="../Torchwood/"><img src="../images/Torchwood.png" alt="Torchwood logo" />
-                                        Torchwood</a></li>
-                                <li><a href="../Sarah_Jane_Adventures/"><img
-                                            src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane
-                                        Adventures</a></li>
-                                <li><a href="../Class/"><img src="../images/Class.png" alt="Class logo" /> Class</a>
-                                </li>
-                            </ol>
+                        <li><a href="../War_Doctor/">The War Doctor</a></li>
+                        <li><a href="../Ninth_Doctor/">Ninth Doctor</a></li>
+                        <li><a href="../Tenth_Doctor/">Tenth Doctor</a></li>
+                        <li><a href="../Eleventh_Doctor/">Eleventh Doctor</a></li>
+                        <li><a href="../Twelfth_Doctor/">Twelfth Doctor</a></li>
+                        <li><a href="../Thirteenth_Doctor/">Thirteenth Doctor</a></li>
+                    </ul>
+                    <ul class="sub-nav-group">
+                        <h3>Characters</h3>
+                        <li>
+                            <a href="../Companions/" aria-label="Companions">
+                                <span class="fa-layers fa-fw">
+                                    <i class="fa fa-male" data-fa-transform="right:18"></i>
+                                    <i class="fa fa-female" data-fa-transform="left-18"></i>
+                                </span>Companions
+                            </a>
                         </li>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>Concepts and other things</h3>
-                            <ol>
-                                <li><a href="../Species/">Species</a></li>
-                                <li><a href="../TARDIS/"><img
-                                            src="../images/tardis.png" alt="TARDIS logo" />T.A.R.D.I.S</a></li>
-                                <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a>
-                                </li>
-                                <li><a href="../UNIT/"><img src="../images/UNIT.png"
-                                            alt="UNIT logo" /> UN.I.T</a></li>
-                                <li><a href="../Places/"><i class="fa fa-compass" aria-hidden="true"></i> Places</a>
-                                </li>
-                                <li><a href="../Times/"><i class="fa fa-code-fork" aria-hidden="true"></i> Times</a>
-                                </li>
-                                <li>
-                                    <hr>
-                                </li>
-                                <li><a href="../Quotes/"> <i class="fa fa-quote-right" aria-hidden="true"></i>
-                                        Quotes</a></li>
-                            </ol>
+                        <li><a href="../Villains/">Villains</a></li>
+                        <li><a href="../Allies/">Allies</a></li>
+                        <li>
+                            <hr>
                         </li>
-                    </ol>
+                        <h3>Spin-off</h3>
+                        <li><a href="../Torchwood/"><img src="../images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
+                        <li><a href="../Sarah_Jane_Adventures/"><img src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
+                        <li><a href="../Class/"><img src="../images/Class.png" alt="Class logo" /> Class</a></li>
+                    </ul>
+                    <ul class="sub-nav-group">
+                        <h3>Concepts</h3>
+
+                        <li><a href="../TARDIS/"><img src="../images/tardis.png" alt="TARDIS logo" />T.A.R.D.I.S</a></li>
+                        <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a>
+                        </li>
+                        <li><a href="../UNIT/"><img src="../images/UNIT.png" alt="UNIT logo" /> UN.I.T</a></li>
+                        
+                        <li>
+                            <hr>
+                        </li>
+                        <li><a href="../Species/">Species</a></li>
+                        <li><a href="../Places/"><i class="fa fa-compass" aria-hidden="true"></i> Places</a></li>
+                        <li><a href="../Times/"><i class="fa fa-code-fork" aria-hidden="true"></i> Times</a></li>
+                        <li><a href="../Quotes/"> <i class="fa fa-quote-right" aria-hidden="true"></i> Quotes</a></li>
+                    </ul>
                 </div>
             </li>
-            <li class="standaard">
-                <h2><a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h2>
-                <div class="cols-3 standaard">
-                    <ol>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>the Show</h3>
-                            <ol>
-                                <li><a href="../Synopsis/">Synopsis</a></li>
-                                <li><a href="../Episodes/">Episodes</a></li>
-                                <li><a href="../History/">History</a></li>
-                                <li><a href="../Crew/">Crew</a></li>
-                                <li><a href="../Cast/">Cast</a></li>
-                                <li><a href="../Characters/">Characters</a></li>
-                                <li><a href="../Music/"><i class="fa fa-music" aria-hidden="true"></i> Music</a></li>
-                                <li>
-                                    <hr>
-                                </li>
-                                <li><a href="../Reviews/">Reviews</a></li>
-                            </ol>
+            <li class="nav-item">
+                <a href="#">Series <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                <div class="sub-nav">
+                    <ul class="sub-nav-group">
+                        <h3>the Show</h3>
+                        <li><a href="../Synopsis/">Synopsis</a></li>
+                        <li><a href="../Episodes/">Episodes</a></li>
+                        <li><a href="../History/">History</a></li>
+                        <li><a href="../Crew/">Crew</a></li>
+                        <li><a href="../Cast/">Cast</a></li>
+                        <li><a href="../Characters/">Characters</a></li>
+                        <li><a href="../Music/"><i class="fa fa-music" aria-hidden="true"></i> Music</a></li>
+                        <li>
+                            <hr>
                         </li>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>Media</h3>
-                            <ol>
-                                <li><a href="../DVD/">DVD</a></li>
-                                <li><a href="../Books/"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
-                                <li><a href="../Comics/">Comics</a></li>
-                                <li><a href="../Audio/">Audio</a></li>
-                                <li><a href="../Non_Fiction/"> Non-fiction</a></li>
-                                <li><a href="../Magazines/">Magazines</a></li>
-                                <li><a href="../Varia/">Varia</a></li>
-                                <li>
-                                    <hr>
-                                </li>
-                                <li><a href="../Merchandise/">Merchandise</a></li>
-                            </ol>
-                        </li>
-                    </ol>
+                        <li><a href="../Reviews/">Reviews</a></li>
+                    </ul>
+                    <ul class="sub-nav-group">
+                        <h3>Media</h3>
+                        <li><a href="../DVD/">DVD</a></li>
+                        <li><a href="../Books/"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
+                        <li><a href="../Comics/">Comics</a></li>
+                        <li><a href="../Audio/">Audio</a></li>
+                        <li><a href="../Non_Fiction/"> Non-fiction</a></li>
+                        <li><a href="../Magazines/">Magazines</a></li>
+                        <li><a href="../Varia/">Varia</a></li>
+                        <li><a href="../Merchandise/">Merchandise</a></li>
+                    </ul>
+                    
                 </div>
             </li>
-            <li class="standaard">
-                <h2><a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a></h2>
-                <div class="cols-3">
-                    <ol>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>To see</h3>
-                            <ol>
-                                <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i>
-                                        Pictures</a></li>
-                                <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a>
-                                </li>
-                                <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        Transcripts</a></li>
-                                <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i>
-                                        Cosplay</a></li>
-                            </ol>
-                        </li>
-                        <li class="accessible-megamenu-panel-group">
-                            <h3>To Join</h3>
-                            <ol>
-                                <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
-                                </li>
-                                <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a>
-                                </li>
-                                <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i>Links</a></li>
-                                <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i>DIY</a></li>
-                            </ol>
-                        </li>
-                    </ol>
+            <li class="nav-item">
+                <a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                <div class="sub-nav">
+                    <ul class="sub-nav-group">
+                       <h3>To see</h3> 
+                       <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a></li>
+                        <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a></li>
+                        <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i>Transcripts</a></li>
+                        <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i>Cosplay</a></li>
+                    </ul>
+                    <ul class="sub-nav-group">
+                        <h3>To Join</h3>
+                        <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a></li>
+                        <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a></li>
+                        <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i>Links</a></li>
+                        <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i>DIY</a></li>
+                    </ul>               
                 </div>
             </li>
-            <li class="nav-item standaard">
-                <span><a href="../News/" aria-label="News"><i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                        News</a></span>
-                <div class="cols-4b standaard" style="display:none;width:0%;"> </div>
+            <li class="nav-item">
+                <a href="../News/" aria-label="News"><i class="fa fa-newspaper-o" aria-hidden="true"></i> News</a>
             </li>
-            <li class="nav-item standaard">
+
+            <li class="nav-item">
                 <a href="https://forum.doctorwhofans.be"><i class="fa fa-comments-o"></i> Forum</a>
-                <div class="cols-4b" style="display:none;width:0%;"> </div>
             </li>
-            <li class="nav-item standaard">
-                <span><a href="../Contact/"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></span>
-                <div class="cols-4b" style="display:none;width:0%;"> </div>
+            <li class="nav-item">
+                <a href="../Contact/"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
             </li>
-            <li class="zoekmenu">
-                <span><a href="#"><i class="fa fa-search" aria-hidden="true" title="Zoeken"></i> Zoeken</a></span>
-                <div class="cols-3 zoekmenu">
+            <li class="nav-item right">
+                <a href="#"><i class="fa fa-search fa-2x" aria-hidden="true" title="Zoeken"></i></a>
+                <div class="sub-nav">
                     <form method="post" class="zoekformulier">
                         <label for="zoekterm" class="zoeklabel">Zoeken: </label>
                         <input class="zoekterm" type="text" name="zoekterm" placeholder="Zoeken..." value=""
@@ -323,9 +292,32 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     </form>
                 </div>
             </li>
-        </ol>
+            <li class="nav-item right">
+                <a href="#"><i class="fa fa-gear fa-2x" aria-hidden="true" title="Instellingen"></i></a>
+                <div class="sub-nav">
+                    <form>
+                        <fieldset>
+                            <legend>Accessibility</legend>
+                            <button class=toegang id=toegang onclick="addAcces()" type="button">Toegankelijkheid verhogen</button>
+                            <button class="toegang hide" id=toegangRemove onclick="removeAccess()" type="button">Normale modus</button>
+                            <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder Afbeeldingen</button>
+                            <button class="RemoveImages hide" id="RestoreImages" type="button" onclick="RestoreImg()">Toon Afbeeldingen</button>
+                            <input type="button" id="increase" value="+">
+                            <span id="size">0</span>
+                            <input type="button" id="decrease" value="-">
+                        </fieldset>
+                        <button id="print" type="button" onclick="window.print()">Print</button>
+                        <button class="taal_link" type="button" title="taalkeuze">
+                            <img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class="taal_link" /> Kies uw taal</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
     </nav>
+    
+    <div id="wrapper">
     <div class="path"></div>
+
     <div id=loading_div>
         <img id=loading src="../images/ledtorch.1498524411.png" class="loading_img" alt="Laden">
     </div>
@@ -355,6 +347,8 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                 }
             ?>
     </article>
+    </div>
+    
     <footer id=footer class=col-5>
         <?
             switch($taal){
@@ -396,24 +390,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             please contact us and we will credit your work properly.
         </p>
     </footer>
-    <form class="access col-5">
-        <fieldset>
-            <legend>Instellingen/Settings</legend>
-            <button class=toegang id=toegang onclick="addAcces()" type="button">Toegankelijkheid verhogen</button>
-            <button class="toegang hide" id=toegangRemove onclick="removeAccess()" type="button">Normale modus</button>
-            <button class=print id=print type="button" onclick="window.print()">Print</button>
-            <button class="print hide" id=printClose type="button" onclick="Closeprint()">Close Print</button>
-            <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder
-                Afbeeldingen</button>
-            <button class="RemoveImages hide" id="RestoreImages" type="button" onclick="RestoreImg()">Toon
-                Afbeeldingen</button>
-            <input type="button" id="increase" value="+">
-            <input type="button" id="decrease" value="-">
-            <button class="taal_link" type="button" title="taalkeuze">
-                <img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class="taal_link" /> Kies uw
-                taal</button>
-        </fieldset>
-    </form>
+    
     <script async src="../js/toegang.js" async></script>
     <a href="#" class=back-to-top><img src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
@@ -441,7 +418,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
     <div id=overlay>
         <h1>Kies uw taal</h1>
         <div class=taal>
-            <a href="../NL/" class="link">
+            <a href="#" class="link" onClick='changelang("NL")'>
                 <img src="../images/overlay/belgium_640.png" alt="vlag van Belgi&euml; voor Nederlands."
                     class="foto_taal_button" />
                 Nederlands
@@ -450,7 +427,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
             </a>
         </div>
         <div class=taal>
-            <a href="../ENG/" class="link">
+            <a href="#" class="link" onClick='changelang("ENG")'>
                 <img src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels."
                     class="foto_taal_button" />
                 English
@@ -463,5 +440,7 @@ $ingevuld=false;$overeenkomst=false;include_once('php/functions.php');?>
                     class=close_IMG /> Close</a>
         </div>
     </div>
+    <script src="../js/jquery-accessibleMegaMenu.js"></script>
+
 </body>
 </html>

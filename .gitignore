@@ -1,20 +1,16 @@
-# the composer package lock file and install directory
-# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# /composer.lock
-/fuel/vendor
-
-# the fuelphp document
-test
-forum
-menu
-scratch
-Honim
 connect.php
 dbConfig.php
+config.php
+conn.php
+info.php
+config.ini
+
 .htpasswd
+
 *.mp4
+
 Video
+
 downloads
 docs
 static
@@ -23,6 +19,11 @@ mywotc4ee383b4fd1fb56c9e0.html
 google63e6797a7a7595bf.html
 DW.sql
 API/core
-API/images
-info.php
+
+*.old
+*2.php
+*2.html
+admin/modules
+xataface
+forum
 images/magazines

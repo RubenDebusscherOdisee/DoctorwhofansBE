@@ -1,4 +1,5 @@
 "use strict";
+var siz;
 function addAcces(){
     
         event.preventdefault;
@@ -41,6 +42,8 @@ function Closeprint(){
   $('#WikiDetails').css("width","26%");
   $('#WikiDetails').css("margin-top","-5em");
   $('#Inhoud').css("width","max-content");
+  $('body').removeClass('print');
+
 
 }
 
@@ -53,8 +56,9 @@ function printContent(){
   $('.back-to-top').hide();
   $('#WikiDetails').css("width","100%");
   $('#WikiDetails').css("margin-top","1em");
-
   $('#Inhoud').css("width","100%");
+  $('body').addClass('print');
+
 
 
 
@@ -74,6 +78,10 @@ function RestoreImg(){
 }
 $(function() {
     $("#increase").click(function() {
+      siz = parseInt($('#size').text());
+      siz+=1;
+      $('#size').text(siz);
+      setCookie("size",siz,30);
       $(".col-6,.under,footer").children().each(function() {
         var size = parseInt($(this).css("font-size"));
         size = size + 1 + "px";
@@ -82,9 +90,14 @@ $(function() {
         });
       });
     });
+
   });
   $(function() {
     $("#decrease").click(function() {
+      siz = parseInt($('#size').text());
+      siz-=1;
+      $('#size').text(siz);
+      setCookie("size",siz,30);
       $(".col-6,.under,footer").children().each(function() {
         var size = parseInt($(this).css("font-size"));
         size = size - 1 + "px";
@@ -94,3 +107,7 @@ $(function() {
       });
     });
   });
+
+  
+
+  
