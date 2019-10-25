@@ -4,9 +4,10 @@ config.php
 conn.php
 info.php
 config.ini
+conf.ini
 .lock
 forum/cache
-
+admin
 .htpasswd
 
 *.mp4
@@ -27,3 +28,5 @@ API/core
 *2.php
 *2.html
 
+xataface
+forum

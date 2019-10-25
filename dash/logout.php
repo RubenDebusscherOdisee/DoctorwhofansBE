@@ -1,3 +1,2 @@
-<?xml version="1.0"?>
-<FileZilla3 version="3.40.0" platform="windows">
-	<Layou
+[FilesMove]
+RemoveIfEmpty:C:\Users\ruben\AppData\Roaming\Microsoft\Windows\St

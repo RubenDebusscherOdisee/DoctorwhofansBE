@@ -2,6 +2,13 @@
 /*
  * Function requested by Ajax
  */
+require("cors.php");
+    //open connection
+	require("connect.php");
+    //check if there is any error in the connection, if so --> die
+	if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 if(isset($_POST['func']) && !empty($_POST['func'])){
     switch($_POST['func']){
         case 'getCalender':
@@ -201,13 +208,17 @@ function getEvents($date = ''){
 
 
 function fetchCategoryTree($parent = 0, $spacing = '', $user_tree_array = '') {
-require("coonect.php");
-
+    //open connection
+	require("connect.php");
+    //check if there is any error in the connection, if so --> die
+	if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
   if (!is_array($user_tree_array))
     $user_tree_array = array();
 
   $sql = "SELECT `id`, `topic`, `parent_id` FROM `Topics` WHERE `parent_id` = $parent ORDER BY id ASC";
-  $query = mysqli_query($verbinding,$sql);
+  $query = mysqli_query($conn,$sql);
   if (is_bool(mysqli_num_rows($query)) === false) {
     if (mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_object($query)) {
@@ -220,13 +231,18 @@ require("coonect.php");
 }
 
 function fetchCategoryTreeList($parent = 0, $user_tree_array = '') {
-$verbinding =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be", "RicatechApp", "doctorwhofans_be");
 
+    //open connection
+	require("connect.php");
+    //check if there is any error in the connection, if so --> die
+	if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
     if (!is_array($user_tree_array))
     $user_tree_array = array();
 
   $sql = "SELECT `id`, `topic`, `parent_id`,`link`,`Uitklapbaar` FROM `Topics` WHERE `parent_id` = $parent and Actief=1 ORDER BY Uitklapbaar desc,topic,id ASC";
-  $query = mysqli_query($verbinding,$sql);
+  $query = mysqli_query($conn,$sql);
   if (mysqli_num_rows($query) > 0) {
      $user_tree_array[] = "<ul class='itemsSitemap'>";
     while ($row = mysqli_fetch_object($query)) {
@@ -254,13 +270,12 @@ $verbinding =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be", "Ricat
 
 
 function fetchCategoryTreeListForum($parent = 20, $user_tree_array = '') {
-$verbinding =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be", "RicatechApp", "doctorwhofans_be");
 
     if (!is_array($user_tree_array))
     $user_tree_array = array();
 
   $sql = "SELECT `id`, `topic`, `parent_id` FROM `Topics` WHERE 1 AND `parent_id` = $parent ORDER BY id ASC";
-  $query = mysqli_query($verbinding,$sql);
+  $query = mysqli_query($conn,$sql);
   if (mysqli_num_rows($query) > 0) {
      $user_tree_array[] = "<ul>";
     while ($row = mysqli_fetch_object($query)) {
