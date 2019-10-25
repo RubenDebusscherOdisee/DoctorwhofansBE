@@ -4,6 +4,8 @@ config.php
 conn.php
 info.php
 config.ini
+.lock
+forum/cache
 
 .htpasswd
 
@@ -20,10 +22,8 @@ google63e6797a7a7595bf.html
 DW.sql
 API/core
 
+
 *.old
 *2.php
 *2.html
-admin/modules
-xataface
-forum
-images/magazines
+
