@@ -1,2 +1,5 @@
-[FilesMove]
-RemoveIfEmpty:C:\Users\ruben\AppData\Roaming\Microsoft\Windows\St
+<?php
+session_start();
+session_destroy();
+header("Location:login.php");
+?>
