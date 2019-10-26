@@ -7,7 +7,6 @@ config.ini
 conf.ini
 .lock
 forum/cache
-admin
 .htpasswd
 
 *.mp4
