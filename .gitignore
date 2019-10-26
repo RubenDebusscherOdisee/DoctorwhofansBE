@@ -5,14 +5,16 @@ conn.php
 info.php
 config.ini
 conf.ini
+
 .lock
-forum/cache
 .htpasswd
 
 *.mp4
+*.old
+*2.php
+*2.html
 
 Video
-
 downloads
 docs
 static
@@ -21,11 +23,8 @@ mywotc4ee383b4fd1fb56c9e0.html
 google63e6797a7a7595bf.html
 DW.sql
 API/core
+forum/cache
 
 
-*.old
-*2.php
-*2.html
 
-xataface
 forum
