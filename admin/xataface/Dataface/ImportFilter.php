@@ -68,13 +68,13 @@ class Dataface_ImportFilter {
 	 *
 	 * @param $data  @type raw data The raw data that is being imported.
 	 */
-	function import(&$data, $defaultValues=array()){
+	function import($data, $defaultValues=array()){
 		$delegate =& $this->_table->getDelegate();
 		if ( $delegate !== null and method_exists($delegate, '__import__'.$this->name) ){
-			//print_r(array(&$delegate,'__import__'.$this->name));
+			//print_r(array($delegate,'__import__'.$this->name));
 			//print_r($data);
 			//print_r($defaultValues);
-			return call_user_func(array(&$delegate,'__import__'.$this->name), $data, $defaultValues);
+			return call_user_func(array($delegate,'__import__'.$this->name), $data, $defaultValues);
 		}
 	}
 }

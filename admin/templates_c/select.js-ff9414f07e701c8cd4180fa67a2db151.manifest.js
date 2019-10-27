@@ -1,1 +1,0 @@
-{"included":{"xataface\/findwidgets\/select.js":"\/customers\/e\/a\/c\/doctorwhofans.be\/httpd.www\/admin\/xataface\/modules\/g2\/js\/xataface\/findwidgets\/select.js"},"dependencies":[],"dependencyContents":{"xataface\/findwidgets\/select.js":"\/customers\/e\/a\/c\/doctorwhofans.be\/httpd.www\/admin\/xataface\/modules\/g2\/js\/xataface\/findwidgets\/select.js"},"cssIncludes":[]}

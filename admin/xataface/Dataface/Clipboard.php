@@ -146,10 +146,7 @@ class Dataface_Clipboard {
 		$res = xf_db_query(
 			"REPLACE INTO `".Dataface_Clipboard_tablename."` 
 			(`clipperid`,`cut`,`recordids`,`lastmodified`)
-			VALUES
-			('".addslashes($this->id)."',
-			0,'".addslashes(implode("\n",$recordids))."', NOW()
-			)", $app->db();
+			VALUES('".addslashes($this->id)."',0,'".addslashes(implode("\n",$recordids))."', NOW())", $app->db());
 		if ( !$res ){
 			return PEAR::raiseError(xf_db_error($app->db()));
 		}
@@ -173,9 +170,7 @@ class Dataface_Clipboard {
 			"REPLACE INTO `".Dataface_Clipboard_tablename."` 
 			(`clipperid`,`cut`,`recordids`,`lastmodified`)
 			VALUES
-			('".addslashes($this->id)."',
-			1,'".addslashes(implode("\n",$recordids))."', NOW()
-			)", $app->db();
+			('".addslashes($this->id)."',1,'".addslashes(implode("\n",$recordids))."', NOW())", $app->db());
 		if ( !$res ){
 			return PEAR::raiseError(xf_db_error($app->db()));
 		}
