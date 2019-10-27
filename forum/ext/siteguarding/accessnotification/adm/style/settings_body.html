@@ -1,0 +1,85 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_PAN_SETTINGS}</h1>
+    <div class="" style="display:inline-block; border:0; margin:15px 0">
+	<a target="_blank" href="https://www.siteguarding.com/en/protect-your-website"><img src="../ext/siteguarding/accessnotification/images/{PAN_LANG}/rek3.png" style="border:1px solid #ccc"></a>
+	<a target="_blank" href="https://www.siteguarding.com/en/website-extensions"><img src="../ext/siteguarding/accessnotification/images/{PAN_LANG}/rek1.png" alt="" style="margin: 0 10px;border:1px solid #ccc"></a>
+	<a target="_blank" href="https://www.siteguarding.com/en/secure-web-hosting"><img src="../ext/siteguarding/accessnotification/images/{PAN_LANG}/rek4.png" alt="" style="border:1px solid #ccc"></a>
+	</div>
+<form id="acp_board" method="post" action="{U_ACTION}">
+	<fieldset style="border: 1px solid black;">
+	<legend style="text-align:center;">{L_PAN_SETTINGS_NOTIF}</legend>
+		<dl>
+			<dt><label>{L_PAN_SEND_FAILED}</label><br /></dt>
+			<dd>
+			    <input type="radio" class="radio" name="pan_send_failed" value="1" <!-- IF PAN_SEND_FAILED -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp;
+			    <input type="radio" class="radio" name="pan_send_failed" value="0" <!-- IF not PAN_SEND_FAILED  -->checked="checked"<!-- ENDIF --> /> {L_NO}
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label>{L_PAN_SEND_SUCCESS}</label><br /></dt>
+			<dd>
+			    <input type="radio" class="radio" name="pan_send_success" value="1" <!-- IF PAN_SEND_SUCCESS  -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp;
+			    <input type="radio" class="radio" name="pan_send_success" value="0" <!-- IF not PAN_SEND_SUCCESS  -->checked="checked"<!-- ENDIF --> /> {L_NO}
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset  style="border: 1px solid black;">
+	<legend style="text-align:center;">{L_PAN_EMAIL_TITLE}</legend>
+		<dl>
+			<dt><label>{L_PAN_ENABLE}</label><br /></dt>
+			<dd>
+			    <input type="radio" class="radio" name="pan_enable" value="1" <!-- IF PAN_ENABLE && PAN_EMAIL != '' -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp;
+			    <input type="radio" class="radio" name="pan_enable" value="0" <!-- IF not PAN_ENABLE || PAN_EMAIL == '' -->checked="checked"<!-- ENDIF --> /> {L_NO}
+			</dd>
+		</dl>
+		<hr>
+
+		<dl>
+			<dt><label for="pan_email">{L_PAN_EMAIL}</label><br /></dt>
+			<dd>
+			    <input type="text" id="pan_email" size="60" maxlength="80" name="pan_email" value="{PAN_EMAIL}"/>
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset  style="border: 1px solid black;">
+	<legend style="text-align:center;">{L_PAN_TELEGRAM_TITLE}</legend>
+		<dl>
+			<dt><label>{L_PAN_ENABLE_TELEGRAM}</label><br /></dt>
+			<dd>
+			    <input type="radio" class="radio" name="pan_enable_telegram" value="1" <!-- IF PAN_ENABLE_TELEGRAM && PAN_TELEGRAM_TOKEN != '' -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp;
+			    <input type="radio" class="radio" name="pan_enable_telegram" value="0" <!-- IF not PAN_ENABLE_TELEGRAM || PAN_TELEGRAM_TOKEN == '' -->checked="checked"<!-- ENDIF --> /> {L_NO}
+			</dd>
+		</dl>
+		<hr>
+		<dl>
+			<dt><label for="pan_telegram_token">{L_PAN_TELEGRAM_TOKEN}</label><br /><span><a target="_blank" style="text-decoration:underline;" href="https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token">{L_PAN_LINK_GET_API}</a></span></dt>
+			<dd>
+			    <input type="text" id="pan_telegram_token" size="60" maxlength="80" name="pan_telegram_token" value="{PAN_TELEGRAM_TOKEN}"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="pan_telegram_chat_id">{L_PAN_TELEGRAM_CHAT_ID}</label><br /><span>{L_PAN_AUTOFILLED}</span></dt>
+			<dd>
+			    <input type="text" id="pan_telegram_chat_id" size="60" maxlength="80" name="pan_telegram_chat_id" value="{PAN_TELEGRAM_CHAT_ID}"/>
+			</dd>
+		</dl>
+	</fieldset>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+
+		{S_FORM_TOKEN}
+
+
+    <div>
+		<p style="font-size:1em;">{L_PAN_FOR_MORE_INFORMATION}<a target="_blank" style="text-decoration:underline;" href="https://www.siteguarding.com/en/phpbb-user-access-notification">{L_PAN_LINK_CLICK}</a></p>
+		<a target="_blank "href="http://www.siteguarding.com/livechat/index.html"><img src="../ext/siteguarding/accessnotification/images/{PAN_LANG}/livechat.png" alt="" /></a>
+		<p style="font-size:1em;">{L_PAN_FOR_ANY_QUESTIONS}<a target="_blank" style="text-decoration:underline;" href="https://www.siteguarding.com/en/contacts">{L_PAN_LINK_CONTACT}</a></p>
+		<p style="font-size:1em;"><a target="_blank" style="text-decoration:underline;" href="https://www.siteguarding.com/en">{L_PAN_LINK_SITEGUARDING}</a>{L_PAN_SITEGUARDING}</p><br>
+	</div>	
+	
+</form>
+<!-- INCLUDE overall_footer.html -->

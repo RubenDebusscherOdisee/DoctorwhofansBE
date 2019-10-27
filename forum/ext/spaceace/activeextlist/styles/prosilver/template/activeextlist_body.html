@@ -1,0 +1,32 @@
+<!-- IF U_ACTIVEEXTLIST_VIEW -->
+
+<!-- INCLUDE overall_header.html -->
+
+<h2>{ACTIVE_EXT}</h2>
+
+<div class="forumbg forumbg-table">
+	<div class="inner">
+		<table class="table1">
+			<thead>
+				<tr>
+					<th class="ael-align-left">{L_NAME}</th>
+					<th class="ael-nowrap">{L_VERSION}</th>
+					<th>{L_DESCRIPTION}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN activeextlist -->
+					<tr class="<!-- IF activeextlist.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+						<td><strong>{activeextlist.NAME}</strong></td>
+						<td class="ael-align-center">{activeextlist.VERSION}</td>
+						<td class="ael-align-center">{activeextlist.DESCRIPTION}</td>
+					</tr>
+				<!-- END activeextlist -->
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
+
+<!-- ENDIF -->

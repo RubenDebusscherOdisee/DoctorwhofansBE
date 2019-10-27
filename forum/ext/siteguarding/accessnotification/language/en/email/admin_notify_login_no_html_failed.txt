@@ -1,0 +1,14 @@
+Subject: phpBB User Access Notification {USER} : Failed login
+
+Date: {TIME}
+				
+Someone has tried to login as {USER} to {DOMAIN} with wrong password.
+If it's not you, please change your password and contact website support team.				
+
+
+IP: {USER_IP}
+Country: {CITY}, {COUNTRY}
+Login result: Failed login
+
+____________________________________
+Plugin developed by siteguarding.com	

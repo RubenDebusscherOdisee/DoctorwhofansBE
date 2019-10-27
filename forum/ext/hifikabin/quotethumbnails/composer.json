@@ -1,0 +1,32 @@
+{
+    "name": "hifikabin/quotethumbnails",
+    "type": "phpbb-extension",
+    "description": "Shrinks quoted images down to a height of 100 pixels while maintaining the aspect ratio.",
+    "version": "1.0.1",
+    "keywords": "Quote, Image, Thumbnail",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "James Newcombe",
+            "username": "HiFiKabin",
+            "email": "webmaster@hifikabin.me.uk",
+            "homepage": "http://phpbb.hifikabin.me.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.0,<3.3.0@dev"
+    },
+    "extra": {
+        "display-name": "Quoted Images as Thumbnails",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0,<3.3.0@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/quoted_image_as_thumbnail",
+            "filename": "version_check"
+        }
+    }
+}

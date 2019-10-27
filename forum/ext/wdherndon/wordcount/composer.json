@@ -1,0 +1,32 @@
+{
+    "name": "wdherndon/wordcount",
+    "type": "phpbb-extension",
+    "description": "Show word count for each post and in preview",
+    "homepage": "https://www.softwareschmiede-herndon.de/wordcount-en.html",
+    "version": "1.1.0",
+    "time": "2017-03-12",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "William D. Herndon",
+            "email": "wdh@softwareschmiede-herndon.de",
+            "homepage": "https://www.softwareschmiede-herndon.de",
+            "role": ""
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.4"
+    },
+    "extra": {
+        "display-name": "Word Count",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.4"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/wordcount",
+            "filename": "version_check"
+        }
+    }
+}

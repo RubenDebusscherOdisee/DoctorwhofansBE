@@ -1,0 +1,16 @@
+services:
+    galandas.lasttopics.listener:
+        class: galandas\lasttopics\event\listener
+        arguments:
+            - '@content.visibility'        
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@cache'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

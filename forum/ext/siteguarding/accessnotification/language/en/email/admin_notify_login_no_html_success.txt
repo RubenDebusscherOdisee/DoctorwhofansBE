@@ -1,0 +1,13 @@
+Subject: phpBB User Access Notification {USER} : Successful login
+
+Date: {TIME}
+				
+User {USER} successfully has logged to {DOMAIN}
+If you didn't login, please change your password and contact website support team.
+
+IP: {USER_IP}
+Country: {CITY}, {COUNTRY}
+Login result: Successful login
+
+____________________________________
+Plugin developed by siteguarding.com	

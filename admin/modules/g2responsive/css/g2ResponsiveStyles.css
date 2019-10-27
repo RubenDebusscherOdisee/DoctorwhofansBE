@@ -1,0 +1,125 @@
+/*Style xf2 stuff*/
+#xf-logo {
+  background-image: url(img/blanklogo.png);
+	height: 75px;
+}
+
+/*Search*/
+.search_form {
+  margin: 14px 0px 14px 14px;
+}
+
+/*Large buttons which appear at the top on mobile*/
+.left_column_mobile_move ul li a {
+  /*font-weight: bolder;*/
+  font-size: 2em;
+  height: 3em;
+  line-height: 2.7em;
+  min-width: 150px;
+  background-size: cover;
+  border-style: solid;
+  border-width: 0.015em;
+  background-color: #ECC8A3;
+}
+
+.left_column_mobile_move ul li {
+  display: inline-block;
+  list-style: none;
+  *display:inline;
+}
+
+
+/**
+ * Extra large button extensions. Extends `.btn`.
+ */
+.btn-xlg {
+    padding: 18px 28px;
+    font-size: 24px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+    
+    
+/*Mobile view*/
+@media (max-width: 698px){
+
+    /*DO NOT DISPLAY*/
+    .listing > tbody > tr >  td,
+    .listing > tbody > tr >  th,
+    .listing > thead > tr >  td,
+    .listing > thead > tr >  th,
+    #left_column,
+    #top-section,
+    /* 2015-01-10 10:13PM hide "this table" large button David Gleba */
+    #table-actions-returnall-link,
+    .xf-show-advanced-find,
+    .horizontalDivider{
+        display: none!important;
+    }
+    
+    /*DO DISPLAY*/
+    .listing > tbody > tr >  td:first-child,
+    .listing > tbody > tr >  th:first-child,
+    .listing > thead > tr >  td:first-child,
+    .listing > thead > tr >  th:first-child,
+    .listing > tbody > tr >  td:nth-child(3),
+    .listing > tbody > tr >  th:nth-child(3),
+    .listing > thead > tr >  td:nth-child(3),
+    .listing > thead > tr >  th:nth-child(3){
+        display: table-cell!important;
+    }
+    
+    /*Increase font size of table entries*/
+    tr.listing {
+        font-size: 150%;
+    }
+    
+    /*Navbar font/button styles*/
+    #top-menu-bar ul li a{
+        padding: 15px 15px 20px 15px;
+        font: 20px/27px Arial,sans-serif;
+    }
+    
+    /*Navbar dropdown font styles*/
+    .action-sub-menu li a span{
+        font: 16px/27px Arial,sans-serif;
+    }  
+        
+    /*trying to get accordian to display in mobile*/
+    #after_table_actions{
+        *display:inline;
+    }
+}
+
+/*Desktop view*/
+@media (min-width: 699px){
+
+    /*DO NOT DISPLAY*/
+    #table-actions-returnall,
+    .left_column_mobile_move,
+    #bottom-section{
+        display: none!important;
+    }
+    
+    /*Navbar font/button styles*/
+    #top-menu-bar ul li a{
+        padding: 5px 3px 5px 3px;
+        font: 15px/22px Arial,sans-serif;
+    }
+    
+    /*Navbar dropdown font styles*/
+    .action-sub-menu li a span{
+        font: 15px/22px Arial,sans-serif;
+    }
+    
+    /*Overwriting bootstrap styles to display default g2 styles*/
+    body{
+        font: 13px/27px Arial,sans-serif;
+    }
+    
+    a{
+        color: #436976;
+    }
+}

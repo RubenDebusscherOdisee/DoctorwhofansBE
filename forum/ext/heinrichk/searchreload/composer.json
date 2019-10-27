@@ -1,0 +1,36 @@
+{
+    "name": "heinrichk/searchreload",
+    "type": "phpbb-extension",
+    "description": "Reloads unread posts and new posts pages.",
+    "homepage": "https://github.com/heinrich-k/phpBB-searchreload",
+    "version": "1.0.2",
+    "time": "2018-03-26",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Heinrich Krebs",
+            "email": "heinrich.krebs@email.de",
+            "homepage": "https://github.com/heinrich-k/",
+            "role": "Hobby Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.2.1"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "Search Page Auto Reaload",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.1"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/searchreload",
+            "filename": "version_check"
+        }
+    }
+}

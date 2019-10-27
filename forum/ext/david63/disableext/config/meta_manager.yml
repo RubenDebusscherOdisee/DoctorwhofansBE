@@ -1,0 +1,8 @@
+services:
+    david63.disableext.metadata_manager:
+        class: phpbb\extension\metadata_manager
+        arguments:
+            - 'vendor.ext'
+            - '@config'
+            - '@ext.manager'
+            - '%core.root_path%'

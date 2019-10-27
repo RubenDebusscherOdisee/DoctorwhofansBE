@@ -1,0 +1,65 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2 class="solo" id="flagusers">{FLAG_IMAGE} {FLAG}</h2>
+		<!-- IF S_FLAG_USERS -->
+		<div class="action-bar">
+			<div class="pagination">
+				{TOTAL_USERS} 
+				<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE -->
+					&bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
+		
+		<div class="forabg">
+			<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="<!-- IF PHPBB_IS_32 -->row-item<!-- ELSE -->icon<!-- ENDIF -->">
+						<dt>{L_USERNAME}</dt>
+						<dd class="topics">{L_POSTS}</dd>
+						<dd class="lastpost"><span>{L_JOINED}</span></dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist topics">
+			<!-- BEGIN user_row -->
+				<li class="row <!-- IF user_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+					<dl>
+						<dt class="flag_inner">
+							<!-- IF user_row.USER_AVATAR -->{user_row.USER_AVATAR}<!-- ENDIF --> {user_row.USERNAME_FULL}
+						</dt>
+						<dd class="topics">
+							<!-- IF user_row.POSTS and S_DISPLAY_SEARCH --><a href="{user_row.U_SEARCH_USER}" title="{L_SEARCH_USER_POSTS}">{user_row.POSTS}</a><!-- ELSE -->{user_row.POSTS}<!-- ENDIF -->
+						</dd>
+						<dd class="lastpost">
+							<span style="margin-top:5px;font-size: 1.2em;">{user_row.JOINED}</span>
+						</dd>
+					</dl>
+				</li>
+			<!-- END user_row -->
+			</ul>
+			</div>
+		</div>
+	
+		<div class="action-bar">
+			<div class="pagination">
+				{TOTAL_USERS}
+				<!-- IF .pagination --> 
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE --> 
+					 &bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
+	<!-- ELSE -->
+	<div class="panel" id="message">
+		<div class="inner">
+			<h2 class="message-title">{L_INFORMATION}</h2>
+			<p>{MESSAGE_TEXT}</p>
+		</div>
+	</div>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

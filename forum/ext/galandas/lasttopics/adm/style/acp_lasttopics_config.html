@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_ACP_LAST_TOPIC} {LASTAT_VERSION}</h1>
+<p>{L_ACP_LAST_TOPIC_EXPLAIN}</p>
+
+<p>{L_ACP_LAST_TOPIC_DONATE_EXPLAIN} {L_ACP_LAST_TOPIC_DONATE}</p>
+<form id="acp_board" method="post" action="{U_ACTION}">
+<fieldset>
+<legend>{L_ACP_LAST_TOPIC_SETTINGS}</legend>
+<dl>
+<dt><label>{L_ALLOW_LAST_TOPIC}{L_COLON}</label><br />{L_ALLOW_LAST_TOPIC_EXPLAIN}</dt>
+<dd><label><input type="radio" class="radio" name="lastat_enable" value="1"<!-- IF LASTAT_ENABLE --> id="lastat_enable" checked="checked" <!-- ENDIF --> /> <strong class="success">{L_ENABLE}</strong></label>
+<label><input type="radio" class="radio" name="lastat_enable" value="0"<!-- IF not LASTAT_ENABLE --> id="lastat_enable" checked="checked" <!-- ENDIF --> /> <strong class="error">{L_DISABLE}</strong></label></dd>
+</dl>
+<dl>
+<dt><label>{L_ALLOW_LAST_INDEX}{L_COLON}</label><br />{L_ALLOW_LAST_INDEX_EXPLAIN}<br /><p class="error">{L_LAST_TOPIC_ALLERT}</p></dt>
+<dd><label><input type="radio" class="radio" name="lastat_index" value="1"<!-- IF LASTAT_INDEX --> id="lastat_index" checked="checked" <!-- ENDIF --> /> <strong class="success">{L_YES}</strong></label>
+<label><input type="radio" class="radio" name="lastat_index" value="0"<!-- IF not LASTAT_INDEX --> id="lastat_index" checked="checked" <!-- ENDIF --> /> <strong class="error">{L_NO}</strong></label></dd>
+</dl>
+<dl>
+<dt><label>{L_ALLOW_LAST_TUTTO}{L_COLON}</label><br />{L_ALLOW_LAST_TUTTO_EXPLAIN}<br /><p class="error">{L_LAST_TOPIC_ALLERTS}</p></dt>
+<dd><label><input type="radio" class="radio" name="lastat_tutto" value="1"<!-- IF LASTAT_TUTTO --> id="lastat_tutto" checked="checked" <!-- ENDIF --> /> <strong class="success">{L_YES}</strong></label>
+<label><input type="radio" class="radio" name="lastat_tutto" value="0"<!-- IF not LASTAT_TUTTO --> id="lastat_tutto" checked="checked" <!-- ENDIF --> /> <strong class="error">{L_NO}</strong></label></dd>
+</dl>
+<dl>
+<dt><label>{L_LAST_NAVIGATION}{L_COLON}</label><br />{L_LAST_NAVIGATION_EXPLAIN}</dt>
+<dd><label><input type="radio" class="radio" name="lastat_navigation" value="1"<!-- IF LASTAT_NAVIGATION --> id="lastat_navigation" checked="checked" <!-- ENDIF --> /> <strong class="success">{L_YES}</strong></label>
+<label><input type="radio" class="radio" name="lastat_navigation" value="0"<!-- IF not LASTAT_NAVIGATION --> id="lastat_navigation" checked="checked" <!-- ENDIF --> /> <strong class="error">{L_NO}</strong></label></dd>
+</dl>
+<dl>
+<dt><label>{L_LAST_DIRECTION}{L_COLON}</label><br />{L_LAST_DIRECTION_EXPLAIN}</dt>
+<dd><label><input type="radio" class="radio" name="lastat_direction" value="1"<!-- IF LASTAT_DIRECTION --> id="lastat_direction" checked="checked" <!-- ENDIF --> /> <strong class="success">{L_LAST_UP_DIRECTION}</strong></label>
+<label><input type="radio" class="radio" name="lastat_direction" value="0"<!-- IF not LASTAT_DIRECTION --> id="lastat_direction" checked="checked" <!-- ENDIF --> /> <strong class="error">{L_LAST_DOWN_DIRECTION}</strong></label></dd>
+</dl>
+</fieldset>
+<fieldset>
+<legend>{L_ACP_LAST_TOPIC_CONFS}</legend>
+<dl>
+<dt><label for="lastat_t_pos">{L_LAST_POS}{L_COLON}</label><br />
+<span>{L_LAST_POS_EXPLAIN}</span></dt>
+<dd>
+<select name="lastat_t_pos" id="lastat_t_pos" class="post">
+<option value="1" <!-- IF LASTAT_TOP == "1" --> selected <!-- ENDIF -->>{L_LAST_AT_TOP}
+<option value="0" <!-- IF LASTAT_FUT == "0" --> selected <!-- ENDIF -->>{L_LAST_AT_FUT}
+</select>
+</dd>
+</dl>
+<dl>
+<dt><label for="lastat_type">{L_LAST_TYPE}{L_COLON}</label><br />
+<span>{L_LAST_TYPE_EXPLAIN}</span></dt>
+<dd>
+<select name="lastat_type" id="lastat_type" class="post">
+<option value="1" <!-- IF LASTAT_TYPE == "1" --> selected <!-- ENDIF -->>{L_LAST_ASPECT_A}
+<option value="0" <!-- IF LASTAT_TYPE == "0" --> selected <!-- ENDIF -->>{L_LAST_ASPECT_B}
+</select>
+</dd>
+</dl>
+<dl>
+<dt><label for="last_total">{L_LAST_TOPIC_TOTAL}{L_COLON}</label><br /><span>{L_LAST_TOPIC_TOTAL_EXPLAIN}</span></dt>
+<dd><input id="last_total" type="text" size="10" maxlength="3" name="last_total" value="{LASTAT_TOTAL}"></dd>
+</dl>
+</fieldset>
+<fieldset>
+<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+<p class="submit-buttons">
+<input type="hidden" name="action" value="save" />
+<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+{S_FORM_TOKEN}
+</p>
+</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

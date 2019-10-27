@@ -1,0 +1,10 @@
+services:
+    david63.disclaimer.listener:
+        class: david63\disclaimer\event\listener
+        arguments:
+            - @config
+            - @request
+            - @template
+            - @user
+        tags:
+            - { name: event.listener }

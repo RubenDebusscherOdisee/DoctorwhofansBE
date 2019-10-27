@@ -1,0 +1,9 @@
+services:
+    hubaishan.forumlanguage.listener:
+        class: hubaishan\forumlanguage\event\main_listener
+        arguments:
+            - @user
+            - @dbal.conn
+            - @request
+        tags:
+            - { name: event.listener }

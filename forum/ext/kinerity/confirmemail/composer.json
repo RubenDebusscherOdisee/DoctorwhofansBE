@@ -1,0 +1,33 @@
+{
+    "name": "kinerity/confirmemail",
+    "type": "phpbb-extension",
+    "description": "An extension for phpBB 3.2.x that adds the 'confirm e-mail address' field to the registration screen.",
+    "homepage": "https://www.project-w.org",
+    "version": "1.0.0",
+    "time": "2017-11-13",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "kinerity",
+            "email": "kinerity@yahoo.com",
+            "homepage": "https://www.layer-3.org/",
+            "role": "Extension Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phpbb/phpbb": ">=3.2.0,<3.3.0@dev",
+        "composer/installers": "~1.0.0"
+    },
+    "extra": {
+        "display-name": "Confirm Email",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0,<3.3.0@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/confirm_email",
+            "filename": "version_check"
+        }
+    }
+}

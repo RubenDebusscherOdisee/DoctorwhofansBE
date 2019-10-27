@@ -1,0 +1,16 @@
+<div id="chat_colour_palette" style="display: none;">
+	<table width="50%">
+		<div id="fc">
+		</div>
+		<div class="select_color">
+			{{ lang('SELECT_COLOR') }}
+		</div>
+		<tr>
+			<td valign="top">
+				{% INCLUDE 'chat_body_font_colour_hold_js.html' %}
+			</td>
+		</tr>
+	</table>
+	<div>{{ lang('DELETE_CHAT_COOKIE_EXPLAIN') }}</div>
+	<button type="button" class="btn btn-primary" name="{{ lang('DELETE_CHAT_COOKIE') }}" title="{{ lang('DELETE_CHAT_COOKIE') }}" onclick="deletecookie();">{{ lang('DELETE_CHAT_COOKIE') }}</button>
+</div>

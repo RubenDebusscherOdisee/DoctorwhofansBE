@@ -1,0 +1,34 @@
+{
+    "name": "alex75/redtitlenewpost",
+    "type": "phpbb-extension",
+    "description": "red title for new topic and new reply",
+    "homepage": "",
+    "version": "1.0.3",
+    "time": "2016-07-10",
+    "keywords": "",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Alessandro DI BENEDETTO",
+            "username": "alex75",
+            "email": "alex@phpbb-store.it",
+            "homepage": "http://phpbb-store.it",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+    },
+    "extra": {
+        "display-name": "Red title for new topic and new reply",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/red_title_for_new_topic_and_new_reply",
+            "filename": "version_check"
+        }
+    }
+}

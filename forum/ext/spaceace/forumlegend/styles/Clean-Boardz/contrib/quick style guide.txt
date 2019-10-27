@@ -1,0 +1,89 @@
+Clean-Boardz - Quick Style Guide
+Thanks for installing the Clean-Boardz style,
+These instructions should help get you started with any customisations you may wish to make to the style.
+
+
+How to hide the logo completely:
+1) Using a text editor open the common.css style sheet. (Clean-Boardz/theme/common.css)
+3) Find: .site_logo { (line 178)
+3) Change display from inline-block to none.
+4) Upload the updated common.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to change the logo:
+1) Upload your logo to the style image folder. (Clean-Boardz/theme/images)
+2) Using a text editor open the colours.css style sheet. (Clean-Boardz/theme/colours.css)
+3) Find: .site_logo { (line 339)
+4) Change the background-image url to your logo url. (example: "images/site_logo.png" to images/your_logo.png")
+5) Change the 250px width and 46px height to the size of your logo.
+6) Upload the updated colours.css file.
+7) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to hide logo on small screens:
+1) Using a text editor open the responsive.css style sheet. (Clean-Boardz/theme/responsive.css)
+2) Find: .logo { (line 191)
+3) Change display from inline-block to none.
+4) Upload the updated responsive.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to hide site name completely:
+1) Using a text editor open the common.css style sheet. (Clean-Boardz/theme/common.css)
+2) Find: h1 { (line 19)
+3) Change display from block to none.
+4) Upload the updated common.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to hide site name on small screens:
+1) Using a text editor open the responsive.css style sheet. (Clean-Boardz/theme/responsive.css)
+2) Find: .headerbar h1 { (line 223)
+3) Change display from block to none.
+4) Upload the updated responsive.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to hide site description completely:
+1) Using a text editor open the common.css style sheet. (Clean-Boardz/theme/common.css)
+2) Find: .headerbar p { (line 201)
+3) Change display from block to none.
+4) Upload the updated common.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to hide site description on small screens:
+1) Using a text editor open the responsive.css style sheet. (Clean-Boardz/theme/responsive.css)
+2) Find: .site-description p { (line 210)
+3) Change display from block to none.
+4) Upload the updated responsive.css file.
+5) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to change the favourites icon:
+1) Your favourites icon should be named: favicon
+2) Upload your fav icon to the style image folder. (Clean-Boardz/theme/images)
+3) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)
+
+How to add a smaller logo for smaller screens:
+If you have a logo that is too big for small screens, you could add a mini logo for them.
+A logo width of 250px fits fine even on the smallest screen size.
+The below instructions are based on using a standard logo with a width of 500px, but you can change it accordingly.
+When the screen is minimized to 560px, the standard logo will change to the smaller logo, ensuring that it fits onto the screen.
+
+1) Upload your small logo to the style image folder. (Clean-Boardz/theme/images)
+2) Using a text editor open the responsive.css style sheet. (Clean-Boardz/theme/responsive.css)
+3) Go to the bottom of the style sheet, on a new line add the following:
+
+/* site logo on small screens */
+
+@media (max-width: 560px) {
+
+.site_logo {
+
+background-image: url("./images/mini_site_logo.png");
+
+width: 250px;
+
+height: 46px;
+
+} }
+
+4) Change the background-image url to your small logo url. (example: "images/mini_site_logo.png" to images/your_logo.png")
+5) Change the 250px width and 46px height to the size of your mini logo.
+6) Upload the updated responsive.css file.
+7) Log in to your forum ACP and purge the cache. (ACP --> General --> Purge the cache)

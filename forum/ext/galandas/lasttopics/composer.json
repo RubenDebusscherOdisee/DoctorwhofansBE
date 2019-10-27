@@ -1,0 +1,32 @@
+{
+    "name": "galandas/lasttopics",
+    "type": "phpbb-extension",
+    "description": "This Extension displays the last active topics on index, in a very beautiful effect jquery, with two movement options of your choice from ACP.",
+    "homepage": "http://phpbb3world.altervista.org",
+    "version": "2.0.5",
+    "time": "2017-03-07",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Galandas",
+            "email": "manzarek@live.it",
+            "homepage": "http://phpbb3world.altervista.org",
+            "role": "Amateur Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.2.0"
+    },
+    "extra": {
+        "display-name": "Advanced Active Topics",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/advanced_active_topics",
+            "filename": "version_check"
+        }
+    }
+}

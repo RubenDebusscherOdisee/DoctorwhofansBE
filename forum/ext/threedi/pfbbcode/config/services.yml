@@ -1,0 +1,23 @@
+services:
+    profilefields.type.string:
+        class: threedi\pfbbcode\profilefields\type\type_string
+        arguments:
+            - '@threedi.pfbbcode.helper.pf'
+            - '@request'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: profilefield.type }
+
+    profilefields.type.text:
+        class: threedi\pfbbcode\profilefields\type\type_text
+        arguments:
+            - '@threedi.pfbbcode.helper.pf'
+            - '@request'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: profilefield.type }
+
+    threedi.pfbbcode.helper.pf:
+        class: threedi\pfbbcode\helper\pf

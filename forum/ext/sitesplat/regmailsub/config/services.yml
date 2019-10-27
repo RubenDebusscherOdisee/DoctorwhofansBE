@@ -1,0 +1,9 @@
+services:
+    sitesplat.regmailsub.listener:
+        class: sitesplat\regmailsub\event\main_listener
+        arguments:
+            - '@request'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: event.listener }

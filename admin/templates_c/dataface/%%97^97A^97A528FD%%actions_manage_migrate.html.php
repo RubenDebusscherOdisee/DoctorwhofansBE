@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-09-28 22:49:30
+<?php /* Smarty version 2.6.18, created on 2019-10-25 11:42:16
          compiled from actions_manage_migrate.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'use_macro', 'actions_manage_migrate.html', 1, false),array('block', 'fill_slot', 'actions_manage_migrate.html', 3, false),array('block', 'translate', 'actions_manage_migrate.html', 5, false),array('modifier', 'count', 'actions_manage_migrate.html', 12, false),)), $this); ?>

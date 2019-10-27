@@ -1,0 +1,29 @@
+/**
+ *
+ * Advanced login. An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2016, Galandas, http://phpbb3world.altervista.org
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
+
+#login_popup {
+	display: none;
+	padding: 6px 8px;
+	position: absolute;
+	z-index: 99;
+	border: 1px solid #109FE5;
+	box-shadow: 0 0 10px 6px rgba(6, 74, 228, 0.58);
+}
+
+#login_popup p {
+	text-align:center;
+}
+
+#login_popup_buttons {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	text-align: center;
+}

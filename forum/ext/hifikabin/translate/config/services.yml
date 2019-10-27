@@ -1,0 +1,8 @@
+services:
+    hifikabin.translate.listener:
+        class: hifikabin\translate\event\listener
+        arguments:
+            - '@template'
+            - '@config'
+        tags:
+            - { name: event.listener }

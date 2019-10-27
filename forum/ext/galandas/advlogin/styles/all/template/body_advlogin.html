@@ -1,0 +1,25 @@
+<!-- IF ASPECT_ADVLOGIN -->
+<div id="login_popup" class="panel"<!-- IF COLOR_ADVLOGIN --> style="background-color:#{COLOR_ADVLOGIN}"<!-- ENDIF -->>
+		<h3><img src="{BOARD_URL}ext/galandas/advlogin/styles/all/theme/images/ciaomamma.gif" alt="" /><br />{SITENAME}{L_COLON} {SITE_DESCRIPTION}</h3>
+			    <p>{ADVLOGIN_TEXT}</p>
+			<div id="login_popup_buttons">
+			        <form method="post" action="{S_LOGIN_ACTION}">
+			        <a href="{U_LOGIN_LOGOUT}" class="button">{L_LOGIN}</a>
+        <!-- IF S_REGISTER_ENABLED --><a href="{U_REGISTER}" class="button">{L_REGISTER}</a><!-- ENDIF -->
+				<span id="login_popup_close" class="button">{L_ADVLOGIN_NO_SHOW}</span>
+            </form>				
+		</div>
+</div>
+<!-- ELSE -->
+<div id="login_popup" class="rules"<!-- IF COLOR_ADVLOGIN --> style="background-color:#{COLOR_ADVLOGIN}"<!-- ENDIF -->>
+		<h3>{SITENAME}{L_COLON} {SITE_DESCRIPTION}</h3>
+			    <p>{ADVLOGIN_TEXT}</p>
+			<div id="login_popup_buttons">
+			        <form method="post" action="{S_LOGIN_ACTION}">
+			        <a href="{U_LOGIN_LOGOUT}" class="button">{L_LOGIN}</a>
+        <!-- IF S_REGISTER_ENABLED --><a href="{U_REGISTER}" class="button">{L_REGISTER}</a><!-- ENDIF -->
+				<span id="login_popup_close" class="button">{L_ADVLOGIN_NO_SHOW}</span>
+            </form>				
+		</div>
+</div>
+<!-- ENDIF -->

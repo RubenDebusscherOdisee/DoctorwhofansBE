@@ -1,0 +1,65 @@
+.steamstatus-container {
+	position: relative;
+}
+
+.steamstatus {
+	background-color: #333;
+	border: 1px solid #BBB;
+	color: #898989;
+	display: inline-block;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	height: 40px;
+	max-width: 250px;
+	padding: 4px;
+	position: relative;
+	text-align: left;
+	width: 100%;
+}
+
+.steam-online {
+	color: #66C0F4;
+}
+
+.steam-ingame {
+	color: #90BA3C;
+}
+
+.steamstatus img {
+	border: 2px solid;
+	border-radius: 4px;
+	position: absolute;
+}
+
+.steamstatus .steam-info {
+	overflow: hidden;
+	padding-left: 40px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.steamstatus .steam-name {
+	color: inherit;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 1px 0 0;
+}
+
+.steamstatus .steam-status {
+	font-size: 11px;
+}
+
+.steamstatus .steam-links {
+	bottom: 0;
+	color: #BBB;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 4px;
+	position: absolute;
+	right: 0;
+}
+
+.steamstatus .steam-links a {
+	color: inherit;
+	font-variant: small-caps;
+	text-transform: lowercase;
+}

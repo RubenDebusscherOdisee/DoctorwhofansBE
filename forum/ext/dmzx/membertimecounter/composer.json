@@ -1,0 +1,32 @@
+{
+    "name": "dmzx/membertimecounter",
+    "type": "phpbb-extension",
+    "description": "Displays member time counter in profile",
+    "homepage": "http://www.dmzx-web.net",
+    "version": "1.0.2",
+    "time": "2017-01-20",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "dmzx",
+            "email": "info@dmzx-web.net",
+            "homepage": "http://www.dmzx-web.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "phpbb/phpbb": ">=3.1.0,<3.3"
+    },
+    "extra": {
+        "display-name": "Member time counter",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/member_time_counter",
+            "filename": "version_check"
+        }
+    }
+}

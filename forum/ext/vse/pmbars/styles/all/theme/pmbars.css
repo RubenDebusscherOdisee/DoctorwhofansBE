@@ -1,0 +1,29 @@
+.pmbars-outer {
+	width: 100%;
+	height: 14px;
+	padding: 1px;
+	border: solid 1px #A4B3BF;
+	border-radius: 3px;
+	margin: -8px 0 8px 0;
+}
+
+.pmbars-inner {
+	width: 0;
+	height: 100%;
+	border: 0;
+	border-radius: 3px;
+	background: url('images/stripes.png') repeat;
+	display: inline-block;
+}
+
+.pmbars-normal-bar {
+	background-color: #32cd32;
+}
+
+.pmbars-danger-bar {
+	background-color: #f08080;
+}
+
+.rtl .pmbars-outer {
+	text-align: right;
+}

@@ -1,0 +1,39 @@
+/**
+*
+* @package phpBB Extension - Advanced Active Topics
+* @copyright (c) 2016 Galandas
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+#vertical-ticker{
+	height:20px;
+	overflow:hidden;
+    position:relative;
+}
+
+#vertical-ticker li {
+    display: block;
+    line-height: 1.3em;
+    font-size: 1.1em;
+}
+
+#jsdisplay_buttons_top {
+    position: relative;
+    margin-left: 145px;
+    margin-bottom: -15px;
+    bottom: -4px;
+}
+
+#jsdisplay_buttons_fut {
+    position: relative;
+    margin-left: 145px;
+    margin-bottom: 5px;
+    bottom: 38px;
+}
+
+@media all and (max-width: 700px), all and (max-device-width: 700px) {
+	#last-topics {
+		display: none;
+	}
+}

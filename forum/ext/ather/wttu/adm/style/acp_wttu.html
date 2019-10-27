@@ -1,0 +1,49 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_WTTU_TITLE}</h1>
+
+<p>{L_WTTU_EXPLAIN}</p>
+
+<form id="acp_wttu" method="post" action="{U_ACTION}">
+  <fieldset>
+    
+    <dl>
+      <dt><label for="wttu_status">{L_WTTU_ENABLE}:</label><br /><span>{L_WTTU_ENABLE_EXPLAIN}</span></dt>
+      <dd><label><input type="radio" class="radio" id="wttu_status" name="wttu_status" value="1"<!-- IF WTTU_STATUS --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+      <label><input type="radio" class="radio" name="wttu_status" value="0"<!-- IF not WTTU_STATUS --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+    
+    <dl>
+      <dt><label for="wttu_link">{L_WTTU_LINK_ENABLE}:</label><br /><span>{L_WTTU_LINK_EXPLAIN}</span></dt>
+      <dd><label><input type="radio" class="radio" id="wttu_link" name="wttu_link" value="1"<!-- IF WTTU_LINK_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+      <label><input type="radio" class="radio" name="wttu_link" value="0"<!-- IF not WTTU_LINK_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+    
+    <dl>
+      <dt><label for="wttu_bbcode">{L_WTTU_BBCODE_ENABLE}:</label><br /><span>{L_WTTU_BBCODE_EXPLAIN}</span></dt>
+      <dd><label><input type="radio" class="radio" id="wttu_bbcode" name="wttu_bbcode" value="1"<!-- IF WTTU_BBCODE_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+      <label><input type="radio" class="radio" name="wttu_bbcode" value="0"<!-- IF not WTTU_BBCODE_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+    
+    <dl>
+      <dt><label for="wttu_html">{L_WTTU_HTML_ENABLE}:</label><br /><span>{L_WTTU_HTML_EXPLAIN}</span></dt>
+      <dd><label><input type="radio" class="radio" id="wttu_html" name="wttu_html" value="1"<!-- IF WTTU_HTML_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+      <label><input type="radio" class="radio" name="wttu_html" value="0"<!-- IF not WTTU_HTML_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+	
+	<dl>
+      <dt><label for="wttu_type">{L_WTTU_TYPE}:</label><br /><span>{L_WTTU_TYPE_EXPLAIN}</span></dt>
+      <dd><label><input type="radio" class="radio" id="wttu_type" name="wttu_type" value="1"<!-- IF WTTU_TYPE --> checked="checked"<!-- ENDIF --> /> {L_SIMPLE}</label>
+      <label><input type="radio" class="radio" name="wttu_type" value="0"<!-- IF not WTTU_TYPE --> checked="checked"<!-- ENDIF --> /> {L_CANONICAL}</label></dd>
+    </dl>
+		
+		<p class="submit-buttons">
+		  <input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		  <input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+    </p>
+		
+    {S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

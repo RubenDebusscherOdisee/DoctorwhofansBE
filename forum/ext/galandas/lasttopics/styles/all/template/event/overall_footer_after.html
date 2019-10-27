@@ -1,0 +1,18 @@
+<!-- IF LASTAT_ENABLE -->
+<!-- INCLUDEJS jquery.totemticker.js -->
+<script type="text/javascript">
+// <![CDATA[
+    $( document ).ready(function () {
+        $('#vertical-ticker').totemticker({
+        row_height  :   '20px',
+		next		:	'#ticker-next',
+		previous	:	'#ticker-previous',
+		stop		:	'#stop',
+		start		:	'#start',
+		mousestop	:	true,
+		direction	:	'<!-- IF LASTAT_DIRECTION -->down<!-- ELSE -->up<!-- ENDIF -->'
+    });
+});
+// ]]>	
+</script>
+<!-- ENDIF -->

@@ -1,0 +1,8 @@
+services:
+    wdherndon.wordcount.listener:
+        class: wdherndon\wordcount\event\main_listener
+        arguments:
+            - '@template'
+            - '@user'
+        tags:
+            - { name: event.listener }

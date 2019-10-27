@@ -1,0 +1,10 @@
+services:
+    ather.wttu.listener:
+        class: ather\wttu\event\listener
+        arguments:
+            - @controller.helper
+            - @template
+            - @config
+            - %core.php_ext%
+        tags:
+            - { name: event.listener }

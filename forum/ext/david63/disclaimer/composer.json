@@ -1,0 +1,31 @@
+{
+	"name": "david63/disclaimer",
+	"type": "phpbb-extension",
+	"description": "Adds an expandable disclaimer panel to the bottom of each page",
+	"homepage": "",
+	"version": "1.0.0",
+	"time": "2014-11-30",
+	"keywords": ["phpbb", "extension", "disclaimer"],
+	"license": "GPL-2.0",
+	"authors": [{
+			"name": "David Wood",
+			"username": "david63",
+			"email": "david@webworld.xyz",
+			"homepage": "http://webworld.xyz",
+			"role": "Developer"
+		}],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"extra": {
+		"display-name": "Forum Disclaimer",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.2,<3.2.*@dev"
+      	},
+		"version-check": {
+			"host": "webworld.xyz",
+			"directory": "/versioncheck",
+			"filename": "disclaimer_versions.json"
+		}
+	}
+}

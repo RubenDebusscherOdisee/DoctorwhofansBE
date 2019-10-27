@@ -1,0 +1,20 @@
+{% if _file.S_CK_VE_HAS_EXIF %}
+	<div class="ck_ve_exifsection">
+		<div class="ck_ve_exifblock">
+			{{ lang('CK_VE_EXIF_CAPTION') }}
+			<a title="{{ lang('CK_VE_SHOW_EXIF') }}" type="a" onclick="if(document.getElementById('ck_ve_{{ _file.CK_VE_ATTACH_ID|e('js') }}').style.display=='table') {document.getElementById('ck_ve_{{ _file.CK_VE_ATTACH_ID|e('js') }}').style.display='none'}else{document.getElementById('ck_ve_{{ _file.CK_VE_ATTACH_ID|e('js') }}').style.display='table'}">
+				{{ lang('CK_VE_SHOW_EXIF') }}
+			</a>
+		</div>
+		{% for _file in loops._file %}
+			<div class="ck_ve_table" id="ck_ve_{{ _file.CK_VE_ATTACH_ID }}">
+				{% for CK_VE_EXIFS in _file.CK_VE_EXIFS %}
+					<div class="ck_ve_tabrow">
+						<div class="ck_ve_tabcell">{{ CK_VE_EXIFS.CK_VE_EXIF_NAME }}{{ lang('COLON') }} </div>
+						<div class="ck_ve_tabcell">{{ CK_VE_EXIFS.CK_VE_EXIF_VALUE }}</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
+{% endif %}

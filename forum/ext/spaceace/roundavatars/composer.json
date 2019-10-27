@@ -1,0 +1,39 @@
+{
+    "name": "spaceace/roundavatars",
+    "type": "phpbb-extension",
+    "description": "Will make avatars appear to be round.",
+    "homepage": "https://www.livemembersonly.com",
+    "version": "1.0.0",
+    "time": "2019-07-06",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "avatar",
+        "round"
+    ],
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "spaceace",
+            "email": "spaceace@livemembersonly.com",
+            "homepage": "https://www.livemembersonly.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.1.0",
+        "composer/installers": "~1.0.0"
+    },
+    "extra": {
+        "display-name": "Round avatars",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/round_avatars",
+            "filename": "version_check"
+        }
+    }
+}

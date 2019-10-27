@@ -54,4 +54,3 @@ class modules_ckeditor {
          return $this->baseURL;
  }
 
-}

@@ -1,0 +1,39 @@
+{
+    "name": "pcgf/namesuggestions",
+    "type": "phpbb-extension",
+    "description": "An extension that suggests usernames and group names on pages where users or groups can be selected",
+    "homepage": "https://github.com/MarkusWME/phpBB---Name-Suggestions",
+    "version": "1.0.1",
+    "time": "2017-05-27",
+    "keywords": [
+        "user",
+        "group",
+        "username",
+        "group name",
+        "suggestion"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "MarkusWME",
+            "homepage": "https://github.com/MarkusWME",
+            "email": "markuswme@pcgamingfreaks.at",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.2"
+    },
+    "extra": {
+        "display-name": "Name Suggestions",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/name_suggestions",
+            "filename": "version_check"
+        }
+    }
+}

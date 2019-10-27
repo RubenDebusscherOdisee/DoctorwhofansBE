@@ -1,0 +1,15 @@
+services:
+    galandas.news.listener:
+        class: galandas\news\event\listener
+        arguments:
+            - '@cache.driver'
+            - '@config'
+            - '@config_text'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@auth'            
+            - '@user'
+            - '@?phpbb.collapsiblecategories.operator'            
+        tags:
+            - { name: event.listener }

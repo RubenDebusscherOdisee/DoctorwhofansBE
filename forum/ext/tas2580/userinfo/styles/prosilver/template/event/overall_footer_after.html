@@ -1,0 +1,33 @@
+<!-- IF A_VIEWPROFILE -->
+	<!-- INCLUDEJS @tas2580_userinfo/script.js -->
+	<script type="text/javascript">
+	// <![CDATA[
+	var userinfo_url = '{AJAX_USERINFO_PATH}';
+	// ]]>
+	</script>
+	<div class="forabg" id="popup">
+		<div class="inner">
+			<ul class="topiclist fullwidth">
+				<li class="header"><dl><dt id="ajax_userinfo_header"></dt><dd></dd></dl></li>
+			</ul>
+			<ul class="topiclist forums">
+				<li><dl>
+					<dt></dt>
+					<dd style="width:100%">
+						<div id="ajax_avatar"></div>
+						<!-- EVENT tas2580_userinfo_data_before -->
+						<strong>{L_USERNAME}{L_COLON}</strong> <span id="ajax_username"></span><br>
+						<!-- EVENT tas2580_userinfo_data_after_name -->
+						<strong>{L_TOTAL_POSTS}{L_COLON}</strong> <span id="ajax_posts"></span><br>
+						(<span id="ajax_percentage"></span> / <span id="ajax_postsperday"></span>)<br>
+						<strong>{L_SORT_RANK}{L_COLON}</strong> <span id="ajax_rank"></span><br>
+						<strong>{L_JOINED}{L_COLON}</strong> <span id="ajax_regdate"></span><br>
+						<strong>{L_LAST_VISIT}{L_COLON}</strong> <span id="ajax_lastvisit"></span><br>
+						<!-- EVENT tas2580_userinfo_data -->
+						<br class="clear">
+					</dd>
+				</dl></li>
+			</ul>
+		</div>
+	</div>
+<!-- ENDIF -->

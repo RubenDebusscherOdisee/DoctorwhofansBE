@@ -1,0 +1,22 @@
+.aboutus {
+	font-size: 1.4em;
+	line-height: 1.5;
+}
+
+.aboutus ul {
+	margin-left: 1em;
+}
+
+.aboutus ul li {
+	list-style-type: none;
+}
+
+.aboutus p {
+	font-size: 0.8em;
+}
+
+.aboutus h2 {
+	font-size: 1.2em;
+	line-height: 1;
+	margin-top: 2em;
+}

@@ -1,0 +1,24 @@
+{% if U_SEARCH_SELF_TOPICS || U_SEARCH_USER_TOPICS %}
+<script>
+var uSearchUser = '{U_SEARCH_USER}'.replace(/\&amp;/g, '&'); // Change &amp; into & in the URL
+
+{% if U_SEARCH_SELF_TOPICS %}
+// Add "Your Topics" to the navigation Quick Links
+$('#quick-links li a[href="{U_SEARCH_SELF}"]').closest('li').after(function() {
+	var $li	= $(this).clone();
+	var $a	= $li.find('a').attr('href', "{U_SEARCH_SELF_TOPICS}");
+	var $in	= $a.find('span').length ? $a.find('span') : $a;	// phpBB3.2 has a span, phpBB3.1 does not
+	$in.html("{LA_PRIMEUSERTOPICS_SEARCH_SELF_TOPICS}");
+	return $li;
+});
+
+// Add "Show your topics" to the front page of the UCP
+$('#cp-main a[href="' + uSearchUser + '"]').closest('strong').after(' | <strong><a href="{U_SEARCH_SELF_TOPICS}">{LA_PRIMEUSERTOPICS_SEARCH_YOUR_TOPICS}</a></strong>');
+{% endif %}
+
+{% if U_SEARCH_USER_TOPICS %}
+// Add "Search user's topics" to the user's profile page
+$('#viewprofile a[href="' + uSearchUser + '"]').closest('strong').after(' | <strong><a href="{U_SEARCH_USER_TOPICS}">{LA_PRIMEUSERTOPICS_SEARCH_USER_TOPICS}</a></strong>');
+{% endif %}
+</script>
+{% endif %}

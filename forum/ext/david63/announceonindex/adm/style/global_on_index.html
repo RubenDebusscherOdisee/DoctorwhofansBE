@@ -1,0 +1,52 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_GLOBAL_ON_INDEX}</h1>
+<p>{L_GLOBAL_ON_INDEX_EXPLAIN}</p>
+
+<form id="sitelogo" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_GLOBAL_ON_INDEX_OPTIONS}</legend>
+
+		<dl>
+			<dt><label for="global_on_index">{L_GLOBAL_ON_INDEX_ENABLE}{L_COLON}</label></dt>
+			<dd><label><input type="radio" class="radio" name="global_on_index" value="1" id="global_on_index"<!-- IF GLOBAL_ON_INDEX_ENABLED --> checked="checked"<!-- ENDIF -->/> {L_ENABLE}</label>
+				<label><input type="radio" class="radio" name="global_on_index" value="0" <!-- IF not GLOBAL_ON_INDEX_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_DISABLE}</label></dd>
+		</dl>
+
+		<dl>
+			<dt><label for="global_announce_index">{L_SHOW_GLOBALS}{L_COLON}</label><br /><span>{L_SHOW_GLOBALS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="global_announce_index" value="1" id="global_announce_index"<!-- IF SHOW_GLOBALS --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="global_announce_index" value="0" <!-- IF not SHOW_GLOBALS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+
+		<dl>
+			<dt><label for="global_announce_announce">{L_SHOW_ANNOUNCEMENTS}{L_COLON}</label><br /><span>{L_SHOW_ANNOUNCEMENTS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="global_announce_announce" value="1" id="global_announce_announce"<!-- IF SHOW_ANNOUNCEMENTS --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="global_announce_announce" value="0" <!-- IF not SHOW_ANNOUNCEMENTS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+
+		<dl>
+			<dt><label for="global_announce_guest">{L_ALLOW_GUESTS}{L_COLON}</label><br /><span>{L_ALLOW_GUESTS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="global_announce_guest" value="1" id="global_announce_guest"<!-- IF ALLOW_GUESTS --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="global_announce_guest" value="0" <!-- IF not ALLOW_GUESTS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+
+		<dl>
+			<dt><label for="global_announce_event">{L_ALLOW_EVENTS}{L_COLON}</label><br /><span>{L_ALLOW_EVENTS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="global_announce_event" value="1" id="global_announce_event"<!-- IF ALLOW_EVENTS --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="global_announce_event" value="0" <!-- IF not ALLOW_EVENTS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

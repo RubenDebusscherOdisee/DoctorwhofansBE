@@ -1,0 +1,32 @@
+{
+    "name": "hubaishan/forumlanguage",
+    "type": "phpbb-extension",
+    "description": "Add ability to customize the language of a specific forum, This will override the user language and the default bulletin language",
+    "homepage": "http://salafitech.net",
+    "version": "1.0.0",
+    "time": "2018-01-11",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Saeed Hubaishan",
+            "homepage": "http://salafitech.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.7",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.2.2"
+    },
+    "extra": {
+        "display-name": "Forum Language",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/forum_language",
+            "filename": "version_check"
+        }
+    }
+}

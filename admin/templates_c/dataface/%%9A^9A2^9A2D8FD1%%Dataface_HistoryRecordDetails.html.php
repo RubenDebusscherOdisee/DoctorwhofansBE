@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-10-10 11:02:40
+<?php /* Smarty version 2.6.18, created on 2019-10-25 13:53:27
          compiled from Dataface_HistoryRecordDetails.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'Dataface_HistoryRecordDetails.html', 15, false),)), $this); ?>

@@ -1,0 +1,10 @@
+services:
+    token07.usernamehistory.listener:
+        class: token07\usernamehistory\event\listener
+        arguments:
+            - '@controller.helper'
+            - '@template'
+            - '@dbal.conn'
+            - '@user'
+        tags:
+            - { name: event.listener }

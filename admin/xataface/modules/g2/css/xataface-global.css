@@ -1090,8 +1090,7 @@ div.controllerJumpMenu {
 }
 
 div.horizontalDivider {
-	clear: both;
-}
+display: none;}
 
 tr.listing {
 	border-bottom: dotted 1px #ccc;
@@ -1109,13 +1108,7 @@ div#recentlyViewed select {
 }
 
 div.fineprint {
-	font-size: 100%;
-	text-align: center;
-	font-color: #8cacbb;
-	background-color: #dee7ec;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding: 1em;
+	display: none;
 	
 }
 
@@ -2304,6 +2297,7 @@ td.calendar-right { vertical-align: top; padding: 1em;}
 
 div.section_tools a { padding-right: 1em;}
 
+.row-actions-cell,.row-actions-header{display: none;}
 
 
 .row-actions {
@@ -2637,12 +2631,12 @@ div.mainArea {
 
 
 #xf-logo {
-	background-image: url(images/small-xataface-logo.png);
-	background-repeat: no-repeat;
-	width: 152px;
-	height: 39px;
-	padding: 0;
-	margin:0;
+	background-image: url(https://www.doctorwhofans.be/images/gallifreyan.png);
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 79px;
+    margin: auto;
+    background-size: contain;
 	
 }
 

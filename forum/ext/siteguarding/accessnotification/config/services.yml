@@ -1,0 +1,11 @@
+services:
+    siteguarding.accessnotification.listener:
+        class: siteguarding\accessnotification\event\pan_listener
+        arguments:
+            - '@config'
+            - '@user'
+            - '@request'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+        tags:
+            - { name: event.listener }

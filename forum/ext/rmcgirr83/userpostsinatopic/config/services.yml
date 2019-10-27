@@ -1,0 +1,12 @@
+services:
+    rmcgirr83.userpostsinatopic.listener:
+        class: rmcgirr83\userpostsinatopic\event\listener
+        arguments:
+            - '@auth'
+            - '@dbal.conn'			
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

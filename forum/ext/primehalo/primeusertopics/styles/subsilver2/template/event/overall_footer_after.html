@@ -1,0 +1,18 @@
+{% if U_SEARCH_SELF_TOPICS || U_SEARCH_USER_TOPICS %}
+<script>
+var uSearchUser = '{U_SEARCH_USER}'.replace(/\&amp;/g, '&'); // Change &amp; into & in the URL
+
+{% if U_SEARCH_SELF_TOPICS %}
+// Add "Your Topics" to the navigation Quick Links
+$('.searchbar a[href="{U_SEARCH_SELF}"]').after(' | <a href="{U_SEARCH_SELF_TOPICS}">{LA_PRIMEUSERTOPICS_SEARCH_SELF_TOPICS}</a></li>');
+
+// Add "Show your topics" to the front page of the UCP
+$('#ucp a[href="{U_SEARCH_SELF}"]').after(' | <a href="{U_SEARCH_SELF_TOPICS}">{LA_PRIMEUSERTOPICS_SEARCH_YOUR_TOPICS}</a>');
+{% endif %}
+
+{% if U_SEARCH_USER_TOPICS %}
+// Add "Search user's topics" to the user's profile page
+$('#pagecontent table.tablebg td.row1 table a[href="' + uSearchUser + '"]').after(' | <a href="{U_SEARCH_USER_TOPICS}">{LA_PRIMEUSERTOPICS_SEARCH_USER_TOPICS}</a>');
+{% endif %}
+</script>
+{% endif %}

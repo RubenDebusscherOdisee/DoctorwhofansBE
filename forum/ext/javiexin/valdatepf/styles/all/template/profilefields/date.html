@@ -1,0 +1,12 @@
+<!-- Validated date profile fields -->
+<!-- BEGIN date -->
+	<!-- IF date.FIELD_LENGTH -->
+	<label for="{date.FIELD_IDENT}_day">{L_DAY}{L_COLON} <select name="{date.FIELD_IDENT}_day" id="{date.FIELD_IDENT}_day">{date.S_DAY_OPTIONS}</select></label>
+	<label for="{date.FIELD_IDENT}_month">{L_MONTH}{L_COLON} <select name="{date.FIELD_IDENT}_month" id="{date.FIELD_IDENT}_month">{date.S_MONTH_OPTIONS}</select></label>
+	<label for="{date.FIELD_IDENT}_year">{L_YEAR}{L_COLON} <select name="{date.FIELD_IDENT}_year" id="{date.FIELD_IDENT}_year">{date.S_YEAR_OPTIONS}</select></label>
+	<!-- ELSE -->
+	<label for="{date.FIELD_IDENT}_day">{L_DAY}{L_COLON} <input type="number" min="0" max="31" name="{date.FIELD_IDENT}_day" value="{date.FIELD_VALUE_DAY}" style="vertical-align: baseline; width: 40px; -moz-padding-end: 0;"/></label>
+	<label for="{date.FIELD_IDENT}_month">{L_MONTH}{L_COLON} <input type="number" min="0" max="12" name="{date.FIELD_IDENT}_month" value="{date.FIELD_VALUE_MONTH}" style="vertical-align: baseline; width: 40px; -moz-padding-end: 0;"/></label>
+	<label for="{date.FIELD_IDENT}_year">{L_YEAR}{L_COLON} <input type="number" min="{date.FIELD_VALUE_MINYEAR}" max="{date.FIELD_VALUE_MAXYEAR}" name="{date.FIELD_IDENT}_year" size="3" value="{date.FIELD_VALUE_YEAR}" style="vertical-align: baseline; width: 60px; -moz-padding-end: 0;"/></label>
+	<!-- ENDIF -->
+<!-- END date -->

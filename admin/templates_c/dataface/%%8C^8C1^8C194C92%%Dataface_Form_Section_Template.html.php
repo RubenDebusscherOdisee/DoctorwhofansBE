@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-10-04 16:19:12
+<?php /* Smarty version 2.6.18, created on 2019-10-25 13:48:59
          compiled from Dataface_Form_Section_Template.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'Dataface_Form_Section_Template.html', 1, false),array('modifier', 'count', 'Dataface_Form_Section_Template.html', 146, false),array('function', 'block', 'Dataface_Form_Section_Template.html', 2, false),array('function', 'actions_menu', 'Dataface_Form_Section_Template.html', 190, false),array('block', 'define_slot', 'Dataface_Form_Section_Template.html', 36, false),array('block', 'translate', 'Dataface_Form_Section_Template.html', 84, false),)), $this); ?>

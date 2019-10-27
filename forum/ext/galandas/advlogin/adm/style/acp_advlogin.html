@@ -1,0 +1,65 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_ACP_ADVLOGIN}</h1>
+
+<p>{L_ACP_ADVLOGIN_VERSION}{L_COLON} {VERSION_ADVLOGIN}<br>{L_ACP_ADVLOGIN_CREDITS}</p>
+
+<p>{L_ACP_ADVLOGIN_DONATE_EXPLAIN} {L_ACP_ADVLOGIN_DONATE}</p>
+
+<form id="acp_advlogin" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_ACP_ADVLOGIN_CONFIG_SET}</legend>
+			<dl>
+			<dt><label for="enable_advlogin">{L_ACP_ADVLOGIN_ENABLE}{L_COLON}</label><br /><span>{L_ACP_ADVLOGIN_ENABLE_EXPLAIN}</span></dt>
+			<dd>
+			<label><input type="radio" class="radio" name="enable_advlogin" id="enable_advlogin" value="1"<!-- IF ENABLE_ADVLOGIN --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="enable_advlogin" value="0"<!-- IF not ENABLE_ADVLOGIN --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+			</dl>
+	    <hr />
+	    <dl>
+		<dt><label for="aspect_advlogin">{L_ACP_ADVLOGIN_ASPECT}{L_COLON}</label><br />
+		<span>{L_ACP_ADVLOGIN_ASPECT_EXPLAIN}</span></dt>
+		<dd>
+		<select name="aspect_advlogin" id="aspect_advlogin" class="post">
+			<option value="1" <!-- IF ASPECT_ADVLOGIN == "1" --> selected <!-- ENDIF -->>{L_ACP_ASPECT_A}
+			<option value="0" <!-- IF ASPECT_ADVLOGIN == "0" --> selected <!-- ENDIF -->>{L_ACP_ASPECT_B}
+		</select>
+		</dd>
+	    </dl>			
+	</fieldset>
+	<fieldset>
+		<legend>{L_ACP_ADVLOGIN_CONFIG}</legend>
+			<dl>
+			<dt><label for="width_advlogin">{L_ACP_WIDTH_ADVLOGIN}{L_COLON}</label><br />
+			<span>{L_ACP_WIDTH_ADVLOGIN_EXPLAIN}</span></dt>
+			<dd><input name="width_advlogin" class="post" type="text" id="width_advlogin" size="6" maxlength="3" value="{WIDTH_ADVLOGIN}" /></dd>
+			</dl>
+			<dl>
+			<dt><label for="height_advlogin">{L_ACP_HEIGHT_ADVLOGIN}{L_COLON}</label><br />
+			<span>{L_ACP_HEIGHT_ADVLOGIN_EXPLAIN}</span></dt>
+			<dd><input name="height_advlogin" class="post" type="text" id="height_advlogin" size="6" maxlength="3" value="{HEIGHT_ADVLOGIN}" /></dd>
+			</dl>
+			<dl>
+			<dt><label for="color_advlogin">{L_ACP_ADVLOGIN_COLOR}{L_COLON}</label><br />
+			<span>{L_ACP_ADVLOGIN_COLOR_EXPLAIN}</span></dt>
+			<dd><input name="color_advlogin" type="text" id="color_advlogin" value="{A_COLOR_ADVLOGIN}" size="6" maxlength="6" <!-- IF A_COLOR_ADVLOGIN -->style="border-right:20px solid #{A_COLOR_ADVLOGIN}"<!-- ENDIF --> /></dd>
+			</dl>			
+			<dl>
+			<dt><label for="advlogin_text">{L_ACP_ADVLOGIN_TEXT}{L_COLON}</label><br />
+			<span>{L_ACP_ADVLOGIN_TEXT_EXPLAIN}</span></dt>
+			<dd><textarea name="advlogin_text" id="advlogin_text" rows="6" cols="30" style="width: 95%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" data-bbcode="true">{ADVLOGIN_TEXT}</textarea></dd>
+			</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+	</fieldset>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

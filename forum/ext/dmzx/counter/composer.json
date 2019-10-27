@@ -1,0 +1,37 @@
+{
+    "name": "dmzx/counter",
+    "type": "phpbb-extension",
+    "description": "This extension is based on the visitor’s IP address. The IP address of the new visitor is checked to see if it does not already exist in the table of the extension. If the IP address does not exist, it is registered in the table of the extension and is counted as a new visit.",
+    "homepage": "http://www.dmzx-web.net",
+    "version": "1.0.3",
+    "time": "2017-01-23",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "Unique Visits Counter"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "dmzx",
+            "homepage": "http://www.dmzx-web.net",
+            "email": "info@dmzx-web.net",
+            "role": "Extension Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.0,<3.3"
+    },
+    "extra": {
+        "display-name": "Unique Visits Counter",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/unique_visits_counter",
+            "filename": "version_check"
+        }
+    }
+}

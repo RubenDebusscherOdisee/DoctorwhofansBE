@@ -1,0 +1,33 @@
+services:
+    phpbbservices.digests.listener:
+        class: phpbbservices\digests\event\main_listener
+        arguments:
+            - '@config'
+            - '@template'
+            - '@request'
+        tags:
+            - { name: event.listener }
+    phpbbservices.digests.common:
+        class: phpbbservices\digests\core\common
+        arguments:
+            - '@language'
+            - '%core.root_path%'
+    phpbbservices.digests.cron.task.cron_task:
+        class: phpbbservices\digests\cron\task\digests
+        arguments:
+            - '@config'
+            - '@request'
+            - '@user'
+            - '@dbal.conn'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+            - '@template'
+            - '@auth'
+            - '%core.table_prefix%'
+            - '@log'
+            - '@phpbbservices.digests.common'
+            - '@language'
+        calls:
+            - [set_name, [cron.task.cron_task]]
+        tags:
+            - { name: cron.task }

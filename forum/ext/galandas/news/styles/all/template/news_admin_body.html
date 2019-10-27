@@ -1,0 +1,46 @@
+﻿<!-- Start Simple News Admin by Galandas -->
+<!-- IF NEWS_TYPE -->
+<!-- IF NEWS_IS_COLLAPSIBLE -->
+<a class="category<!-- IF S_NEWS_HIDDEN --> hidden-category<!-- ENDIF -->" style="display: none; height: 0"></a>
+<!-- ENDIF -->
+	<div class="forabg">
+		<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="row-item">
+						<dt class="list-inner"><i class="fa fa-bullhorn" aria-hidden="true"></i>
+ {L_ADMINISTRATOR}</dt>
+					</dl>
+				</li>
+			</ul>
+<!-- IF NEWS_IS_COLLAPSIBLE -->
+<a href="{U_NEWS_COLLAPSE_URL}" class="collapse-btn collapse-<!-- IF S_NEWS_HIDDEN -->show<!-- ELSE -->hide<!-- ENDIF -->"
+		data-hidden="{S_NEWS_HIDDEN}"
+		data-ajax="phpbb_collapse"
+		data-overlay="true"
+		title="{L_COLLAPSIBLE_CATEGORIES_TITLE}">
+</a>
+<!-- ENDIF -->			
+			<ul class="topiclist forums">
+				<li class="icon">
+					&nbsp;					
+					<dl style="text-align: center;"><i class="fa fa-bullhorn fa-2x" aria-hidden="true"></i>
+ {NEWS_ADMIN}</dl>
+					&nbsp;
+				</li>
+			</ul>
+		</div>
+	</div>
+<!-- ELSE -->
+<div class="forabg">
+	<div class="inner">
+		<table class="table1" cellspacing="0">
+			<tr class="bg1">
+				<td style="text-align: center;"><i class="fa fa-bullhorn fa-2x" aria-hidden="true"></i>
+ {NEWS_ADMIN}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<!-- ENDIF -->	
+<!-- End Simple News Admin by Galandas -->	

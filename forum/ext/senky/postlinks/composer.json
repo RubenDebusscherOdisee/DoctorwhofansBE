@@ -1,0 +1,33 @@
+{
+    "name": "senky/postlinks",
+    "type": "phpbb-extension",
+    "description": "This extension will add links to all your posts. You can choose to display link, bb code and html format of post. Those links are hidden by default and user can display them by single click.",
+    "version": "2.1.0",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Jakub Senko",
+            "email": "jakubsenko@gmail.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.1.0,<3.3@dev",
+        "composer/installers": "~1.0.0"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "Post Links",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0,<3.3@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/post_links",
+            "filename": "version_check"
+        }
+    }
+}

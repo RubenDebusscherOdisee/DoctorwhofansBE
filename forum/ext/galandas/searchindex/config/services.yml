@@ -1,0 +1,15 @@
+services:
+    galandas.searchindex.listener:
+        class: galandas\searchindex\event\listener
+        arguments:
+            - '@config'        
+            - '@user'        
+            - '@controller.helper'
+            - '@template'
+            - '@dbal.conn'
+            - '@auth'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '@?phpbb.collapsiblecategories.operator'            
+        tags:
+            - { name: event.listener }

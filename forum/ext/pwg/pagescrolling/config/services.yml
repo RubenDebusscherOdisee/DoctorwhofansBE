@@ -1,0 +1,6 @@
+services:
+    pwg.pagescrolling.listener:
+        class: pwg\pagescrolling\event\listener
+        arguments:
+        tags:
+            - { name: event.listener }

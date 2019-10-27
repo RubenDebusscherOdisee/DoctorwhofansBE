@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_RSI_TITLE}</h1>
+<p>{L_RSI_INTRO}</p>
+<p>{L_RSI_VERSION} {RSI_VERSION}</p>
+
+<form id="acp_searchindex" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_RSI_SETTINGS}</legend>	
+		<dl>
+			<dt><label for="rsi_enabled">{L_RSI_ALLOW}{L_COLON}</label><br />
+			<span>{L_RSI_ALLOW_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="rsi_enabled" value="1"<!-- IF RSI_ENABLED --> id="rsi_enabled" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="rsi_enabled" value="0"<!-- IF not RSI_ENABLED --> id="rsi_enabled" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="rsi_limit">{L_RSI_NUMBER}{L_COLON}</label><br />
+			<span>{L_RSI_NUMBER_EXPLAIN}</span></dt>
+			<dd><input type="text" name="rsi_limit" id="rsi_limit" size="10" value="{RSI_LIMIT}" /></dd>
+		</dl>		
+	</fieldset>
+	
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</p>
+	
+</form>
+<!-- INCLUDE overall_footer.html -->

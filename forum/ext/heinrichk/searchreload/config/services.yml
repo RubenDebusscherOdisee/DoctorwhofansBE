@@ -1,0 +1,7 @@
+services:
+    heinrichk.searchreload.listener:
+        class: heinrichk\searchreload\event\main_listener
+        tags:
+            - { name: event.listener }
+        arguments:
+            - '@request'

@@ -1,0 +1,46 @@
+{
+    "name": "dmzx/hidecodeforguests",
+    "type": "phpbb-extension",
+    "description": "Hide code for guests extension.",
+    "homepage": "https://www.dmzx-web.net",
+    "version": "1.0.0",
+    "time": "2019-04-18",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "hidecodeforguests"
+    ],
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "dmzx",
+            "homepage": "https://www.dmzx-web.net",
+            "email": "info@dmzx-web.net",
+            "role": "Extension Developer"
+        },
+        {
+            "name": "martin",
+            "homepage": "https://www.martins-phpbb.com",
+            "role": "Extension Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.2.0,<3.3"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "Hide code for guests",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/hide_code_for_guests",
+            "filename": "version_check"
+        }
+    }
+}

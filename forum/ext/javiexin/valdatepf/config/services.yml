@@ -1,0 +1,9 @@
+services:
+    profilefields.type.date:
+        class: javiexin\valdatepf\profilefields\type\type_date
+        arguments:
+            - '@request'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: profilefield.type }

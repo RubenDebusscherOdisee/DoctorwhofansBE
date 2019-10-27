@@ -1,0 +1,11 @@
+services:
+    dmzx.hidecodeforguests.listener:
+        class: dmzx\hidecodeforguests\event\listener
+        arguments:
+            - '@language'
+            - '@user'
+            - '@template'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

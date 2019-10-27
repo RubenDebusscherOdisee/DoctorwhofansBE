@@ -1,0 +1,7 @@
+img.avatar {
+	clip-path: circle();
+}
+
+img[src*="gravatar"] {
+	clip-path: circle();
+}

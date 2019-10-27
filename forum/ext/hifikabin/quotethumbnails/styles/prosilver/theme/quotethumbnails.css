@@ -1,0 +1,3 @@
+blockquote .postimage, .quotecontent .postimage {
+   max-height: 100px;
+}

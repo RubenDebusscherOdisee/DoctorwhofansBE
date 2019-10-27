@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-10-04 16:18:17
+<?php /* Smarty version 2.6.18, created on 2019-10-25 11:42:02
          compiled from Dataface_Login_Prompt.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'use_macro', 'Dataface_Login_Prompt.html', 20, false),array('block', 'fill_slot', 'Dataface_Login_Prompt.html', 21, false),array('block', 'translate', 'Dataface_Login_Prompt.html', 39, false),array('block', 'define_slot', 'Dataface_Login_Prompt.html', 50, false),array('function', 'block', 'Dataface_Login_Prompt.html', 49, false),array('function', 'actions', 'Dataface_Login_Prompt.html', 116, false),array('modifier', 'nl2br', 'Dataface_Login_Prompt.html', 58, false),array('modifier', 'escape', 'Dataface_Login_Prompt.html', 80, false),)), $this); ?>

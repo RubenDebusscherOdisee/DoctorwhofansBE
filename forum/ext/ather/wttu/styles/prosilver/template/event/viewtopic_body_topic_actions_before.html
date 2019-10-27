@@ -1,0 +1,40 @@
+<!-- IF WTTU_STATUS -->
+
+			
+			<div class="panel">
+		<div class="inner">
+			<h2>{L_WTTU_TITLE}</h2>
+			
+			<fieldset class="fields2">
+			         <!-- IF WTTU_LINK_ENABLED -->
+				<dl>
+					<dt><label for="link">{L_WTTU_LINK}</label></dt>
+					<dd><input name="link" type="text" value="{WTTU_LINK}" onclick="this.focus();this.select()" class="inputbox"; /></dd>
+				</dl>
+			<!-- ENDIF -->
+			<!-- IF WTTU_BBCODE_ENABLED -->
+				<dl>
+					<dt><label for="bbcode">{L_WTTU_BBCODE}</label></dt>
+					<dd><input name="bbcode" type="text" value="[url={WTTU_BBCODE}]{TOPIC_TITLE}[/url]" onclick="this.focus();this.select()" class="inputbox"; /></dd>
+				</dl>
+			<!-- ENDIF -->
+			<!-- IF WTTU_HTML_ENABLED -->
+				<dl>
+					<dt><label for="html">{L_WTTU_HTML}</label></dt>
+					<dd><input name="html" type="text" value="{WTTU_HTML}{TOPIC_TITLE}&lt;/a&gt;" onclick="this.focus();this.select()" class="inputbox"; /></dd>
+				</dl>
+			<!-- ENDIF -->
+				
+			</fieldset>
+		</div>
+	</div>
+
+			
+			
+			
+			
+			
+			
+			
+<!-- ENDIF -->
+

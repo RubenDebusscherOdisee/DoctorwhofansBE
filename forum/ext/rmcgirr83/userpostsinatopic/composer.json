@@ -1,0 +1,36 @@
+{
+    "name": "rmcgirr83/userpostsinatopic",
+    "type": "phpbb-extension",
+    "description": "This extension allows users to search for a users posts of the particular topic being viewed.",
+    "homepage": "http://www.github.com/rmcgirr83/userpostsinatopic",
+    "version": "1.0.1",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "tools"
+    ],
+    "time": "2018-02-27",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Rich McGirr (RMcGirr83)",
+            "role": "Extension Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.1.0-a2"
+    },
+    "extra": {
+        "display-name": "User Posts in a Topic",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0-a2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/user_posts_in_a_topic",
+            "filename": "version_check"
+        }
+    }
+}

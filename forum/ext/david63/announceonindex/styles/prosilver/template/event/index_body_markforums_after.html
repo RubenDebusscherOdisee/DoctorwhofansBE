@@ -1,0 +1,49 @@
+<!-- IF S_ANNOUNCE_ENABLED -->
+	<!-- IF S_ALLOW_GUESTS or S_USER_LOGGED_IN -->
+		<!-- IF .topicrow -->
+			<div class="forumbg">
+				<div class="inner">
+				<ul class="topiclist">
+					<li class="header">
+						<dl class="icon">
+							<dt><div class="list-inner">{L_ANNOUNCEMENTS}</div></dt>
+						<dd class="posts">{L_REPLIES}</dd>
+						<dd class="views">{L_VIEWS}</dd>
+						<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+						</dl>
+					</li>
+				</ul>
+
+				<ul class="topiclist forums">
+				<!-- BEGIN topicrow -->
+					<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+						<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
+						<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
+						<!-- IF topicrow.S_UNREAD and not S_IS_BOT --><a href="{topicrow.U_NEWEST_POST}"class="icon-link"></a><!-- ENDIF -->
+							<div class="list-inner">
+								<!-- IF S_ALLOW_EVENTS -->
+									<!-- EVENT topiclist_row_prepend -->
+								<!-- ENDIF -->
+								<!-- IF topicrow.S_UNREAD_TOPIC and not S_IS_BOT --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a><br />
+
+								<!-- IF not S_IS_BOT -->
+									<div class="responsive-show" style="display: none;">
+									{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; <a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{topicrow.FIRST_POST_TIME}</a>
+									</div>
+									</dt>
+									<dd class="posts">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
+									<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
+									<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.TOPIC_LAST_AUTHOR}
+										<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{LAST_POST_IMG}</a><br />{topicrow.LAST_POST_TIME}</span>
+									</dd>
+								<!-- ENDIF -->
+						</dl>
+					</li>
+				<!-- END topicrow -->
+				</ul>
+
+				</div>
+			</div>
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+<!-- ENDIF -->

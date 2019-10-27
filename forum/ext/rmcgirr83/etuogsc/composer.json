@@ -1,0 +1,30 @@
+{
+    "name": "rmcgirr83/etuogsc",
+    "type": "phpbb-extension",
+    "description": "Will send an email to users that are either added, removed, promoted or demoted in a user group",
+    "version": "1.0.0",
+    "time": "2017-12-04",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Rich McGirr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.2.0,<3.3",
+        "composer/installers": "~1.0.0"
+    },
+    "extra": {
+        "display-name": "Email To User On Group Status Change",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/email_to_user_on_group_status_change",
+            "filename": "version_check"
+        }
+    }
+}

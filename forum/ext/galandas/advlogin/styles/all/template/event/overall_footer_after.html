@@ -1,0 +1,15 @@
+<!-- INCLUDEJS jquery.popup.js -->
+<script type="text/javascript">
+//<![CDATA[
+var logInPopUpLeft, logInPopUpTop, logInPopUpWidth = {WIDTH_ADVLOGIN}, logInPopUpHeight = {HEIGHT_ADVLOGIN}, logInBackgroundResize = true, logInBackgroundClass = false;
+
+$(document).ready( function() {
+   $(window).resize(function() {
+      var windowWidth = document.documentElement.clientWidth;
+      var popupWidth = $("#login_popup").width();
+      var mypopup = $("#login_popup");
+      $("#login_popup").css({"left": windowWidth/2 - popupWidth/2});
+   });
+});
+//]]>
+</script>

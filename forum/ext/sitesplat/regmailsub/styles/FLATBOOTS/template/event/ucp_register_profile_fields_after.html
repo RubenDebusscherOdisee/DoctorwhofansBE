@@ -1,0 +1,9 @@
+<div class="control-group"> 
+	<label class="control-label" for="allow_massemail">{{ lang('ALLOW_MASSEMAIL') }}{{ lang('COLON') }}</label>
+	  <div class="controls controls-row">	
+		<div class="radio"><input type="radio" name="allow_massemail" id="allow_massemail" value="1"{% if S_ALLOW_MASSEMAIL %} checked{% endif %}><label for="allow_massemail"> {L_YES}</label></div>
+		<div class="radio"><input type="radio" name="allow_massemail" id="allow_massemail_no" value="0"{% if not S_ALLOW_MASSEMAIL %} checked{% endif %}><label for="allow_massemail_no"> {L_NO}</label></div>
+      </div>
+ <div class="space10"></div>
+<p>{L_REGISTRATION_MASS_EMAIL_EXPLAIN}</p>
+</div>

@@ -1,0 +1,14 @@
+services:
+    galandas.advlogin.listener:
+        class: galandas\advlogin\event\listener
+        arguments:
+            - '@cache.driver'
+            - '@auth'
+            - '@config'
+            - '@config_text'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+        tags:
+            - { name: event.listener }

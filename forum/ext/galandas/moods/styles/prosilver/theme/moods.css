@@ -1,0 +1,99 @@
+/**
+*
+* Mood. An extension for the phpBB Forum Software package.
+*
+* @copyright (c) 2017 Galandas, http://phpbb3world.altervista.org
+* @copyright Used Code Genders extension, 2016 Rich McGirr (RMcGirr83)
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
+*/
+
+.em{
+	height:17px;
+	width: 15px;
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:contain;
+	display:inline-block;
+	vertical-align:middle
+}
+
+.em-biggrin{
+	background-image:url("./images/moods/biggrin.gif")
+}
+
+.em-confused{
+	background-image:url("./images/moods/confused.gif")
+}
+
+.em-cool{
+	background-image:url("./images/moods/cool.gif")
+}
+
+.em-cry{
+	background-image:url("./images/moods/cry.gif")
+}
+
+.em-eek{
+	background-image:url("./images/moods/eek.gif")
+}
+
+.em-evil{
+	background-image:url("./images/moods/evil.gif")
+}
+
+.em-lol{
+	background-image:url("./images/moods/lol.gif")
+}
+
+.em-mad{
+	background-image:url("./images/moods/mad.gif")
+}
+
+.em-mrgreen{
+	background-image:url("./images/moods/mrgreen.gif")
+}
+
+.em-neutral{
+	background-image:url("./images/moods/neutral.gif")
+}
+
+.em-razz{
+	background-image:url("./images/moods/razz.gif")
+}
+
+.em-redface{
+	background-image:url("./images/moods/redface.gif")
+}
+
+.em-rolleyes{
+	background-image:url("./images/moods/rolleyes.gif")
+}
+
+.em-sad{
+	background-image:url("./images/moods/sad.gif")
+}
+
+.em-scream{
+	background-image:url("./images/moods/scream.png")
+}
+
+.em-smile{
+	background-image:url("./images/moods/smile.gif")
+}
+
+.em-surprised{
+	background-image:url("./images/moods/surprised.gif")
+}
+
+.em-twisted{
+	background-image:url("./images/moods/twisted.gif")
+}
+
+.em-ugeek{
+	background-image:url("./images/moods/ugeek.gif")
+}
+
+.em-wink{
+	background-image:url("./images/moods/wink.gif")
+}

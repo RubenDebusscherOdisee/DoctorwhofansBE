@@ -1,0 +1,35 @@
+{
+    "name": "siteguarding/accessnotification",
+    "type": "phpbb-extension",
+    "description": "AccessNotification by SiteGuarding.com",
+    "homepage": "https://www.siteguarding.com",
+    "version": "1.0.0",
+    "time": "2017-06-14",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "SiteGuarding.com Team",
+            "homepage": "https://www.siteguarding.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.0,<3.3",
+        "composer/installers": "~1.0.0"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "AccessNotification by SiteGuarding.com",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/user_access_notification_phpbb",
+            "filename": "version_check"
+        }
+    }
+}

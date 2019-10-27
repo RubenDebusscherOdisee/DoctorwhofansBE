@@ -1,0 +1,19 @@
+services:
+    crizzo.aboutus.controller:
+        class: crizzo\aboutus\controller\main
+        arguments:
+            - '@config'
+            - '@config_text'
+            - '@controller.helper'
+            - '@template'
+            - '@language'
+    crizzo.aboutus.listener:
+        class: crizzo\aboutus\event\main_listener
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@language'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

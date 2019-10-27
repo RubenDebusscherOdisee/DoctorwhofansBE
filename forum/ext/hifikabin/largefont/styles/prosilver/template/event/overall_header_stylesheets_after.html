@@ -1,0 +1,20 @@
+<!-- These cannot go into a CSS file as they are not processed with template vars -->
+
+{% if S_USER_FONT %}
+<style type="text/css">
+*{
+	font-size: {{ S_USER_FONT_SIZE }}%;
+}
+</style>
+{% endif %}
+
+{% if S_USER_MOBILE_FONT %}
+<style type="text/css">
+@media only screen and (max-width: 1024px), only screen and (max-device-width: 1024px)
+{
+	*{
+		font-size: {{ S_USER_MOBILE_FONT_SIZE }}%;
+	}
+}
+</style>
+{% endif %}

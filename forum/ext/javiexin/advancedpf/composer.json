@@ -1,0 +1,41 @@
+{
+    "name": "javiexin/advancedpf",
+    "type": "phpbb-extension",
+    "description": "Adds a set of new Profile Field types, and other improvements to Profile Fields.",
+    "version": "1.0.3",
+    "time": "2017-05-19",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "advancedpf",
+        "profile",
+        "field",
+        "multi",
+        "selection",
+        "image",
+        "upload"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Javier Lopez (javiexin)",
+            "email": "javiexin@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": "~3.2.0"
+    },
+    "extra": {
+        "display-name": "Advanced Profile Fields Pack",
+        "soft-require": {
+            "phpbb/phpbb": "~3.2.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/adancedpf",
+            "filename": "version_check"
+        }
+    }
+}

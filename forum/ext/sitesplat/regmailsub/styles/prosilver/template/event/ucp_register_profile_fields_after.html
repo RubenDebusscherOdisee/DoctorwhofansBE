@@ -1,0 +1,8 @@
+
+    <dl>
+		<dt><label for="allow_massemail">{{ lang('ALLOW_MASSEMAIL') }}{{ lang('COLON') }}</label></dt>
+		<dd>
+			<label for="massemail1"><input type="radio" name="allow_massemail" id="allow_massemail" value="1"{% if S_ALLOW_MASSEMAIL %} checked{% endif %}> {L_YES}</label>
+			<label for="massemail0"><input type="radio" name="allow_massemail" id="allow_massemail_no" value="0"{% if not S_ALLOW_MASSEMAIL %} checked{% endif %}> {L_NO}</label>
+		</dd>
+	</dl>

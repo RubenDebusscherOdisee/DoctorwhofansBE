@@ -1,0 +1,37 @@
+{
+    "name": "dmzx/topicageday",
+    "type": "phpbb-extension",
+    "description": "Displays Topic age day to the viewforum.",
+    "homepage": "http://www.dmzx-web.net",
+    "version": "1.0.2",
+    "time": "2017-01-23",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "topicageday"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "dmzx",
+            "homepage": "http://www.dmzx-web.net",
+            "email": "info@dmzx-web.net",
+            "role": "Extension Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.2,<3.3"
+    },
+    "extra": {
+        "display-name": "Topic Age Day",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.2,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/topic_age_day",
+            "filename": "version_check"
+        }
+    }
+}

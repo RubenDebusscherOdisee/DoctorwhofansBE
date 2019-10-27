@@ -67,7 +67,7 @@ class dataface_actions_export_csv {
         }
     
 	function handle(&$params){
-		set_time_limit(0);
+		//set_time_limit(0);
 		import('Dataface/RecordReader.php');
 		$app =& Dataface_Application::getInstance();
                 

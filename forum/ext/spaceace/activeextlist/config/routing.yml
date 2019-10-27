@@ -1,0 +1,3 @@
+spaceace_activeextlist_controller:
+    pattern: /activeextlist
+    defaults: { _controller: spaceace.activeextlist.controller:get_ext_info }

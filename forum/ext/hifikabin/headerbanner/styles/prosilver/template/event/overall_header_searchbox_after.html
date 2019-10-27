@@ -1,0 +1,27 @@
+{% if HEADERBANNER_SELECT %}
+<div class="banner-header">
+{% if HEADERBANNER_SEARCH in [1, 2, 3, 4, 7] %}
+<div class="headerbanner-search-{{ HEADERBANNER_SEARCH }}">
+	<div class="search-box rightside responsive-hide">
+		{% INCLUDE 'navbarsearch.html' %}
+	</div>
+</div>
+{% endif %}
+{% if HEADERBANNER_LOGO %}
+<a id="headerbanner_logo" class="logo"; href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->"><span class="site_logo"></span></a>
+{% endif %}
+<div id="hidden">
+	<h1>{{ SITENAME }}</h1>
+	<p>{{ SITE_DESCRIPTION }}</p>
+	<p class="skiplink"><a href="#start_here">{{ lang('SKIP') }}</a></p>
+</div>
+<div class="header-banner">
+	<a href="{% if U_SITE_HOME %}{{ U_SITE_HOME }}{% else %}{{ U_INDEX }}{% endif %}" title="{% if U_SITE_HOME %}{{ lang('SITE_HOME') }}{% else %}{{ lang('INDEX') }}{% endif %}"><img class="header-banner" style="border-radius:{{ HEADERBANNER_CORNER }}px; width:{{ HEADERBANNER_SIZE }}px;" src="{{ HEADERBANNER }}" alt="{{ lang('INDEX') }}" ></a>
+</div>
+{% if HEADERBANNER_MOBILE %}
+<div class="mobile-header-banner">
+	<a href="{% if U_SITE_HOME %}{{ U_SITE_HOME }}{% else %}{{ U_INDEX }}{% endif %}" title="{% if U_SITE_HOME %}{{ lang('SITE_HOME') }}{% else %}{{ lang('INDEX') }}{% endif %}"><img class="mobile-header-banner" style="width:{{ HEADERBANNER_RESPONSIVE_SIZE }}px;" src="{{ HEADERBANNER_RESPONSIVE }}" alt="{{ lang('INDEX') }}" ></a>
+</div>
+{% endif %}
+</div>
+{% endif %}

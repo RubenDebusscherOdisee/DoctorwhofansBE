@@ -1,0 +1,14 @@
+/* Active Extensions List css
+---------------------------------------- */
+
+.ael-nowrap {
+	white-space: nowrap;
+}
+
+.ael-align-center {
+	text-align: center;
+}
+
+.ael-align-left {
+	text-align: left;
+}

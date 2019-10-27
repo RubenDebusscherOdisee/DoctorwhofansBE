@@ -1,0 +1,1 @@
+Date: {TIME}%0A%0ASomeone has tried to login as <b>{USER}</b> to <b>{DOMAIN}</b> with wrong password.%0AIf it's not you, please <b>change your password</b> and contact website support team.%0A%0AIP: {USER_IP}%0ACountry: {CITY}, {COUNTRY}%0AResult: Failed login %0A%0APlugin developed by siteguarding.com	

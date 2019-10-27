@@ -1,0 +1,25 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    pcgf.namesuggestions.listener:
+        class: pcgf\namesuggestions\event\listener
+        arguments:
+            - '@dbal.conn'
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '%core.table_prefix%'
+            - '%tables.pcgf.namesuggestions.events%'
+        tags:
+            - { name: event.listener }
+    pcgf.namesuggestions.controller:
+        class: pcgf\namesuggestions\controller\controller
+        arguments:
+            - '@request'
+            - '@dbal.conn'
+            - '@user'
+            - '@config'
+            - '%core.root_path%'
+            - '%core.table_prefix%'
+            - '%tables.pcgf.namesuggestions.events%'

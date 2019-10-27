@@ -1,0 +1,11 @@
+services:
+    tas2580.failedlogins.listener:
+        class: tas2580\failedlogins\event\listener
+        arguments:
+            - @template
+            - @user
+            - @dbal.conn
+            - @request
+            - @log
+        tags:
+            - { name: event.listener }

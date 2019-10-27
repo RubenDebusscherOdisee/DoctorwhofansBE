@@ -1,0 +1,32 @@
+{
+    "name": "galandas/searchindex",
+    "type": "phpbb-extension",
+    "description": "This Extension only allows administrators to see the recent research on the index that have been made by users, and yourself.",
+    "homepage": "http://phpbb3world.altervista.org",
+    "version": "1.0.1",
+    "time": "2017-04-22",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Galandas",
+            "email": "manzarek@live.it",
+            "homepage": "http://phpbb3world.altervista.org",
+            "role": "Amateur Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3,<5.4",
+        "phpbb/phpbb": ">=3.1,>=3.2,<3.3"
+    },
+    "extra": {
+        "display-name": "Recent searches on index",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1,>=3.2,<3.3"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/recent_searches_on_index",
+            "filename": "version_check"
+        }
+    }
+}

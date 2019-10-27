@@ -1,0 +1,17 @@
+rmcgirr83_nationalflags_display:
+    path: /flags
+    defaults: { _controller: rmcgirr83.nationalflags.main.controller:displayFlags }
+
+rmcgirr83_nationalflags_getflag:
+    pattern: /flag/{flag_id}
+    defaults: { _controller: rmcgirr83.nationalflags.nationalflags:getFlag }
+
+rmcgirr83_nationalflags_getflags:
+    path: /flags/{flag_id}
+    defaults: { _controller: rmcgirr83.nationalflags.main.controller:getFlags, page: 1}
+
+rmcgirr83_nationalflags_getflags_page:
+    path: /flags/{flag_id}/page/{page}
+    defaults: { _controller: rmcgirr83.nationalflags.main.controller:getFlags}
+    requirements:
+        page: \d+

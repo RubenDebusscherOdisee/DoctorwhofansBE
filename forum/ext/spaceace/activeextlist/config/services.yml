@@ -1,0 +1,21 @@
+services:
+    spaceace.activeextlist.controller:
+        class: spaceace\activeextlist\controller\controller
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@ext.manager'
+    spaceace.activeextlist.listener:
+        class: spaceace\activeextlist\event\listener
+        arguments:
+            - '@auth'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

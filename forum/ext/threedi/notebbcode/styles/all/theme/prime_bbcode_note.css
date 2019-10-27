@@ -1,0 +1,80 @@
+#info_note {
+	position:absolute;
+	display: none;
+	z-index: 100;
+	max-width: auto;
+	padding: 0 2px 5px 5px;
+	margin: 30px;
+	box-shadow: 1px 2px 3px 4px grey;
+	background-color: Window;
+	border-radius: 1%;
+}
+
+#info_note td {
+	font-size: 1em;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	text-align: left;
+	padding: 5px;
+}
+
+#info_note table {
+	background-color: #E9EEF3;
+	padding: 5px 5px;
+	border-radius: 1%;
+}
+
+#info_note img {
+	max-width: 100%;
+}
+
+#info_note .min-width {
+	width: auto;
+	height: 1px;
+	overflow: hidden;
+	margin-top: -1px;
+}
+
+#note-close {
+	cursor: pointer;
+	display: block;
+	width: 11px;
+	height: 11px;
+	background: url("./images/prime_bbcode_note_close.gif") no-repeat top right;
+	background-position: 0 -11px;
+	position: absolute;
+	top: -5px;
+	left: 0px;
+}
+
+#note-close:hover {
+	background-position: 0 0px;
+}
+
+#note-lock {
+	display: none;
+	position: absolute;
+	white-space: nowrap;
+	top:-20px;
+	color: WindowText; 
+	background-color: Window;
+	border: 1px solid WindowText;
+	padding: 2px 2px;
+}
+
+.prime_bbcode_note {
+	display: none;
+}
+
+.prime_bbcode_note_text {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.prime_bbcode_note_spur {
+	cursor: pointer;
+	display: inline-block;
+	width: 18px; /* width of the icon, plus padding */
+	height: 14px;  /* height of the icon */
+	vertical-align: top;
+	background: url("./images/prime_bbcode_note.gif") no-repeat top right;
+}

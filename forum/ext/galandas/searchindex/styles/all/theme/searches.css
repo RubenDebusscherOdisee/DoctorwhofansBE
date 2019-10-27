@@ -1,0 +1,13 @@
+/**
+ *
+ * Recent searches on index. An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2017, Galandas, http://phpbb3world.altervista.org
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
+
+.list-recentsearch {
+    padding-left: 5px;
+    padding-top: 2px;
+}

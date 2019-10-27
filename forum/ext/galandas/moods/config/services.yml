@@ -1,0 +1,15 @@
+imports:
+    - { resource: moodimage.yml }
+
+services:
+    galandas.moods.listener:
+        class: galandas\moods\event\listener
+        arguments:
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%galandas.moods.imagepath%'            
+        tags:
+            - { name: event.listener }

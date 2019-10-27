@@ -1,0 +1,39 @@
+{
+    "name": "sitesplat/regmailsub",
+    "type": "phpbb-extension",
+    "description": "Allows users to subscribe to admin emails during registration process. Subscription is disabled by default.",
+    "homepage": "http://sitesplat.com",
+    "version": "1.0.0",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "ucp",
+        "privacy",
+        "sitesplat",
+        "users"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "ThemeSplat (SiteSplat)",
+            "email": "info@sitesplat.com",
+            "homepage": "http://www.sitesplat.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.1.4,<3.3.0@dev"
+    },
+    "extra": {
+        "display-name": "Registration email subscription",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.4,<3.3.0@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/opt_in_out_e_mails_on_registration",
+            "filename": "version_check"
+        }
+    }
+}

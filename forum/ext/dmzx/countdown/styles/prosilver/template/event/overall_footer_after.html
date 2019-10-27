@@ -1,0 +1,25 @@
+<!-- INCLUDEJS jquery.jcountdown.min.js -->
+<!-- IF COUNTDOWN_ENABLE -->
+<script type="text/javascript">
+// ]]>&lt;![CDATA[<![CDATA[
+$(document).ready(function(){
+	$("#time").countdown({
+		date: "{COUNTDOWN_DATE}",
+		onComplete: function( event ) {
+
+			$(this).html("{COUNTDOWN_COMPLETE}");
+		},
+		leadingZero: false,
+		<!-- IF COUNTDOWN_OFFSET_ENABLE -->
+		offset: {COUNTDOWN_OFFSET},
+		<!-- ENDIF -->
+		<!-- IF COUNTDOWN_YEAR or COUNTDOWN_MONTH -->
+		yearsAndMonths: true,
+		<!-- ENDIF -->
+		htmlTemplate: "<span class='cd-time'>{COUNTDOWN_TEXT}</span><!-- IF COUNTDOWN_YEAR and COUNTDOWN_MONTH --> %y <span class=\"cd-time\">{LA_COUNT_YEARS}</span><!-- ENDIF --><!-- IF COUNTDOWN_YEAR or COUNTDOWN_MONTH --> %m <span class=\"cd-time\">{LA_COUNT_MONTHS}</span><!-- ENDIF -->	%d <span class=\"cd-time\">{LA_COUNT_DAYS}</span> %h <span class=\"cd-time\">{LA_COUNT_HOURS}</span> %i <span class=\"cd-time\">{LA_COUNT_MINUTES}</span> %s <span class=\"cd-time\">{LA_COUNT_SECONDS}</span>",
+		direction: "<!-- IF COUNTDOWN_DIRECTION -->down<!-- ELSE -->up<!-- ENDIF -->"
+	});
+});
+// ]]>]]&gt;<![CDATA[
+</script>
+<!-- ENDIF -->

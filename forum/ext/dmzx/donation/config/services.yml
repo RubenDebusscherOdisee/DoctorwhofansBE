@@ -1,0 +1,32 @@
+services:
+    dmzx.donation.controller:
+        class: dmzx\donation\controller\donation
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '@request'
+            - '@config_text'
+    dmzx.donation.admin.controller:
+        class: dmzx\donation\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@dbal.conn'
+            - '@request'
+            - '@config_text'
+    dmzx.donation.listener:
+        class: dmzx\donation\event\listener
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '@?files.factory'
+        tags:
+            - { name: event.listener }

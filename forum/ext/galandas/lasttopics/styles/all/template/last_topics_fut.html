@@ -1,0 +1,13 @@
+<div class="stat-block statistics" id="last-topics">
+<h3>{L_LAST_TITLETEXT}</h3>
+<ul id="vertical-ticker">
+<!-- BEGIN last_topic -->
+<li>{L_POST_BY_AUTHOR} <a style="font-weight:bold; color: #{last_topic.TOPIC_LAST_POSTER_COLOUR};" href="{last_topic.USERNAME_LAST}"> <img src="{BOARD_URL}ext/galandas/lasttopics/styles/all/theme/images/icon_profile.png" height="20" width="20" title="{last_topic.TOPIC_LAST_POSTER_NAME}" alt="" /> {last_topic.TOPIC_LAST_POSTER_NAME}</a> <i class="fa fa-clock-o"></i> {last_topic.TOPIC_LAST_POST_TIME}&nbsp;<a href="{last_topic.LAST_LINK}" title="{last_topic.TOPIC_TITLE}"><span style="color: #BF0000">{last_topic.TOPIC_TITLE}</span></a> <a href="{last_topic.U_LAST_TOPIC}" title="{L_VIEW_LATEST_POST}"><i class="icon fa-external-link-square fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">{L_VIEW_LATEST_POST}</span></a> {L_REPLIES}&nbsp;{last_topic.TOPIC_REPLIES}&nbsp;{L_VIEWS} {last_topic.TOPIC_VIEWS}</li>
+<!-- END last_topic -->
+</ul>
+<!-- IF LASTAT_NAVIGATION -->
+<div id="jsdisplay_buttons_fut">
+<a href="#" title="{L_PREVIOUS_SCROLL}" id="ticker-previous"><img src="{BOARD_URL}ext/galandas/lasttopics/styles/all/theme/images/rewind.png" width="12" height="12" alt="{L_PREVIOUS_SCROLL}" /></a> <a href="#" title="{L_NEXT_SCROLL}" id="ticker-next"><img src="{BOARD_URL}ext/galandas/lasttopics/styles/all/theme/images/fastforward.png" width="12" height="12" alt="{L_NEXT_SCROLL}" /></a> <a href="#" title="{L_STOP_SCROLL}" id="stop"><img src="{BOARD_URL}ext/galandas/lasttopics/styles/all/theme/images/control_stop.png" width="12" height="12" alt="{L_STOP_SCROLL}" /></a> <a href="#" title="{L_START_SCROLL}" id="start"><img src="{BOARD_URL}ext/galandas/lasttopics/styles/all/theme/images/control_play.png" width="12" height="12" alt="{L_START_SCROLL}" /></a>
+</div>
+<!-- ENDIF -->
+</div>

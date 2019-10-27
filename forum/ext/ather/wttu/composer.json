@@ -1,0 +1,29 @@
+{
+    "name": "ather/wttu",
+    "type": "phpbb-extension",
+    "description": "Displays Direct Link, BBCODE and HTML format links for the topic (not post) at the bottom of the page, Complete control from ACP",
+    "homepage": "http://ather.xyz",
+    "version": "1.0.0",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Ather",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.0-RC2,<3.2@dev"
+    },
+    "extra": {
+        "display-name": "Was This Topic Useful?",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.0-RC2,<3.2.*@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/was_this_topic_useful",
+            "filename": "version_check"
+        }
+    }
+}

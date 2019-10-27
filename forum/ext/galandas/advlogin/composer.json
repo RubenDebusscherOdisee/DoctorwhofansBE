@@ -1,0 +1,32 @@
+{
+    "name": "galandas/advlogin",
+    "type": "phpbb-extension",
+    "description": "This extension, will make sure that those who access the forum, see a popup with a beautiful image that invites guest you to join, or if you already have an account to log in.",
+    "homepage": "http://phpbb3world.altervista.org",
+    "version": "1.0.6",
+    "time": "2016-11-22",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Galandas",
+            "email": "manzarek@live.it",
+            "homepage": "http://phpbb3world.altervista.org",
+            "role": "Amateur Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": "3.1.*"
+    },
+    "extra": {
+        "display-name": "Advanced login",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1,<3.2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/advanced_login",
+            "filename": "version_check"
+        }
+    }
+}

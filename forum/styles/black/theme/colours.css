@@ -1,0 +1,1164 @@
+/*
+--------------------------------------------------------------
+Colours and backgrounds for common.css
+-------------------------------------------------------------- */
+
+html, body {
+	color: #bbb;
+	background-color: #181818;
+}
+
+h1 {
+	color: #FFFFFF;
+}
+
+h2 {
+	color: #4398ef;
+}
+
+h3 {
+	color: #347fcb;
+}
+
+hr {
+	border-color: #FFFFFF;
+	border-top-color: #CCCCCC;
+}
+
+/*
+--------------------------------------------------------------
+Colours and backgrounds for links.css
+-------------------------------------------------------------- */
+
+a { color: #4398ef; }
+a:hover { color: #F04343; }
+
+/* Links on gradient backgrounds */
+.forumbg .header a, .forabg .header a, th a {
+	color: #FFFFFF;
+}
+
+.forumbg .header a:hover, .forabg .header a:hover, th a:hover {
+	color: #D1D8E0;
+}
+
+/* Notification mark read link */
+.dropdown-extended a.mark_read {
+	background-color: #FFFFFF;
+}
+
+/* Post body links */
+/*.postlink {
+	border-bottom-color: #368AD2;
+	color: #368AD2;
+}
+
+.postlink:visited {
+	border-bottom-color: #5D8FBD;
+	color: #5D8FBD;
+}*/
+
+.postlink:hover {
+	text-decoration: underline;
+	color: #F04343;
+}
+
+.signature a, .signature a:hover {
+	background-color: transparent;
+}
+
+/* Back to top of page */
+.top i {
+	color: #A2A2A2;
+}
+
+/* Arrow links  */
+.arrow-left:hover, .arrow-right:hover {
+	color: #F04343;
+}
+
+/* Round cornered boxes and backgrounds
+---------------------------------------- */
+#body-wrapper {
+	background: #1a3a5c url("./images/pattern.png");
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.25) 0%, transparent 400px), #1a3a5c url("./images/pattern.png");
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, transparent 400px), #1a3a5c url("./images/pattern.png");
+    border-bottom-color: rgba(16, 101, 188, 0.2)
+}
+
+
+.wrap {
+	background-color: #181818;
+	border-color: #181818;
+}
+
+.headerbar {
+	color: #FFFFFF;
+}
+
+/*.forumbg {
+	background-color: #12A3EB;
+	background-image: -webkit-linear-gradient(top, #6ACEFF 0%, #0076B1 2px, #12A3EB 92px, #12A3EB 100%);
+	background-image: linear-gradient(to bottom, #6ACEFF 0%,#0076B1 2px,#12A3EB 92px,#12A3EB 100%);
+	background-repeat: repeat-x;
+}
+
+.forabg {
+	background-color: #0076B1;
+	background-image: -webkit-linear-gradient(top, #6ACEFF 0%, #12A3EB 2px, #0076B1 92px, #0076B1 100%);
+	background-image: linear-gradient(to bottom, #6ACEFF 0%,#12A3EB 2px,#0076B1 92px,#0076B1 100%);
+	background-repeat: repeat-x;
+}*/
+
+.navbar {
+	background: #383838;
+	border: 0 solid #202020;
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0, transparent 100%);
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0, transparent 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#30000000, endColorstr=#00000000);
+}
+
+.panel {
+	background-color: #ECF1F3;
+	color: #28313F;
+}
+
+.post:target .content {
+	color: #ffffff;
+}
+
+.post:target h3 a {
+	color: #ffffff;
+}
+
+.bg1 {
+	background-color: #383838;
+}
+
+table.zebra-list tr:nth-child(odd) td, ul.zebra-list li:nth-child(odd) {
+	background-color: #343434;
+}
+
+.bg2 {
+	background-color: #343434;
+}
+
+table.zebra-list tr:nth-child(even) td, ul.zebra-list li:nth-child(even) {
+	background-color: #343434;
+}
+
+.bg3 {
+	background-color: #000000;
+}
+
+.ucprowbg {
+	background-color: #DCDEE2;
+}
+
+.fieldsbg {
+	background-color: #E7E8EA;
+}
+
+.site_logo {
+	background-image: url("./images/gallifreyan.png");
+	background-repeat:no-repeat;
+	background-size:contain;
+	margin-top:0.5em;
+}
+
+/* Horizontal lists
+----------------------------------------*/
+
+ul.navlinks {
+	border-top: 1px solid transparent;
+}
+
+/* Table styles
+----------------------------------------*/
+table.table1 thead th {
+	background: #1a3f66 linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0px, rgba(255, 255, 255, 0) 100%) repeat scroll 0 0;
+	border: 0 solid #1a3f66;
+	box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+	color: #ffffff;
+	text-transform: none;
+	line-height: 1.4;
+	font-weight: normal;
+	font-size: inherit;
+	padding: 4px;
+}
+
+table.table1 tbody tr {
+	border-color: #1f1f1f;
+}
+
+table.table1 tbody tr:hover, table.table1 tbody tr.hover {
+	background-color: #303030;
+	color: #000;
+}
+
+table.table1 td {
+	color: #bbb;
+}
+
+table.table1 tbody td {
+	border-top-color: #1f1f1f;
+}
+
+table.table1 tbody th {
+	border-bottom-color: #1f1f1f;
+	color: #FFF;
+	background-color: #181818;
+}
+
+table.info tbody th {
+	color: #FFF;
+}
+
+/* Misc layout styles
+---------------------------------------- */
+dl.details dt {
+	color: #fff;
+}
+
+dl.details dd {
+	color: #5798db;
+}
+
+.sep {
+	color: #4398ef;
+}
+
+/* Icon styles
+---------------------------------------- */
+.icon.icon-blue, a:hover .icon.icon-blue {
+	color: #196db5;
+}
+
+.icon.icon-green, a:hover .icon.icon-green{
+	color: #1b9A1B;
+}
+
+.icon.icon-red, a:hover .icon.icon-red{
+	color: #BC2A4D;
+}
+
+.icon.icon-orange, a:hover .icon.icon-orange{
+	color: #FF6600;
+}
+
+.icon.icon-bluegray, a:hover .icon.icon-bluegray{
+	color: #536482;
+}
+
+.icon.icon-gray, a:hover .icon.icon-gray{
+	color: #777777;
+}
+
+.icon.icon-lightgray, a:hover .icon.icon-lightgray{
+	color: #999999;
+}
+
+.icon.icon-black, a:hover .icon.icon-black{
+	color: #333333;
+}
+
+.icon.icon-white, a:hover .icon.icon-white{
+	color: #FFFFFF;
+}
+
+.alert_close .icon:before {
+	background-color: #FFFFFF;
+}
+
+/* Jumpbox */
+.jumpbox .dropdown li {
+	border-top-color: #000000;
+}
+
+.jumpbox-cat-link {
+	background-color: #000000;
+	border-top-color: #383838;
+	color: #FFFFFF;
+}
+
+.jumpbox-cat-link:hover {
+	background-color: #000000;
+	border-top-color: #383838;
+	color: #FFFFFF;
+}
+
+.jumpbox-forum-link {
+	background-color: #383838;
+}
+
+.jumpbox-forum-link:hover {
+	background-color: #383838;
+}
+
+.jumpbox .dropdown .pointer-inner {
+	border-color: #383838 transparent;
+}
+
+.jumpbox-sub-link {
+	background-color: #383838;
+}
+
+.jumpbox-sub-link:hover {
+	background-color: #383838;
+}
+
+/* Miscellaneous styles
+---------------------------------------- */
+
+.copyright {
+	color: #A2A2A2;
+}
+
+.error {
+	color: #f47272;
+}
+
+.reported {
+	background-color: #403030;
+}
+
+li.reported {
+	background-color: #403030 !important;
+}
+.sticky, .announce {
+	/* you can add a background for stickies and announcements*/
+}
+
+div.rules {
+	background-color: #2e2121;
+	color: #f47272;
+}
+
+p.post-notice {
+	background-color: #4a3d3d;
+	background-image: none;
+	color: #f47272;
+}
+
+/*
+--------------------------------------------------------------
+Colours and backgrounds for content.css
+-------------------------------------------------------------- */
+
+ul.topiclist li {
+	color: #bbb;
+}
+
+ul.topiclist dd {
+	border-left-color: #1f1f1f;
+}
+
+.rtl ul.topiclist dd {
+	border-right-color: #1f1f1f;
+	border-left-color: transparent;
+}
+
+li.row {
+	border-top-color:  #FFFFFF;
+	border-bottom-color: #00608F;
+}
+
+li.row strong {
+	color: #FFFFFF;
+}
+
+li.row:hover {
+	background-color: #343434;
+}
+
+li.header dt, li.header dd {
+	color: #FFFFFF;
+}
+
+/* Post body styles
+----------------------------------------*/
+.postbody {
+	color: #bbb;
+}
+
+/* Content container styles
+----------------------------------------*/
+.content {
+	color: #BBB;
+}
+
+.content h2, .panel h2 {
+	color: #85b2e0;
+	border-bottom-color: transparent;
+}
+
+dl.faq dt {
+	color: #bbb;
+}
+
+.posthilit {
+	background-color: #F3BFCC;
+	color: #BC2A4D;
+}
+
+.announce, .unreadpost {
+	/* Highlight the announcements & unread posts box */
+}
+
+/* Post signature */
+.signature {
+	border-top-color: #CCCCCC;
+}
+
+/* Post noticies */
+.notice {
+	border-top-color:  #CCCCCC;
+}
+
+/* BB Code styles
+----------------------------------------*/
+/* Quote block */
+blockquote {
+	background-color: #181818;
+	border-color: #222;
+	color: #a2a2a2;
+}
+
+blockquote blockquote {
+	/* Nested quotes */
+	background-color: #282828;
+}
+
+blockquote blockquote blockquote {
+	/* Nested quotes */
+	background-color: #181818;
+}
+
+/* Code block */
+.codebox {
+	background-color: #282828;
+	border-color: #222;
+}
+
+.codebox p {
+	border-bottom-color: #252525;
+}
+
+.codebox code {
+	color: #43ef5a;
+}
+
+/* Attachments
+----------------------------------------*/
+.attachbox {
+	background-color: #181818;
+	border-color:  #222;
+}
+
+.pm-message .attachbox {
+	background-color: #F2F3F3;
+}
+
+.attachbox dd {
+	border-top-color: #222;
+}
+
+.attachbox p {
+	color: #666666;
+}
+
+.attachbox p.stats {
+	color: #666666;
+}
+
+.attach-image img {
+	border-color: #999999;
+}
+
+/* Inline image thumbnails */
+
+dl.file dd {
+	color: #666666;
+}
+
+dl.thumbnail img {
+	border-color: #666666;
+	background-color: #FFFFFF;
+}
+
+dl.thumbnail dd {
+	color: #666666;
+}
+
+dl.thumbnail dt a:hover {
+	background-color: #EEEEEE;
+}
+
+dl.thumbnail dt a:hover img {
+	border-color: #368AD2;
+}
+
+/* Post poll styles
+----------------------------------------*/
+
+fieldset.polls dl {
+	border-bottom-color: #1f1f1f;
+	border-top-color: #454545;
+	color: #bbb;
+}
+
+fieldset.polls dl.voted {
+	color: #FFFFFF;
+}
+
+fieldset.polls dd div {
+	color: #FFFFFF;
+}
+
+.rtl .pollbar1, .rtl .pollbar2, .rtl .pollbar3, .rtl .pollbar4, .rtl .pollbar5 {
+	border-right-color: transparent;
+}
+
+.pollbar1 {
+	background-color: #8b2828;
+}
+
+.pollbar2 {
+	background-color: #902424;
+}
+
+.pollbar3 {
+	background-color: #941f1f;
+}
+
+.pollbar4 {
+	background-color: #9d1616;
+}
+
+.pollbar5 {
+	background-color: #a60d0d
+}
+
+.pollbar1, .pollbar2, .pollbar3, .pollbar4, .pollbar5 {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Poster profile block
+----------------------------------------*/
+.postprofile {
+	color: #bbb;
+	border-color: #1f1f1f;
+}
+
+.pm .postprofile {
+	border-color: #343434;
+	color: #bbb;
+}
+
+.postprofile strong {
+	color: #fff;
+}
+
+dd.profile-warnings {
+	color: #BC2A4D;
+}
+
+/*
+--------------------------------------------------------------
+Colours and backgrounds for buttons.css
+-------------------------------------------------------------- */
+.button {
+	border-color: #1a3f66;
+	background-color: #1a3f66;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#1AFFFFFF, endColorstr=#00FFFFFF);
+	color: #e2effc;
+	box-shadow: none;
+	font-weight: 600;
+}
+
+.button:hover,
+.button:focus {
+	border-color: #991b1b !important;
+	background-color: #991b1b;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#26FFFFFF, endColorstr=#00FFFFFF);
+	color: #fff;
+	font-weight: 600;
+}
+
+
+.button .icon,
+.button-secondary {
+	color: #FFFFFF;
+}
+
+.button-secondary:focus,
+.button-secondary:hover,
+.button:focus .icon,
+.button:hover .icon {
+	color: #FFFFFF;
+}
+
+.button-search:hover,
+.button-search-end:hover {
+	border-color: #C7C3BF;
+}
+
+.caret	{ border-color: #DADADA; }
+.caret	{ border-color: #C7C3BF; }
+
+.contact-icons a		{ border-color: #DCDCDC; }
+/*.contact-icons a:hover	{ background-color: #F2F6F9; }*/
+
+/* Pagination
+---------------------------------------- */
+
+.pagination li a {
+	background: #383838;
+	filter: none;
+	border-color: #1f1f1f;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	color: #4398ef;
+}
+
+.pagination li.ellipsis span {
+	background: transparent;
+	color:	#fff;
+}
+
+.pagination li.active span {
+	color: #fff;
+	background-color: #4398ef;
+	border-color: #4398ef;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.pagination li a:hover, .pagination li a:hover .icon, .pagination .dropdown-visible a.dropdown-trigger, .nojs .pagination .dropdown-container:hover a.dropdown-trigger {
+	border-color: #f04343;
+	background-color: #f04343;
+	color: #fff;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Search box
+--------------------------------------------- */
+
+.search-box .inputbox,
+.search-box .inputbox:hover,
+.search-box .inputbox:focus {
+	border-color: #C7C3BF;
+}
+
+/* Icon images
+---------------------------------------- */
+
+.contact-icon						{ background-image: url("./images/icons_contact.png"); }
+
+/* Profile & navigation icons */
+.pm-icon							{ background-position: 0 0; }
+.email-icon							{ background-position: -21px 0; }
+.jabber-icon						{ background-position: -80px 0; }
+.phpbb_icq-icon						{ background-position: -61px 0 ; }
+.phpbb_wlm-icon						{ background-position: -182px 0; }
+.phpbb_aol-icon						{ background-position: -244px 0; }
+.phpbb_website-icon					{ background-position: -40px 0; }
+.phpbb_youtube-icon					{ background-position: -98px 0; }
+.phpbb_facebook-icon				{ background-position: -119px 0; }
+.phpbb_googleplus-icon				{ background-position: -140px 0; }
+.phpbb_skype-icon					{ background-position: -161px 0; }
+.phpbb_twitter-icon					{ background-position: -203px 0; }
+.phpbb_yahoo-icon					{ background-position: -224px 0; }
+
+/* Forum icons & Topic icons */
+.global_read						{ background-image: url("./images/announce_read.png"); }
+.global_read_mine					{ background-image: url("./images/announce_read.png"); }
+.global_read_locked					{ background-image: url("./images/announce_read_locked.png"); }
+.global_read_locked_mine			{ background-image: url("./images/announce_read_locked.png"); }
+.global_unread						{ background-image: url("./images/announce_unread.png"); }
+.global_unread_mine					{ background-image: url("./images/announce_unread.png"); }
+.global_unread_locked				{ background-image: url("./images/announce_unread_locked.png"); }
+.global_unread_locked_mine			{ background-image: url("./images/announce_unread_locked.png"); }
+
+.announce_read						{ background-image: url("./images/announce_read.png"); }
+.announce_read_mine					{ background-image: url("./images/announce_read.png"); }
+.announce_read_locked				{ background-image: url("./images/announce_read_locked.png"); }
+.announce_read_locked_mine			{ background-image: url("./images/announce_read_locked.png"); }
+.announce_unread					{ background-image: url("./images/announce_unread.png"); }
+.announce_unread_mine				{ background-image: url("./images/announce_unread.png"); }
+.announce_unread_locked				{ background-image: url("./images/announce_unread_locked.png"); }
+.announce_unread_locked_mine		{ background-image: url("./images/announce_unread_locked.png"); }
+
+.forum_link							{ background-image: url("./images/forum_link.png"); }
+.forum_read							{ background-image: url("./images/forum_read.png"); }
+.forum_read_locked					{ background-image: url("./images/forum_read_locked.png"); }
+.forum_read_subforum				{ background-image: url("./images/forum_read_subforum.png"); }
+.forum_unread						{ background-image: url("./images/forum_unread.png"); }
+.forum_unread_locked				{ background-image: url("./images/forum_unread_locked.png"); }
+.forum_unread_subforum				{ background-image: url("./images/forum_unread_subforum.png"); }
+
+.sticky_read						{ background-image: url("./images/announce_read.png"); }
+.sticky_read_mine					{ background-image: url("./images/announce_read.png"); }
+.sticky_read_locked					{ background-image: url("./images/announce_read_locked.png"); }
+.sticky_read_locked_mine			{ background-image: url("./images/announce_read_locked.png"); }
+.sticky_unread						{ background-image: url("./images/announce_unread.png"); }
+.sticky_unread_mine					{ background-image: url("./images/announce_unread.png"); }
+.sticky_unread_locked				{ background-image: url("./images/announce_unread_locked.png"); }
+.sticky_unread_locked_mine			{ background-image: url("./images/announce_unread_locked.png"); }
+
+.topic_moved						{ background-image: url("./images/topic_moved.png"); }
+.pm_read,
+.topic_read							{ background-image: url("./images/topic_read.png"); }
+.topic_read_mine					{ background-image: url("./images/topic_read_mine.png"); }
+.topic_read_hot						{ background-image: url("./images/topic_read_hot.png"); }
+.topic_read_hot_mine				{ background-image: url("./images/topic_read_hot_mine.png"); }
+.topic_read_locked					{ background-image: url("./images/topic_read_locked.png"); }
+.topic_read_locked_mine				{ background-image: url("./images/topic_read_locked_mine.png"); }
+.pm_unread,
+.topic_unread						{ background-image: url("./images/topic_unread.png"); }
+.topic_unread_mine					{ background-image: url("./images/topic_unread_mine.png"); }
+.topic_unread_hot					{ background-image: url("./images/topic_unread_hot.png"); }
+.topic_unread_hot_mine				{ background-image: url("./images/topic_unread_hot_mine.png"); }
+.topic_unread_locked				{ background-image: url("./images/topic_unread_locked.png"); }
+.topic_unread_locked_mine			{ background-image: url("./images/topic_unread_locked_mine.png"); }
+
+
+/*
+--------------------------------------------------------------
+Colours and backgrounds for cp.css
+-------------------------------------------------------------- */
+
+/* Main CP box
+----------------------------------------*/
+
+.panel-container h3, .panel-container hr, .cp-menu hr {
+	border-color: #A4B3BF;
+}
+
+.panel-container .panel li.row {
+	border-bottom: 1px solid transparent;
+	border-top: 1px solid transparent;
+}
+
+ul.cplist {
+	border-top: 1px solid transparent;
+}
+
+.panel-container .panel li.header dd, .panel-container .panel li.header dt {
+	color: #FFFFFF;
+}
+
+.panel-container table.table1 thead th {
+	color: #bbb;
+	border-bottom-color: #1f1f1f;
+}
+
+.cp-main .pm-message {
+	border-color: #DBDEE2;
+	background-color: #FFFFFF;
+}
+
+/* CP tabbed menu
+----------------------------------------*/
+.tabs .tab > a {
+	background: #383838;
+	color: #5798db;
+}
+
+.tabs .tab > a:hover {
+	background: #303030;
+	color: #f04343;
+}
+
+.tabs .activetab > a,
+.tabs .activetab > a:hover {
+	background: #303030;
+	background: -webkit-linear-gradient(top, #383838 0%, #303030 100%);
+	background: linear-gradient(to bottom, #383838 0%, #303030 100%);
+	box-shadow: 0 10px 10px -10px #303030;
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FF383838', endColorstr='#FF303030', GradientType=0);
+	border-color: #303030;
+	color: #adadad;
+}
+
+.tabs .activetab > a:hover {
+	color: #adadad;
+}
+
+/* Mini tabbed menu used in MCP
+----------------------------------------*/
+.minitabs .tab > a {
+	background-color: #E1EBF2;
+}
+
+.minitabs .activetab > a,
+.minitabs .activetab > a:hover {
+	background-color: #F9F9F9;
+	color: #333333;
+}
+
+/* Responsive tabs
+----------------------------------------*/
+.responsive-tab .responsive-tab-link:before {
+	border-color: #536482;
+}
+
+.responsive-tab .responsive-tab-link:hover:before {
+	border-color: #D31141;
+}
+
+/* UCP navigation menu
+----------------------------------------*/
+
+/* Link styles for the sub-section links */
+.navigation a {
+	color: #bbb;
+    background: #212121;
+}
+
+.rtl .navigation a {
+	background: #383838; /* Old browsers */ /* FF3.6+ */
+	background: -webkit-linear-gradient(left, #CADCEB 50%, #383838 100%);
+	background: linear-gradient(to right, #CADCEB 50%,#383838 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CADCEB', endColorstr='#383838',GradientType=1 ); /* IE6-9 */
+}
+
+.navigation a:hover {
+	background-color: #991b1b;
+    color: #fff;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.1) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#18FFFFFF);
+}
+
+.navigation .active-subsection a {
+	background: #1a3f66;
+    color: #fff;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#1AFFFFFF, endColorstr=#00FFFFFF);
+}
+
+.navigation .active-subsection a:hover {
+	background-color: #991b1b;
+    color: #fff;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.1) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#18FFFFFF);
+}
+
+/*@media only screen and (max-width: 900px), only screen and (max-device-width: 900px)
+{
+	#navigation a, .rtl #navigation a {
+		background: #B2C2CF;
+	}
+}*/
+
+/* Preferences pane layout
+----------------------------------------*/
+.panel-container h2 {
+	color: #bbb;
+}
+
+.panel-container .panel {
+	background-color: #212121;
+}
+
+.cp-main .pm {
+	background-color: #212121;
+}
+
+/* Friends list */
+.cp-mini {
+	background-color: #212121;
+}
+
+dl.mini dt {
+	color: #bbb;
+}
+
+/* PM Styles
+----------------------------------------*/
+/* PM Message history */
+.current {
+	color: #FFFFFF !important;
+}
+
+/* PM marking colours */
+.pmlist li.pm_message_reported_colour, .pm_message_reported_colour {
+	border-left-color: #BC2A4D;
+	border-right-color: #BC2A4D;
+}
+
+.pmlist li.pm_marked_colour, .pm_marked_colour {
+	border-color: #FF6600;
+}
+
+.pmlist li.pm_replied_colour, .pm_replied_colour {
+	border-color: #A9B8C2;
+}
+
+.pmlist li.pm_friend_colour, .pm_friend_colour {
+	border-color: #5D8FBD;
+}
+
+.pmlist li.pm_foe_colour, .pm_foe_colour {
+	border-color: #000000;
+}
+
+/* Avatar gallery */
+.gallery label {
+	background: #FFFFFF;
+	border-color: #CCC;
+}
+
+.gallery label:hover {
+	background-color: #EEE;
+}
+
+/*
+--------------------------------------------------------------
+Colours and backgrounds for forms.css
+-------------------------------------------------------------- */
+
+/* General form styles
+----------------------------------------*/
+select {
+	border-color: #444;
+	background-color: #000;
+	color: #bbb;
+}
+
+select:hover {
+	border-color: #F04343;
+	background-color: #000;
+	color: #bbb;
+}
+
+label {
+	color: #BBB;
+}
+
+option.disabled-option {
+	color: graytext;
+}
+
+/* Definition list layout for forms
+---------------------------------------- */
+dd label {
+	color: #bbb;
+}
+
+fieldset.fields1 {
+	background-color: transparent;
+}
+
+/* Hover effects */
+fieldset dl:hover dt label {
+	color: #bbb;
+}
+
+fieldset.fields2 dl:hover dt label {
+	color: inherit;
+}
+
+/* Quick-login on index page */
+fieldset.quick-login input.inputbox {
+	background-color: #000000;
+}
+
+/* Posting page styles
+----------------------------------------*/
+
+.message-box textarea {
+	color: #bbb;
+}
+
+.message-box textarea.drag-n-drop {
+	outline-color: rgba(102, 102, 102, 0.5);
+}
+
+.message-box textarea.drag-n-drop-highlight {
+	outline-color: rgba(17, 163, 234, 0.5);
+}
+
+/* Input field styles
+---------------------------------------- */
+.inputbox {
+	background-color: #000;
+	border-color: #444;
+	color: #BBB;
+}
+
+.inputbox:-moz-placeholder {
+	color: #BBB;
+}
+
+.inputbox::-webkit-input-placeholder {
+	color: #BBB;
+}
+
+.inputbox:hover {
+	border-color: #F04343;
+}
+
+.inputbox:focus {
+	border-color: #F04343;
+}
+
+.inputbox:focus:-moz-placeholder {
+	color: transparent;
+}
+
+.inputbox:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+
+/* Form button styles
+---------------------------------------- */
+
+a.button1, input.button1, input.button3, a.button2, input.button2 {
+	color: #bbb;
+	border-color: #1a3f66;
+	background-color: #1a3f66;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#30FFFFFF, endColorstr=#00FFFFFF);
+}
+
+a.button1, input.button1 {
+	background-color: #1f4c7a;
+	border-color: #1f4c7a;
+	color: #fff;
+}
+
+input.button3 {
+	background-image: none;
+	filter: progid: DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+/* Alternative button */
+a.button2, input.button2, input.button3 {
+	border: 1px solid transparent;
+}
+
+/* <a> button in the style of the form buttons */
+a.button1, a.button2 {
+	color: #bbb;
+}
+
+/* Hover states */
+a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
+	background-color: #991b1b;
+	border-color: #991b1b;
+	color: #fff;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#18FFFFFF, endColorstr=#00FFFFFF);
+}
+
+/* Focus states */
+input.button1:focus, input.button2:focus, input.button3:focus {
+	border-color: #5584b5;
+	color: #FFF;
+}
+
+input.disabled {
+	color: #a2a2a2;
+}
+
+/* jQuery popups
+---------------------------------------- */
+.phpbb_alert {
+	background-color: #181818;
+	border-color: #1f1f1f;
+}
+.darken {
+	background-color: #000000;
+}
+
+.loading_indicator {
+	background-color: #000000;
+	background-image: url("./images/loading.gif");
+}
+
+.dropdown-extended ul li {
+	border-top-color: #1f1f1f;
+}
+
+.dropdown-extended ul li:hover {
+	background-color: #343434;
+	color: #fff;
+}
+
+.dropdown-extended .header, .dropdown-extended .footer {
+	border-color: #1f1f1f;
+	color: #fff;
+}
+
+.dropdown-extended .footer {
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+
+.dropdown-extended .header {
+	background-color: #205993;
+	color: #fff;
+}
+
+.dropdown-extended .header .header_settings a {
+	color: #fff;
+}
+
+.dropdown .pointer {
+	border-color: #B9B9B9 transparent;
+}
+
+.dropdown .pointer-inner {
+	border-color: #FFF transparent;
+}
+
+.dropdown-extended .pointer-inner {
+	border-color: #F1F8FF transparent;
+}
+
+.dropdown .dropdown-contents {
+	background: #383838;
+	border-color: #205993;
+	box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-up .dropdown-contents {
+	box-shadow: 1px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown li, .dropdown li li {
+	border-color: #525252;
+}
+
+.dropdown li.separator {
+	border-color: #525252;
+}
+
+/* Notifications
+---------------------------------------- */
+
+.notification_list p.notification-time {
+	color: #ffffff;
+}
+
+li.notification-reported strong, li.notification-disapproved strong {
+	color: #f04343;
+}
+
+.badge {
+	background-color: #f04343;
+	color: #ffffff;
+}

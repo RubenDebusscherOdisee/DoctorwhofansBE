@@ -1,0 +1,34 @@
+{
+    "name": "alex75/blinknewpmandnotify",
+    "type": "phpbb-extension",
+    "description": "In the case of new pm and / or new notifications, highlight the counter, changing it to flashing red",
+    "homepage": "",
+    "version": "1.0.4",
+    "time": "2016-01-09",
+    "keywords": "",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Alessandro DI BENEDETTO",
+            "username": "alex75",
+            "email": "alex@phpbb-store.it",
+            "homepage": "http://phpbb-store.it",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+    },
+    "extra": {
+        "display-name": "Blinking counter, for new pm and new notify",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/blinking_counter,_for_every_new_pm_and_or_new_notify",
+            "filename": "version_check"
+        }
+    }
+}

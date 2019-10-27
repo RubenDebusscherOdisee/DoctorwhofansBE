@@ -1,0 +1,13 @@
+services:
+    primehalo.primeloginreturn.listener:
+        class: primehalo\primeloginreturn\event\listener
+        arguments:
+            - '@config'
+            - '@path_helper'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

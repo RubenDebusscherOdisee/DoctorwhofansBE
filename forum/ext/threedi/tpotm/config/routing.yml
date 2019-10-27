@@ -1,0 +1,3 @@
+threedi_tpotm_controller:
+    path: /tpotm/hall_of_fame
+    defaults: { _controller: threedi.tpotm.controller:handle }
