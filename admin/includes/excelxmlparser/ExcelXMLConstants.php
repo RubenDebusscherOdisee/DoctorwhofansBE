@@ -1,0 +1,65 @@
+<?php
+/**
+ * @package ExcelXMLParser
+ * @subpackage ExcelXMLParser
+ */
+
+/* character encoding constants */
+#-----------------------------------------------------------------------------#
+define('EXCELXML_ENCODING_UCS_4',					'UCS-4');
+define('EXCELXML_ENCODING_UCS_4BE',				'UCS-4BE');
+define('EXCELXML_ENCODING_UCS_4LE',				'UCS-4LE');
+define('EXCELXML_ENCODING_UCS_2',					'UCS-2');
+define('EXCELXML_ENCODING_UCS_2BE',				'UCS-2BE');
+define('EXCELXML_ENCODING_UCS_2LE',				'UCS-2LE');
+define('EXCELXML_ENCODING_UTF_32',				'UTF-32');
+define('EXCELXML_ENCODING_UTF_32BE',				'UTF-32BE');
+define('EXCELXML_ENCODING_UTF_32LE',				'UTF-32LE');
+define('EXCELXML_ENCODING_UTF_16',				'UTF-16');
+define('EXCELXML_ENCODING_UTF_16BE',				'UTF-16BE');
+define('EXCELXML_ENCODING_UTF_16LE',				'UTF-16LE');
+define('EXCELXML_ENCODING_UTF_7',					'UTF-7');
+define('EXCELXML_ENCODING_UTF7_IMAP',				'UTF7-IMAP');
+define('EXCELXML_ENCODING_UTF_8',					'UTF-8');
+define('EXCELXML_ENCODING_ASCII',					'ASCII');
+define('EXCELXML_ENCODING_EUC_JP',				'EUC-JP');
+define('EXCELXML_ENCODING_SJIS',					'SJIS');
+define('EXCELXML_ENCODING_eucJP_win',				'eucJP-win');
+define('EXCELXML_ENCODING_SJIS_win',				'SJIS-win');
+define('EXCELXML_ENCODING_ISO_2022_JP',			'ISO-2022-JP');
+define('EXCELXML_ENCODING_JIS',					'JIS');
+define('EXCELXML_ENCODING_ISO_8859_1',			'ISO-8859-1');
+define('EXCELXML_ENCODING_ISO_8859_2',			'ISO-8859-2');
+define('EXCELXML_ENCODING_ISO_8859_3',			'ISO-8859-3');
+define('EXCELXML_ENCODING_ISO_8859_4',			'ISO-8859-4');
+define('EXCELXML_ENCODING_ISO_8859_5',			'ISO-8859-5');
+define('EXCELXML_ENCODING_ISO_8859_6',			'ISO-8859-6');
+define('EXCELXML_ENCODING_ISO_8859_7',			'ISO-8859-7');
+define('EXCELXML_ENCODING_ISO_8859_8',			'ISO-8859-8');
+define('EXCELXML_ENCODING_ISO_8859_9',			'ISO-8859-9');
+define('EXCELXML_ENCODING_ISO_8859_10',			'ISO-8859-10');
+define('EXCELXML_ENCODING_ISO_8859_13',			'ISO-8859-13');
+define('EXCELXML_ENCODING_ISO_8859_14',			'ISO-8859-14');
+define('EXCELXML_ENCODING_ISO_8859_15',			'ISO-8859-15');
+define('EXCELXML_ENCODING_byte2be',				'byte2be');
+define('EXCELXML_ENCODING_byte2le',				'byte2le');
+define('EXCELXML_ENCODING_byte4be',				'byte4be');
+define('EXCELXML_ENCODING_byte4le',				'byte4le');
+define('EXCELXML_ENCODING_BASE64',				'BASE64');
+define('EXCELXML_ENCODING_HTML_ENTITIES',			'HTML-ENTITIES');
+define('EXCELXML_ENCODING_7bit',					'7bit');
+define('EXCELXML_ENCODING_8bit',					'8bit');
+define('EXCELXML_ENCODING_EUC_CN',				'EUC-CN');
+define('EXCELXML_ENCODING_CP936',					'CP936');
+define('EXCELXML_ENCODING_HZ',					'HZ');
+define('EXCELXML_ENCODING_EUC_TW',				'EUC-TW');
+define('EXCELXML_ENCODING_CP950',					'CP950');
+define('EXCELXML_ENCODING_BIG_5',					'BIG-5');
+define('EXCELXML_ENCODING_EUC_KR',				'EUC-KR');
+define('EXCELXML_ENCODING_UHC_CP949',				'UHC (CP949)');
+define('EXCELXML_ENCODING_ISO_2022_KR',			'ISO-2022-KR');
+define('EXCELXML_ENCODING_Windows_1251_CP1251',	'Windows-1251 (CP1251)');
+define('EXCELXML_ENCODING_Windows_1252_CP1252',	'Windows-1252 (CP1252)');
+define('EXCELXML_ENCODING_CP866_IBM866',			'CP866 (IBM866)');
+define('EXCELXML_ENCODING_KOI8_R',				'KOI8-R');
+?>
