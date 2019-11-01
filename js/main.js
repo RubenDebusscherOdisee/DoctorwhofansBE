@@ -435,7 +435,7 @@ function contentophalen(taal, menu) {
                     $("#Under_Upper").append("<div id='Quotes' class='anchor'></div>");
                     $("#Under_Upper").append("<div id='Downloads' class='anchor'><h2>Downloads</h2></div>");
                     $("#Quotes").append("<h2>Quotes</h2>");
-                    var Episode = resultaat.data[i].A_Waarde;
+                    var Episode = resultaat.data[i].A_Pagina;
                     GetQuotesByEpisode(Episode);
                     GetDownloadsByEpisode(Episode);
                     

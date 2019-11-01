@@ -7,7 +7,7 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select * from downloads where  download_pagina = ? ");
+	$stmt1 = $conn->prepare("select * from downloads inner join Topics on Topics.id=download_pagina where Topics.link= ? ");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}

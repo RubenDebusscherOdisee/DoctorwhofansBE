@@ -15,7 +15,7 @@ header('Content-Type: application/json');
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT sum(time_to_sec(runtime)) as total FROM `episodes` inner join serials on episodes.serial_id=serials.id INNER join seasons on seasons.id=serials.season_id where show_id <3");
+	$stmt1 = $conn->prepare("SELECT sum(time_to_sec(runtime)) as total,doctors.incarnation FROM `episodes` inner join serials on serial_id=serials.id inner join serials_doctors on serials.id=serials_doctors.serial_id inner join doctors on serials_doctors.doctor_id=doctors.id group by doctors.incarnation order by volgorde");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
