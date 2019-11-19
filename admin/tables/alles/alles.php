@@ -1,5 +1,9 @@
 <?php
 class tables_alles {
+
+    function getTitle(&$record){
+		return mb_substr($record->val('A_Waarde'),0,40).'...';
+    }
     function __import__csv($data, $defaultValues=array()){
         $records = array();
         $rows = explode("\n", $data);

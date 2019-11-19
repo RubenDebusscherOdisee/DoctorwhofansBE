@@ -8,21 +8,26 @@ var menu;var currentTopic;var user;var UID = 0;var toon = "false";var slideIndex
 
 function ip_callback() {
     $.get("/php/getIp.php", function(data) {
-        ip = data;
+        ip= data;
     })
 }
 function checkmenu(menu) {
+    ip_callback();
     if(menu=="API"){
         event.preventDefault();
         window.location.href = "https://www.doctorwhofans.be/API/index.html";
         return;
     }
-    ip_callback();
+    gegevens={}
+    gegevens.menu=menu;
+    gegevens.ip=ip;
+    gegevens.session=document.cookie.match(/PHPSESSID=[^;]+/).toString().substr(10);
     $.ajax({
-        type: "GET",
-        url: "/php/checkmenu.php?menu=" + menu,
+        type: "POST",
+        url: "/php/checkmenu.php",
         dataType: 'json',
-        cache: false
+        cache: false,
+        data:gegevens
     }).done(
         function(resultaat) {
             if(resultaat === false) {

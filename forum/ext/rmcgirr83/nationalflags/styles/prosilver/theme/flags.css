@@ -1,7 +1,8 @@
 ul.flags {
     text-align:center;
 	list-style-type: none;
-	margin-left:0%
+	margin-left:0%;
+	display: block !important;
 }
 
 ul.flags li {

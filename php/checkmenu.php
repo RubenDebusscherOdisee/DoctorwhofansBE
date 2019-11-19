@@ -6,12 +6,14 @@
     }
 	$antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";	mysqli_set_charset($conn,'utf8');
-	$stmt = $conn->prepare("SELECT count(*)as aantal FROM `Topics` where topic=? or link=? group by topic");
+	$stmt = $conn->prepare("call checkPage(?,?,?)");
 	if(!$stmt){
 	    die("Statement prepare failed: " . $conn->connect_error);
 	}
-	$menu=$_GET['menu'];
-    if(!$stmt->bind_param("ss",$menu,$menu)){
+	$menu=$_POST['menu'];
+	$ip=json_encode(apache_request_headers());
+	$sessie=$_POST['session'];
+    if(!$stmt->bind_param("sss",$menu,$ip,$sessie)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}
     if(!$stmt->execute()){

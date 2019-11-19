@@ -191,15 +191,17 @@ li {
 
 #page-header {
 	text-align: right;
-	background: url("../images/phpbb_logo.png") top left no-repeat;
-	height: 54px;
-	font-size: 0.85em;
-	margin-bottom: 10px;
+    background: url("https://www.doctorwhofans.be/images/gallifreyan_black.png") top left no-repeat;
+    height: 54px;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    background-size: contain;
 }
 
 .rtl #page-header {
 	text-align: left;
-	background: url("../images/phpbb_logo.png") top right no-repeat;
+	background: url("https://www.doctorwhofans.be/images/gallifreyan_black.png") top right no-repeat;
+	background-size: contain;
 }
 
 #page-header h1 {
@@ -224,6 +226,7 @@ li {
 .copyright {
 	font-size: 0.75em;
 	text-align: center;
+	display: none
 }
 
 #content {
@@ -2016,8 +2019,8 @@ fieldset.permissions .permissions-switch {
 	float: left;
 }
 
-fieldset.permissions .padding {
-}
+/*fieldset.permissions .padding {
+}*/
 
 .permissions-switch {
 	margin-top: -6px;

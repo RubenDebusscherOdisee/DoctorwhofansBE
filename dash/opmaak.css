@@ -1,3 +1,21 @@
 .row{margin-left:0 !important;margin-right: 0 !important;}
 
+.panel-body{padding:0 !important}
+
 img{max-width: 50% !important;}
+
+table{width:100%}
+
+th,td{min-width: 5em;}
+
+#Chart1{width:100% !important;
+height:auto !important;}
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+    /* For mobile phones: */
+    nav{position: sticky;}
+  }

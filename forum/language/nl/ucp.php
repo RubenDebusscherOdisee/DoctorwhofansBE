@@ -141,7 +141,7 @@ $lang = array_merge($lang, array(
 
 	'CONFIRM_PASSWORD'			=> 'Bevestig wachtwoord',
 	'CONFIRM_PASSWORD_EXPLAIN'	=> 'Je hoeft alleen je wachtwoord te bevestigen als je deze hierboven hebt veranderd.',
-	'COPPA_BIRTHDAY'			=> 'Vertel ons waar je bent geboren om door te gaan met de registratieprocedure.',
+	'COPPA_BIRTHDAY'			=> 'Vertel ons wanneer je bent geboren om door te gaan met de registratieprocedure.',
 	'COPPA_COMPLIANCE'			=> 'COPPA-toestemming',
 	'COPPA_EXPLAIN'				=> 'Let op: met het versturen van dit formulier wordt je account aangemaakt. Dit account kan echter niet geactiveerd worden totdat een ouder of voogd je registratie goedkeurt. Je zult een kopie van de benodigde formulieren toegestuurd krijgen via e-mail met daarin de details waarheen je deze moet sturen.',
 	'CREATE_FOLDER'				=> 'Map toevoegen…',
