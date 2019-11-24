@@ -8,7 +8,7 @@
 	$antwoord['data'] = "Geen resultaten gevonden."; //geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8'); //stel the charset in
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT dayname(A_Timestamp) as day, concat(hour(TIMESTAMPADD(hour,2,A_TIMESTAMP)),' - ',hour(TIMESTAMPADD(hour,3,A_TIMESTAMP)))as uur, count(A_Pagina) aantal_pag  FROM `alles` group by day,uur order by weekday(A_Timestamp),uur");
+	$stmt1 = $conn->prepare("SELECT dayname(CONVERT_TZ(A_TIMESTAMP,'UTC','Europe/Brussels')) as day, concat(hour(CONVERT_TZ(A_TIMESTAMP,'UTC','Europe/Brussels')),' - ',hour(TIMESTAMPADD(hour,1,CONVERT_TZ(A_TIMESTAMP,'UTC','Europe/Brussels'))))as uur, count(A_Pagina) aantal_elem  FROM `alles` group by day,uur order by weekday(CONVERT_TZ(A_TIMESTAMP,'UTC','Europe/Brussels')),uur");
     
 	if(!$stmt1){    //als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);

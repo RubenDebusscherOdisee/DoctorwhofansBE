@@ -650,6 +650,9 @@ del {
     border: 1px solid black;
 }
 
+.dormant-row{background-color: lightcoral !important;color: white !important;}
+.dormant-row .master-detail-selected{background-color: coral !important;}
+
 .listing,
 .stx table {
     /* The default table for document listings. Contains name, document types, modification times etc in a file-browser-like fashion */
