@@ -133,7 +133,9 @@
 	margin-right: 10px;
 }
 
-
+.post-buttons .button span {
+	font-size: 0;
+}
 
 /* Responsive buttons in post body */
 .post-buttons .dropdown {

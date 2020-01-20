@@ -2,9 +2,9 @@ services:
     lotusjeff.fancybox.listener:
         class: lotusjeff\fancybox\event\listener
         arguments:
-            - @config
-            - @template
-            - @user
-            - @request
+            - '@config'
+            - '@template'
+            - '@user'
+            - '@request'
         tags:
             - { name: event.listener }

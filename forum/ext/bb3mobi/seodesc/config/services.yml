@@ -2,6 +2,6 @@ services:
     bb3mobi.seodesc.listener:
         class: bb3mobi\seodesc\event\listener
         arguments:
-            - @template
+            - '@template'
         tags:
             - { name: event.listener }

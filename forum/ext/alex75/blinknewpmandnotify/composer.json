@@ -3,27 +3,27 @@
     "type": "phpbb-extension",
     "description": "In the case of new pm and / or new notifications, highlight the counter, changing it to flashing red",
     "homepage": "",
-    "version": "1.0.4",
-    "time": "2016-01-09",
-    "keywords": "",
-    "license": "GPL-2.0",
+    "version": "1.0.5",
+    "time": "2019-10-30",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "Alessandro DI BENEDETTO",
             "username": "alex75",
             "email": "alex@phpbb-store.it",
-            "homepage": "http://phpbb-store.it",
+            "homepage": "https://phpbb-store.it",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.2.5",
+        "composer/installers": "~1.0.0"
     },
     "extra": {
         "display-name": "Blinking counter, for new pm and new notify",
         "soft-require": {
-            "phpbb/phpbb": ">=3.2.0@dev,<3.3.0@dev"
+            "phpbb/phpbb": ">=3.2.5"
         },
         "version-check": {
             "host": "www.phpbb.com",

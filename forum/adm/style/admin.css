@@ -703,6 +703,11 @@ table {
 	padding: 1px;
 }
 
+.table2{min-width:50%;}
+
+.lside{display: inline-flex;
+    width: 100%;}
+
 th {
 	padding: 3px 4px;
 	color: #FFFFFF;

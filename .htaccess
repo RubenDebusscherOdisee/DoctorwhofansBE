@@ -34,6 +34,7 @@ rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
         Header set Access-Control-Allow-Origin "https://forum.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://dash.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://admin.doctorwhofans.be"
+        Header set Access-Control-Allow-Origin "https://API.doctorwhofans.be"
     </IfModule>
 </FilesMatch>
 RewriteRule ^NL/([^/]*)$ /index.php?taal=NL [L]

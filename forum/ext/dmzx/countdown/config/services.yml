@@ -2,8 +2,8 @@ services:
     dmzx.countdown.listener:
         class: dmzx\countdown\event\listener
         arguments:
-            - @controller.helper
-            - @template
-            - @config
+            - '@controller.helper'
+            - '@template'
+            - '@config'
         tags:
             - { name: event.listener }

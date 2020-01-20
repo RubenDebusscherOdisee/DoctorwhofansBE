@@ -86,8 +86,6 @@ fieldset.fields1 dt {
 	border-right-width: 0;
 }
 
-input[name="addbbcode18"] {display: none; }
-#format-postingbuttons{display:none;}
 fieldset.fields1 dd {
 	margin-left: 15em;
 	border-left-width: 0;
@@ -357,7 +355,7 @@ input.button3 {
 	font-variant: small-caps;
 }
 
-input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"] {
+input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"], .search-results li {
 	cursor: pointer;
 }
 

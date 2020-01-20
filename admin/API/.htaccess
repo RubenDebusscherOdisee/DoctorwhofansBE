@@ -1,0 +1,8 @@
+DirectoryIndex index.php
+
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php
+
+
+<FilesMatch "\.ini$">
+Deny from all
+</FilesMatch>

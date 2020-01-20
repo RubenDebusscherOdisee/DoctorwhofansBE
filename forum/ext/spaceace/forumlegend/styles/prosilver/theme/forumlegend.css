@@ -22,14 +22,14 @@
 	margin: 0 !important;
 }
 .valign{display: inline-table !important;
-    max-width: 90%!important;}
+    max-width: 100%!important;}
 
 .valign span{
 	vertical-align: middle !important;
 }
 
 .howwide {
-	float: left;
+	float: left;width:22%;
 }
 
 .howwide2 {

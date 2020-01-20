@@ -2,14 +2,14 @@ services:
     david63.announceonindex.listener:
         class: david63\announceonindex\event\listener
         arguments:
-            - @config
-            - @template
-            - @user
-            - @dbal.conn
-            - %core.root_path%
-            - %core.php_ext%
-            - @service_container
-            - @auth
-            - @cache						
+            - '@config'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '@service_container'
+            - '@auth'
+            - '@cache'						
         tags:
             - { name: event.listener }

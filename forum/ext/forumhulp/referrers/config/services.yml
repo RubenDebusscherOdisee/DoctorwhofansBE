@@ -5,22 +5,22 @@ services:
     forumhulp.referrers.listener:
         class: forumhulp\referrers\event\listener
         arguments:
-            - @config
-            - @controller.helper
-            - @user
-            - @dbal.conn
-            - %tables.referrers%
-            - %core.php_ext%
+            - '@config'
+            - '@controller.helper'
+            - '@user'
+            - '@dbal.conn'
+            - '%tables.referrers%'
+            - '%core.php_ext%'
         tags:
             - { name: event.listener }
 
     forumhulp.referrers.cron.task.core.delete_referrers:
         class: forumhulp\referrers\cron\task\core\delete_referrers
         arguments:
-            - %core.root_path%
-            - %core.php_ext%
-            - @config
-            - @dbal.conn
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '@config'
+            - '@dbal.conn'
         calls:
             - [set_name, [cron.task.core.delete_referrers]]
         tags:

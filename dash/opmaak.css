@@ -8,6 +8,8 @@ table{width:100%}
 
 th,td{min-width: 5em;}
 
+body{padding-top:5em !important;}
+
 #Chart1{width:100% !important;
 height:auto !important;}
 

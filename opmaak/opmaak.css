@@ -442,9 +442,15 @@ a{ font-weight:bold;}
 
 
 .WikiRule {
-  clear: both;
-  margin-left: 2px;
+ clear: both;
+    margin-left: 2px;
+    margin-right: 2px;
+    float: left;
+    width: calc(100% - 4px);
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
 }
+.WikiRule span{float:right;margin-right:2px;}
 
 .WikiItem {
   float: left;
@@ -720,6 +726,8 @@ popup_event .link {
     }*/
   .WikiRule ul li {
     margin-bottom: 0;
+    width: fit-content;
+    max-width: 100%;
   }
   .upDown {
     float: right;
@@ -749,7 +757,7 @@ popup_event .link {
   animation: 2s rotateRight infinite linear;
   display: block;
   margin: auto;
-  width: 5%;
+  width: 3%;
 }
 
 @keyframes rotateRight {
@@ -926,11 +934,14 @@ span.LQuote {
 }
 
 .Wiki_Foto {
-  width: 70%;
-  margin-left: 15%;
-  margin-right: 15%;
-  padding-bottom: 1em;
-  padding-top: 0.5em;
+    display:block;
+    max-width: 100%;
+    min-width:40%;
+    width:60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
 }
 
 p.item {
@@ -1275,7 +1286,7 @@ input[type="email"] {
     margin-right: 0;
   }
   .path {
-    height: 2em;
+    height: auto;
   }
   .path span {
     line-height: 2em;
@@ -1288,6 +1299,7 @@ input[type="email"] {
   }
   .Inleiding {
     width: 100%;
+    max-width: 100%;
   }
   p {
     width: 100%;
@@ -1342,7 +1354,7 @@ input[type="email"] {
     max-width: 100%;
   }
   #WikiDetails {
-    width: 50%;
+    width: 100%;
   }
   .col-3 {
     display: none;
@@ -1607,6 +1619,7 @@ input[type="email"] {
   #Inhoud {
     width: 100%;
     margin-top: 1%;
+    max-width: 100%;
   }
   #overlay {
     position: absolute;
@@ -1658,7 +1671,6 @@ input[type="email"] {
 #show-menu {
   display: none;
 }
-
 #menulist {
   display: block;
 }

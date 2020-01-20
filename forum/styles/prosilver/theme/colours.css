@@ -716,9 +716,10 @@ Colours and backgrounds for buttons.css
 
 .forum_link							{ background-image: url("./images/forum_link.gif"); }
 .forum_read							{ background-image: url("./images/forum_read.gif"); }
+dl.forum_read					    { background-image: none !important; }
 .forum_read_locked					{ background-image: url("./images/forum_read_locked.gif"); }
 .forum_read_subforum				{ background-image: url("./images/forum_read_subforum.gif"); }
-.forum_unread						{ background-image: url("./images/forum_unread.gif"); }
+.forum_unread						{ background-image: url("./images/forum_unread.gif");background-repeat: no-repeat;background-size: contain; }
 .forum_unread_locked				{ background-image: url("./images/forum_unread_locked.gif"); }
 .forum_unread_subforum				{ background-image: url("./images/forum_unread_subforum.gif"); }
 

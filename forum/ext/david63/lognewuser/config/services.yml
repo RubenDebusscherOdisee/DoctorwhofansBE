@@ -2,8 +2,8 @@ services:
     david63.lognewuser.listener:
         class: david63\lognewuser\event\listener
         arguments:
-            - @config
-            - @request
-            - @log
+            - '@config'
+            - '@request'
+            - '@log'
         tags:
             - { name: event.listener }
