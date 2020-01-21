@@ -293,7 +293,7 @@
                 "phpunit/phpunit": "3.7.*",
                 "predis/predis": "0.8.*@dev",
                 "squizlabs/php_codesniffer": "2.*",
-                "symfony/http-foundation": "~2.1"
+                "symfony/http-foundation": "2.8.52"
             },
             "suggest": {
                 "ext-openssl": "Allows for usage of secure connections with the stream-based HTTP client.",

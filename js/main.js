@@ -602,9 +602,9 @@ function contentophalen(taal, menu) {
             }
             if(resultaat.data[i].A_Type === "WikiItemPlayedBy") {
                 if(taal === "nl") {
-                    $("#Items").append("<div class='WikiRule'>Gespeeld door:" + resultaat.data[i].A_Waarde + "</div>");
+                    $("#Items").append("<div class='WikiRule'>Gespeeld door: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
                 }else{
-                    $("#Items").append("<div class='WikiRule'>Played by:" + resultaat.data[i].A_Waarde + "</div>");
+                    $("#Items").append("<div class='WikiRule'>Played by: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
                 }
             }
             if(resultaat.data[i].A_Type === "AantalSeizoenen") {
@@ -616,9 +616,9 @@ function contentophalen(taal, menu) {
             }
             if(resultaat.data[i].A_Type === "Verschijningen") {
                 if(taal === "nl") {
-                    $("#Items").append("<div class='WikiRule'>Aantal <br>verschijningen: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                    $("#Items").append("<div class='WikiRule'>Aantal verschijningen: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
                 }else{
-                    $("#Items").append("<div class='WikiRule'>Number of<br>appearances: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                    $("#Items").append("<div class='WikiRule'>Number of appearances: <span>" + resultaat.data[i].A_Waarde + "</span></div>");
                 }
             }
             if(resultaat.data[i].A_Type === "Periode") {
