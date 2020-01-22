@@ -7,13 +7,12 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select count(link) as Aantal, A_Pagina,link, topic from Topics left join alles on link=A_Pagina where (((A_Pagina like ? or A_Waarde like ?) and (A_Taal = ? or A_Taal = 'null' )and A_Actief =1 and A_Type <> 'Alt' and A_Type <> 'Afbeelding')  OR link like ? or topic like ?) group by link order by Aantal desc");
+	$stmt1 = $conn->prepare("select count_str(upper(concat(A_waarde,topic,link)),upper(?)) as Aantal,b.link,b.topic from alles a inner join Topics b on a.A_Pagina =b.id  inner join L_Taal on L_Taal.LTa_id = a.A_Taal  inner join L_Types on L_Types.LT_Id = a.A_Type where (a.A_Waarde like ? or b.topic like ? or b.link like ?) and (L_Taal.LTa_naam = ? or L_Taal.LTa_naam  = 'null' ) and a.A_Actief=1 and L_Types.LT_Naam <> 'Alt' and L_Types.LT_Naam  <> 'Afbeelding' group by b.link order by Aantal desc");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}
-	$menu = $_GET['menu'];$taal = $_GET['taal'];$zoekterm = "%{$_GET['zoekterm']}%";
-	$zoektermgesplitst=str_replace(' ', '%', $zoekterm);
-	if(!$stmt1->bind_param("sssss",$zoektermgesplitst,$zoektermgesplitst,$taal,$zoektermgesplitst,$zoektermgesplitst)){
+	$menu = $_GET['menu'];$taal = $_GET['taal'];$zoekterm = "%{$_GET['zoekterm']}%";$zoektermraw=$_GET['zoekterm'];
+	if(!$stmt1->bind_param("sssss",$zoektermraw,$zoekterm,$zoekterm,$zoekterm,$taal)){
 	    die("Statement binding failed: " . $conn->connect_error);
 	}
 	if(!$stmt1->execute()){
