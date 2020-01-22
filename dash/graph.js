@@ -1,9 +1,17 @@
 var Chart1col=[];
+var LINK_ARRAY = [];
+var LINK_Short = [];
+var uniquelinks = [];
+var classes = [];
 var md = new Remarkable({html: false,xhtmlOut: false,breaks: false,linkify: false,typographer: false,quotes: '“”‘’'});
 window.onload = function () {
     buildpage();
 }
 function buildpage(){
+    LINK_ARRAY = [];
+    LINK_Short = [];
+    uniquelinks = [];
+    classes = [];
     console.log('start');
     populateChart('Chart1', 'pie', "Aantal pagina's per aantal elementen", 'aantalPagPerNElem.php');
     createTable('Second', "Pagina's zonder titel","PagesWithoutTitle.php",'False');
@@ -57,22 +65,44 @@ function generateDynamicTable(myContacts,el,pag ){
 				}
 			}
 			var tHead = document.createElement("thead");	
-			var hRow = document.createElement("tr");
-			for (var i = 0; i < col.length; i++) {
+            var hRow = document.createElement("tr");
+            if(el=="Fourth"){
+                for (var i = 1; i < col.length; i++) {
 					var th = document.createElement("th");
 					th.innerHTML = col[i];
 					hRow.appendChild(th);
 			}
+            }else{
+                for (var i = 0; i < col.length; i++) {
+					var th = document.createElement("th");
+					th.innerHTML = col[i];
+					hRow.appendChild(th);
+			}
+            }
+			
 			tHead.appendChild(hRow);
 			table.appendChild(tHead);
 			var tBody = document.createElement("tbody");	
 			for (var i = 0; i < noOfContacts; i++) {			
                 var bRow = document.createElement("tr"); // CREATE ROW FOR EACH RECORD .
-                for (var j = 0; j < col.length; j++) {
-                    var td = document.createElement("td");
-                    td.innerHTML = myContacts[i][col[j]];
-                    bRow.appendChild(td);
+                if(el=="Fourth"){
+                    for (var j = 1; j < col.length; j++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = myContacts[i][col[j]];
+    
+                        bRow.appendChild(td);
+                    }
+                    classes.push(myContacts[i][col[0]]);
+                    bRow.className=myContacts[i][col[0]];
+                }else{
+                    for (var j = 0; j < col.length; j++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = myContacts[i][col[j]];
+    
+                        bRow.appendChild(td);
+                    }
                 }
+                
                 tBody.appendChild(bRow);
 			}
 			table.appendChild(tBody);				
@@ -90,5 +120,80 @@ function generateDynamicTable(myContacts,el,pag ){
                 box_mode:"list",
                 page_options:[{text:"10",value:10},{text:"20",value:20},{text:"40",value:40},{text:"50",value:50},{text:"100",value:100},{text:"200",value:200},{text:"500",value:500}]
             }); 
-        }   
-	}
+        }
+        GetListLinks();
+   
+    }
+    
+function GetListLinks() {
+    //haal de voltallige content op
+    $('#items').empty();
+    $.ajax({
+        type: "POST",
+        url: "PHP/ListLinks.php",
+        dataType: 'json'
+    }).done(
+        function (resultaat) {
+            var i;
+            //voeg alle content toe aan een tijdelijk element
+            for (i = 0; i < resultaat.data.length; i += 1) {
+                $('#Links').append("<li>" + resultaat.data[i].A_Waarde + "</li>");
+            }
+            //maak een object aan met alle hyperlinks
+            var sourceelem = document.getElementById("Links");
+            var links = sourceelem.getElementsByTagName("a");
+            //loop hierdoor en voeg de juiste links toe aan neen nieuwe array dmv hun pathname
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].pathname.includes("?") == false && links[i].pathname.includes("@") ==false && links[i].pathname.includes("/API")==false && links[i].pathname.includes("#")==false && links[i].pathname.includes(".php")==false) {
+                    //verwijder de slashes van de pathname
+                    LINK_ARRAY.push(links[i].pathname.split('/').join(''));
+                }
+
+            }
+            //loop door het object en voeg het element toe aan een nieuwe array als dit nog niet eerder voorkwam in deze laatste
+            $.each(LINK_ARRAY, function (i, elem) {
+                if ($.inArray(elem, uniquelinks) === -1) {
+                    uniquelinks.push(elem);
+                }
+            });
+            //loop door deze array en toon elementen die zowel in de tabel als in de content voorkomen in het rood
+            //TODO verwijder daarna dat element uit de array
+            for (var z = 0; z < uniquelinks.length; z++) {
+                $("." + uniquelinks[z]).css('background-color', 'red');
+            }
+            
+            $('#Links').empty();
+            getBrokenLinks()
+        }).fail(function (response, statusText, xhr) {
+            console.log("Fout : " + statusText);
+        }).always(function () {
+
+            
+            
+            
+        })
+}
+
+
+function resolveAfter2Seconds() {
+
+    return new Promise(resolve => {
+    setTimeout(function() {
+        $("#items").empty();
+        for(var i= 0;i<uniquelinks.length;i++){
+            var index = classes.indexOf(uniquelinks[i]);
+            if(index < 0){
+                $("#items").append("<li>"+uniquelinks[i]+"</li>");
+            }
+        };
+        resolve("slow");
+        console.log("slow promise is done");
+    }, 8000)
+    });
+}
+  
+async function getBrokenLinks() {
+    const result = await resolveAfter2Seconds();
+    console.log(result);
+}
+  

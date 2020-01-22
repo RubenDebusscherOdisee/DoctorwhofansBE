@@ -111,7 +111,30 @@ if ($_SESSION["user"] == "") {
       
     </div>
     <div id="menu2" class="tab-pane fade">
-      
+    <div class='row'>
+        <div class="col-6 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#Fifth">
+              Panel Heading
+            </div>
+
+            <div class="panel-body collapse in" id="Fifth">
+              <ul id=Links></ul>
+              <ol id=items></ol>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#Sixth">
+              Panel Heading
+            </div>
+            <div class="panel-body collapse in" id="Sixth">
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
