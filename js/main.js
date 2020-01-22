@@ -15,11 +15,10 @@ function convertDate(original){
 
 function ip_callback() {
     $.get("/php/getIp.php", function(data) {
-        ip= data;
+        return data;
     })
 }
 function checkmenu(menu) {
-    ip_callback();
     if(menu=="API"){
         event.preventDefault();
         window.location.href = "https://www.doctorwhofans.be/API/index.html";
@@ -27,7 +26,7 @@ function checkmenu(menu) {
     }
     gegevens={}
     gegevens.menu=menu;
-    gegevens.ip=ip;
+    gegevens.ip= ip_callback();
     gegevens.session=document.cookie.match(/PHPSESSID=[^;]+/).toString().substr(10);
     $.ajax({
         type: "POST",
@@ -37,7 +36,7 @@ function checkmenu(menu) {
         data:gegevens
     }).done(
         function(resultaat) {
-            if(resultaat === false) {
+            if(resultaat != true) {
                 window.location.href = "https://www.doctorwhofans.be/notfound.html";
             }else{
                 var interval = setInterval(function() {
