@@ -16,7 +16,7 @@ function buildpage(){
     populateChart('Chart1', 'pie', "Aantal pagina's per aantal elementen", 'aantalPagPerNElem.php');
     createTable('Second', "Pagina's zonder titel","PagesWithoutTitle.php",'False');
     createTable('Third', "Populaire tijden","Populartimes.php",'False');
-    createTable('Fourth', "Elementen per pagina","elementsperPage.php",'True');
+    createTable('Fourth', "Elementen per pagina (rode rijen hebben een reference op een andere pagina)","elementsperPage.php",'True');
     var d = new Date();
     var n = d.toLocaleTimeString();
     $('#update').html('<span class="glyphicon glyphicon-time"></span> Last update on: '+ n);
@@ -131,7 +131,8 @@ function GetListLinks() {
     $.ajax({
         type: "POST",
         url: "PHP/ListLinks.php",
-        dataType: 'json'
+        dataType: 'json',
+        cache:false
     }).done(
         function (resultaat) {
             var i;
@@ -186,6 +187,9 @@ function resolveAfter2Seconds() {
                 $("#items").append("<li>"+uniquelinks[i]+"</li>");
             }
         };
+        if($('#items').is(':empty')){
+            $("#items").append("<li>Je bent helemaal mee</li>");
+        }
         resolve("slow");
         console.log("slow promise is done");
     }, 8000)
