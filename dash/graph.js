@@ -8,6 +8,9 @@ window.onload = function () {
     buildpage();
 }
 function buildpage(){
+    var d = new Date();
+    var n = d.toLocaleTimeString();
+    $('#update').html('<span class="glyphicon glyphicon-time"></span> Updating.....Last update on: '+ n);
     LINK_ARRAY = [];
     LINK_Short = [];
     uniquelinks = [];
@@ -17,9 +20,16 @@ function buildpage(){
     createTable('Second', "Pagina's zonder titel","PagesWithoutTitle.php",'False');
     createTable('Third', "Populaire tijden","Populartimes.php",'False');
     createTable('Fourth', "Elementen per pagina (rode rijen hebben een reference op een andere pagina)","elementsperPage.php",'True');
-    var d = new Date();
-    var n = d.toLocaleTimeString();
-    $('#update').html('<span class="glyphicon glyphicon-time"></span> Last update on: '+ n);
+
+
+}
+function highlightDate(){
+
+    var weekdays = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+    var day = new Date().getDay();
+    $('#Third .'+weekdays[day]).css("backgroundColor","lightgreen");
+
+
 }
 function populateChart(el, type, tit, ur) {
     $('#'+el).parent().prev().html(tit);
@@ -92,8 +102,20 @@ function generateDynamicTable(myContacts,el,pag ){
     
                         bRow.appendChild(td);
                     }
+                    
                     classes.push(myContacts[i][col[0]]);
                     bRow.className=myContacts[i][col[0]];
+                    if(myContacts[i][col[3]]=="0"||myContacts[i][col[3]]==0){
+                        bRow.classList.add("EMPTYPAGE");
+                    }
+                }else if(el=="Third"){
+                    bRow.className=myContacts[i][col[0]];
+                    for (var j = 0; j < col.length; j++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = myContacts[i][col[j]];
+    
+                        bRow.appendChild(td);
+                    }
                 }else{
                     for (var j = 0; j < col.length; j++) {
                         var td = document.createElement("td");
@@ -116,12 +138,14 @@ function generateDynamicTable(myContacts,el,pag ){
             paginator({
                 table: document.getElementById(el).getElementsByTagName("table")[0],
                 box:document.getElementById(el+'_Box'),
-                rows_per_page: 50,
+                rows_per_page: 10,
                 box_mode:"list",
-                page_options:[{text:"10",value:10},{text:"20",value:20},{text:"40",value:40},{text:"50",value:50},{text:"100",value:100},{text:"200",value:200},{text:"500",value:500}]
+                page_options:[{text:"10",value:10},{text:"20",value:20},{text:"40",value:40},{text:"50",value:50},{text:"100",value:100},{text:"200",value:200},{text:"500",value:500},{text:"1000",value:1000}]
             }); 
         }
         GetListLinks();
+        highlightDate();
+
    
     }
     
@@ -159,7 +183,7 @@ function GetListLinks() {
             });
             
             for (var z = 0; z < uniquelinks.length; z++) {
-                $("." + uniquelinks[z]).css('background-color', 'red');
+                $("." + uniquelinks[z]).css('background-color', 'lightcoral');
             }
             
             $('#Links').empty();
@@ -191,6 +215,10 @@ function resolveAfter2Seconds() {
         }
         resolve("slow");
         console.log("slow promise is done");
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        $('#update').html('<span class="glyphicon glyphicon-time"></span> Last update on: '+ n);
+
     }, 8000)
     });
 }
