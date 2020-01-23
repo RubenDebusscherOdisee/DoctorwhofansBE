@@ -157,8 +157,7 @@ function GetListLinks() {
                     uniquelinks.push(elem);
                 }
             });
-            //loop door deze array en toon elementen die zowel in de tabel als in de content voorkomen in het rood
-            //TODO verwijder daarna dat element uit de array
+            
             for (var z = 0; z < uniquelinks.length; z++) {
                 $("." + uniquelinks[z]).css('background-color', 'red');
             }

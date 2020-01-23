@@ -72,7 +72,8 @@ function checkCookie() {
   }
 
   function rerenderpage(taal,menu){
-      
+    $('.col-6, .under, .path').hide();
+
     
     checkmenu(menu);
     if (menu === "Contact") {
@@ -95,8 +96,13 @@ function checkCookie() {
   }
 
   function changelang(taal){
+    $('.col-6, .under, .path').fadeOut(800);
     setCookie("lang", taal, 30);
-    $('.col-6, .under').empty();
+    $('.col-6, .under, .path').empty();
+    $('#overlay_background, #overlay').hide();
     rerenderpage(getCookie("lang"),menu)
+    $('.col-6, .under, .path').fadeIn();
+
+    
   }
 
