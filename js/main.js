@@ -28,40 +28,46 @@ function checkmenu(menu) {
     gegevens.menu=menu;
     gegevens.ip= ip_callback();
     gegevens.session=document.cookie.match(/PHPSESSID=[^;]+/).toString().substr(10);
-    $.ajax({
-        type: "POST",
-        url: "/php/checkmenu.php",
-        dataType: 'json',
-        cache: false,
-        data:gegevens
-    }).done(
-        function(resultaat) {
-            if(resultaat != true) {
-                window.location.href = "https://www.doctorwhofans.be/notfound.html";
-            }else{
-                var interval = setInterval(function() {
-                    $.ajax({
-                        type: "GET",
-                        url: "/php/alles.php?taal=" + getCookie("lang") + "&menu=" + menu,
-                        dataType: 'json',
-                        cache: false
-                    }).done(function(resultaat) {
-                        if(aantalrecords == resultaat.data.length) {
-                        }else{
-                            if(confirm("Wilt u de nieuwe content ophalen?")) {
-                                window.location.reload();
+    console.log(menu);
+    if(menu.indexOf('Category')>-1){
+        console.log("you navigated to a category");
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/php/checkmenu.php",
+            dataType: 'json',
+            cache: false,
+            data:gegevens
+        }).done(
+            function(resultaat) {
+                if(resultaat != true) {
+                    window.location.href = "https://www.doctorwhofans.be/notfound.html";
+                }else{
+                    var interval = setInterval(function() {
+                        $.ajax({
+                            type: "GET",
+                            url: "/php/alles.php?taal=" + getCookie("lang") + "&menu=" + menu,
+                            dataType: 'json',
+                            cache: false
+                        }).done(function(resultaat) {
+                            if(aantalrecords == resultaat.data.length) {
                             }else{
-                                clearInterval(interval);
+                                if(confirm("Wilt u de nieuwe content ophalen?")) {
+                                    window.location.reload();
+                                }else{
+                                    clearInterval(interval);
+                                }
                             }
-                        }
-                    }).fail(function(response, statusText, xhr) {
-                    }).always(function() {
-                    });
-                }, 10000);
-            }
-        }).fail(function(response, statusText, xhr) {
-    }).always(function() {
-    });
+                        }).fail(function(response, statusText, xhr) {
+                        }).always(function() {
+                        });
+                    }, 10000);
+                }
+            }).fail(function(response, statusText, xhr) {
+        }).always(function() {
+        });
+    }
+    
 }
  function ZoekPagina(){
     event.preventDefault();
