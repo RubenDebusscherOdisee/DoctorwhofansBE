@@ -89,15 +89,18 @@ a{ font-weight:bold;}
 
 .quoteitem {
   border: 3px solid yellow;
-  padding-bottom: 1em;
-  display: inline-flex;
-  height: auto;
-  padding-left: 1em;
-  padding-right: 1em;
-  max-width: 31%;
-  min-width: 25%;
-  border-radius: 10px;
+    padding-bottom: 1em;
+    display: inline-flex;
+    height: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 67%;
+    padding: 1em;
+    min-width: 8%;
+    margin: 1em;
+    border-radius: 10px;
 }
+
 
 .quotetext {
   max-width: 50%;

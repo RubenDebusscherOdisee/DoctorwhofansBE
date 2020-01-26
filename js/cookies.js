@@ -3,6 +3,7 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
 }
 
 function getCookie(cname) {
@@ -26,7 +27,13 @@ function checkCookie() {
     var lang = getCookie("lang");
     if (lang != "") {
     } else {
-      setCookie("lang", "nl", 30);
+      if(window.navigator.userLanguage=="nl" || window.navigator.language=="nl"){
+        setCookie("lang", "nl", 30);
+
+      }else{
+        setCookie("lang", "en", 30);
+
+      }
 
     }
     
@@ -96,6 +103,9 @@ function checkCookie() {
   }
 
   function changelang(taal){
+    $('meta[name=language]').attr('content', taal);
+    $('html').attr('lang', taal);
+
     $('.col-6, .under, .path').fadeOut(800);
     setCookie("lang", taal, 30);
     $('.col-6, .under, .path').empty();

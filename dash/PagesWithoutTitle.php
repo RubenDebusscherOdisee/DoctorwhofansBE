@@ -18,8 +18,11 @@
 	}
     else{
 	    $result = $stmt1->get_result();	    //return de json data
-	    if($result->num_rows === 0) exit('No rows');
-        $antwoord['data'] = $result->fetch_all(MYSQLI_ASSOC);
+	    if($result->num_rows === 0){
+			$antwoord['data']='No rows';
+		} else{
+			$antwoord['data'] = $result->fetch_all(MYSQLI_ASSOC);
+		}
         echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);//zet het anwoord om in JSON
 	}
     $stmt1->close();    //sluit de query en de connectie af

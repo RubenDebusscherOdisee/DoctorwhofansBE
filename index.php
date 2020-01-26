@@ -1,5 +1,5 @@
 <?php session_start();$_SESSION["Menu"];include_once('php/functions.php');?>
-<!Doctype html>
+<!Doctype html lang ="nl-BE">
 <?php 
     if(isset($_GET['menu'])){
         if (is_numeric($_GET['menu'])) {

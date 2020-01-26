@@ -23,6 +23,8 @@ function buildpage(){
 
 
 }
+
+
 function highlightDate(){
 
     var weekdays = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
@@ -56,8 +58,15 @@ function createTable(el,tit,ur,pag) {
     $('#'+el).html("");
     $.ajax({type: "GET",url: ur,dataType: 'json',cache: false})
     .done(function (resultaat) {
-        generateDynamicTable(resultaat.data,el,pag);
-        $('table').addClass("table table-striped");
+        if(resultaat.data =="No rows"){
+            document.getElementById(el).innerHTML="<p>Je bent helemaal mee</p>";
+
+            
+        }else{
+            generateDynamicTable(resultaat.data,el,pag);
+            $('table').addClass("table table-striped");
+        }
+        
     })
     .fail(function (response, statusText, xhr) {}).always(function () {});
 }
@@ -211,7 +220,7 @@ function resolveAfter2Seconds() {
             }
         };
         if($('#items').is(':empty')){
-            $("#items").append("<li>Je bent helemaal mee</li>");
+            $("#items").append("Je bent helemaal mee");
         }
         resolve("slow");
         console.log("slow promise is done");

@@ -13,7 +13,9 @@ body{padding-top:5em !important;}
 #Chart1{width:100% !important;
 height:auto !important;}
 
-
+#update,.navbar-brand{color: white;
+  vertical-align: middle;
+  line-height: 4em;}
 
 .EMPTYPAGE{background-color: red !important;color: white;}
 

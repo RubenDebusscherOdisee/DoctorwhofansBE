@@ -367,7 +367,7 @@ function GetQuotesByCharacter(Character) {
         cache: false
     }).done(function(resultaat) {
         if(resultaat.data.length === 0) {$("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
-        }else{for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");}}
+        }else{for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<div class='quoteitem'><div class='quoteQuote'><p>" + resultaat.data[i].Quote + "</p></><div class='quoteEpisode'><p><b>"+resultaat.data[i].Aflevering+"</b></p></div></div>");}}
     }).fail(function(response, statusText, xhr) {
         $("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
     }).always(function() {});

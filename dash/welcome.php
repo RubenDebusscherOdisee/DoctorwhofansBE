@@ -37,7 +37,7 @@ if ($_SESSION["user"] == "") {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><?php echo $_SESSION["user"]; ?></a>
+        <span class="navbar-brand" href="#"><?php echo $_SESSION["user"]; ?></span>
         
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -50,7 +50,7 @@ if ($_SESSION["user"] == "") {
           <li>
             <a href="#" onClick="buildpage();"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
           </li>
-          <li><a href="#" id="update"></a></li>
+          <li><span href="#" id="update"></span></li>
           <li>
             <a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Log out</a>
           </li>
