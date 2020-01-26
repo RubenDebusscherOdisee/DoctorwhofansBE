@@ -141,7 +141,7 @@ a:hover	{ text-decoration: underline; }
 	border: 1px solid transparent;
 	border-radius: 8px;
 	margin: 0 auto;
-	max-width: 1152px;
+	max-width: 100%;
 	min-width: 625px;
 	padding: 15px;
 }

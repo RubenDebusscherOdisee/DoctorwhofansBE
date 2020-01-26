@@ -5,6 +5,7 @@ conn.php
 info.php
 config.ini
 conf.ini
+Localsettings.php
 
 .lock
 .htpasswd
@@ -25,3 +26,4 @@ DW.sql
 API/core
 forum/cache
 Adminold
+wiki
