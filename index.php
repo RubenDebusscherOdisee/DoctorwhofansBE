@@ -40,7 +40,8 @@
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel=icon href="../images/favicon.ico" type="Images/ico" async>
-
+    <script src="https://www.localeplanet.com/api/auto/icu.js"></script>
+    <script src="https://www.localeplanet.com/api/translate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="../js/cookies.js"></script>
@@ -350,32 +351,7 @@
     </div>
     
     <footer id=footer class=col-5>
-        <?
-            switch($taal){
-                    case "NL":?>
-        <p class='mededeling'> Momenteel is <a href="../Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog
-            verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of
-            inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de
-            contactpagina. Hier kan je ons ook rechtstreeks contacteren via het formulier. </p>
-        <?;
-                        break;
-                    case "ENG":?>
-        <p class='mededeling'> At this moment, <a href="../Home/">Doctor Who Fans Belgium</a> is still under
-            construction. In the case there might be any questions, propositions, or additional information to provide,
-            please feel free to contact me. Requests or submissions related to the videos, pictures, etc. are welcome as
-            well. Contact informationis provided on the corresponding page. You will also be able to contact us directly
-            from that page.</p>
-        <?;
-                        break;
-                    default:?>
-        <p class=mededeling> Momenteel is <a href="../Home/">Doctor Who Fans België</a> in aanbouw. Als jullie nog
-            verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of
-            inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de
-            contactpagina. Hier kan je ons ook rechtstreeks contacteren via het formulier. </p>
-        <?;
-                        break;
-            }
-            ?>
+        <p class='mededeling'>  </p>
         <p class="socialmedia">
             <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img
                     src="../images/Social/facebook_logo.png" alt="Facebook Logo" /></a>
@@ -383,11 +359,7 @@
                     src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo" /></a><br>
             <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a>
         </p>
-        <p class=disclaimer> Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present
-            <br> The web pages on this site are for educational and entertainment purposes only.
-            <br> All other copyrights are property of their respective holders.
-            <br> Most of my sources are anonymous, so if you find any of your work, or you know any of the resources,
-            please contact us and we will credit your work properly.
+        <p class=disclaimer> 
         </p>
     </footer>
     
