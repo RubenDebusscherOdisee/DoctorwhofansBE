@@ -18,6 +18,7 @@ function setLangstrings(langstring){
     $.get("/Locale/"+langstring+"/"+langstring+".json", function(translation) {
         translations= JSON.parse(translation);
         filltext(); //fill these in first to verift function runs ok
+        renderpage(getCookie("lang"),menu)
 
     })
 }
@@ -46,8 +47,27 @@ function checkmenu(menu) {
     gegevens.ip= ip_callback();
     gegevens.session=document.cookie.match(/PHPSESSID=[^;]+/).toString().substr(10);
     console.log(menu);
-    if(menu.indexOf('Category')>-1){
-        console.log("you navigated to a category");
+    if(menu.startsWith('Category')==true){
+        var prefix = "Category_";
+        tag =  menu.substr(prefix.length, menu.length);
+        $('.path').remove();
+        $('.col-6').append("<h1>"+translations.Category+":"+tag.replace('_',' ')+"</h1>");
+        $(".under").append("<div class='topics'></div>");
+        $.ajax({
+            type: "GET",
+            url: "/php/getPagesbyTag.php?tag=" + tag,
+            dataType: 'json',
+            cache: false
+        }).done(function(resultaat) {
+            console.log(resultaat)
+            for (var i=0;i<resultaat.data.length;i++){
+                //$('.under').append("<a href='../"+resultaat.data[i].link+"/'>"+resultaat.data[i].topic+"</a>")
+                $(".topics").append("<div class='OverzichtItem'><a href='../" + resultaat.data[i].link + "/'  ><h2>" + resultaat.data[i].topic + "</h2></a></div>");
+
+            }
+            
+        }).fail(function(response, statusText, xhr) {}).always(function() {});
+        
     }else{
         $.ajax({
             type: "POST",

@@ -32,6 +32,7 @@
     "nr_appareances":"Number of appareances",
     "tenure":"Tenure",
     "first_episode":"First Episode",
-    "last_episode":"Last Episode"
+    "last_episode":"Last Episode",
+    "Category": "Category"
 
 }

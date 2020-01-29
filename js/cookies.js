@@ -23,8 +23,7 @@ function getAvailableLangcodes(){
     function(resultaat) {
       AvailableLangCodes = resultaat;
       checkCookie();
-      setLangstrings(getCookie("lang"));
-      renderpage(getCookie("lang"),menu)
+      //setLangstrings(getCookie("lang"));
     }).fail(function(response, statusText, xhr) {
 }).always(function() {
 });
@@ -122,7 +121,7 @@ function checkCookie() {
         $(".col-6").append('<div class="open-close"></div>');
         companionsophalen(taal, menu, id)
     }
-    setLangstrings(taal);
+    //setLangstrings(taal);
     contentophalen(taal, menu);
   }
 

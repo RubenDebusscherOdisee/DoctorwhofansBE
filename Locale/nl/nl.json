@@ -32,5 +32,7 @@
     "nr_appareances":"Aantal verschijningen",
     "tenure":"Periode",
     "first_episode":"Eerste aflevering",
-    "last_episode":"Laatste aflevering"
+    "last_episode":"Laatste aflevering",
+    "Category": "Categorie"
+
 }
