@@ -1,11 +1,34 @@
+var AvailableLangCodes= [];
+
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    $('meta[name=language]').attr('content', cvalue.replace('_','-'));
+    $('html').attr('lang', cvalue.replace('_','-'));
 
 }
 
+
+function getAvailableLangcodes(){
+  $.ajax({
+    type: "GET",
+    url: "/php/getAvailable_Lang.php",
+    dataType: 'json',
+    crossDomain: true,
+    cache: false
+}).done(
+    function(resultaat) {
+      AvailableLangCodes = resultaat;
+      checkCookie();
+      setLangstrings(getCookie("lang"));
+      renderpage(getCookie("lang"),menu)
+    }).fail(function(response, statusText, xhr) {
+}).always(function() {
+});
+}
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -25,25 +48,25 @@ function getCookie(cname) {
 function checkCookie() {
 
     var lang = getCookie("lang");
-    if (lang != "") {
-    } else {
-      if(window.navigator.userLanguage=="nl" || window.navigator.language=="nl"){
-        setCookie("lang", "nl", 30);
-
+    if (lang =="") {
+      if (AvailableLangCodes.includes(navigator.language)==true){
+        setCookie("lang", navigator.language, 30);
       }else{
         setCookie("lang", "en", 30);
 
       }
-
+    }else{
+      if (AvailableLangCodes.includes(lang)==true){
+      }else{
+        setCookie("lang","en", 30);
+      }
     }
-    
-    
-    
+    setLangstrings(getCookie("lang"));
+
   }
 
   function renderpage(taal,menu){
       
-    
     checkmenu(menu);
     if (menu === "Contact") {
         $("#txtEditor").Editor();
@@ -99,15 +122,17 @@ function checkCookie() {
         $(".col-6").append('<div class="open-close"></div>');
         companionsophalen(taal, menu, id)
     }
+    setLangstrings(taal);
     contentophalen(taal, menu);
   }
 
   function changelang(taal){
-    $('meta[name=language]').attr('content', taal);
-    $('html').attr('lang', taal);
+    $('meta[name=language]').attr('content', taal.replace('_','-'));
+    $('html').attr('lang', taal.replace('_','-'));
 
     $('.col-6, .under, .path').fadeOut(800);
     setCookie("lang", taal, 30);
+    
     $('.col-6, .under, .path').empty();
     $('#overlay_background, #overlay').hide();
     rerenderpage(getCookie("lang"),menu)

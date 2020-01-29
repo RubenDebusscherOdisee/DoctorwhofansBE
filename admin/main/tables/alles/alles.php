@@ -15,7 +15,7 @@ class tables_alles {
         $records = array();
         $rows = explode("\n", $data);
         foreach ( $rows as $row ){
-            list($A_Pagina,$A_Pagina_Type,$A_Type,$A_Waarde,$A_Level,$A_Actief,$A_Taal,$A_Klasse,$A_Hoort_Bij) = explode(',', $row);
+            list($A_Pagina,$A_Pagina_Type,$A_Type,$A_Waarde,$A_Level,$A_Actief,$A_Klasse,$A_Hoort_Bij) = explode(',', $row);
             $record = new Dataface_Record('alles', array());            
             $record->setValues($defaultValues);
             $record->setValues(
@@ -26,7 +26,6 @@ class tables_alles {
                     'A_Waarde'=>$A_Waarde,
                     'A_Level'=>(int)$A_Level,
                     'A_Actief'=>(int)$A_Actief,
-                    'A_Taal'=>(int)$A_Taal,
                     'A_Klasse'=>$A_Klasse,
                     'A_Hoort_Bij'=>(int)$A_Hoort_Bij
                      )
@@ -74,9 +73,8 @@ class tables_alles {
                     'A_Waarde'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $ligne)->getValue(),
                     'A_Level'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $ligne)->getValue(),
                     'A_Actief'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $ligne)->getValue(),
-                    'A_Taal'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $ligne)->getValue(),
-                    'A_Klasse'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue(),
-                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(8, $ligne)->getValue(),
+                    'A_Klasse'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $ligne)->getValue(),
+                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue(),
                         )
                 );
                 $records[] =$record;

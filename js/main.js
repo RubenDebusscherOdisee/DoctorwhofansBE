@@ -14,9 +14,8 @@ function convertDate(original){
     return newdate;
 }
 
-function setLangstrings(){
-    var Locale = "nl_BE"
-    $.get("/Locale/"+Locale+"/"+Locale+".json", function(translation) {
+function setLangstrings(langstring){
+    $.get("/Locale/"+langstring+"/"+langstring+".json", function(translation) {
         translations= JSON.parse(translation);
         filltext(); //fill these in first to verift function runs ok
 
@@ -37,7 +36,6 @@ function ip_callback() {
     })
 }
 function checkmenu(menu) {
-    setLangstrings();
     if(menu=="API"){
         event.preventDefault();
         window.location.href = "https://www.doctorwhofans.be/API/index.html";

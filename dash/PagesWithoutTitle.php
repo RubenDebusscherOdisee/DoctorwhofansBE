@@ -8,7 +8,7 @@
 	$antwoord['data'] = "Geen resultaten gevonden."; //geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8'); //stel the charset in
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT l.id,concat(l.topic,' (',l.link,')') as pagina FROM Topics l WHERE l.id NOT IN (SELECT  A_Pagina FROM alles r inner join L_Types on L_Types.LT_Id=r.A_Type where L_Types.LT_Naam like '%titel')");
+	$stmt1 = $conn->prepare("SELECT Topics.id,concat(Topics.topic,' (',Topics.link,')') as pagina FROM Topics WHERE link NOT IN (SELECT A_Pagina FROM Content where A_Type like '%titel' and Content.A_Actief=1)");
     
 	if(!$stmt1){    //als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);

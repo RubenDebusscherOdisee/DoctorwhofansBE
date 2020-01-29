@@ -54,10 +54,7 @@
         session = "<?php echo session_id();?>";
         menu = '<?php echo $menu ;?>';
         $(document).ready(function () {
-            if(getCookie("lang")==""){
-                setCookie("lang", "nl", 30);
-            }
-            renderpage(getCookie("lang"),menu)
+            getAvailableLangcodes();
         });
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async></script>
@@ -390,7 +387,7 @@
     <div id=overlay>
         <h1>Kies uw taal</h1>
         <div class=taal>
-            <a href="#" class="link" onClick='changelang("NL")'>
+            <a href="#" class="link" onClick='changelang("nl")'>
                 <img src="../images/overlay/belgium_640.png" alt="vlag van Belgi&euml; voor Nederlands."
                     class="foto_taal_button" />
                 Nederlands
@@ -399,7 +396,7 @@
             </a>
         </div>
         <div class=taal>
-            <a href="#" class="link" onClick='changelang("ENG")'>
+            <a href="#" class="link" onClick='changelang("en")'>
                 <img src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels."
                     class="foto_taal_button" />
                 English
