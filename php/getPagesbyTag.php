@@ -12,7 +12,7 @@
     //geef mee wat er in het object zit
     $antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("SELECT Topics.link,Topics.topic,categories.cat_name FROM Topics inner join cat_pages on cat_pages.page_id=Topics.id inner join categories on cat_pages.cat_id=categories.cat_id where categories.cat_name=?");
+	$stmt1 = $conn->prepare("SELECT Topics.link,Topics.topic,categories.cat_name FROM Topics inner join cat_pages on cat_pages.page_id=Topics.id inner join categories on cat_pages.cat_id=categories.cat_id where categories.cat_name=? order by Topics.topic");
 
     //als het preparen mislukt --> die
 	if(!$stmt1){
