@@ -1,0 +1,43 @@
+/* CSS Document */
+.os-acp-inner {
+	background-color: transparent;
+}
+
+.os-acp-middle {
+	background-image: url("../images/onlinesinceclock.png");
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center;
+	background-size: cover;
+}
+
+.os-acp-outer {
+	background-color: #f3f3f3; /* light grey */
+}
+
+/* That's the native phpBB prosilver class "rules" slightly modified */
+.os-acp-rules {
+	font-size: 11px;
+	background-color: #d6e9cf; /* light green */
+	border-radius: 7px;
+	color: #125814; /* dark green */
+	margin-bottom: 10px;
+	padding: 5px 10px;
+}
+
+/* Better alignment than the core phpbb */
+fieldset dd {
+	margin-top: 2px;
+	padding-top: 3px;
+}
+
+/* Rounded corners against the core phpbb */
+fieldset {
+	border-radius: 7px;
+	padding: 5px 10px;
+}
+
+/* Rounded corners against the core phpbb */
+input.button1 {
+	border-radius: 4px;
+}

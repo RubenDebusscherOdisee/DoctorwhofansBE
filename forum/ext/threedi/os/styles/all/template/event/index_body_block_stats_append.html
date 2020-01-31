@@ -1,0 +1,9 @@
+{% if S_ALLOW_OS %}
+
+	<h3>{{ lang('OS_TITLE') }}</h3>
+
+	<p>{{ lang('OS_START') ~ lang('COLON') }}
+		<strong> {{ OS_START_DATE }} </strong>{{ lang('OS_AT') }}<strong> {{ OS_START_TIME }}</strong> &bull; {{ lang('OS_ELAPSED') ~ lang('COLON') }} {{ L_OS_YEAR }} {{ L_OS_MONTH }} {{ L_OS_DAY }}
+	</p>
+
+{% endif %}

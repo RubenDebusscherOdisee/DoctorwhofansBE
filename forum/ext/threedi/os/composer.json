@@ -1,0 +1,33 @@
+{
+    "name": "threedi/os",
+    "type": "phpbb-extension",
+    "description": "Displays the length of time your board has been online in Years, Months, Days, Hours and Minutes. The newly created ACP module gives you several options to play with. Permissions based, gives you the possibility to hide from the index page its view from the groups/users you want to. As per default is ON for the Registered Users Group.",
+    "homepage": "https://www.phpbbstudio.com",
+    "version": "2.0.1",
+    "time": "2019-07-13",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "3Di",
+            "email": "eataly3d@gmail.com",
+            "homepage": "https://www.phpbbstudio.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.7",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.2.7,<4.00@dev"
+    },
+    "extra": {
+        "display-name": "3Di - Online Since",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.7,<4.00@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/online_since",
+            "filename": "version_check"
+        }
+    }
+}

@@ -1,0 +1,116 @@
+.block-controls {
+	display: none;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: auto;
+	z-index: 1000;
+
+	.forabg + & {
+		top: 7px;
+		right: 10px;
+	}
+}
+
+.block-receiver {
+	min-height: 55px;
+	overflow: visible;
+
+	.block-controls {
+		.item-action {
+			float: right;
+		}
+	}
+
+	.block {
+		position: relative;
+
+		&:hover {
+			> .block-controls {
+				display: block;
+
+				a {
+					&:hover {
+						border: 1px solid #ccc;
+					}
+				}
+			}
+		}
+	}
+
+	.block-title {
+		height: 20px;
+		width: auto;
+		max-width: 90%;
+		cursor: pointer;
+		overflow: visible;
+	}
+
+	.block-icon {
+		display: inline-block;
+		min-width: 15px;
+		min-height: 10px;
+		padding: 1px;
+		margin-left: 0.1rem;
+		text-align: center;
+		cursor: pointer;
+		outline: 1px solid #ddd;
+
+		&:hover {
+			outline: 1px solid #968787;
+		}
+	}
+
+	.placeholder {
+		display: block;
+		position: relative;
+		height: 100px;
+		width: 100%;
+	}
+
+	&.horizontal {
+		.sortable {
+			float: left;
+			height: 70px;
+			margin-bottom: 10px;
+			overflow: hidden;
+		}
+
+		.placeholder {
+			@extend .sortable;
+			margin-left: 10px;
+			width: 15px;
+		}
+
+		&:after {
+			content: ' ';
+			display: block;
+			height: 0;
+			clear: both;
+		}
+	}
+
+	&.show-position {
+		outline: 1px dashed #ccc;
+
+		&.sidebar {
+			min-height: 450px;
+		}
+	}
+
+	&.empty-position {
+		display: none;
+	}
+}
+
+.dragging {
+	white-space: nowrap;
+	width: 150px;
+}
+
+.sm-inactive,
+.sm-inactive > .block,
+.sm-responsive-show,
+.sm-responsive-hide {
+	opacity: 0.5;
+}

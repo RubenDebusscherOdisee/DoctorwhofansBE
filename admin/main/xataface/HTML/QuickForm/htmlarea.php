@@ -92,7 +92,9 @@ class HTML_QuickForm_htmlarea extends HTML_QuickForm_textarea {
         			return $html."\n".parent::toHtml();
         	
         		case 'fckeditor':
-        			require_once 'FCKeditor/fckeditor.php';
+					require_once 'FCKeditor/fckeditor.php';
+					//require_once '../../modules/FCKeditor/fckeditor.php';
+
         			$editor = new FCKEditor($this->getName());
 					$editor->BasePath = $GLOBALS['HTML_QuickForm_htmlarea']['FCKeditor_BasePath'];
 					$editor->Value = $this->_value;

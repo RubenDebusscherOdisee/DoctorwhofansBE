@@ -1,0 +1,9 @@
+{% if S_OS_GFX %}
+
+	{# Include - CSS #}
+	{% if not definition.INCLUDED_ONLINESINCECSS %}
+		{% INCLUDECSS '@threedi_os/onlinesince.css' %}
+		{% DEFINE INCLUDED_ONLINESINCECSS = true %}
+	{% endif %}
+
+{% endif %}

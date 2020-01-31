@@ -329,7 +329,7 @@
                     ?>
         <script>
             $(".parent").next().hide();
-            $("ul:first").css("margin-left", "-4em");
+            $(".col6 ul:first").css("margin-left", "-4em");
         </script>
         <?php
                 }

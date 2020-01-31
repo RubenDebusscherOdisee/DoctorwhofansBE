@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /_/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /Content/
+Disallow: /downloads/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /js/
+Disallow: /menu/
+Disallow: /opmaak/
+Disallow: /php/
+Disallow: /scratch/
+Disallow: /video/
+Disallow: /connect.php
+Disallow: /dbConfig.php
+Disallow: /config.php
