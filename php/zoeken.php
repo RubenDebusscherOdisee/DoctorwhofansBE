@@ -7,7 +7,7 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select count_str(upper(concat(A_waarde,topic,link)),upper(?)) as Aantal,b.link,b.topic from alles a inner join Topics b on a.A_Pagina =b.id  inner join L_Taal on L_Taal.LTa_id = a.A_Taal  inner join L_Types on L_Types.LT_Id = a.A_Type where (a.A_Waarde like ? or b.topic like ? or b.link like ?) and (L_Taal.LTa_naam = ? or L_Taal.LTa_naam  = 'null' ) and a.A_Actief=1 and L_Types.LT_Naam <> 'Alt' and L_Types.LT_Naam  <> 'Afbeelding' group by b.link order by Aantal desc");
+	$stmt1 = $conn->prepare("Select link, topic, sum(count_str(UPPER(CONCAT(A_waarde, A_pagina,link)),UPPER(?))) as Aantal from Content inner join Topics on Topics.link = A_Pagina where (A_Waarde like ? or A_Pagina like ? or topic like ?)  and A_Taal=? AND A_Actief = 1 AND A_Type <> 'Alt' AND A_Type <> 'Afbeelding' GROUP BY A_Pagina,A_Taal ORDER BY Aantal DESC");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}

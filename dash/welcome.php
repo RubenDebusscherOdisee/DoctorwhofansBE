@@ -108,6 +108,27 @@ if ($_SESSION["user"] == "") {
           </div>
         </div>
       </div>
+      <div class='row'>
+        <div class="col-6 col-md-9">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#Seventh">
+              Panel Heading
+            </div>
+
+            <div class="panel-body collapse in" id="Seventh"></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#Sixth">
+              Panel Heading
+            </div>
+            <div class="panel-body collapse in" id="Sixth">
+              <table id="tab2" class="table table-striped"></table>
+            </div>
+          </div>
+        </div>
+      </div>
       
     </div>
     <div id="menu2" class="tab-pane fade">

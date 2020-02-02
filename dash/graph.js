@@ -19,6 +19,7 @@ function buildpage(){
     populateChart('Chart1', 'pie', "Aantal pagina's per aantal elementen", 'aantalPagPerNElem.php');
     createTable('Second', "Pagina's zonder titel","PagesWithoutTitle.php",'False');
     createTable('Third', "Populaire tijden","Populartimes.php",'False');
+    createTable('Sixth', "Populaire tijden (oude versie)","Populartimes_old.php",'False');
     createTable('Fourth', "Elementen per pagina (rode rijen hebben een reference op een andere pagina)","elementsperPage.php",'True');
 
 
@@ -30,6 +31,8 @@ function highlightDate(){
     var weekdays = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
     var day = new Date().getDay();
     $('#Third .'+weekdays[day]).css("backgroundColor","lightgreen");
+    $('#Sixth .'+weekdays[day]).css("backgroundColor","lightgreen");
+
 
 
 }
@@ -117,7 +120,7 @@ function generateDynamicTable(myContacts,el,pag ){
                     if(myContacts[i][col[3]]=="0"||myContacts[i][col[3]]==0){
                         bRow.classList.add("EMPTYPAGE");
                     }
-                }else if(el=="Third"){
+                }else if(el=="Third" || el=="Sixth"){
                     bRow.className=myContacts[i][col[0]];
                     for (var j = 0; j < col.length; j++) {
                         var td = document.createElement("td");

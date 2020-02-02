@@ -114,9 +114,9 @@ function checkmenu(menu) {
     if (($("#zoekterm").val().indexOf('=') !== -1)||($("#zoekterm").val().indexOf('<') !== -1)||($("#zoekterm").val().indexOf('>') !== -1)||($("#zoekterm").val().indexOf('</') !== -1)) {
         alert("Error, invalid search parameter, please do not use '"+$("#zoekterm").val()+"'.")
     } else {
-        zoeken(taal,menu,id,$("#zoekterm").val());
-        videozoeken(taal,menu,id,$("#zoekterm").val());
-        quotezoeken(taal,menu,id,$("#zoekterm").val());
+        zoeken(getCookie("lang"),menu,id,$("#zoekterm").val());
+        videozoeken(getCookie("lang"),menu,id,$("#zoekterm").val());
+        quotezoeken(getCookie("lang"),menu,id,$("#zoekterm").val());
         jQuery("html, body").animate({scrollTop:0},500);
                 var e=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
                 document.getElementById("overlay_background").style.height=e;
@@ -125,7 +125,7 @@ function checkmenu(menu) {
                     overflow: 'hidden',
                     height: '100%'
                 });
-                return false
+                return false;
                 
     }
 }

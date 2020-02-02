@@ -3,7 +3,7 @@
 class tables_alles {
 
     function getTitle($record){
-		return mb_substr($record->val('A_Waarde'),0,40).'...';
+		return $record->val('id');
     }
 
     function css__tableRowClass( $record ){
