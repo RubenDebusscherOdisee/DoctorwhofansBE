@@ -1,4 +1,4 @@
-This is the github page for the Private repository "DoctorwhofansBE".  
+This is the github page for the Public repository "DoctorwhofansBE".  
 
 To become a collaborator, send an email to admin@doctorwhofans.be. 
 
