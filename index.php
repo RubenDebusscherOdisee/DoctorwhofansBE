@@ -1,6 +1,7 @@
 <?php session_start();$_SESSION["Menu"];include_once('php/functions.php');?>
 <!Doctype html lang ="nl-BE">
 <link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#000090"/>
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {

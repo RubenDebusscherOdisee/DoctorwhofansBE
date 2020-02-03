@@ -1363,7 +1363,7 @@ input[type="email"] {
     max-width: 100%;
   }
   #WikiDetails {
-    width: 100%;
+    width: 100%; min-width:100%;
   }
   .col-3 {
     display: none;
@@ -1808,7 +1808,7 @@ input[type="email"] {
 }
 @media only screen and (max-width: 450px) {
   #WikiDetails {
-    width: 100%;
+    width: 100%;min-width: 100%;
   }
 }
 .zoeklabel {
@@ -1890,4 +1890,9 @@ a .socialmedia_full:hover {
   margin-left: 4em;
 }
 
-
+@media only screen 
+  and (min-width: 320px) 
+  and (max-width: 480px)
+  and (resolution: 150dpi) {
+    #WikiDetails{width: 100%;min-width: 100%;}
+}

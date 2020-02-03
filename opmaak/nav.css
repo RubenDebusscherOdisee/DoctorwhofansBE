@@ -47,7 +47,7 @@ nav a {
 
 /* first descendant link within a top level navigation item */
 .nav-item>a {
-    position: relative;
+    position: static;
     display: inline-block;
     padding: 0.5em 1em;
     border: 1px solid transparent;
@@ -95,7 +95,7 @@ nav button, nav input[type=button]{min-height: 2em}
 .sub-nav ul {
     display: inline-block;
     vertical-align: top;
-    margin: 0 1em 0 0;
+    margin: 0 0 0 0;
     padding: 0;
 }
 
@@ -114,9 +114,7 @@ nav button, nav input[type=button]{min-height: 2em}
         min-height: 22em;
     }
 
-    .nav-item>.sub-nav {
-        margin-top: 2.65em;
-    }
+    
 
 }
 @media only screen and (min-width: 1000px) {
@@ -132,24 +130,21 @@ nav button, nav input[type=button]{min-height: 2em}
 
 
 @media only screen and (max-width: 600px) {
-    .sub-nav.open {
-        margin-top: 17.8em !important;
-    }
+    
 
     .nav-item {
-        width: 50%
+        width: 58%
     }
 
     .nav-item:first{padding-top: 0;}
 
-    .nav-menu {
-        height: 22em;
-    }
+    
 
     .sub-nav ul {
         display: inline-block;
-        width: 44%;
+        width: 46%;
     }
+    sub nav ul li a {font-size: 0.8em;}
 
     .nav-item.right {
         float: none;
@@ -164,7 +159,7 @@ nav button, nav input[type=button]{min-height: 2em}
     .sub-nav {
         position: absolute;
         display: none;
-        top: 4.3em;
+        top: 22em;
         padding: 0.5em 1em;
         border: 1px solid #dedede;
         background-color: #fff;
@@ -175,7 +170,7 @@ nav button, nav input[type=button]{min-height: 2em}
         z-index: 1;
         width: 100%;
         background-color: lightgrey;
-        border-bottom: 1px solid;
+        border-bottom: none;
     }
 }
 
