@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package phpBB Extension - Google Translate
+* @package phpBB Extension - Google Translator
 * @copyright (c) 2015 HiFiKabin
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -50,6 +50,6 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 		'TRANSLATE_DEFAULT_LANG'	=> (isset ($this->config['translate_default_lang'])) ? $this->config['translate_default_lang'] : '',
 		'TRANSLATE_CHOICE_LANG'		=> (isset ($this->config['translate_choice_lang'])) ? $this->config['translate_choice_lang'] : '',
-        ));
-    }
+		));
+	}
 }

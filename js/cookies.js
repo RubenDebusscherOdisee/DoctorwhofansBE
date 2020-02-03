@@ -83,7 +83,7 @@ function checkCookie() {
     }
     if (menu === "Companions") {
         $(".col-6").append('<div class="open-close"></div>');
-        companionsophalen(taal, menu, id)
+        companionsophalen(taal, menu, id);
     }
     contentophalen(taal, menu);
   }
@@ -119,7 +119,7 @@ function checkCookie() {
     }
     if (menu === "Companions") {
         $(".col-6").append('<div class="open-close"></div>');
-        companionsophalen(taal, menu, id)
+        companionsophalen(taal, menu, id);
     }
     //setLangstrings(taal);
     contentophalen(taal, menu);
@@ -134,7 +134,7 @@ function checkCookie() {
     
     $('.col-6, .under, .path').empty();
     $('#overlay_background, #overlay').hide();
-    rerenderpage(getCookie("lang"),menu)
+    rerenderpage(getCookie("lang"),menu);
     $('.col-6, .under, .path').fadeIn();
 
     

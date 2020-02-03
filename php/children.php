@@ -7,7 +7,7 @@
    $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("SELECT `Topics`.*,`V_children`.direct_children FROM `Topics` inner join `V_children` on `Topics`.id= `V_children`.id where Topics.parent_id = (select id from Topics where link= ?) order by Topics.topic");
+	$stmt1 = $conn->prepare("SELECT `Topics`.*,`V_children`.direct_children FROM `Topics` inner join `V_children` on `Topics`.id= `V_children`.id where Topics.parent_id = (select id from Topics where link= ?) order by Topics.Episode_Order, Topics.topic");
 	if(!$stmt1){
 	    die("Statement preparing failed: " . $conn->error);
 	}

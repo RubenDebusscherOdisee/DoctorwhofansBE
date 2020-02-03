@@ -1,49 +1,4 @@
-/*
-Copyright © 2013 Adobe Systems Incorporated.
 
-Licensed under the Apache License, Version 2.0 (the “License”);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an “AS IS” BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-/**
- * See <a href="http://jquery.com">http://jquery.com</a>.
- * @name jquery
- * @class
- * See the jQuery Library  (<a href="http://jquery.com">http://jquery.com</a>) for full details.  This just
- * documents the function and classes that are added to jQuery by this plug-in.
- */
-
-/**
- * See <a href="http://jquery.com">http://jquery.com</a>
- * @name fn
- * @class
- * See the jQuery Library  (<a href="http://jquery.com">http://jquery.com</a>) for full details.  This just
- * documents the function and classes that are added to jQuery by this plug-in.
- * @memberOf jquery
- */
-
-/**
- * @fileOverview accessibleMegaMenu plugin
- *
- *<p>Licensed under the Apache License, Version 2.0 (the “License”)
- *<br />Copyright © 2013 Adobe Systems Incorporated.
- *<br />Project page <a href="https://github.com/adobe-accessibility/Accessible-Mega-Menu">https://github.com/adobe-accessibility/Accessible-Mega-Menu</a>
- * @version 0.1
- * @author Michael Jordan
- * @requires jquery
- */
-
-/*jslint browser: true, devel: true, plusplus: true, nomen: true */
-/*global jQuery, window, document */
 (function ($, window, document) {
     "use strict";
     var pluginName = "accessibleMegaMenu",

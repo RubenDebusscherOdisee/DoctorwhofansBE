@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package phpBB Extension - Google Search
+* @package phpBB Extension - Google Translator
 * @copyright (c) 2015 HiFiKabin
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -27,9 +27,9 @@ var $u_action;
 		if ($submit)
 		{
 			if (!check_form_key('acp_translate_config'))
-		{
-			trigger_error('FORM_INVALID');
-		}
+			{
+				trigger_error('FORM_INVALID');
+			}
 			$config->set('translate_default_lang', ($request->variable('translate_default_lang', '')));
 			$config->set('translate_choice_lang', ($request->variable('translate_choice_lang', '')));
 

@@ -20,4 +20,3 @@ $lang = array_merge($lang, array(
 	'ACP_TRANSLATE'				=> 'Google Translator',
 	'ACP_TRANSLATE_CONFIG'		=> 'Google Translator Settings',
 ));
-

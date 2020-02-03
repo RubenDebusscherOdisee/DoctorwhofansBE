@@ -17,7 +17,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACP_TRANSLATE_CONFIG_EXPLAIN'		=> 'This is configuration page for the Google Translator extension. ',
+	'ACP_TRANSLATE_CONFIG_EXPLAIN'		=> 'This is configuration page for the Google Translator extension.',
 
 	'ACP_TRANSLATE_CONFIG_SET'			=> 'Configuration',
 	'TRANSLATE_CONFIG_SAVED'			=> 'Google Translator settings saved',
@@ -28,4 +28,3 @@ $lang = array_merge($lang, array(
 	'TRANSLATE_CHOICE_LANG'				=> 'Translations',
 	'TRANSLATE_CHOICE_LANG_EXPLAIN'		=> 'Enter the codes of the languages you want to have available seperated by a comma for example de,fr,es',
 ));
-

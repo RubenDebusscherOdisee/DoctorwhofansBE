@@ -14,10 +14,10 @@ class translate_info
 		function module()
 	{
 		return array(
-		'filename'	=> '\hifikabin\translate\acp\translate_module',
-		'title'		=> 'ACP_TRANSLATE',
-		'modes'		=> array(
-		'config'	=> array('title' => 'ACP_TRANSLATE_CONFIG', 'auth' => 'ext_hifikabin/translate && acl_a_board', 'cat' => array('ACP_TRANSLATE')),
+			'filename'	=> '\hifikabin\translate\acp\translate_module',
+			'title'		=> 'ACP_TRANSLATE',
+			'modes'		=> array(
+			'config'	=> array('title' => 'ACP_TRANSLATE_CONFIG', 'auth' => 'ext_hifikabin/translate && acl_a_board', 'cat' => array('ACP_TRANSLATE')),
 			),
 		);
 	}

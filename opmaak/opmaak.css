@@ -454,6 +454,10 @@ a{ font-weight:bold;}
     margin-top: 0.2em;
 }
 .WikiRule ul{float: left;width: 100%;}
+.WikiRule ul li, #Inhoud ol li{line-height: 1.5em;margin-top: 4px;
+  margin-bottom: 4px;}
+.WikiRule ul li a{line-height: 1.5em;}
+
 
 .WikiItem {
   float: left;
@@ -1886,6 +1890,4 @@ a .socialmedia_full:hover {
   margin-left: 4em;
 }
 
-.loading_img {
-  width: 2%;
-}
+

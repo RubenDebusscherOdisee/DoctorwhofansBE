@@ -1,5 +1,20 @@
 <?php session_start();$_SESSION["Menu"];include_once('php/functions.php');?>
 <!Doctype html lang ="nl-BE">
+<link rel="manifest" href="../manifest.json">
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('../sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+</script>
+
 <?php 
     if(isset($_GET['menu'])){
         if (is_numeric($_GET['menu'])) {
@@ -40,15 +55,15 @@
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel=icon href="../images/favicon.ico" type="Images/ico" async>
-    <script src="https://www.localeplanet.com/api/auto/icu.js"></script>
-    <script src="https://www.localeplanet.com/api/translate.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script async src="https://www.localeplanet.com/api/auto/icu.js" async></script>
+    <script async src="https://www.localeplanet.com/api/translate.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../js/cookies.js"></script>
-    <script src="../js/jquery.toc.js"></script>
-    <script src="../js/jquery.toc.min.js"></script>
+    <script async src="../js/jquery.toc.js" async></script>
+    <script async src="../js/jquery.toc.min.js" async></script>
     <script src="../js/main.js"></script>
     <script src="../js/app.js" async></script>
+    <script src="../js/lazysizes.min.js" async></script>
     <script>
         var id;
         session = "<?php echo session_id();?>";
@@ -57,16 +72,15 @@
             getAvailableLangcodes();
         });
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async></script>
-    <script src="../js/editor.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async>
-    <link href="../opmaak/editor.css" type="text/css" rel="stylesheet" async />
-    <link rel=stylesheet href="../opmaak/nav.css" async />
-    <link rel=stylesheet href="../opmaak/opmaak.css" async />
-    <link href="../opmaak/themify-icons.css" rel="stylesheet" async>
-    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        async>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous" async></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" async></script>
+    <script src="../js/editor.min.js" async></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async preload>
+    <link href="../opmaak/editor.css" type="text/css" rel="stylesheet" async preload/>
+    <link rel=stylesheet href="../opmaak/nav.min.css" async preload/>
+    <link rel=stylesheet href="../opmaak/opmaak.min.css" async preload/>
+    <link href="../opmaak/themify-icons.css" rel="stylesheet" async preload>
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async preload>
     <script async>
         $(document).ready(function () {
             if ($(window).width() < 800) {
@@ -155,7 +169,7 @@
     <nav>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="../Home/" aria-label="Home"><img src="../images/gallifreyan_black.png" alt="Logo of Doctorwhofans Belgium" id="Logo"/> Home</a>
+                <a href="../Home/" aria-label="Home"><img class="lazyload" data-src="../images/gallifreyan_black.png" alt="Logo of Doctorwhofans Belgium" id="Logo"/> Home</a>
             </li>
             <li class="nav-item">
                 <a href="#">who is Who? <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
@@ -196,17 +210,17 @@
                             <hr>
                         </li>
                         <h3>Spin-off</h3>
-                        <li><a href="../Torchwood/"><img src="../images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
-                        <li><a href="../Sarah_Jane_Adventures/"><img src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
-                        <li><a href="../Class/"><img src="../images/Class.png" alt="Class logo" /> Class</a></li>
+                        <li><a href="../Torchwood/"><img class="lazyload" data-src="../images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
+                        <li><a href="../Sarah_Jane_Adventures/"><img class="lazyload" data-src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
+                        <li><a href="../Class/"><img class="lazyload" data-src="../images/Class.png" alt="Class logo" /> Class</a></li>
                     </ul>
                     <ul class="sub-nav-group">
                         <h3>Concepts</h3>
 
-                        <li><a href="../TARDIS/"><img src="../images/tardis.png" alt="TARDIS logo" />T.A.R.D.I.S</a></li>
+                        <li><a href="../TARDIS/"><img class="lazyload" data-src="../images/tardis.png" alt="TARDIS logo" />T.A.R.D.I.S</a></li>
                         <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a>
                         </li>
-                        <li><a href="../UNIT/"><img src="../images/UNIT.png" alt="UNIT logo" /> UN.I.T</a></li>
+                        <li><a href="../UNIT/"><img class="lazyload" data-src="../images/UNIT.png" alt="UNIT logo" /> UN.I.T</a></li>
                         
                         <li>
                             <hr>
@@ -306,7 +320,7 @@
                         </fieldset>
                         <button id="print" type="button" onclick="window.print()">Print</button>
                         <button class="taal_link" type="button" title="taalkeuze">
-                            <img src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class="taal_link" /> Kies uw taal</button>
+                            <img class="lazyload" data-src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class="taal_link" /> Kies uw taal</button>
                     </form>
                 </div>
             </li>
@@ -317,7 +331,7 @@
     <div class="path"></div>
 
     <div id=loading_div>
-        <img id=loading src="../images/ledtorch.1498524411.png" class="loading_img" alt="Laden">
+        <img id=loading data-src="../images/ledtorch.1498524411.png" class="lazyload loading_img" alt="Laden">
     </div>
     <article class=col-6>
         <?php
@@ -350,10 +364,11 @@
     <footer id=footer class=col-5>
         <p class='mededeling'>  </p>
         <p class="socialmedia">
-            <a href="https://www.facebook.com/DoctorWhoFansBE/" target="_blank"><img
-                    src="../images/Social/facebook_logo.png" alt="Facebook Logo" /></a>
-            <a href="https://rubendebusscherodisee.github.io/DoctorwhofansBE/" target="_blank"><img
-                    src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo" /></a><br>
+            <a href="https://www.facebook.com/DoctorWhoFansBE/"  rel="noreferrer" target="_blank">
+                <img class="lazyload" data-src="../images/Social/facebook_logo.png" alt="Facebook Logo" />
+            </a>
+            <a href="https://rubendebusscherodisee.github.io/DoctorwhofansBE/" rel="noreferrer" target="_blank">
+            <img class="lazyload" data-src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo" /></a><br>
             <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a>
         </p>
         <p class=disclaimer> 
@@ -361,10 +376,10 @@
     </footer>
     
     <script async src="../js/toegang.js" async></script>
-    <a href="#" class=back-to-top><img src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
+    <a href="#" class=back-to-top><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
     <div id="overlay_Zoeken">
-        <a href=# class="close_zoeken link"><img src="../images/overlay/981077-32.png" alt="Sluiten/Close"
+        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"
                 class=close_IMG /> Close</a>
         <div class="open-close">
             <div class="resultset holder" style="border:4px solid yelllow" id="resultset1">
@@ -388,28 +403,28 @@
         <h1>Kies uw taal</h1>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("nl")'>
-                <img src="../images/overlay/belgium_640.png" alt="vlag van Belgi&euml; voor Nederlands."
+                <img class="lazyload" data-src="../images/overlay/belgium_640.png" alt="vlag van Belgi&euml; voor Nederlands."
                     class="foto_taal_button" />
                 Nederlands
-                <img src="../images/overlay/netherlands_640.png" alt="vlag van Nederland; voor Nederlands."
+                <img class="lazyload" data-src="../images/overlay/netherlands_640.png" alt="vlag van Nederland; voor Nederlands."
                     class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("en")'>
-                <img src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels."
+                <img class="lazyload" data-src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels."
                     class="foto_taal_button" />
                 English
-                <img src="../images/overlay/united_states_of_america_64.png" alt="vlag van de VS; voor Engels."
+                <img class="lazyload" data-src="../images/overlay/united_states_of_america_64.png" alt="vlag van de VS; voor Engels."
                     class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
-            <a href=# class="close link"><img src="../images/overlay/981077-32.png" alt="Sluiten/Close"
-                    class=close_IMG /> Close</a>
+            <a href=# class="close link">
+                <img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"class=close_IMG /> Close</a>
         </div>
     </div>
-    <script src="../js/jquery-accessibleMegaMenu.js"></script>
+    <script async src="../js/jquery-accessibleMegaMenu.min.js"></script>
 
 </body>
 </html>

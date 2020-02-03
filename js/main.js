@@ -244,46 +244,46 @@ function companionsophalen(taal, menu,id) {
         dataType: 'json'
     }).done(function(resultaat) {
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D1'>");
-        $("#D1").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D1') href='#First'>First Doctor<img class='upDown' src='../images/up_down.png'alt='up-down First Doctor'/></a></div>");
+        $("#D1").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D1') href='#First'>First Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down First Doctor'/></a></div>");
         $("#D1").append("<div class ='result companion slide' id='resultD1'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D2'>");
-        $("#D2").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D2') href='#Second'>Second Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Second Doctor'/></a></div>");
+        $("#D2").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D2') href='#Second'>Second Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Second Doctor'/></a></div>");
         $("#D2").append("<div class ='result companion slide' id='resultD2'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D3'>");
-        $("#D3").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D3') href='#Third'>Third Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Third Doctor'/></a></div>");
+        $("#D3").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D3') href='#Third'>Third Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Third Doctor'/></a></div>");
         $("#D3").append("<div class ='result companion slide' id='resultD3'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D4'>");
-        $("#D4").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D4') href='#Fourth'>Fourth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fourth Doctor'/></a></div>");
+        $("#D4").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D4') href='#Fourth'>Fourth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Fourth Doctor'/></a></div>");
         $("#D4").append("<div class ='result companion slide' id='resultD4'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D5'>");
-        $("#D5").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D5') href='#Fifth'>Fifth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Fifth Doctor'/></a></div>");
+        $("#D5").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D5') href='#Fifth'>Fifth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Fifth Doctor'/></a></div>");
         $("#D5").append("<div class ='result companion slide' id='resultD5'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D6'>");
-        $("#D6").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D6') href='#Sixth'>Sixth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Sixth Doctor'/></a></div>");
+        $("#D6").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D6') href='#Sixth'>Sixth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Sixth Doctor'/></a></div>");
         $("#D6").append("<div class ='result companion slide' id='resultD6'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D7'>");
-        $("#D7").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D7') href='#Seventh'>Seventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Seventh Doctor'/></a></div>");
+        $("#D7").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D7') href='#Seventh'>Seventh Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Seventh Doctor'/></a></div>");
         $("#D7").append("<div class ='result companion slide' id='resultD7'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D8'>");
-        $("#D8").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D8') href='#Eighth'>Eighth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eighth Doctor'/></a></div>");
+        $("#D8").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D8') href='#Eighth'>Eighth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Eighth Doctor'/></a></div>");
         $("#D8").append("<div class ='result companion slide' id='resultD8'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='DW'>");
-        $("#DW").append("<div class='header'><a class='opner' onclick=ToggleCompanion('DW') href='#War'>War Doctor<img class='upDown' src='../images/up_down.png'alt='up-down War Doctor'/></a></div>");
+        $("#DW").append("<div class='header'><a class='opner' onclick=ToggleCompanion('DW') href='#War'>War Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down War Doctor'/></a></div>");
         $("#DW").append("<div class ='result companion slide' id='resultDW'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D9'>");
-        $("#D9").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D9') href='#'>Ninth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Ninth Doctor'/></a></div>");
+        $("#D9").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D9') href='#'>Ninth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Ninth Doctor'/></a></div>");
         $("#D9").append("<div class ='result companion slide' id='resultD9'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D10'>");
-        $("#D10").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D10') href='#'>Tenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Tenth Doctor'/></a></div>");
+        $("#D10").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D10') href='#'>Tenth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Tenth Doctor'/></a></div>");
         $("#D10").append("<div class ='result companion slide' id='resultD10'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D11'>");
-        $("#D11").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D11') href='#'>Eleventh Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Eleventh Doctor'/></a></div>");
+        $("#D11").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D11') href='#'>Eleventh Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Eleventh Doctor'/></a></div>");
         $("#D11").append("<div class ='result companion slide' id='resultD11'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D12'>");
-        $("#D12").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D12') href='#'>Twelfth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Twelfth Doctor'/></a></div>");
+        $("#D12").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D12') href='#'>Twelfth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Twelfth Doctor'/></a></div>");
         $("#D12").append("<div class ='result companion slide' id='resultD12'></div>");
         $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D13'>");
-        $("#D13").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D13') href='#'>Thirteenth Doctor<img class='upDown' src='../images/up_down.png'alt='up-down Thirteenth Doctor'/></a></div>");
+        $("#D13").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D13') href='#'>Thirteenth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Thirteenth Doctor'/></a></div>");
         $("#D13").append("<div class ='result companion slide' id='resultD13'></div>");
         var i;
         for (i = 0; i < resultaat.data.length; i += 1) {
@@ -341,9 +341,9 @@ function videosophalen(menu, id) {
                 }
             }else{
                 if(resultaat.data[i].SPOILER === 1) {
-                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;background-color:red' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='thumbnail lazyload' style='display:inline;background-color:red' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
                 }else{
-                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img src='../" + resultaat.data[i].Video_Image + "' class='thumbnail' style='display:inline;' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+                    $(".vid_choice").append("<a href='#' title='" + resultaat.data[i].Video_Name + "' onclick=event.preventDefault();$('.col-6').html('');videosophalen('Video'," + resultaat.data[i].id + ") class='inline_vid' ><div class=keuze><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='thumbnail lazyload' style='display:inline;' alt='" + resultaat.data[i].Video_Name + "'></div><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
                 }
             }
         }
@@ -366,7 +366,7 @@ function quotesophalen(menu, id) {
         for (i = 0; i < resultaat.data.length; i++) {
             if(id === resultaat.data[i].id) {
                 $(".main_quote").append("<h1>" + resultaat.data[i].Aflevering + "</h1>");
-                $(".main_quote").append("<div><img class='quote_picture' src='" + resultaat.data[i].QuotePic + "'/><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
+                $(".main_quote").append("<div><img class='quote_picture lazyload' data-src='" + resultaat.data[i].QuotePic + "'/><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
             }else{
                 var quote = resultaat.data[i].Quote;
                 var quote_short = quote.substring(0, 60);
@@ -393,7 +393,7 @@ function GetNews() {
             $(".news").append("<div class='newsitem' id='" + resultaat.data[i].id + "'></div>");
             $("#" + resultaat.data[i].id).append("<h2>" + resultaat.data[i].Titel + "</h2>");
             $("#" + resultaat.data[i].id).append("<h3>" + resultaat.data[i].Datum + "</h3>");
-            $("#" + resultaat.data[i].id).append("<img src='" + resultaat.data[i].Foto + "' alt='" + resultaat.data[i].alt + "' class='" + resultaat.data[i].Class + "'/><span class='" + resultaat.data[i].Class_Text + "'>" + resultaat.data[i].Bericht + "</span>");
+            $("#" + resultaat.data[i].id).append("<img data-src='" + resultaat.data[i].Foto + "' alt='" + resultaat.data[i].alt + "' class='" + resultaat.data[i].Class + " lazyload'/><span class='" + resultaat.data[i].Class_Text + "'>" + resultaat.data[i].Bericht + "</span>");
         }
          
     }).fail(function(response, statusText, xhr) {
@@ -595,13 +595,13 @@ function contentophalen(taal, menu) {
                     var j;
                     for (j = 0; j < resultaat.data.length; j += 1) {
                         if(resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Bijschrijft" || resultaat.data[j].A_Type === "Alt")) {
-                            $("#WikiDetails").prepend("<div><img src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + "' title='" + resultaat.data[j].A_Waarde + " ' alt='" + resultaat.data[j].A_Waarde + "'></div>");
+                            $("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyload' title='" + resultaat.data[j].A_Waarde + " ' alt='" + resultaat.data[j].A_Waarde + "'></div>");
                         }
                     }
                 }else if(resultaat.data[i].A_Pagina_Type === "Slide") {
                     for (j = 0; j < resultaat.data.length; j += 1) {
                         if(resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
-                            $(".slideshow-container").append("<div class='mySlides fade'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
+                            $(".slideshow-container").append("<div class='mySlides fade'><img data-src='" + resultaat.data[i].A_Waarde + " lazyload' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
                         }
                     }
                     setTimeout(function() {
@@ -612,7 +612,7 @@ function contentophalen(taal, menu) {
                     for (j = 0; j < resultaat.data.length; j += 1) {
                         if(resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
                             $(".col-6").append("<div id='" + resultaat.data[i].A_ID + "' class='foto_met_text " + resultaat.data[i].A_Klasse + "'></div>");
-                            $("#" + resultaat.data[i].A_ID).append("<img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " title='" + resultaat.data[j].A_Waarde + "'>");
+                            $("#" + resultaat.data[i].A_ID).append("<img data-src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " title='" + resultaat.data[j].A_Waarde + "' class='"+resultaat.data[i].A_Klasse+" lazyload'>");
                             $("#" + resultaat.data[i].A_ID).append("<p class='" + resultaat.data[j].A_Klasse + "'>" + resultaat.data[j].A_Waarde + "</p>");
                         }
                     }

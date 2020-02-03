@@ -1064,17 +1064,22 @@
 	       	//For contextmenu	       	
 		    $(document.body).mousedown(function(event) {
 		        var target = $(event.target);
-		        if (!target.parents().andSelf().is('#context-menu')) { // Clicked outside
+				//if (!target.parents().andSelf().is('#context-menu')) { // Clicked outside
+				if (!target.parents().is('#context-menu')) { // Clicked outside
+
 		            $('#context-menu').remove();
 		        } 
-		        if (!target.parents().andSelf().is('#specialchar') && (target.closest('a').html()!='<i class="fa fa-asterisk"></i>')) { //Clicked outside
+				//if (!target.parents().andSelf().is('#specialchar') && (target.closest('a').html()!='<i class="fa fa-asterisk"></i>')) { //Clicked outside
+				if (!target.parents().is('#specialchar') && (target.closest('a').html()!='<i class="fa fa-asterisk"></i>')) { //Clicked outside
+
 		        	if($("#specialchar").is(':visible'))
 		            {
 						$(editor_Content).data("editor").data("splcharsBtn", null);
 						$('#specialchar').remove();
 		           	}
 		        }
-		        if (!target.parents().andSelf().is('#paletteCntr') && (target.closest('a').html()!='<i class="fa fa-font"></i>')) { //Clicked outside
+				//if (!target.parents().andSelf().is('#paletteCntr') && (target.closest('a').html()!='<i class="fa fa-font"></i>')) { //Clicked outside
+				if (!target.parents().is('#paletteCntr') && (target.closest('a').html()!='<i class="fa fa-font"></i>')) { //Clicked outside
 		        	if($("#paletteCntr").is(':visible'))
 		            {
 						$(editor_Content).data("editor").data("colorBtn", null);
