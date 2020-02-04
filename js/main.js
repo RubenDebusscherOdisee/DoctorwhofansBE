@@ -14,6 +14,12 @@ function convertDate(original){
     return newdate;
 }
 
+function getYear(original){
+    var rawdate = new Date(original);
+    var year = rawdate.getUTCFullYear();
+    return year;
+}
+
 function setLangstrings(langstring){
     $.get("/Locale/"+langstring+"/"+langstring+".json", function(translation) {
         translations= JSON.parse(translation);
@@ -27,6 +33,7 @@ function setLangstrings(langstring){
 function filltext(){
     $('.mededeling').html(translations.Announcement);
     $('.Disclaimer').html(translations.Disclaimer);
+    
 
 }
 
@@ -46,6 +53,11 @@ function checkmenu(menu) {
     gegevens.menu=menu;
     gegevens.ip= ip_callback();
     gegevens.session=getCookie("PHPSESSID");
+    if(getCookie("PHPSESSID").length >0){
+        gegevens.session=getCookie("PHPSESSID");
+    }else{
+        gegevens.session = "Unknown device, PWA activated";
+    }
     console.log(menu);
     if(menu.startsWith('Category')==true){
         var prefix = "Category_";
@@ -409,10 +421,10 @@ function GetQuotesByCharacter(Character) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
+        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations.NoQuotesForChar+"</p>");
         }else{for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<div class='quoteitem'><div class='quoteQuote'><p>" + resultaat.data[i].Quote + "</p></><div class='quoteEpisode'><p><b>"+resultaat.data[i].Aflevering+"</b></p></div></div>");}}
     }).fail(function(response, statusText, xhr) {
-        $("#Quotes").append("<p>Er werden voor dit personage nog geen quotes gevonden.</p>");
+        $("#Quotes").append("<p>"+translations.NoQuotesForChar+"</p>");
     }).always(function() {});
 }
 function GetQuotesByEpisode(Episode) {
@@ -423,11 +435,11 @@ function GetQuotesByEpisode(Episode) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Quotes").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");}else{
+        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations.NoQuotesForEpisode+"</p>");}else{
             for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");}
         }
     }).fail(function(response, statusText, xhr) {
-        $("#Quotes").append("<p>Er werden voor deze aflevering nog geen quotes gevonden.</p>");
+        $("#Quotes").append("<p>"+translations.NoQuotesForEpisode+"</p>");
     }).always(function() {});
 }
 function GetDownloadsByEpisode(Episode) {
@@ -438,12 +450,12 @@ function GetDownloadsByEpisode(Episode) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Downloads").append("<p>Er werden voor deze aflevering nog geen downloads gevonden.</p>");}else{
+        if(resultaat.data.length === 0) {$("#Downloads").append("<p>"+translations.NoDownloadsForEpisode+"</p>");}else{
             for (i = 0; i < resultaat.data.length; i++) {
                 $("#Downloads").append("<p>" + resultaat.data[i].download_Type + ": <a href='"+resultaat.data[i].download_link+"' target='_blank'>"+resultaat.data[i].download_Naam+"</a> ("+resultaat.data[i].download_Taal+") <a href='"+resultaat.data[i].download_link+"' download>Direct Download</a></p>");}
         }
     }).fail(function(response, statusText, xhr) {
-        $("#Downloads").append("<p>Er werden voor deze aflevering nog geen downloads gevonden.</p>");
+        $("#Downloads").append("<p>"+translations.NoDownloadsForEpisode+"</p>");
     }).always(function() {});
 }
 function GetOneRandomQuote() {
@@ -454,7 +466,7 @@ function GetOneRandomQuote() {
         cache: false
     }).done(function(resultaat) {
         $('.quote').append("<p>" + resultaat.data[0].Quote + " ...</p>")
-        $('.quote').append("<a href='../Quotes/'>Lees meer</a>");
+        $('.quote').append("<a href='../Quotes/'>"+translations.ReadMore+"</a>");
         $('.quote').append("<p>" + resultaat.data[0].Personage + " - " + resultaat.data[0].Aflevering + "</p>")
     }).fail(function(response, statusText, xhr) {
     }).always(function() {
@@ -563,7 +575,10 @@ function contentophalen(taal, menu) {
                 $(".col-6").append("<div id='Inhoud'>"+translations.TOC+"<ol></ol></div>");
             }
             if(resultaat.data[i].A_Type === "Tekst") {$(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");}
-            if(resultaat.data[i].A_Type === "Losse_Code") {$(".col-6").append(resultaat.data[i].A_Waarde);}
+            if(resultaat.data[i].A_Type === "Code") {resultaat.data[i].A_Waarde;}
+            if(resultaat.data[i].A_Type === "GetEpisodesofToday") {GetEpisodesofToday();}
+
+
             if(resultaat.data[i].A_Type === "VoetnootItem") {$("#Voetnoot ol").append("<li class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</li>");}
             if(resultaat.data[i].A_Type === "Voetnoot") {$("#Voetnoot ol").append(resultaat.data[i].A_Waarde);}
 
@@ -812,6 +827,33 @@ $(window).scroll(function(){
 function topFunction(position){
     //0 for top,  $("#element").offset().top; for a specific place         var bottom = $(document).height() - $(window).height();
 
-    $("html, body").animate({ scrollTop: position }, 'slow'); 
-    return false;
+    //$("html, body").animate({ scrollTop: position }, 'slow'); 
+    //return true;
+    document.body.scrollTop = position;
+    document.documentElement.scrollTop = position;
+    $("html, body").scrollTop(position);
+
+}
+
+function GetEpisodesofToday(){
+ $('.under').append("<div id='EpisodesOfToday'><h2>Episodes of the Day</h2><ol></ol></div>");
+ 
+ $.ajax({
+    type: "GET",
+    url: "/API/EpisodesforToday.php",
+    dataType: 'json',
+    cache: false
+}).done(function(resultaat) {
+    if (resultaat.Seasons.length >0){
+        for (i = 0; i < resultaat.Seasons.length; i++) {
+            $("#EpisodesOfToday ol").append("<li>"+resultaat.Seasons[i].title+": "+resultaat.Seasons[i].Episode_titel+" ("+getYear(resultaat.Seasons[i].original_air_date)+")</li>");
+        }
+    }else{
+        $("#EpisodesOfToday").innerHTML("<p>"+translations.NoEpisodeOftheDay+"</p>");
+    }
+    
+     
+}).fail(function(response, statusText, xhr) {
+}).always(function() {
+});
 }

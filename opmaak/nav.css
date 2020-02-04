@@ -39,7 +39,7 @@ nav a {
 }
 
 .nav-item.right>.sub-nav {
-    position: fixed;
+    position: absolute;
     right: 0;
     width: 37em;
     margin-top: 0.1em;
@@ -152,7 +152,6 @@ nav button, nav input[type=button]{min-height: 2em}
 
     .nav-item.right>.sub-nav {
         width: 100%;
-        top: 6em;
         background-color: lightgray;
     }
 

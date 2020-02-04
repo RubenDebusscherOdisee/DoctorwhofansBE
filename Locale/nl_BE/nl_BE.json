@@ -33,6 +33,11 @@
     "tenure":"Periode",
     "first_episode":"Eerste aflevering",
     "last_episode":"Laatste aflevering",
-    "Category": "Categorie"
+    "Category": "Categorie",
+    "NoQuotesForChar":"Er werden voor dit personage nog geen quotes gevonden." ,
+    "NoQuotesForEpisode":"Er werden voor deze aflevering nog geen quotes gevonden.",
+    "NoDownloadsForEpisode":"Er werden voor deze aflevering nog geen downloads gevonden.",
+    "NoEpisodeOftheDay": "Op deze dag was er doorheen de geschiedenis geen aflevering van Doctor Who.",
+    "ReadMore":"Lees meer"
 
 }

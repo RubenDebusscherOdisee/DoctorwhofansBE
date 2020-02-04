@@ -33,7 +33,13 @@
     "tenure":"Tenure",
     "first_episode":"First Episode",
     "last_episode":"Last Episode",
-    "Category": "Category"
+    "Category": "Category",
+    "NoQuotesForChar":"We were unable to find any quotes for this character." ,
+    "NoQuotesForEpisode":"We were unable to find any quotes for this episode.",
+    "NoDownloadsForEpisode":"We were unable to find any downloads for this episode.",
+    "NoEpisodeOftheDay": "Throughout history, not a single episode of Doctor Who aired in this day.",
+    "ReadMore":"Read more"
+
 
 
 }

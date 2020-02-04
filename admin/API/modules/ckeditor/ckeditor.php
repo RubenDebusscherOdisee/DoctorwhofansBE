@@ -52,5 +52,5 @@ class modules_ckeditor {
                  $this->baseURL = Dataface_ModuleTool::getInstance()->getModuleURL(__FILE__);
          }
          return $this->baseURL;
- }
+        }
 

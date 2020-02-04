@@ -2,6 +2,7 @@
 <!Doctype html lang ="nl-BE">
 <link rel="manifest" href="../manifest.json">
 <meta name="theme-color" content="#000090"/>
+<link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -56,15 +57,8 @@
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel=icon href="../images/favicon.ico" type="Images/ico" async>
-    <script async src="https://www.localeplanet.com/api/auto/icu.js" async></script>
-    <script async src="https://www.localeplanet.com/api/translate.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../js/cookies.js"></script>
-    <script async src="../js/jquery.toc.js" async></script>
-    <script async src="../js/jquery.toc.min.js" async></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/app.js" async></script>
-    <script src="../js/lazysizes.min.js" async></script>
+    <script src="../js/full.min.js"></script>
     <script>
         var id;
         session = "<?php echo session_id();?>";
@@ -73,14 +67,10 @@
             getAvailableLangcodes();
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" async></script>
-    <script src="../js/editor.min.js" async></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async preload>
-    <link href="../opmaak/editor.css" type="text/css" rel="stylesheet" async preload/>
-    <link rel=stylesheet href="../opmaak/nav.min.css" async preload/>
-    <link rel=stylesheet href="../opmaak/opmaak.min.css" async preload/>
-    <link href="../opmaak/themify-icons.css" rel="stylesheet" async preload>
+    <link rel=stylesheet href="../opmaak/full.min.css" async preload/>
     <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async preload>
     <script>
         $(document).ready(function () {
@@ -318,7 +308,7 @@
     <div class="path"></div>
 
     <div id=loading_div>
-        <img id=loading data-src="../images/ledtorch.1498524411.png" class="lazyload loading_img" alt="Laden">
+        <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
     </div>
     <article class=col-6>
         <?php
@@ -363,7 +353,7 @@
     </footer>
     
     <script async src="../js/toegang.js" async></script>
-    <a href="#"  id ="Back_To_Top" class=back-to-top onclick="topFunction(0px)"><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
+    <a href="#"  id ="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
     <div id="overlay_Zoeken">
         <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"

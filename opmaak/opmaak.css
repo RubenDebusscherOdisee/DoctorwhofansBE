@@ -1460,6 +1460,7 @@ input[type="email"] {
   .under img:not(.upDown) {
     width: 100%;
     clear: both;
+    margin: auto;
   }
 
   .back_to_top {
@@ -2029,3 +2030,6 @@ a .socialmedia_full:hover {
     min-width: 100%;
   }
 }
+
+#EpisodesOfToday{border: 1px solid black;border-radius: 5px;}
+#EpisodesOfToday ul {list-style-type: none;}
