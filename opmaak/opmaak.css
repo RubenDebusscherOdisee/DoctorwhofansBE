@@ -8,18 +8,26 @@ body {
   min-height: 100vh;
 }
 
-.print{font-family: 'Times New Roman', Times, serif;}
+.print {
+  font-family: 'Times New Roman', Times, serif;
+}
 
-a{ font-weight:bold;}
+a {
+  font-weight: bold;
+}
+
 .anchor:target {
   padding-top: 90px;
 }
+
 .seventy {
   width: 71%;
 }
+
 #Under_Upper {
   width: 100%;
 }
+
 .newsitem {
   width: 100%;
   display: inline-block;
@@ -29,13 +37,16 @@ a{ font-weight:bold;}
   float: right;
   list-style-type: none;
 }
+
 .half_list li {
   width: 50%;
   padding-right: 5%;
 }
+
 .half_list li:nth-child(even) {
   float: right;
 }
+
 .half_list li:nth-child(odd) {
   float: left;
 }
@@ -68,6 +79,7 @@ a{ font-weight:bold;}
 .inline_block {
   display: inline-block;
 }
+
 .inline_vid {
   display: inline;
 }
@@ -84,21 +96,21 @@ a{ font-weight:bold;}
 .OverzichtItem {
   display: inline-flex;
   width: auto;
-  min-width:50%
+  min-width: 50%
 }
 
 .quoteitem {
   border: 3px solid yellow;
-    padding-bottom: 1em;
-    display: inline-flex;
-    height: auto;
-    padding-left: 1em;
-    padding-right: 1em;
-    max-width: 67%;
-    padding: 1em;
-    min-width: 8%;
-    margin: 1em;
-    border-radius: 10px;
+  padding-bottom: 1em;
+  display: inline-flex;
+  height: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 67%;
+  padding: 1em;
+  min-width: 8%;
+  margin: 1em;
+  border-radius: 10px;
 }
 
 
@@ -250,6 +262,7 @@ a{ font-weight:bold;}
   from {
     opacity: 0.4;
   }
+
   to {
     opacity: 1;
   }
@@ -259,6 +272,7 @@ a{ font-weight:bold;}
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0.4;
   }
@@ -325,7 +339,9 @@ a{ font-weight:bold;}
 
 
 
-.first-item img{height:2em}
+.first-item img {
+  height: 2em
+}
 
 .messages {
   clear: both;
@@ -394,17 +410,26 @@ a{ font-weight:bold;}
 .result p {
   color: yellow;
 }
+
 #WikiDetails a,
 .path a,
 #Inhoud a {
   color: white;
   text-decoration: underline;
 }
+footer a, aside a{
+  text-decoration: underline;
+}
 
 #WikiDetails a:hover,
 .path a:hover,
-#Inhoud a:hover {
-  color: white;
+#Inhoud a:hover,
+footer a:hover,
+#WikiDetails a:focus,
+.path a:focus,
+#Inhoud a:focus,
+footer a:focus,
+#wrapper a:hover,#wrapper:focus {
   text-decoration: none;
 }
 
@@ -445,18 +470,30 @@ a{ font-weight:bold;}
 
 
 .WikiRule {
- clear: both;
-    margin-left: 2px;
-    margin-right: 2px;
-    float: left;
-    width: calc(100% - 4px);
-    margin-bottom: 0.2em;
-    margin-top: 0.2em;
+  clear: both;
+  margin-left: 2px;
+  margin-right: 2px;
+  float: left;
+  width: calc(100% - 4px);
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
 }
-.WikiRule ul{float: left;width: 100%;}
-.WikiRule ul li, #Inhoud ol li{line-height: 1.5em;margin-top: 4px;
-  margin-bottom: 4px;}
-.WikiRule ul li a{line-height: 1.5em;}
+
+.WikiRule ul {
+  float: left;
+  width: 100%;
+}
+
+.WikiRule ul li,
+#Inhoud ol li {
+  line-height: 1.5em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.WikiRule ul li a {
+  line-height: 1.5em;
+}
 
 
 .WikiItem {
@@ -706,9 +743,11 @@ popup_event .link {
     margin-left: auto;
     margin-right: auto;
   }
+
   .socialmedia a {
     width: 46%;
   }
+
   .socialmedia_full {
     width: 100%;
   }
@@ -716,16 +755,19 @@ popup_event .link {
   .Gebruiker_Message {
     width: 30%;
   }
+
   .WikiRule {
     width: 100%;
     clear: both;
     display: block;
   }
+
   .WikiRule ul {
     float: right;
     min-width: 50%;
     max-width: 100%;
   }
+
   /* .WikiRule span {
         float: right;
         min-width: 45%;
@@ -736,17 +778,21 @@ popup_event .link {
     width: fit-content;
     max-width: 100%;
   }
+
   .upDown {
     float: right;
     width: 8%;
     clear: right;
   }
+
   #calender_section {
     width: 100%;
   }
+
   #calender_section_top ul li {
     width: 14%;
   }
+
   #calender_section_bot ul li {
     width: 14%;
   }
@@ -756,7 +802,10 @@ popup_event .link {
   width: 100%;
   clear: both;
 }
-#wrapper{min-height: 50vh;}
+
+#wrapper {
+  min-height: 50vh;
+}
 
 
 #loading {
@@ -777,6 +826,9 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+  height: auto;
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 .news {
@@ -787,7 +839,9 @@ footer {
   height: auto;
   width: 100%;
   clear: both;
-  text-align: center;position: sticky;top: 100vh;
+  text-align: center;
+  position: sticky;
+  top: 100vh;
 }
 
 .back-to-top {
@@ -932,9 +986,11 @@ span.LQuote {
 #Inhoud ol {
   counter-reset: item;
 }
+
 #Inhoud ol li {
   display: block;
 }
+
 #Inhoud ol li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
@@ -943,14 +999,14 @@ span.LQuote {
 }
 
 .Wiki_Foto {
-    display:block;
-    max-width: 100%;
-    min-width:40%;
-    width:60%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 1em;
-    padding-top: 0.5em;
+  display: block;
+  max-width: 100%;
+  min-width: 40%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1em;
+  padding-top: 0.5em;
 }
 
 p.item {
@@ -1013,8 +1069,7 @@ p {
 .zoekknop {
   width: 30px;
   height: 30px;
-  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png)
-    no-repeat;
+  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
   background-size: 30px 30px;
   border-style: none;
 }
@@ -1098,7 +1153,7 @@ footer a,
   width: 99%;
   text-decoration: none;
   display: none;
-    float: right;
+  float: right;
 }
 
 
@@ -1156,13 +1211,15 @@ header {
 .tekst {
   width: 70%;
 }
-.maxsixtyseven{
+
+.maxsixtyseven {
   max-width: 67% !important;
 }
 
-.prewrapped_WS{
+.prewrapped_WS {
   white-space: pre-wrap;
 }
+
 .smalletekst {
   width: 65%;
 }
@@ -1282,49 +1339,62 @@ input[type="email"] {
     width: 50%;
     margin: 0 25%;
   }
+
   #NameLabel {
     margin-top: 1em;
     display: inline-block;
   }
+
   .back-to-top {
     bottom: 6em;
     right: 1em;
   }
+
   .Wiki_Foto {
     margin-left: 0;
     margin-right: 0;
   }
+
   .path {
     height: auto;
   }
+
   .path span {
     line-height: 2em;
   }
+
   .foto_met_text {
     max-width: 100%;
   }
-  .links,.maxsixtyseven {
+
+  .links,
+  .maxsixtyseven {
     max-width: 100% !important;
   }
+
   .Inleiding {
     width: 100%;
     max-width: 100%;
   }
+
   p {
     width: 100%;
   }
+
   .OverzichtItem {
     width: 50%;
   }
+
   .upDown {
     float: right;
     width: 8%;
     clear: right;
   }
- 
+
   #WikiDetails {
     margin-top: 0;
   }
+
   .video_beschrijving {
     float: left;
     clear: both;
@@ -1332,80 +1402,102 @@ input[type="email"] {
     margin-left: 0em;
     margin-right: 0em;
   }
+
   [class*="col-"] {
     width: 100%;
   }
+
   .col-6 img {
     width: 100%;
   }
+
   .quote_picture {
     float: initial;
   }
+
   .detailcompanion {
     width: 100%;
   }
+
   .rechtop {
     width: 100%;
     margin-right: 5px;
   }
+
   .tekst {
     width: 100%;
   }
+
   .smalletekst {
     width: 100%;
   }
+
   #header {
     display: none;
   }
+
   p,
   p.links {
     margin-left: 0px;
     max-width: 100%;
   }
+
   #WikiDetails {
-    width: 100%; min-width:100%;
+    width: 100%;
+    min-width: 100%;
   }
+
   .col-3 {
     display: none;
   }
+
   .sidebar_mobile {
     display: block;
     width: 100%;
   }
+
   .col-6 img,
   .under img:not(.upDown) {
     width: 100%;
     clear: both;
   }
+
   .back_to_top {
     bottom: 5px;
     right: 7em;
   }
+
   .back_to_top_IMG {
     width: 4em;
     height: 4em;
   }
+
   #footer {
     height: auto;
   }
+
   .quote {
     width: 100%;
     margin-left: 0px;
     float: left;
   }
+
   .mededeling {
     width: 100%;
     margin-left: 0px;
     float: left;
   }
+
   .zoekfunctie {
     width: 90%;
     background-color: #ffffff;
     height: 20px;
   }
+
   .zoeken {
     width: 90%;
   }
+
   .zoekterm {
     border-style: none;
     height: 30px;
@@ -1413,46 +1505,54 @@ input[type="email"] {
     margin-left: 2px;
     padding-left: 3px;
   }
+
   .zoekknop {
     width: 30px;
     height: 30px;
-    background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png)
-      no-repeat;
+    background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
     background-size: 30px 30px;
     border-style: none;
   }
+
   .R {
     margin-left: 0em;
     margin-right: 0em;
   }
+
   div .R {
     float: left;
     width: 100%;
     margin-left: 0px;
   }
+
   .L {
     margin-left: 0em;
     margin-right: 0em;
   }
+
   .LNews {
     width: 100%;
     float: left;
     margin-left: 0em;
     margin-right: 0em;
   }
+
   .RNews {
     width: 100%;
     float: right;
     margin-left: 0em;
     margin-right: 0em;
   }
+
   .companionFoto {
     width: 100%;
   }
+
   .companion {
     width: 100%;
     display: inline-block;
   }
+
   .thumbnail {
     width: calc(100% / 2);
   }
@@ -1474,6 +1574,7 @@ input[type="email"] {
   .path {
     height: 8em;
   }
+
   .OverzichtItem {
     width: 100%;
   }
@@ -1609,10 +1710,12 @@ input[type="email"] {
   .keuze {
     width: 30%;
   }
+
   .Wiki_Foto {
     margin-left: 0;
     margin-right: 0;
   }
+
   #loading {
     animation: rotateRight 5.5s infinite linear;
     -webkit-animation: rotateRight 5.5s infinite linear;
@@ -1620,16 +1723,19 @@ input[type="email"] {
     margin: auto;
     width: 8%;
   }
+
   .upDown {
     float: right;
     width: 8%;
     clear: right;
   }
+
   #Inhoud {
     width: 100%;
     margin-top: 1%;
     max-width: 100%;
   }
+
   #overlay {
     position: absolute;
     left: 2%;
@@ -1643,6 +1749,7 @@ input[type="email"] {
     background-color: #000090;
     display: none;
   }
+
   #overlay h1 {
     text-align: center;
     color: #ff0;
@@ -1653,6 +1760,7 @@ input[type="email"] {
     line-height: 1em;
     margin-top: 0.1em;
   }
+
   #overlay h2 {
     font-family: Doctor;
     font-weight: 400;
@@ -1660,13 +1768,16 @@ input[type="email"] {
     padding: 0;
     font-size: 1.8em;
   }
+
   #overlay .taal {
     margin-left: 0;
     width: 100%;
   }
+
   #overlay .taal img {
     width: 10%;
   }
+
   label {
     font-size: 1em;
     clear: right;
@@ -1680,6 +1791,7 @@ input[type="email"] {
 #show-menu {
   display: none;
 }
+
 #menulist {
   display: block;
 }
@@ -1688,7 +1800,9 @@ input[type="email"] {
   display: block;
 }
 
-.first-item{min-width:6%}
+.first-item {
+  min-width: 6%
+}
 
 #show-menu {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1710,6 +1824,7 @@ input[type="email"] {
     padding-bottom: 1em;
     padding-top: 0.5em;
   }
+
   .WikiItem.content.List {
     display: block;
     margin-top: 0;
@@ -1717,32 +1832,36 @@ input[type="email"] {
     float: right;
     margin-left: 0;
   }
+
   .upDown {
     float: right;
     width: 8%;
     clear: right;
   }
- 
+
   li {
     width: 100%;
   }
+
   .cols-4 {
     width: 100%;
     height: auto;
   }
+
   .cols-4b {
     width: 100%;
     height: auto;
     margin-left: 4em;
   }
-  
+
   p {
     width: 100%;
   }
+
   ol {
     width: 100%;
   }
-  
+
 
 
 }
@@ -1751,23 +1870,27 @@ input[type="email"] {
   .OverzichtItem {
     width: 33%;
   }
+
   .WikiItem.content.List {
     display: block;
     margin-top: 0;
     width: 139%;
     margin-left: 16%;
   }
+
   li {
     margin-bottom: 1px;
   }
+
   ul li,
   li a {
     width: 100%;
   }
+
   #show-menu {
     display: block;
   }
- 
+
 }
 
 
@@ -1793,8 +1916,7 @@ input[type="email"] {
 .zoekknop {
   width: 40px;
   height: 40px;
-  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png)
-    no-repeat;
+  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png) no-repeat;
   background-size: 40px 40px;
   border-style: none;
 }
@@ -1806,11 +1928,14 @@ input[type="email"] {
 .zoekfomulier {
   width: 100%;
 }
+
 @media only screen and (max-width: 450px) {
   #WikiDetails {
-    width: 100%;min-width: 100%;
+    width: 100%;
+    min-width: 100%;
   }
 }
+
 .zoeklabel {
   color: #000000;
 }
@@ -1825,10 +1950,12 @@ input[type="email"] {
 .socialmedia img {
   width: 100%;
 }
+
 a .socialmedia_full:hover {
   border-radius: 100%;
   width: auto;
 }
+
 .socialmedia a:hover {
   border-radius: 100%;
   width: 25%;
@@ -1839,6 +1966,7 @@ a .socialmedia_full:hover {
   width: 25%;
   border-radius: 100%;
 }
+
 .socialmedia_full {
   width: 100% !important;
 }
@@ -1853,10 +1981,12 @@ a .socialmedia_full:hover {
   li {
     width: 100%;
   }
+
   .cols-4 {
     width: 100%;
     height: auto;
   }
+
   .cols-4b {
     width: 100%;
     height: auto;
@@ -1868,17 +1998,20 @@ a .socialmedia_full:hover {
     width: 100%;
     max-width: 100%;
   }
+
   p {
     width: 100%;
     max-width: 100%;
   }
+
   ol {
     width: 100%;
   }
- 
+
   .loading_img {
-    height:20vh
+    height: 20vh
   }
+
   .socialmedia {
     width: 100%;
     margin-left: auto;
@@ -1890,9 +2023,9 @@ a .socialmedia_full:hover {
   margin-left: 4em;
 }
 
-@media only screen 
-  and (min-width: 320px) 
-  and (max-width: 480px)
-  and (resolution: 150dpi) {
-    #WikiDetails{width: 100%;min-width: 100%;}
+@media only screen and (min-width: 320px) and (max-width: 480px) and (resolution: 150dpi) {
+  #WikiDetails {
+    width: 100%;
+    min-width: 100%;
+  }
 }

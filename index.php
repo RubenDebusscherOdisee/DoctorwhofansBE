@@ -82,7 +82,7 @@
     <link rel=stylesheet href="../opmaak/opmaak.min.css" async preload/>
     <link href="../opmaak/themify-icons.css" rel="stylesheet" async preload>
     <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async preload>
-    <script async>
+    <script>
         $(document).ready(function () {
             if ($(window).width() < 800) {
                 $('nav').hide();}
@@ -96,20 +96,6 @@
         jQuery(document).ready(function () {
             var c = 220,
                 b = 500;
-            jQuery(window).scroll(function () {
-                if (jQuery(this).scrollTop() > c) {
-                    jQuery(".back-to-top").fadeIn(b);
-                } else {
-                    jQuery(".back-to-top").fadeOut(b);
-                }
-            });
-            jQuery(".back-to-top").click(function (e) {
-                e.preventDefault();
-                jQuery("html, body").animate({
-                    scrollTop: 0
-                }, b);
-                return false;
-            });
             jQuery(".taal_link").click(function (f) {
                 f.preventDefault();
                 jQuery("html, body").animate({
@@ -377,7 +363,7 @@
     </footer>
     
     <script async src="../js/toegang.js" async></script>
-    <a href="#" class=back-to-top><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
+    <a href="#"  id ="Back_To_Top" class=back-to-top onclick="topFunction(0px)"><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
     <div id="overlay_Zoeken">
         <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"

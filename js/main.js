@@ -45,7 +45,7 @@ function checkmenu(menu) {
     gegevens={}
     gegevens.menu=menu;
     gegevens.ip= ip_callback();
-    gegevens.session=document.cookie.match(/PHPSESSID=[^;]+/).toString().substr(10);
+    gegevens.session=getCookie("PHPSESSID");
     console.log(menu);
     if(menu.startsWith('Category')==true){
         var prefix = "Category_";
@@ -801,3 +801,17 @@ function showSlides(n) {
 }
 
 
+$(window).scroll(function(){
+    if($(this).scrollTop() > 100){
+        $('#Back_To_Top').fadeIn();
+    }else{
+        $('#Back_To_Top').fadeOut();
+    }
+});
+
+function topFunction(position){
+    //0 for top,  $("#element").offset().top; for a specific place         var bottom = $(document).height() - $(window).height();
+
+    $("html, body").animate({ scrollTop: position }, 'slow'); 
+    return false;
+}
