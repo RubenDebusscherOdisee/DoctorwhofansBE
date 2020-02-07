@@ -19,6 +19,17 @@ ExpiresDefault "access 1 year"
 ## EXPIRES CACHING ##
 
 
+# Deny access to .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+<FilesMatch "\.(ini|psd|log|sh)$">
+Order allow,deny
+Deny from all
+
+</FilesMatch>
 
 ErrorDocument 404 https://www.doctorwhofans.be/notfound.html
 RewriteEngine On
