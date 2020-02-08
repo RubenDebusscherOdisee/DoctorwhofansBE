@@ -10,6 +10,14 @@ class tables_alles {
         if ( $record->val('A_Actief') == 1 ) return 'active-row';
         else return 'dormant-row';
     }
+
+    function block__before_A_Waarde_widget(){
+        $jt = Dataface_JavascriptTool::getInstance();
+        $jt->import('spoiler/plugin.js');
+        //$jt->import('timestamp/plugin.js');
+        //$jt->import('abbr/plugin.js');
+
+}
     
     function __import__csv($data, $defaultValues=array()){
         $records = array();
