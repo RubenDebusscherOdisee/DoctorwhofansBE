@@ -267,7 +267,7 @@ var translations=[];
 
 function convertDate(original){
     var rawdate = new Date(original);
-    var month = rawdate.toLocaleString('default', { month: 'long' })
+    var month = rawdate.toLocaleString('default', { month: 'long' });
     var day = rawdate.getDate();
     var year = rawdate.getUTCFullYear();
     var newdate = day + " " + month + " " + year; 
@@ -282,17 +282,18 @@ function getYear(original){
 
 function setLangstrings(langstring){
     $.get("/Locale/"+langstring+"/"+langstring+".json", function(translation) {
-        translations= JSON.parse(translation);
+		translations.push(translation);
+		console.log(translations);
         filltext(); //fill these in first to verift function runs ok
-        renderpage(getCookie("lang"),menu)
+        renderpage(getCookie("lang"),menu);
 
     })
 }
 
 
 function filltext(){
-    $('.mededeling').html(translations.Announcement);
-    $('.Disclaimer').html(translations.Disclaimer);
+    $('.mededeling').html(translations[0].Announcement);
+    $('.Disclaimer').html(translations[0].Disclaimer);
     
 
 }
@@ -323,7 +324,7 @@ function checkmenu(menu) {
         var prefix = "Category_";
         tag =  menu.substr(prefix.length, menu.length);
         $('.path').remove();
-        $('.col-6').append("<h1>"+translations.Category+":"+tag.replace('_',' ')+"</h1>");
+        $('.col-6').append("<h1>"+translations[0].Category+":"+tag.replace('_',' ')+"</h1>");
         $(".under").append("<div class='topics'></div>");
         $.ajax({
             type: "GET",
@@ -681,10 +682,10 @@ function GetQuotesByCharacter(Character) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations.NoQuotesForChar+"</p>");
+        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations[0].NoQuotesForChar+"</p>");
         }else{for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<div class='quoteitem'><div class='quoteQuote'><p>" + resultaat.data[i].Quote + "</p></><div class='quoteEpisode'><p><b>"+resultaat.data[i].Aflevering+"</b></p></div></div>");}}
     }).fail(function(response, statusText, xhr) {
-        $("#Quotes").append("<p>"+translations.NoQuotesForChar+"</p>");
+        $("#Quotes").append("<p>"+translations[0].NoQuotesForChar+"</p>");
     }).always(function() {});
 }
 function GetQuotesByEpisode(Episode) {
@@ -695,11 +696,11 @@ function GetQuotesByEpisode(Episode) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations.NoQuotesForEpisode+"</p>");}else{
+        if(resultaat.data.length === 0) {$("#Quotes").append("<p>"+translations[0].NoQuotesForEpisode+"</p>");}else{
             for (i = 0; i < resultaat.data.length; i++) {$("#Quotes").append("<p class='quoteitem'>" + resultaat.data[i].Quote + "</p>");}
         }
     }).fail(function(response, statusText, xhr) {
-        $("#Quotes").append("<p>"+translations.NoQuotesForEpisode+"</p>");
+        $("#Quotes").append("<p>"+translations[0].NoQuotesForEpisode+"</p>");
     }).always(function() {});
 }
 function GetDownloadsByEpisode(Episode) {
@@ -710,12 +711,12 @@ function GetDownloadsByEpisode(Episode) {
         dataType: 'json',
         cache: false
     }).done(function(resultaat) {
-        if(resultaat.data.length === 0) {$("#Downloads").append("<p>"+translations.NoDownloadsForEpisode+"</p>");}else{
+        if(resultaat.data.length === 0) {$("#Downloads").append("<p>"+translations[0].NoDownloadsForEpisode+"</p>");}else{
             for (i = 0; i < resultaat.data.length; i++) {
                 $("#Downloads").append("<p>" + resultaat.data[i].download_Type + ": <a href='"+resultaat.data[i].download_link+"' target='_blank'>"+resultaat.data[i].download_Naam+"</a> ("+resultaat.data[i].download_Taal+") <a href='"+resultaat.data[i].download_link+"' download>Direct Download</a></p>");}
         }
     }).fail(function(response, statusText, xhr) {
-        $("#Downloads").append("<p>"+translations.NoDownloadsForEpisode+"</p>");
+        $("#Downloads").append("<p>"+translations[0].NoDownloadsForEpisode+"</p>");
     }).always(function() {});
 }
 function GetOneRandomQuote() {
@@ -726,7 +727,7 @@ function GetOneRandomQuote() {
         cache: false
     }).done(function(resultaat) {
         $('.quote').append("<p>" + resultaat.data[0].Quote + " ...</p>")
-        $('.quote').append("<a href='../Quotes/'>"+translations.ReadMore+"</a>");
+        $('.quote').append("<a href='../Quotes/'>"+translations[0].ReadMore+"</a>");
         $('.quote').append("<p>" + resultaat.data[0].Personage + " - " + resultaat.data[0].Aflevering + "</p>")
     }).fail(function(response, statusText, xhr) {
     }).always(function() {
@@ -748,7 +749,7 @@ function contentophalen(taal, menu) {
             }
             if(resultaat.data[i].A_Pagina_Type === "WikiPagina") {
                 $(".col-6").append("<div id='WikiDetails'></div>");
-                $(".under").append("<div id='Voetnoot'><h2>"+translations.References+"</h2><ol></ol></div>");
+                $(".under").append("<div id='Voetnoot'><h2>"+translations[0].References+"</h2><ol></ol></div>");
                 $("#WikiDetails").append("<div id='Items'></div>");
             }
             if(resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel"||resultaat.data[i].A_Type === "CharacterTitel") {
@@ -756,8 +757,8 @@ function contentophalen(taal, menu) {
                 if(resultaat.data[i].A_Type === "EpisodeTitel") {
                     $(".under").prepend("<div id='Under_Upper'>")
                     $("#Under_Upper").append("<div id='Quotes' class='anchor'></div>");
-                    $("#Under_Upper").append("<div id='Downloads' class='anchor'><h2>"+translations.Downloads+"</h2></div>");
-                    $("#Quotes").append("<h2>"+translations.Quotes+"</h2>");
+                    $("#Under_Upper").append("<div id='Downloads' class='anchor'><h2>"+translations[0].Downloads+"</h2></div>");
+                    $("#Quotes").append("<h2>"+translations[0].Quotes+"</h2>");
                     var Episode = resultaat.data[i].A_Pagina;
                     GetQuotesByEpisode(Episode);
                     GetDownloadsByEpisode(Episode);
@@ -766,73 +767,73 @@ function contentophalen(taal, menu) {
                 if(resultaat.data[i].A_Type === "CharacterTitel") {
                     $(".under").prepend("<div id='Under_Upper'>")
                     $("#Under_Upper").append("<div id='Quotes'></div>");
-                    $("#Quotes").append("<h2>"+translations.Quotes+"</h2>");
+                    $("#Quotes").append("<h2>"+translations[0].Quotes+"</h2>");
                     var Character = resultaat.data[i].A_Waarde;
                     GetQuotesByCharacter(menu.split('_').join(' '));
                 }
             }
             if(resultaat.data[i].A_Type === "EpisodeStatus") {
-                $("#Items").prepend("<div class='WikiItemTitel " + resultaat.data[i].A_Klasse + "'>"+translations.Status+": " + resultaat.data[i].A_Waarde + "</div>");
+                $("#Items").prepend("<div class='WikiItemTitel " + resultaat.data[i].A_Klasse + "'>"+translations[0].Status+": " + resultaat.data[i].A_Waarde + "</div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeDoctorList") {
-                $("#Items").append("<div class=WikiItemTitel>"+translations.Cast+"</div>");
-                $("#Items").append("<div class=WikiRule>"+translations.Doctor+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiItemTitel>"+translations[0].Cast+"</div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Doctor+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeMainSetting") {
-                $("#Items").append("<div class=WikiItemTitel>"+translations.Story+"</div>");
-                $("#Items").append("<div class=WikiRule>"+translations.main_setting+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiItemTitel>"+translations[0].Story+"</div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].main_setting+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeMainEnemy") {
-                $("#Items").append("<div class=WikiRule>"+translations.main_enemy+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].main_enemy+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeCompanionList") {
-                $("#Items").append("<div class=WikiRule>"+translations.Companions+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Companions+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeOtherList") {
-                $("#Items").append("<div class=WikiRule>"+translations.Others+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Others+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeDirectorList") {
-                $("#Items").append("<div class=WikiItemTitel>"+translations.Production+"</div>");
-                $("#Items").append("<div class=WikiRule>"+translations.directed_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiItemTitel>"+translations[0].Production+"</div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].directed_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
                 
             }
             if(resultaat.data[i].A_Type === "EpisodePrevious") {
-                $("#Items").append("<div class='WikiItemTitel'>"+translations.Chronology+"</div>");
+                $("#Items").append("<div class='WikiItemTitel'>"+translations[0].Chronology+"</div>");
                 $("#Items").append("<div class='Chronologie'></div>");
-                $(".Chronologie").append("<div class='Half'>"+translations.previous_episode+":<br>" + resultaat.data[i].A_Waarde + "</div>");
+                $(".Chronologie").append("<div class='Half'>"+translations[0].previous_episode+":<br>" + resultaat.data[i].A_Waarde + "</div>");
                 
             }
             if(resultaat.data[i].A_Type === "EpisodeNext") {
-                $(".Chronologie").append("<div class='Half Rechts'>"+translations.next_episode+":<br>" + resultaat.data[i].A_Waarde + "</div>");
+                $(".Chronologie").append("<div class='Half Rechts'>"+translations[0].next_episode+":<br>" + resultaat.data[i].A_Waarde + "</div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeWriterList") {
-                $("#Items").append("<div class=WikiRule>"+translations.written_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].written_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeEditorList") {
-                $("#Items").append("<div class=WikiRule>"+translations.script_editor+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");}
+                $("#Items").append("<div class=WikiRule>"+translations[0].script_editor+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");}
             if(resultaat.data[i].A_Type === "EpisodeProducerList") {
-                $("#Items").append("<div class=WikiRule>"+translations.produced_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].produced_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeComposer") {
-                $("#Items").append("<div class=WikiRule>"+translations.incidental_composer+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].incidental_composer+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeProductionCode") {
-                $("#Items").append("<div class=WikiRule>"+translations.production_code+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].production_code+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeSeries") {
-                $("#Items").append("<div class=WikiRule>"+translations.Series+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");}
+                $("#Items").append("<div class=WikiRule>"+translations[0].Series+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");}
             if(resultaat.data[i].A_Type === "EpisodeLength") {
-                $("#Items").append("<div class=WikiRule>"+translations.Length+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Length+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeDateStarted") {
-                $("#Items").append("<div class=WikiRule>"+translations.Startdate+": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Startdate+": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "EpisodeDateEnded") {
-                $("#Items").append("<div class=WikiRule>"+translations.Enddate+": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
+                $("#Items").append("<div class=WikiRule>"+translations[0].Enddate+": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "Inleiding") {
                 $(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");
-                $(".col-6").append("<div id='Inhoud'>"+translations.TOC+"<ol></ol></div>");
+                $(".col-6").append("<div id='Inhoud'>"+translations[0].TOC+"<ol></ol></div>");
             }
             if(resultaat.data[i].A_Type === "Tekst") {$(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");}
             if(resultaat.data[i].A_Type === "Code") {resultaat.data[i].A_Waarde;}
@@ -894,32 +895,32 @@ function contentophalen(taal, menu) {
                 }
             }
             if(resultaat.data[i].A_Type === "WikiItemPlayedBy") {
-                $("#Items").append("<div class='WikiRule'>"+translations.played_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].played_by+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "AantalSeizoenen") {
-                $("#Items").append("<div class='WikiRule'>"+translations.nr_seasons+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].nr_seasons+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "Verschijningen") {
-                    $("#Items").append("<div class='WikiRule'>"+translations.nr_appareances+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                    $("#Items").append("<div class='WikiRule'>"+translations[0].nr_appareances+": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "Periode") {
                 var times = resultaat.data[i].A_Waarde.split(' - ');
                 for (var time=0;time<times.length;time++){
                     times[time] = convertDate(times[time]);
                 }
-                $("#Items").append("<div class='WikiRule'>"+translations.tenure+": <span>" + times.join(" - ") + "</span></div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].tenure+": <span>" + times.join(" - ") + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "WikiItemFirstEpisode") {
-                $("#Items").append("<div class='WikiRule'>"+translations.first_episode+":<span>" + resultaat.data[i].A_Waarde + "</span></div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].first_episode+":<span>" + resultaat.data[i].A_Waarde + "</span></div>");
             }
             if(resultaat.data[i].A_Type === "WikiItemLastEpisode") {
-                $("#Items").append("<div class='WikiRule'>"+translations.last_episode+":" + resultaat.data[i].A_Waarde + "</div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].last_episode+":" + resultaat.data[i].A_Waarde + "</div>");
             }
             if(resultaat.data[i].A_Type === "CompanionList") {
-                $("#Items").append("<div class='WikiRule'>"+translations.Companions+": " + resultaat.data[i].A_Waarde + "</div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].Companions+": " + resultaat.data[i].A_Waarde + "</div>");
             }
             if(resultaat.data[i].A_Type === "SeriesList") {
-                $("#Items").append("<div class='WikiRule'>"+translations.Series+": " + resultaat.data[i].A_Waarde + "</div>");
+                $("#Items").append("<div class='WikiRule'>"+translations[0].Series+": " + resultaat.data[i].A_Waarde + "</div>");
             }
             if(resultaat.data[i].A_Type === "Form") {
                 $(".col-6").append(resultaat.data[i].A_Waarde);
@@ -1096,7 +1097,7 @@ function topFunction(position){
 }
 
 function GetEpisodesofToday(){
- $('.under').append("<div id='EpisodesOfToday'><h2>Episodes of the Day</h2><ol></ol></div>");
+ $('.col-6').append("<div id='EpisodesOfToday'><h2>Episodes of the Day</h2><ol></ol></div>");
  
  $.ajax({
     type: "GET",
@@ -1109,7 +1110,7 @@ function GetEpisodesofToday(){
             $("#EpisodesOfToday ol").append("<li>"+resultaat.Seasons[i].title+": "+resultaat.Seasons[i].Episode_titel+" ("+getYear(resultaat.Seasons[i].original_air_date)+")</li>");
         }
     }else{
-        $("#EpisodesOfToday").innerHTML("<p>"+translations.NoEpisodeOftheDay+"</p>");
+        $("#EpisodesOfToday").innerHTML("<p>"+translations[0].NoEpisodeOftheDay+"</p>");
     }
     
      

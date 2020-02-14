@@ -241,7 +241,7 @@ function fetchCategoryTreeList($parent = 0, $user_tree_array = '') {
     if (!is_array($user_tree_array))
     $user_tree_array = array();
 
-  $sql = "SELECT `id`, `topic`, `parent_id`,`link`,`Uitklapbaar` FROM `Topics` WHERE `parent_id` = $parent and Actief=1 ORDER BY Uitklapbaar desc,topic,id ASC";
+  $sql = "SELECT `id`, `topic`, `parent_id`,`link`,`Uitklapbaar` FROM `Topics` WHERE `parent_id` = $parent and Actief=1 ORDER BY Uitklapbaar desc,Episode_Order asc,topic asc,id ASC";
   $query = mysqli_query($conn,$sql);
   if (mysqli_num_rows($query) > 0) {
      $user_tree_array[] = "<ul class='itemsSitemap'>";
@@ -250,7 +250,7 @@ function fetchCategoryTreeList($parent = 0, $user_tree_array = '') {
            $user_tree_array[] = "<li class='item parent'><button class='SitemapButton'>+</button><a href ='/".$row->link."/' class='link'>". $row->topic."</a></li>"; 
         }else{
             if($row->topic =="Forum"){
-                $user_tree_array[] = "<li><a href ='https://forum.doctorwhofans.be' class='link'style='margin-left:2.3em;'>". $row->topic."</a></li>";
+                $user_tree_array[] = "<li><a href ='https://forum.doctorwhofans.be' class='link' style='margin-left:2.3em;'>". $row->topic."</a></li>";
             }else{
                 $user_tree_array[] = "<li><a href ='/".$row->link."/' class='link'style='margin-left:2.3em;'>". $row->topic."</a></li>";
             }

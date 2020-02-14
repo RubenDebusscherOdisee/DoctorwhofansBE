@@ -1919,7 +1919,6 @@ input[type="email"] {
         -webkit-animation: rotateRight 5.5s infinite linear;
         display: block;
         margin: auto;
-        width: 8%;
     }
 
     .upDown {
@@ -2206,9 +2205,7 @@ a .socialmedia_full:hover {
         width: 100%;
     }
 
-    .loading_img {
-        height: 20vh
-    }
+   
 
     .socialmedia {
         width: 100%;
@@ -2229,8 +2226,13 @@ a .socialmedia_full:hover {
 }
 
 #EpisodesOfToday {
-    border: 1px solid black;
+    border: 1px solid #000;
     border-radius: 5px;
+    display: inline-block;
+    min-width: 68%;
+    padding: 1em;
+    max-width: 100%;
+}
 }
 
 #EpisodesOfToday ul {
