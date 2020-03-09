@@ -113,7 +113,7 @@ unset($_smarty_tpl_vars);
 			<?php echo $this->_plugins['function']['block'][0][0]->block(array('name' => 'before_main_table'), $this);?>
 
 			<?php $this->_tag_stack[] = array('define_slot', array('name' => 'main_table')); $_block_repeat=true;$this->_plugins['block']['define_slot'][0][0]->define_slot($this->_tag_stack[count($this->_tag_stack)-1][1], null, $this, $_block_repeat);while ($_block_repeat) { ob_start(); ?>
-				<table width="100%" border="0" cellpadding="5" id="main_table">
+				<table border="0" cellpadding="5" id="main_table">
 					<tr>
 						<td valign="top" id="left_column">
 							<div class="left-column-wrapper">

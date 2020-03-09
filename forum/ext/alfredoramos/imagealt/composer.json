@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "Image Alternate Text extension for phpBB",
     "homepage": "https://github.com/AlfredoRamos/phpbb-ext-image-alt",
-    "version": "1.0.0",
-    "time": "2019-09-02",
+    "version": "1.1.0",
+    "time": "2020-01-06",
     "keywords": [
         "phpbb",
         "extension",
@@ -21,9 +21,9 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
+        "php": "^7.1.3",
         "composer/installers": "~1.0.0",
-        "phpbb/phpbb": "~3.2.0"
+        "phpbb/phpbb": "~3.3.0"
     },
     "require-dev": {
         "phing/phing": "^2.16.0",
@@ -32,7 +32,7 @@
     "extra": {
         "display-name": "Image Alternate Text",
         "soft-require": {
-            "phpbb/phpbb": "~3.2.0"
+            "phpbb/phpbb": "~3.3.0"
         },
         "version-check": {
             "host": "www.phpbb.com",

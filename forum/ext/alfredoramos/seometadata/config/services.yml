@@ -2,7 +2,6 @@ services:
     alfredoramos.seometadata.listener:
         class: alfredoramos\seometadata\event\listener
         arguments:
-            - '@config'
             - '@alfredoramos.seometadata.helper'
         tags:
             - { name: event.listener }
@@ -16,7 +15,6 @@ services:
             - '@language'
             - '@user'
             - '@log'
-            - '@upload_imagesize'
             - '@alfredoramos.seometadata.helper'
 
     alfredoramos.seometadata.helper:
@@ -25,6 +23,7 @@ services:
             - '@dbal.conn'
             - '@config'
             - '@user'
+            - '@request'
             - '@template'
             - '@language'
             - '@filesystem'
@@ -34,3 +33,5 @@ services:
             - '@upload_imagesize'
             - '%core.root_path%'
             - '%core.php_ext%'
+            - '%tables.posts%'
+            - '%tables.attachments%'

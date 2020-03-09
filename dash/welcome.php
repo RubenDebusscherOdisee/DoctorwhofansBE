@@ -11,6 +11,25 @@ if ($_SESSION["user"] == "") {
 <head>
   <meta charset="UTF-8" />
   <title>Welcome to DWF BE Dashboard</title>
+  <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#000090"/>
+        <link rel="apple-touch-icon" href="images/logo/apple-icon.png">
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    // Registration was successful
+                    //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                    // registration failed :(
+                    console.error('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
   <link rel="stylesheet" type="text/css" href="opmaak.css" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
@@ -23,7 +42,11 @@ if ($_SESSION["user"] == "") {
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
-  <script src="paginator.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+        crossorigin="anonymous">
+</script>
+<script src="fancyTable.min.js"></script>
 
   <script type="text/javascript" src="graph.js"></script>
 </head>

@@ -34,6 +34,10 @@ ul.topiclist dt {
 	font-size: 1.1em;
 }
 
+.topicageday + div{
+	display: inline-flex;
+}
+
 ul.topiclist.missing-column dt {
 	margin-right: -345px;
 }

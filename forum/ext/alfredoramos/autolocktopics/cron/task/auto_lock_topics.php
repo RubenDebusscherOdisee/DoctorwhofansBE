@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Auto-lock Topics Extension for phpBB.
+ * Auto-lock Topics extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
@@ -14,7 +14,6 @@ use phpbb\cron\task\base as task_base;
 
 class auto_lock_topics extends task_base
 {
-
 	/** @var \alfredoramos\autolocktopics\includes\helper */
 	protected $helper;
 
@@ -52,5 +51,4 @@ class auto_lock_topics extends task_base
 			$this->helper->auto_lock($forum, 300);
 		}
 	}
-
 }

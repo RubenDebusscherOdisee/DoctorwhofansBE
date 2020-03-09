@@ -28,6 +28,25 @@ echo "Invalid Username or Password";
 <head>
 <meta charset="UTF-8">
 <title>Dashboard | Login</title>
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#000090"/>
+        <link rel="apple-touch-icon" href="images/logo/apple-icon.png">
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    // Registration was successful
+                    //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                    // registration failed :(
+                    console.error('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
 </head>
 <body>
 <h1>Login</h1>

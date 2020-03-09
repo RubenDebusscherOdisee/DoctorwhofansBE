@@ -1,0 +1,24 @@
+DirectoryIndex index.php
+
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php
+
+
+<FilesMatch "\.ini$">
+Deny from all
+</FilesMatch>
+
+
+ErrorDocument 404 https://www.doctorwhofans.be/notfound.html
+RewriteEngine On
+RewriteCond %{HTTPS} off
+rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
+
+
+#Rewrite everything to https
+
+Header set Access-Control-Allow-Origin "https://www.doctorwhofans.be"
+Header set Access-Control-Allow-Origin "https://doctorwhofans.be"
+Header set Access-Control-Allow-Origin "https://dash.doctorwhofans.be"
+Header set Access-Control-Allow-Origin "https://admin.doctorwhofans.be"
+Header set Access-Control-Allow-Origin "https://API.doctorwhofans.be"
+Header set Access-Control-Allow-Origin "https://wiki.doctorwhofans.be"

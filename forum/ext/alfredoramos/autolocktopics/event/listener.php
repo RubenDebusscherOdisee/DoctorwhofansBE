@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Auto-lock Topics Extension for phpBB.
+ * Auto-lock Topics extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
@@ -14,7 +14,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-
 	/** @var \alfredoramos\autolocktopics\includes\helper */
 	protected $helper;
 
@@ -106,5 +105,4 @@ class listener implements EventSubscriberInterface
 			'AUTO_LOCK_FREQ' => (int) $event['forum_data']['auto_lock_freq']
 		], $event['template_data']);
 	}
-
 }

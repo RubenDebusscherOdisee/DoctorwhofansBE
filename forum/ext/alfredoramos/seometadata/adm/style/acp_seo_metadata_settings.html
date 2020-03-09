@@ -78,9 +78,9 @@
 				<br><span>{{ lang('ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="number" id="seo_metadata_default_image_width" name="seo_metadata_default_image_width" min="0" max="1000" value="{% if SEO_METADATA_DEFAULT_IMAGE_WIDTH %}{{ SEO_METADATA_DEFAULT_IMAGE_WIDTH }}{% else %}0{% endif %}">
+				<input type="number" id="seo_metadata_default_image_width" name="seo_metadata_default_image_width" min="0" max="1200" value="{% if SEO_METADATA_DEFAULT_IMAGE_WIDTH %}{{ SEO_METADATA_DEFAULT_IMAGE_WIDTH }}{% else %}0{% endif %}">
 				x
-				<input type="number" id="seo_metadata_default_image_height" name="seo_metadata_default_image_height" min="0" max="1000" value="{% if SEO_METADATA_DEFAULT_IMAGE_HEIGHT %}{{ SEO_METADATA_DEFAULT_IMAGE_HEIGHT }}{% else %}0{% endif %}">
+				<input type="number" id="seo_metadata_default_image_height" name="seo_metadata_default_image_height" min="0" max="1200" value="{% if SEO_METADATA_DEFAULT_IMAGE_HEIGHT %}{{ SEO_METADATA_DEFAULT_IMAGE_HEIGHT }}{% else %}0{% endif %}">
 				{{ lang('PIXEL') }}
 			</dd>
 		</dl>
@@ -121,6 +121,16 @@
 			<dd>
 				<label><input type="radio" id="seo_metadata_prefer_attachments" name="seo_metadata_prefer_attachments" value="1"{% if SEO_METADATA_PREFER_ATTACHMENTS %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
 				<label><input type="radio" name="seo_metadata_prefer_attachments" value="0"{% if not SEO_METADATA_PREFER_ATTACHMENTS %} checked="checked"{% endif %}> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="seo_metadata_post_metadata">{{ lang('ACP_SEO_METADATA_POST_METADATA') }}{{ lang('COLON') }}</label>
+				<br><span>{{ lang('ACP_SEO_METADATA_POST_METADATA_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" id="seo_metadata_post_metadata" name="seo_metadata_post_metadata" value="1"{% if SEO_METADATA_POST_METADATA %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" name="seo_metadata_post_metadata" value="0"{% if not SEO_METADATA_POST_METADATA %} checked="checked"{% endif %}> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 	</fieldset>
@@ -190,6 +200,27 @@
 			<dd>
 				<label><input type="radio" id="seo_metadata_json_ld" name="seo_metadata_json_ld" value="1"{% if SEO_METADATA_JSON_LD %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
 				<label><input type="radio" name="seo_metadata_json_ld" value="0"{% if not SEO_METADATA_JSON_LD %} checked="checked"{% endif %}> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="seo_metadata_json_ld_logo">{{ lang('ACP_SEO_METADATA_JSON_LD_LOGO') }}{{ lang('COLON') }}</label>
+				<br><span>{{ lang('ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN', BOARD_IMAGES_URL) }}</span>
+			</dt>
+			<dd>
+				<input type="text" id="seo_metadata_json_ld_logo" name="seo_metadata_json_ld_logo"{% if SEO_METADATA_JSON_LD_LOGO %} value="{{ SEO_METADATA_JSON_LD_LOGO }}"{% endif %} class="full">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="seo_metadata_json_ld_logo_width">{{ lang('ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS') ~ lang('COLON') }}</label>
+				<br><span>{{ lang('ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="number" id="seo_metadata_json_ld_logo_width" name="seo_metadata_json_ld_logo_width" min="0" max="1200" value="{% if SEO_METADATA_JSON_LD_LOGO_WIDTH %}{{ SEO_METADATA_JSON_LD_LOGO_WIDTH }}{% else %}0{% endif %}">
+				x
+				<input type="number" id="seo_metadata_json_ld_logo_height" name="seo_metadata_json_ld_logo_height" min="0" max="1200" value="{% if SEO_METADATA_JSON_LD_LOGO_HEIGHT %}{{ SEO_METADATA_JSON_LD_LOGO_HEIGHT }}{% else %}0{% endif %}">
+				{{ lang('PIXEL') }}
 			</dd>
 		</dl>
 	</fieldset>

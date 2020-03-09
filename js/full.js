@@ -283,7 +283,6 @@ function getYear(original){
 function setLangstrings(langstring){
     $.get("/Locale/"+langstring+"/"+langstring+".json", function(translation) {
 		translations.push(translation);
-		console.log(translations);
         filltext(); //fill these in first to verift function runs ok
         renderpage(getCookie("lang"),menu);
 
@@ -319,7 +318,6 @@ function checkmenu(menu) {
     }else{
         gegevens.session = "Unknown device, PWA activated";
     }
-    console.log(menu);
     if(menu.startsWith('Category')==true){
         var prefix = "Category_";
         tag =  menu.substr(prefix.length, menu.length);
@@ -332,7 +330,6 @@ function checkmenu(menu) {
             dataType: 'json',
             cache: false
         }).done(function(resultaat) {
-            console.log(resultaat)
             for (var i=0;i<resultaat.data.length;i++){
                 //$('.under').append("<a href='../"+resultaat.data[i].link+"/'>"+resultaat.data[i].topic+"</a>")
                 $(".topics").append("<div class='OverzichtItem'><a href='../" + resultaat.data[i].link + "/'  ><h2>" + resultaat.data[i].topic + "</h2></a></div>");
@@ -639,16 +636,13 @@ function quotesophalen(menu, id) {
         for (i = 0; i < resultaat.data.length; i++) {
             if(id === resultaat.data[i].id) {
                 $(".main_quote").append("<h1>" + resultaat.data[i].Aflevering + "</h1>");
-                $(".main_quote").append("<div><img class='quote_picture lazyload' data-src='" + resultaat.data[i].QuotePic + "'/><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
+                $(".main_quote").append("<div><img class='quote_picture lazyload' data-src='../images/Quotes/" + resultaat.data[i].QuotePic + "'/><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
             }else{
-                var quote = resultaat.data[i].Quote;
-                var quote_short = quote.substring(0, 60);
-                if(quote_short.indexOf('<br>') >= 0) {var quote_short_zonder_enter = quote_short.substring(0, quote_short.indexOf('<br'));
-                }else{var quote_short_zonder_enter = quote_short;}
+                var quote = resultaat.data[i].Quote.substring(0, 60).replace(/<(.|\n)*?>/g, '');
                 if(i % 2 === 0) {
-                    $(".linkerquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote_short_zonder_enter + "</a></div>");
+                    $(".linkerquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote + "</a></div>");
                 }else{
-                    $(".rechterquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote_short_zonder_enter + "</a></div>");
+                    $(".rechterquote").append("<div><a href='#' onclick=event.preventDefault();$('.col-6').html('');quotesophalen('Quotes'," + resultaat.data[i].id + ")>" + quote + "</a></div>");
                 }
             }
         }
@@ -937,7 +931,6 @@ function contentophalen(taal, menu) {
 
                 });
         if(resultaat.tags !="No rows"){
-            console.log(resultaat.tags);
             $(".under").append("<aside id='Tags'></aside>");
             var tagstring="Tags: ";
             for(var i=0;i<resultaat.tags.length;i++){

@@ -251,6 +251,8 @@ a {
     border-radius: 10px;
     margin-top: 2em;
     width: 100%;
+    padding: 2em;
+
 }
 
 #labelspan {
@@ -259,10 +261,8 @@ a {
 
 .quote_picture {
     float: right;
-    width: 35%;
-    margin-bottom: 2em;
-    margin-right: 4em;
-    margin-top: 0em;
+    min-width: 24%;
+    max-width: 50%;
     display: block;
 }
 
@@ -309,8 +309,7 @@ a {
 
 
 .quotetext {
-    max-width: 50%;
-    display: inline-block;
+    display: initial;
 }
 
 .Inleiding {
@@ -339,6 +338,7 @@ a {
 
 .topics a {
     display: block;
+    text-decoration: underline;
 }
 
 .smalltext {
@@ -1261,6 +1261,7 @@ p {
 
 .disclaimer {
     clear: both;
+    max-width: 90%;
 }
 
 .zoekknop {
@@ -2233,7 +2234,7 @@ a .socialmedia_full:hover {
     padding: 1em;
     max-width: 100%;
 }
-}
+
 
 #EpisodesOfToday ul {
     list-style-type: none;

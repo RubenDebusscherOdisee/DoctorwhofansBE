@@ -1,21 +1,5 @@
 <?php session_start();$_SESSION["Menu"];include_once('php/functions.php');?>
-<!Doctype html lang ="nl-BE">
-<link rel="manifest" href="../manifest.json">
-<meta name="theme-color" content="#000090"/>
-<link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('../sw.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }
-</script>
+<!Doctype html lang="nl-BE">
 
 <?php 
     if(isset($_GET['menu'])){
@@ -32,16 +16,35 @@
     $menu = $_SESSION["Menu"];
 ?>
 <html lang="nl">
+
 <head>
-    
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000090" />
+    <link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('../sw.js').then(function (registration) {
+                    // Registration was successful
+                    //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.error('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'UA-107369097-3');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-107369097-3');
     </script>
     <title>
         <?php $title = str_replace("_", " ", $menu);echo $title. " | Doctor Who Fans BE";?>
@@ -67,15 +70,19 @@
             getAvailableLangcodes();
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" async></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async preload>
-    <link rel=stylesheet href="../opmaak/full.min.css" async preload/>
-    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async preload>
+    <link rel=stylesheet href="../opmaak/full.min.css" async preload />
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async
+        preload>
     <script>
         $(document).ready(function () {
             if ($(window).width() < 800) {
-                $('nav').hide();}
+                $('nav').hide();
+            }
             $('input[type=text]').on('keydown', function (e) {
                 if (e.which == 13) {
                     e.preventDefault();
@@ -110,10 +117,12 @@
                 a();
                 return false
             });
+
             function a() {
                 document.documentElement.style.overflow = "auto";
                 document.body.scroll = "yes"
             }
+
             function d() {
                 document.documentElement.style.overflow = "hidden";
                 document.body.scroll = "no"
@@ -125,6 +134,7 @@
                     document.getElementById("overlay").style.display = "block";
                     document.getElementById("overlay_background").style.display = "block"
                 }
+
                 function b() {
                     document.getElementById("overlay").style.display = "none";
                     document.getElementById("overlay_background").style.display = "none"
@@ -139,14 +149,19 @@
             }, 100)
         }, 1500);
     </script>
+    <script type="text/javascript"
+        src="https://platform-api.sharethis.com/js/sharethis.js#property=5e66a481fb4445001239b600&product=inline-share-buttons"
+        async="async"></script>
 </head>
+
 <body class=init onload="">
     <button role=button onclick="ToggleMenu()" id=show-menu> <i class="fa fa-navicon"></i> Menu&nbsp;&nbsp; </button>
-    
+
     <nav>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="../Home/" aria-label="Home"><img class="lazyload" data-src="../images/gallifreyan_black.png" alt="Logo of Doctorwhofans Belgium" id="Logo"/> Home</a>
+                <a href="../Home/" aria-label="Home"><img class="lazyload" data-src="../images/gallifreyan_black.png"
+                        alt="Logo of Doctorwhofans Belgium" id="Logo" /> Home</a>
             </li>
             <li class="nav-item">
                 <a href="#">who is Who? <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
@@ -187,18 +202,23 @@
                             <hr>
                         </li>
                         <h3>Spin-off</h3>
-                        <li><a href="../Torchwood/"><img class="lazyload" data-src="../images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
-                        <li><a href="../Sarah_Jane_Adventures/"><img class="lazyload" data-src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
-                        <li><a href="../Class/"><img class="lazyload" data-src="../images/Class.png" alt="Class logo" /> Class</a></li>
+                        <li><a href="../Torchwood/"><img class="lazyload" data-src="../images/Torchwood.png"
+                                    alt="Torchwood logo" />Torchwood</a></li>
+                        <li><a href="../Sarah_Jane_Adventures/"><img class="lazyload" data-src="../images/SJA.png"
+                                    alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
+                        <li><a href="../Class/"><img class="lazyload" data-src="../images/Class.png" alt="Class logo" />
+                                Class</a></li>
                     </ul>
                     <ul class="sub-nav-group">
                         <h3>Concepts</h3>
 
-                        <li><a href="../TARDIS/"><img class="lazyload" data-src="../images/tardis.png" alt="TARDIS logo" />T.A.R.D.I.S</a></li>
+                        <li><a href="../TARDIS/"><img class="lazyload" data-src="../images/tardis.png"
+                                    alt="TARDIS logo" />T.A.R.D.I.S</a></li>
                         <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a>
                         </li>
-                        <li><a href="../UNIT/"><img class="lazyload" data-src="../images/UNIT.png" alt="UNIT logo" /> UN.I.T</a></li>
-                        
+                        <li><a href="../UNIT/"><img class="lazyload" data-src="../images/UNIT.png" alt="UNIT logo" />
+                                UN.I.T</a></li>
+
                         <li>
                             <hr>
                         </li>
@@ -237,17 +257,19 @@
                         <li><a href="../Varia/">Varia</a></li>
                         <li><a href="../Merchandise/">Merchandise</a></li>
                     </ul>
-                    
+
                 </div>
             </li>
             <li class="nav-item">
                 <a href="#">Fans <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
                 <div class="sub-nav">
                     <ul class="sub-nav-group">
-                       <h3>To see</h3> 
-                       <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a></li>
+                        <h3>To see</h3>
+                        <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a>
+                        </li>
                         <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a></li>
-                        <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i>Transcripts</a></li>
+                        <li><a href="../Transcripts/"><i class="fa fa-file-text-o"
+                                    aria-hidden="true"></i>Transcripts</a></li>
                         <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i>Cosplay</a></li>
                     </ul>
                     <ul class="sub-nav-group">
@@ -256,7 +278,7 @@
                         <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a></li>
                         <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i>Links</a></li>
                         <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i>DIY</a></li>
-                    </ul>               
+                    </ul>
                 </div>
             </li>
             <li class="nav-item">
@@ -287,47 +309,52 @@
                     <form>
                         <fieldset>
                             <legend>Accessibility</legend>
-                            <button class=toegang id=toegang onclick="addAcces()" type="button">Toegankelijkheid verhogen</button>
-                            <button class="toegang hide" id=toegangRemove onclick="removeAccess()" type="button">Normale modus</button>
-                            <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder Afbeeldingen</button>
-                            <button class="RemoveImages hide" id="RestoreImages" type="button" onclick="RestoreImg()">Toon Afbeeldingen</button>
+                            <button class=toegang id=toegang onclick="addAcces()" type="button">Toegankelijkheid
+                                verhogen</button>
+                            <button class="toegang hide" id=toegangRemove onclick="removeAccess()" type="button">Normale
+                                modus</button>
+                            <button class="RemoveImages" id="RemoveImages" type="button" onclick="RemoveImg()">Verwijder
+                                Afbeeldingen</button>
+                            <button class="RemoveImages hide" id="RestoreImages" type="button"
+                                onclick="RestoreImg()">Toon Afbeeldingen</button>
                             <input type="button" id="increase" value="+">
                             <span id="size">0</span>
                             <input type="button" id="decrease" value="-">
                         </fieldset>
                         <button id="print" type="button" onclick="window.print()">Print</button>
                         <button class="taal_link" type="button" title="taalkeuze">
-                            <img class="lazyload" data-src="../images/overlay/52349.png" alt="Globe voor taalkeuze" class="taal_link" /> Kies uw taal</button>
+                            <img class="lazyload" data-src="../images/overlay/52349.png" alt="Globe voor taalkeuze"
+                                class="taal_link" /> Kies uw taal</button>
                     </form>
                 </div>
             </li>
         </ul>
     </nav>
-    
-    <div id="wrapper">
-    <div class="path"></div>
 
-    <div id=loading_div>
-        <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
-    </div>
-    <article class=col-6>
-        <?php
+    <div id="wrapper">
+
+        <div class="path"></div>
+        <div id=loading_div>
+            <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
+        </div>
+        <article class=col-6>
+            <?php
                 if($menu=="Sitemap"){
                     $res = fetchCategoryTreeList();
                     foreach ($res as $r) {
                         echo  $r;
                     }
                     ?>
-        <script>
-            $(".parent").next().hide();
-            $(".col6 ul:first").css("margin-left", "-4em");
-        </script>
-        <?php
+            <script>
+                $(".parent").next().hide();
+                $(".col6 ul:first").css("margin-left", "-4em");
+            </script>
+            <?php
                 }
                 ?>
-    </article>
-    <article class="under col-5">
-        <?php
+        </article>
+        <article class="under col-5">
+            <?php
                 if($menu=='Contact'){
                     require("php/Contact.php");
                 }
@@ -335,29 +362,29 @@
                     require("php/Kalender.php");
                 }
             ?>
-    </article>
+        </article>
     </div>
-    
+
     <footer id=footer class=col-5>
-        <p class='mededeling'>  </p>
+        <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a>
+        <p class='mededeling'> </p>
         <p class="socialmedia">
-            <a href="https://www.facebook.com/DoctorWhoFansBE/"  rel="noreferrer" target="_blank">
-                <img class="lazyload" data-src="../images/Social/facebook_logo.png" alt="Facebook Logo" />
-            </a>
-            <a href="https://rubendebusscherodisee.github.io/DoctorwhofansBE/" rel="noreferrer" target="_blank">
-            <img class="lazyload" data-src="../images/Social/github_logo.png" class="Github_Logo" alt="Github Logo" /></a><br>
-            <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a>
+
+            <div class="sharethis-inline-follow-buttons"></div>
+            Or Share this page:
+            <div class="sharethis-inline-share-buttons"></div>
         </p>
-        <p class=disclaimer> 
+        <p class=disclaimer>
         </p>
     </footer>
-    
+
     <script async src="../js/toegang.js" async></script>
-    <a href="#"  id ="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG" data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
+    <a href="#" id="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG"
+            data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
     <div id="overlay_Zoeken">
-        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"
-                class=close_IMG /> Close</a>
+        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png"
+                alt="Sluiten/Close" class=close_IMG /> Close</a>
         <div class="open-close">
             <div class="resultset holder" style="border:4px solid yelllow" id="resultset1">
                 <div class="header" style="width:100%;background-color:yellow;color:black">
@@ -380,28 +407,30 @@
         <h1>Kies uw taal</h1>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("nl")'>
-                <img class="lazyload" data-src="../images/overlay/belgium_640.png" alt="vlag van Belgi&euml; voor Nederlands."
-                    class="foto_taal_button" />
+                <img class="lazyload" data-src="../images/overlay/belgium_640.png"
+                    alt="vlag van Belgi&euml; voor Nederlands." class="foto_taal_button" />
                 Nederlands
-                <img class="lazyload" data-src="../images/overlay/netherlands_640.png" alt="vlag van Nederland; voor Nederlands."
-                    class=foto_taal_button>
+                <img class="lazyload" data-src="../images/overlay/netherlands_640.png"
+                    alt="vlag van Nederland; voor Nederlands." class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("en")'>
-                <img class="lazyload" data-src="../images/overlay/united_kingdom_640.png" alt="vlag van Engeland voor Engels."
-                    class="foto_taal_button" />
+                <img class="lazyload" data-src="../images/overlay/united_kingdom_640.png"
+                    alt="vlag van Engeland voor Engels." class="foto_taal_button" />
                 English
-                <img class="lazyload" data-src="../images/overlay/united_states_of_america_64.png" alt="vlag van de VS; voor Engels."
-                    class=foto_taal_button>
+                <img class="lazyload" data-src="../images/overlay/united_states_of_america_64.png"
+                    alt="vlag van de VS; voor Engels." class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
             <a href=# class="close link">
-                <img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close"class=close_IMG /> Close</a>
+                <img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG />
+                Close</a>
         </div>
     </div>
     <script async src="../js/jquery-accessibleMegaMenu.min.js"></script>
 
 </body>
+
 </html>

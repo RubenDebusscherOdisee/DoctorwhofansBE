@@ -15,7 +15,6 @@ use phpbb\request\request;
 use phpbb\language\language;
 use phpbb\user;
 use phpbb\log\log;
-use FastImageSize\FastImageSize;
 use alfredoramos\seometadata\includes\helper;
 
 class acp
@@ -38,9 +37,6 @@ class acp
 	/** @var \phpbb\log\log */
 	protected $log;
 
-	/** @var \FastImageSize\FastImageSize */
-	protected $imagesize;
-
 	/** @var \alfredoramos\seometadata\includes\helper */
 	protected $helper;
 
@@ -53,12 +49,11 @@ class acp
 	 * @param \phpbb\language\language					$language
 	 * @param \phpbb\user								$user
 	 * @param \phpbb\log\log							$log
-	 * @param \FastImageSize\FastImageSize				$imagesize
 	 * @param \alfredoramos\seometadata\includes\helper	$helper
 	 *
 	 * @return void
 	 */
-	public function __construct(config $config, template $template, request $request, language $language, user $user, log $log, FastImageSize $imagesize, helper $helper)
+	public function __construct(config $config, template $template, request $request, language $language, user $user, log $log, helper $helper)
 	{
 		$this->config = $config;
 		$this->template = $template;
@@ -66,7 +61,6 @@ class acp
 		$this->language = $language;
 		$this->user = $user;
 		$this->log = $log;
-		$this->imagesize = $imagesize;
 		$this->helper = $helper;
 	}
 
@@ -141,14 +135,14 @@ class acp
 				'filter' => FILTER_VALIDATE_INT,
 				'options' => [
 					'min_range' => 0,
-					'max_range' => 1000
+					'max_range' => 1200
 				]
 			],
 			'seo_metadata_default_image_height' => [
 				'filter' => FILTER_VALIDATE_INT,
 				'options' => [
 					'min_range' => 0,
-					'max_range' => 1000
+					'max_range' => 1200
 				]
 			],
 			'seo_metadata_default_image_type' => [
@@ -172,6 +166,13 @@ class acp
 				]
 			],
 			'seo_metadata_prefer_attachments' => [
+				'filter' => FILTER_VALIDATE_INT,
+				'options' => [
+					'min_range' => 0,
+					'max_range' => 1
+				]
+			],
+			'seo_metadata_post_metadata' => [
 				'filter' => FILTER_VALIDATE_INT,
 				'options' => [
 					'min_range' => 0,
@@ -220,6 +221,26 @@ class acp
 				'options' => [
 					'min_range' => 0,
 					'max_range' => 1
+				]
+			],
+			'seo_metadata_json_ld_logo' => [
+				'filter' => FILTER_VALIDATE_REGEXP,
+				'options' => [
+					'regexp' => '#^(?:[\w\.\-\/]+\.(?:jpe?g|png|gif))?$#'
+				]
+			],
+			'seo_metadata_json_ld_logo_width' => [
+				'filter' => FILTER_VALIDATE_INT,
+				'options' => [
+					'min_range' => 0,
+					'max_range' => 1200
+				]
+			],
+			'seo_metadata_json_ld_logo_height' => [
+				'filter' => FILTER_VALIDATE_INT,
+				'options' => [
+					'min_range' => 0,
+					'max_range' => 1200
 				]
 			]
 		];
@@ -283,6 +304,10 @@ class acp
 					'seo_metadata_prefer_attachments',
 					0
 				),
+				'seo_metadata_post_metadata' => $this->request->variable(
+					'seo_metadata_post_metadata',
+					0
+				),
 
 				// Open Graph
 				'seo_metadata_open_graph' => $this->request->variable(
@@ -312,48 +337,49 @@ class acp
 				'seo_metadata_json_ld' => $this->request->variable(
 					'seo_metadata_json_ld',
 					1
+				),
+				'seo_metadata_json_ld_logo' => $this->request->variable(
+					'seo_metadata_json_ld_logo',
+					''
+				),
+				'seo_metadata_json_ld_logo_width' => $this->request->variable(
+					'seo_metadata_json_ld_logo_width',
+					0
+				),
+				'seo_metadata_json_ld_logo_height' => $this->request->variable(
+					'seo_metadata_json_ld_logo_height',
+					0
 				)
 			];
 
-			// Convert default image filename to URL and validate
-			$image_url = $this->helper->clean_image($fields['seo_metadata_default_image']);
+			// Prepare default image validation
+			$default_image = ['file' => $fields['seo_metadata_default_image']];
 
 			// Default image validation
-			if (!empty($fields['seo_metadata_default_image']))
+			if ($this->helper->validate_image($default_image, $errors))
 			{
-				if (empty($image_url))
+				// Update information
+				foreach (['width', 'height', 'type'] as $key)
 				{
-					$errors[]['message'] = $this->language->lang(
-						'ACP_SEO_METADATA_DEFAULT_IMAGE_INVALID',
-						$fields['seo_metadata_default_image']
-					);
-				}
+					$k = sprintf('seo_metadata_default_image_%s', $key);
 
-				// Try to get image width, height and type
-				if ((empty($fields['seo_metadata_default_image_width']) ||
-					empty($fields['seo_metadata_default_image_height']) ||
-					empty($fields['seo_metadata_default_image_type'])) &&
-					!empty($image_url))
-				{
-					$image_info = $this->imagesize->getImageSize($image_url);
-
-					// Update information
-					foreach (['width', 'height', 'type'] as $key)
+					switch ($key)
 					{
-						$k = sprintf('seo_metadata_default_image_%s', $key);
+						case 'width':
+						case 'height':
+							$fields[$k] = 0;
 
-						switch ($key)
-						{
-							case 'width':
-							case 'height':
-								$fields[$k] = (!empty($image_info[$key]) && $image_info[$key] > 200) ? $image_info[$key] : 0;
+							if (!empty($default_image['info'][$key]) && $default_image['info'][$key] >= 200)
+							{
+								$fields[$k] = $default_image['info'][$key];
+							}
+
 							break;
 
-							case 'type':
-								$fields[$k] = (!empty($image_info[$key])) ? $image_info[$key] : '';
-								$fields[$k] = (is_int($fields[$k])) ? image_type_to_mime_type($fields[$k]) : $fields[$k];
-							break;
-						}
+						case 'type':
+							$fields[$k] = (!empty($default_image['info'][$key])) ? $default_image['info'][$key] : '';
+							$fields[$k] = (is_int($fields[$k])) ? image_type_to_mime_type($fields[$k]) : $fields[$k];
+						break;
 					}
 				}
 			}
@@ -386,11 +412,30 @@ class acp
 				}
 			}
 
+			// Prepare JSON-LD logo validation
+			$json_ld_logo = ['file' => $fields['seo_metadata_json_ld_logo']];
+
+			// JSON-LD logo validation
+			if ($this->helper->validate_image($json_ld_logo, $errors, [112, 112]))
+			{
+				// Update information
+				foreach (['width', 'height'] as $key)
+				{
+					$k = sprintf('seo_metadata_json_ld_logo_%s', $key);
+					$fields[$k] = 0;
+
+					if (!empty($json_ld_logo['info'][$key]) && $json_ld_logo['info'][$key] >= 112)
+					{
+						$fields[$k] = $json_ld_logo['info'][$key];
+					}
+				}
+			}
+
 			// Validation check
 			if ($this->helper->validate($fields, $filters, $errors))
 			{
 				// Default image cleanup
-				if (empty($fields['seo_metadata_default_image']) || empty($image_url))
+				if (empty($fields['seo_metadata_default_image']) || empty($default_image))
 				{
 					$fields['seo_metadata_default_image'] = '';
 					$fields['seo_metadata_default_image_type'] = '';
@@ -433,12 +478,16 @@ class acp
 			'SEO_METADATA_LOCAL_IMAGES' => ((int) $this->config['seo_metadata_local_images'] === 1),
 			'SEO_METADATA_ATTACHMENTS' => ((int) $this->config['seo_metadata_attachments'] === 1),
 			'SEO_METADATA_PREFER_ATTACHMENTS' => ((int) $this->config['seo_metadata_prefer_attachments'] === 1),
+			'SEO_METADATA_POST_METADATA' => ((int) $this->config['seo_metadata_post_metadata'] === 1),
 			'SEO_METADATA_OPEN_GRAPH' => ((int) $this->config['seo_metadata_open_graph'] === 1),
 			'SEO_METADATA_FACEBOOK_APPLICATION' => (int) $this->config['seo_metadata_facebook_application'],
 			'SEO_METADATA_FACEBOOK_PUBLISHER' => $this->config['seo_metadata_facebook_publisher'],
 			'SEO_METADATA_TWITTER_CARDS' => ((int) $this->config['seo_metadata_twitter_cards'] === 1),
 			'SEO_METADATA_TWITTER_PUBLISHER' => $this->config['seo_metadata_twitter_publisher'],
 			'SEO_METADATA_JSON_LD' => ((int) $this->config['seo_metadata_json_ld'] === 1),
+			'SEO_METADATA_JSON_LD_LOGO' => trim($this->config['seo_metadata_json_ld_logo']),
+			'SEO_METADATA_JSON_LD_LOGO_WIDTH' => (int) $this->config['seo_metadata_json_ld_logo_width'],
+			'SEO_METADATA_JSON_LD_LOGO_HEIGHT' => (int) $this->config['seo_metadata_json_ld_logo_height'],
 			'SERVER_NAME' => trim($this->config['server_name']),
 			'BOARD_IMAGES_URL' => generate_board_url() . '/images/'
 		]);

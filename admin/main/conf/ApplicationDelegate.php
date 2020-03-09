@@ -8,6 +8,12 @@ class conf_ApplicationDelegate {
         else return Dataface_PermissionsTool::NO_ACCESS();
     }*/
 
+    function beforeHandleRequest(){
+        Dataface_Application::getInstance()
+            ->addHeadContent('<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="style.css"/>');
+
+    }
+
     function getPermissions(Dataface_Record $record = null){
         $user = Dataface_AuthenticationTool::getInstance()
             ->getLoggedInUser();

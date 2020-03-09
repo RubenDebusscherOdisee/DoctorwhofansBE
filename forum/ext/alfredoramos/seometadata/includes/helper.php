@@ -12,6 +12,7 @@ namespace alfredoramos\seometadata\includes;
 use phpbb\db\driver\factory as database;
 use phpbb\config\config;
 use phpbb\user;
+use phpbb\request\request;
 use phpbb\template\template;
 use phpbb\language\language;
 use phpbb\filesystem\filesystem;
@@ -30,6 +31,9 @@ class helper
 
 	/** @var \phpbb\user */
 	protected $user;
+
+	/** @var \phpbb\request\request */
+	protected $request;
 
 	/** @var \phpbb\template\template */
 	protected $template;
@@ -61,12 +65,16 @@ class helper
 	/** @var array */
 	protected $metadata;
 
+	/** @var array */
+	protected $tables;
+
 	/**
 	 * Helper constructor.
 	 *
 	 * @param \phpbb\db\driver\factory				$db
 	 * @param \phpbb\config\config					$config
 	 * @param \phpbb\user							$user
+	 * @param \phpbb\request\request				$request
 	 * @param \phpbb\template\template				$template
 	 * @param \phpbb\language\language				$language
 	 * @param \phpbb\filesystem\filesystem			$filesystem
@@ -76,14 +84,17 @@ class helper
 	 * @param \FastImageSize\FastImageSize			$imagesize
 	 * @param string								$root_path
 	 * @param string								$php_ext
+	 * @param string								$posts_table
+	 * @param string								$attachments_table
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, config $config, user $user, template $template, language $language, filesystem $filesystem, cache $cache, controller_helper $controller_helper, dispatcher $dispatcher, FastImageSize $imagesize, $root_path, $php_ext)
+	public function __construct(database $db, config $config, user $user, request $request, template $template, language $language, filesystem $filesystem, cache $cache, controller_helper $controller_helper, dispatcher $dispatcher, FastImageSize $imagesize, $root_path, $php_ext, $posts_table, $attachments_table)
 	{
 		$this->db = $db;
 		$this->config = $config;
 		$this->user = $user;
+		$this->request = $request;
 		$this->template = $template;
 		$this->language = $language;
 		$this->filesystem = $filesystem;
@@ -94,17 +105,25 @@ class helper
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 		$this->metadata = [];
+
+		// Assign tables
+		if (empty($this->tables))
+		{
+			$this->tables = [
+				'posts' => $posts_table,
+				'attachments' => $attachments_table
+			];
+		}
 	}
 
 	/**
 	 * Add or replace metadata.
 	 *
-	 * @param array		$data
-	 * @param string	$key	(Optional)
+	 * @param array $data
 	 *
 	 * @return void
 	 */
-	public function set_metadata($data = [], $key = '')
+	public function set_metadata($data = [])
 	{
 		// Set initial metadata
 		if (empty($this->metadata))
@@ -119,21 +138,21 @@ class helper
 				],
 				'url' => $this->clean_url($this->controller_helper->get_current_url())
 			];
-			$this->metadata = array_replace_recursive($this->metadata, [
+			$this->metadata = [
 				'meta_description' => [
 					'description' => $default['description']
 				],
 				'twitter_cards' => [
 					'twitter:card' => 'summary',
-					'twitter:site' => $this->config['seo_metadata_twitter_publisher'],
+					'twitter:site' => trim($this->config['seo_metadata_twitter_publisher']),
 					'twitter:title' => '',
 					'twitter:description' => $default['description'],
 					'twitter:image' => $default['image']['url']
 				],
 				'open_graph' => [
-					'fb:app_id' => $this->config['seo_metadata_facebook_application'],
+					'fb:app_id' => trim($this->config['seo_metadata_facebook_application']),
 					'og:locale' => $this->extract_locale($this->language->lang('USER_LANG')),
-					'og:site_name' => $this->config['sitename'],
+					'og:site_name' => trim($this->config['sitename']),
 					'og:url' => $default['url'],
 					'og:type' => 'website',
 					'og:title' => '',
@@ -141,7 +160,10 @@ class helper
 					'og:image' => $default['image']['url'],
 					'og:image:type' => $default['image']['type'],
 					'og:image:width' => $default['image']['width'],
-					'og:image:height' => $default['image']['height']
+					'og:image:height' => $default['image']['height'],
+					'article:published_time' => '',
+					'article:section' => '',
+					'article:publisher' => trim($this->config['seo_metadata_facebook_publisher'])
 				],
 				'json_ld' => [
 					'@context' => 'http://schema.org',
@@ -149,18 +171,96 @@ class helper
 					'@id' => $default['url'],
 					'headline' => '',
 					'description' => $default['description'],
-					'image' => $default['image']['url']
+					'image' => $default['image']['url'],
+					'author' => [
+						'@type' => 'Person',
+						'name' => ''
+					],
+					'datePublished' => '',
+					'publisher' => [
+						'@type' => 'Organization',
+						'name' => trim($this->config['sitename']),
+						'url' => generate_board_url(),
+						'logo' => [
+							'@type' => 'ImageObject',
+							'url' => $this->clean_image($this->config['seo_metadata_json_ld_logo']),
+							'width' => (int) $this->config['seo_metadata_json_ld_logo_width'],
+							'height' => (int) $this->config['seo_metadata_json_ld_logo_height']
+						]
+					]
 				]
-			]);
+			];
 		}
 
-		if (!empty($key) && !empty($this->metadata[$key]))
+		// Remove empty values
+		$data = $this->filter_empty_items($data);
+
+		// Map values to correct properties
+		foreach ($data as $key => $value)
 		{
-			$this->metadata = array_replace($this->metadata[$key], $data);
-		}
-		else
-		{
-			$this->metadata = array_replace_recursive($this->metadata, $data);
+			if (is_string($value))
+			{
+				$value = trim($value);
+			}
+			else if (is_array($value))
+			{
+				$value = array_map('trim', $value);
+			}
+
+			switch ($key)
+			{
+				case 'title':
+					$this->metadata['open_graph']['og:title'] = $value;
+					$this->metadata['twitter_cards']['twitter:title'] = $value;
+					$this->metadata['json_ld']['headline'] = $value;
+				break;
+
+				case 'description':
+					$this->metadata['meta_description']['description'] = $value;
+					$this->metadata['open_graph']['og:description'] = $value;
+					$this->metadata['twitter_cards']['twitter:description'] = $value;
+					$this->metadata['json_ld']['description'] = $value;
+				break;
+
+				case 'image':
+					if (isset($value['url']))
+					{
+						$this->metadata['open_graph']['og:image'] = $value['url'];
+						$this->metadata['twitter_cards']['twitter:image'] = $value['url'];
+						$this->metadata['json_ld']['image'] = $value['url'];
+					}
+
+					if (isset($value['type']))
+					{
+						$this->metadata['open_graph']['og:image:type'] = $value['type'];
+					}
+
+					if (isset($value['width']))
+					{
+						$this->metadata['open_graph']['og:image:width'] = (int) $value['width'];
+					}
+
+					if (isset($value['height']))
+					{
+						$this->metadata['open_graph']['og:image:height'] = (int) $value['height'];
+					}
+				break;
+
+				case 'published_time':
+					$value = date('c', (int) $value);
+					$this->metadata['open_graph']['og:type'] = 'article';
+					$this->metadata['open_graph']['article:published_time'] = $value;
+					$this->metadata['json_ld']['datePublished'] = $value;
+				break;
+
+				case 'section':
+					$this->metadata['open_graph']['article:section'] = $value;
+				break;
+
+				case 'author':
+					$this->metadata['json_ld']['author']['name'] = $value;
+				break;
+			}
 		}
 	}
 
@@ -173,8 +273,13 @@ class helper
 	 */
 	public function get_metadata($key = '')
 	{
-		if (!empty($key) && !empty($this->metadata[$key]))
+		if (!empty($key))
 		{
+			if (empty($this->metadata[$key]))
+			{
+				return [];
+			}
+
 			return $this->metadata[$key];
 		}
 
@@ -191,16 +296,6 @@ class helper
 		$this->template->destroy_block_vars('SEO_METADATA');
 		$data = $this->get_metadata();
 
-		// Open Graph extra check for default image
-		if (empty($data['open_graph']['og:image']))
-		{
-			unset(
-				$data['open_graph']['og:image:type'],
-				$data['open_graph']['og:image:width'],
-				$data['open_graph']['og:image:height']
-			);
-		}
-
 		// Twitter cards can use Open Graph data
 		if ((int) $this->config['seo_metadata_open_graph'] === 1 &&
 			(int) $this->config['seo_metadata_twitter_cards'] === 1)
@@ -212,20 +307,55 @@ class helper
 			);
 		}
 
+		// Open Graph extra check for default image
+		if (empty($data['open_graph']['og:image']))
+		{
+			unset(
+				$data['open_graph']['og:image:type'],
+				$data['open_graph']['og:image:width'],
+				$data['open_graph']['og:image:height']
+			);
+		}
+
+		// Open Graph article metadata
+		if ($data['open_graph']['og:type'] !== 'article')
+		{
+			unset(
+				$data['open_graph']['article:published_time'],
+				$data['open_graph']['article:section'],
+				$data['open_graph']['article:publisher']
+			);
+		}
+
+		// JSON-LD author
+		if (empty($data['json_ld']['author']['name']))
+		{
+			unset($data['json_ld']['author']);
+		}
+
+		// JSON-LD logo
+		if (empty($data['json_ld']['publisher']['logo']['url']))
+		{
+			unset($data['json_ld']['publisher']['logo']);
+		}
+
+		// Ignore disabled options
 		foreach ($data as $key => $value)
 		{
-			// Ignore disabled options
-			if ((int) $this->config[sprintf('seo_metadata_%s', $key)] !== 1)
+			if ((int) $this->config[sprintf('seo_metadata_%s', $key)] !== 1 ||
+				empty($value))
 			{
+				unset($data[$key]);
 				continue;
 			}
+		}
 
-			// Ignore empty options
-			if (empty($value))
-			{
-				continue;
-			}
+		// Remove empty values
+		$data = $this->filter_empty_items($data);
 
+		// Assign data to template
+		foreach ($data as $key => $value)
+		{
 			$this->template->assign_block_vars(
 				'SEO_METADATA',
 				[
@@ -233,21 +363,28 @@ class helper
 				]
 			);
 
-			foreach ($value as $k => $v)
+			if ($key === 'json_ld')
 			{
-				// Ignore empty options
-				if (empty($k) || empty($v))
-				{
-					continue;
-				}
-
 				$this->template->assign_block_vars(
 					sprintf('SEO_METADATA.%s', strtoupper($key)),
 					[
-						'PROPERTY' => $k,
-						'CONTENT' => $v
+						'CONTENT' => json_encode($data[$key], JSON_UNESCAPED_SLASHES)
 					]
 				);
+				continue;
+			}
+			else
+			{
+				foreach ($value as $k => $v)
+				{
+					$this->template->assign_block_vars(
+						sprintf('SEO_METADATA.%s', strtoupper($key)),
+						[
+							'PROPERTY' => $k,
+							'CONTENT' => $v
+						]
+					);
+				}
 			}
 		}
 	}
@@ -401,11 +538,12 @@ class helper
 	/**
 	 * Clean URI to be used as image URL.
 	 *
-	 * @param string $uri
+	 * @param string	$uri
+	 * @param bool		$images_dir
 	 *
 	 * @return string
 	 */
-	public function clean_image($uri = '')
+	public function clean_image($uri = '', $images_dir = true)
 	{
 		$uri = trim($uri);
 
@@ -420,8 +558,11 @@ class helper
 			return $this->clean_url($uri);
 		}
 
+		// Whether to check in the /images/ path or in the root
+		$dir = !empty($images_dir) ? 'images/' : '';
+
 		// Image must exist inside the phpBB's images path
-		$base_path = $this->filesystem->realpath($this->root_path . 'images/');
+		$base_path = $this->filesystem->realpath($this->root_path . $dir);
 
 		// \phpbb\filesystem\filesystem::resolve_path() throws warnings when called from
 		// \phpbb\filesystem\filesystem::realpath() and open_basedir is set.
@@ -483,7 +624,7 @@ class helper
 		}
 
 		// Escape ampersand
-		$url = str_replace(['&amp;', '&'], ['&', '&amp;'], $url);
+		$url = htmlspecialchars($url, ENT_COMPAT, 'UTF-8', false);
 
 		// Remove SID from URL
 		$url = str_replace($this->user->session_id, '', $url);
@@ -554,7 +695,7 @@ class helper
 		}
 
 		$sql = 'SELECT post_text
-			FROM ' . POSTS_TABLE . '
+			FROM ' . $this->tables['posts'] . '
 			WHERE ' . $this->db->sql_build_array('SELECT', ['post_id' => $post_id]);
 		// Cache query for 24 hours
 		$result = $this->db->sql_query($sql, (24 * 60 * 60));
@@ -569,27 +710,45 @@ class helper
 	 *
 	 * @param string	$description
 	 * @param integer	$post_id
+	 * @param integer	$forum_id
 	 * @param integer	$max_images
 	 *
 	 * @return array	url, width, height and type
 	 */
-	public function extract_image($description = '', $post_id = 0, $max_images = 3)
+	public function extract_image($description = '', $post_id = 0, $forum_id = 0, $max_images = 3)
 	{
 		$description = trim($description);
 		$post_id = (int) $post_id;
+		$forum_id = (int) $forum_id;
 
-		if (empty($description) || empty($post_id))
+		if (empty($description) || empty($post_id) || empty($forum_id))
 		{
-			return '';
+			return [
+				'url' => '',
+				'width' => 0,
+				'height' => 0,
+				'type' => ''
+			];
 		}
 
-		$cache_name = sprintf('seo_metadata_image_post_%d', $post_id);
-		$cached_image = $this->cache->get($cache_name);
+		$cached = [
+			'topic' => [
+				'name' => sprintf('seo_metadata_image_post_%d', $post_id)
+			],
+			'forum' => [
+				'name' => sprintf('seo_metadata_image_forum_%d', $forum_id)
+			]
+		];
+
+		foreach ($cached as $key => $value)
+		{
+			$cached[$key]['image'] = $this->cache->get($value['name']);
+		}
 
 		// Check cached image first
-		if (!empty($cached_image['url']))
+		if (!empty($cached['topic']['image']['url']))
 		{
-			return $cached_image;
+			return $cached['topic']['image'];
 		}
 
 		$server_name = trim($this->config['server_name']);
@@ -647,7 +806,7 @@ class helper
 		// Get attachment images
 		if ($use_attachments)
 		{
-			$sql = 'SELECT attach_id FROM ' . ATTACHMENTS_TABLE . '
+			$sql = 'SELECT attach_id FROM ' . $this->tables['attachments'] . '
 				WHERE post_msg_id = ' . $post_id . '
 					AND ' . $this->db->sql_in_set('extension', ['jpg', 'jpeg', 'png', 'gif']) . '
 					AND is_orphan = 0
@@ -689,28 +848,16 @@ class helper
 		// Filter images
 		foreach ($images as $key => $value)
 		{
-			$info = $this->imagesize->getImageSize($value);
+			$image = ['file' => $value];
 
-			// Can't get image dimensions
-			if (empty($info))
+			// Did not pass validation
+			if (!$this->validate_image($image))
 			{
 				unset($images[$key]);
 				continue;
 			}
 
-			// Images should be at least 200x200 px
-			if (($info['width'] < 200) || ($info['height'] < 200))
-			{
-				unset($images[$key]);
-				continue;
-			}
-
-			$images[$key] = [
-				'url' => $value,
-				'width' => $info['width'],
-				'height' => $info['height'],
-				'type' => image_type_to_mime_type($info['type'])
-			];
+			$images[$key] = $image['info'];
 		}
 
 		// Reindex array
@@ -737,20 +884,117 @@ class helper
 		}
 
 		// Fallback image
-		if (empty($images[0]))
+		if (empty($images[0]) && !empty($cached['forum']['image']['url']))
 		{
-			return [
-				'url' => trim($this->config['seo_metadata_default_image']),
-				'width' => (int) $this->config['seo_metadata_default_image_width'],
-				'height' => (int) $this->config['seo_metadata_default_image_height'],
-				'type' => trim($this->config['seo_metadata_default_image_type'])
-			];
+			// Forum image
+			return $cached['forum']['image'];
+		}
+		else if (empty($images[0]) && empty($cached['forum']['image']['url']))
+		{
+			// Use default image
+			return null;
 		}
 
 		// Add image to cache
-		$this->cache->put($cache_name, $images[0]);
+		$this->cache->put($cached['topic']['name'], $images[0]);
 
 		return $images[0];
+	}
+
+	/**
+	 * Generate image from forum data.
+	 *
+	 * It will return the image information (url, width, height and type) on success, null otherwise.
+	 *
+	 * @param string	$forum_image
+	 * @param integer	$forum_id
+	 *
+	 * @return null|array
+	 */
+	public function forum_image($forum_image = '', $forum_id = 0)
+	{
+		$forum_image = trim($forum_image);
+		$forum_id = (int) $forum_id;
+		$default = [
+			'url' => '',
+			'width' => 0,
+			'height' => 0,
+			'type' => ''
+		];
+
+		if (empty($forum_image) || empty($forum_id))
+		{
+			return $default;
+		}
+
+		$cache_name = sprintf('seo_metadata_image_forum_%d', $forum_id);
+		$cached_image = $this->cache->get($cache_name);
+
+		// Check cached image first
+		if (!empty($cached_image['url']))
+		{
+			return $cached_image;
+		}
+
+		// Get image from forum data
+		$image = ['file' => $forum_image];
+		$errors = [];
+
+		// Validate forum image
+		if ($this->validate_image($image, $errors, ['images_dir' => 0]))
+		{
+			// Add image to cache
+			$this->cache->put($cache_name, $image['info']);
+
+			return $image['info'];
+		}
+
+		// Use default image
+		return null;
+	}
+
+	/**
+	 * Get image information (width, height and MIME type).
+	 *
+	 * It will return an array (url, width, height and type) on success, false otherwise.
+	 *
+	 * @param string $url
+	 *
+	 * @return bool|array
+	 */
+	public function get_image_info($url = '')
+	{
+		$url = trim($url);
+
+		if (empty($url))
+		{
+			return false;
+		}
+
+		// Try to get image information
+		$info = $this->imagesize->getImageSize($url);
+
+		if (!empty($info))
+		{
+			// Replace default values
+			if (is_array($info))
+			{
+				$info = array_merge([
+					'url' => $url,
+					'type' => '',
+					'width' => 0,
+					'height' => 0
+				], $info);
+			}
+
+			// Return MIME type as string
+			if (is_int($info['type']))
+			{
+				$info['type'] = image_type_to_mime_type($info['type']);
+			}
+		}
+
+		return $info;
 	}
 
 	/**
@@ -803,6 +1047,87 @@ class helper
 	}
 
 	/**
+	 * Validate image for use in meta tags.
+	 *
+	 * It will return the given data array with information generated from it.
+	 *
+	 * @param array $data	Image data, only the key file containing the path is required
+	 * @param array $errors	Array of message errors
+	 * @param array $extra	Minimum image dimensions, by default 200x200
+	 *
+	 * @return bool
+	 */
+	public function validate_image(&$data = [], &$errors = [], $extra = [])
+	{
+		if (empty($data) || empty($data['file']))
+		{
+			return false;
+		}
+
+		// Extra parameters
+		$extra['images_dir'] = isset($extra['images_dir']) ? (int) $extra['images_dir'] : 1;
+
+		// Minimum dimensions
+		$min = [
+			'width' => !empty($extra[0]) ? (int) $extra[0] : 200,
+			'height' => !empty($extra[1]) ? (int) $extra[1] : 200
+		];
+
+		// Allowed mime types
+		$types = [
+			'image/jpeg',
+			'image/png',
+			'image/gif'
+		];
+
+		// Image URL
+		$url = $this->clean_image($data['file'], $extra['images_dir']);
+
+		// Validate image URL
+		if (empty($url))
+		{
+			$errors[]['message'] = $this->language->lang(
+				'ACP_SEO_METADATA_VALIDATE_INVALID_IMAGE',
+				$data['file']
+			);
+
+			// Further code depends on the URL
+			return false;
+		}
+
+		// Add image information (URL, width, height, and MIME type)
+		$data['info'] = $this->get_image_info($url);
+
+		// Fix MIME type
+		if (is_int($data['info']['type']))
+		{
+			$data['info']['type'] = image_type_to_mime_type($data['info']['type']);
+		}
+
+		// Validate image dimensions
+		if ((!empty($data['info']['width']) && $data['info']['width'] < $min['width']) ||
+			(!empty($data['info']['height']) && $data['info']['height'] < $min['height']))
+		{
+			$errors[]['message'] = $this->language->lang(
+				'ACP_SEO_METADATA_VALIDATE_SMALL_IMAGE',
+				$data['file'], $min['width'], $min['height']
+			);
+		}
+
+		// Validate image MIME type
+		if (!empty($data['info']['type']) && !in_array($data['info']['type'], $types, true))
+		{
+			$errors[]['message'] = $this->language->lang(
+				'ACP_SEO_METADATA_VALIDATE_INVALID_MIME_TYPE',
+				$data['file'], $data['info']['type']
+			);
+		}
+
+		// Validation check
+		return (empty($errors) && !empty($data['info']));
+	}
+
+	/**
 	 * Supported Open Graph locales.
 	 *
 	 * https://developers.facebook.com/docs/internationalization
@@ -845,14 +1170,111 @@ class helper
 			return false;
 		}
 
-		libxml_use_internal_errors(true);
+		// Suppress errors
+		libxml_clear_errors();
+		$previous = libxml_use_internal_errors(true);
 
 		$dom = new \DOMDocument;
 		$dom->loadXML($xml);
 
+		// Validation
 		$errors = libxml_get_errors();
+
+		// Clear error buffer and restore previous value
 		libxml_clear_errors();
+		libxml_use_internal_errors($previous);
 
 		return empty($errors);
+	}
+
+	/**
+	 * Check if the admin aproved showing metadata for specific posts.
+	 *
+	 * Helper for listener.
+	 *
+	 * @return bool
+	 */
+	public function check_replies()
+	{
+		return ((int) $this->config['seo_metadata_post_metadata'] === 1);
+	}
+
+	/**
+	 * Check if fiven post ID is a reply of the first post.
+	 *
+	 * @param array		$post_list
+	 * @param integer	$first_post_id
+	 * @param integer	$post_id (reference)
+	 *
+	 * @return bool
+	 */
+	public function is_reply($post_list = [], $first_post_id = 0, &$post_id = 0)
+	{
+		// Cast values
+		$first_post_id = (int) $first_post_id;
+
+		// It needs to be checked agains a valid post list
+		// and must be different from the first post ID
+		if (empty($post_list) || empty($first_post_id))
+		{
+			return false;
+		}
+
+		// Get post ID
+		$pid = $this->request->variable('p', 0);
+
+		$is_reply = !empty($pid) &&
+			in_array($pid, $post_list, true) &&
+			$pid !== $first_post_id;
+
+		// Update post ID
+		if ($is_reply)
+		{
+			$post_id = $pid;
+		}
+
+		return $is_reply;
+	}
+
+	/**
+	 * Remove empty items from an array, recursively.
+	 *
+	 * @param array		$data
+	 * @param integer	$depth
+	 *
+	 * @return array
+	 */
+	public function filter_empty_items($data = [], $depth = 0)
+	{
+		if (empty($data))
+		{
+			return [];
+		}
+
+		$max_depth = 5;
+		$depth = abs($depth) + 1;
+
+		// Do not go deeper, return data as is
+		if ($depth > $max_depth)
+		{
+			return $data;
+		}
+
+		// Remove empty elements
+		foreach ($data as $key => $value)
+		{
+			if (empty($value))
+			{
+				unset($data[$key]);
+			}
+
+			if (is_array($value) && !empty($value))
+			{
+				$data[$key] = $this->filter_empty_items($data[$key], $depth);
+			}
+		}
+
+		// Return a copy
+		return $data;
 	}
 }
