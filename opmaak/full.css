@@ -115,7 +115,7 @@ nav input[type=button] {
     line-height: 1.5em;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
     .nav-menu {
         min-height: 22em;
     }
@@ -264,6 +264,10 @@ a {
     min-width: 24%;
     max-width: 50%;
     display: block;
+    padding-left: 2em;padding-bottom: 2em;
+}
+#st-2.st-has-labels .st-btn {
+    max-width: 2em;
 }
 
 .cleared_both {
@@ -1296,7 +1300,6 @@ p {
 .col-6 a {
     font-size: 1em;
     text-decoration: underline;
-    padding: 4px;
 }
 
 footer a,
@@ -4193,4 +4196,20 @@ h1 {
 
 .ti-rss-alt:before {
     content: "\e75f"
+}
+
+
+/**Custom styles for per item manipulation**/
+
+
+.maxsixtyfour{
+    max-width: 64% !important;
+}
+
+.maxthirtyfour:not(img){
+    max-width: 34% !important;
+}
+
+.maxseventyone{
+    max-width: 71% !important;
 }

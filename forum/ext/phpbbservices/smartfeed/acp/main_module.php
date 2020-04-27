@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Smartfeed
-* @copyright (c) 2017 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2020 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -13,29 +13,28 @@ class main_module
 {
 
 	private $config;
+	private $language;
 	private $phpbb_log;
 	private $request;
 	private $template;
 	private $user;
-
-	var $u_action;
 
 	function __construct()
 	{
 		global $phpbb_container;
 
 		// Encapsulate certain phpBB objects inside this class to minimize security issues
-		$this->config = $phpbb_container->get('config');
-		$this->phpbb_log = $phpbb_container->get('log');
-		$this->request = $phpbb_container->get('request');
-		$this->template = $phpbb_container->get('template');
-		$this->user = $phpbb_container->get('user');
+		$this->phpbb_container = $phpbb_container;
+		$this->config = $this->phpbb_container->get('config');
+		$this->language = $this->phpbb_container->get('language');
+		$this->phpbb_log = $this->phpbb_container->get('log');
+		$this->request = $this->phpbb_container->get('request');
+		$this->template = $this->phpbb_container->get('template');
+		$this->user = $this->phpbb_container->get('user');
 	}
 
 	function main($id, $mode)
 	{
-
-		$this->user->add_lang_ext('phpbbservices/smartfeed', 'info_acp_common');
 
 		$submit = $this->request->is_set_post('submit');
 
@@ -56,9 +55,9 @@ class main_module
 					'vars'	=> array(
 						'legend1'											=> 'GENERAL_SETTINGS',
 						'phpbbservices_smartfeed_max_items'					=> array('lang' => 'ACP_SMARTFEED_MAX_ITEMS',							'validate' => 'int:0',	'type' => 'text:5:5', 'explain' => true),
-						'phpbbservices_smartfeed_default_fetch_time_limit'	=> array('lang' => 'ACP_SMARTFEED_DEFAULT_FETCH_TIME_LIMIT',			'validate' => 'int:0',	'type' => 'text:5:5', 'explain' => true, 'append' 				=> ' ' . $this->user->lang('ACP_SMARTFEED_HOURS')),
-						'phpbbservices_smartfeed_max_word_size'				=> array('lang' => 'ACP_SMARTFEED_MAX_WORD_SIZE',							'validate' => 'int:0',	'type' => 'text:5:5', 'explain' => true),
-						'phpbbservices_smartfeed_ttl'						=> array('lang' => 'ACP_SMARTFEED_TTL',									'validate' => 'int:0',	'type' => 'text:4:4', 'explain' => true, 'append' => ' ' . $this->user->lang('ACP_SMARTFEED_MINUTES')),
+						'phpbbservices_smartfeed_default_fetch_time_limit'	=> array('lang' => 'ACP_SMARTFEED_DEFAULT_FETCH_TIME_LIMIT',			'validate' => 'int:0',	'type' => 'text:5:5', 'explain' => true, 'append' => ' ' . $this->language->lang('ACP_SMARTFEED_HOURS')),
+						'phpbbservices_smartfeed_max_word_size'				=> array('lang' => 'ACP_SMARTFEED_MAX_WORD_SIZE',						'validate' => 'int:0',	'type' => 'text:5:5', 'explain' => true),
+						'phpbbservices_smartfeed_ttl'						=> array('lang' => 'ACP_SMARTFEED_TTL',									'validate' => 'int:0',	'type' => 'text:4:4', 'explain' => true, 'append' => ' ' . $this->language->lang('ACP_SMARTFEED_MINUTES')),
 					)
 				);
 			break;
@@ -89,7 +88,7 @@ class main_module
 						'phpbbservices_smartfeed_external_feeds_top'		=> array('lang' => 'ACP_SMARTFEED_EXTERNAL_FEEDS_TOP',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'phpbbservices_smartfeed_rfc1766_lang'				=> array('lang' => 'ACP_SMARTFEED_RFC1766_LANG',						'validate' => 'string',	'type' => 'text:8:8', 'explain' => true),
 						'phpbbservices_smartfeed_feed_image_path'			=> array('lang' => 'ACP_SMARTFEED_FEED_IMAGE_PATH',						'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'phpbbservices_smartfeed_webmaster'					=> array('lang' => 'ACP_SMARTFEED_WEBMASTER',							'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
+						'phpbbservices_smartfeed_webmaster'					=> array('lang' => 'ACP_SMARTFEED_WEBMASTER',							'validate' => 'string',	'type' => 'email:40:255', 'explain' => true),
 						'legend2'											=> 'GENERAL_OPTIONS',
 						'phpbbservices_smartfeed_all_by_default'			=> array('lang' => 'ACP_SMARTFEED_ALL_BY_DEFAULT',						'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'phpbbservices_smartfeed_suppress_forum_names'		=> array('lang' => 'ACP_SMARTFEED_SUPPRESS_FORUM_NAMES',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
@@ -107,7 +106,7 @@ class main_module
 
 		$new_config = $this->config;
 		$cfg_array = $this->request->variable('config', array('' => ''), true);
-		if (sizeof($cfg_array) == 0)
+		if (count($cfg_array) == 0)
 		{
 			$cfg_array = $new_config;
 		}
@@ -118,11 +117,11 @@ class main_module
 
 		if ($submit && !check_form_key($form_key))
 		{
-			$error[] = $this->user->lang('FORM_INVALID');
+			$error[] = $this->language->lang('FORM_INVALID');
 		}
 		
 		// Do not write values if there is an error
-		if (sizeof($error))
+		if (count($error))
 		{
 			$submit = false;
 		}
@@ -146,7 +145,7 @@ class main_module
 		if ($submit)
 		{
 			$this->phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_' . strtoupper($mode));
-			$message = $this->user->lang('CONFIG_UPDATED');
+			$message = $this->language->lang('CONFIG_UPDATED');
 			$message_type = E_USER_NOTICE;
 			trigger_error($message . adm_back_link($this->u_action), $message_type);
 		}
@@ -155,12 +154,12 @@ class main_module
 		$this->page_title = $display_vars['title'];
 
 		$this->template->assign_vars(array(
-			'L_TITLE'			=> $this->user->lang($display_vars['title']),
-			'L_TITLE_EXPLAIN'	=> $this->user->lang($display_vars['title'] . '_EXPLAIN'),
-
-			'S_ERROR'			=> (sizeof($error)) ? true : false,
 			'ERROR_MSG'			=> implode('<br>', $error),
 
+			'L_TITLE'			=> $this->language->lang($display_vars['title']),
+			'L_TITLE_EXPLAIN'	=> $this->language->lang($display_vars['title'] . '_EXPLAIN'),
+
+			'S_ERROR'			=> (count($error)) ? true : false,
 			'U_ACTION'			=> $this->u_action)
 		);
 
@@ -174,10 +173,11 @@ class main_module
 
 			if (strpos($config_key, 'legend') !== false)
 			{
+				$this_var = $this->language->lang($vars);
 				$this->template->assign_block_vars('options', array(
 					'S_LEGEND'		=> true,
-					'LEGEND'		=> (NULL !== $this->user->lang($vars)) ? $this->user->lang($vars) : $vars)
-				);
+					'LEGEND'		=> (isset($this_var)) ? $this_var : $vars,
+				));
 
 				continue;
 			}
@@ -185,13 +185,15 @@ class main_module
 			$type = explode(':', $vars['type']);
 
 			$l_explain = '';
+			$this_var = $this->language->lang($vars['lang_explain']);
 			if ($vars['explain'] && isset($vars['lang_explain']))
 			{
-				$l_explain = (NULL !== $this->user->lang($vars['lang_explain'])) ? $this->user->lang($vars['lang_explain']) : $vars['lang_explain'];
+				$l_explain = (isset($this_var)) ? $this_var : $vars['lang_explain'];
 			}
 			else if ($vars['explain'])
 			{
-				$l_explain = (NULL !== $this->user->lang($vars['lang'] . '_EXPLAIN')) ? $this->user->lang($vars['lang'] . '_EXPLAIN') : '';
+				$this_var = $this->language->lang($vars['lang'] . '_EXPLAIN');
+				$l_explain = (isset($this_var)) ? $this_var : '';
 			}
 
 			$content = build_cfg_template($type, $config_key, $new_config, $config_key, $vars);
@@ -201,12 +203,13 @@ class main_module
 				continue;
 			}
 
+			$this_var = $this->language->lang($vars['lang']);
 			$this->template->assign_block_vars('options', array(
-				'KEY'			=> $config_key,
-				'TITLE'			=> (NULL !== $this->user->lang($vars['lang'])) ? $this->user->lang($vars['lang']) : $vars['lang'],
-				'S_EXPLAIN'		=> $vars['explain'],
-				'TITLE_EXPLAIN'	=> $l_explain,
 				'CONTENT'		=> $content,
+				'KEY'			=> $config_key,
+				'S_EXPLAIN'		=> $vars['explain'],
+				'TITLE'			=> (isset($this_var)) ? $this_var : $vars['lang'],
+				'TITLE_EXPLAIN'	=> $l_explain,
 				)
 			);
 

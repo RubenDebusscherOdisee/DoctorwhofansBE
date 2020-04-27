@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - digests
-* @copyright (c) 2019 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2020 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -10,7 +10,7 @@
 namespace phpbbservices\digests\includes;
 
 // The purpose of this class is to override the messenger class so HTML can be sent in email. The code is a copy and paste for the relevant events
-// from the 3.2.5 source for /includes/functions_messenger.php with minimal changes needed to add this functionality.
+// from the 3.2.8 source for /includes/functions_messenger.php with minimal changes needed to add this functionality.
 
 class html_messenger extends \messenger
 {

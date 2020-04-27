@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Smartfeed
-* @copyright (c) 2017 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2020 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -12,8 +12,7 @@ namespace phpbbservices\smartfeed\core;
 class common
 {
 
-	/* @var \phpbb\auth\auth */
-	protected $auth;
+	private $auth;
 
 	/**
 	 * Constructor

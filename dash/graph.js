@@ -223,7 +223,7 @@ function GetListLinks() {
             var links = sourceelem.getElementsByTagName("a");
             //loop hierdoor en voeg de juiste links toe aan neen nieuwe array dmv hun pathname
             for (var i = 0; i < links.length; i++) {
-                if (links[i].pathname.includes("?") == false && links[i].pathname.includes("@") ==false && links[i].pathname.includes("/API")==false && links[i].pathname.includes("#")==false && links[i].pathname.includes(".php")==false) {
+                if (links[i].href.includes("doctorwhofans")===true && links[i].pathname.includes("?") == false && links[i].pathname.includes("@") ==false && links[i].pathname.includes("/API")==false && links[i].pathname.includes("#")==false && links[i].pathname.includes(".php")==false) {
                     //verwijder de slashes van de pathname
                     LINK_ARRAY.push(links[i].pathname.split('/').join(''));
                 }
@@ -278,6 +278,7 @@ function resolveAfter2Seconds() {
 }
   
 async function getBrokenLinks() {
+
     const result = await resolveAfter2Seconds();
     console.log(result);
 }

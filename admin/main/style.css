@@ -5,6 +5,11 @@ body {
 #main_table {
   width: 100%;
 }
+
+#xf-master-detail-s {
+  overflow: hidden !important;
+
+}
 @media only screen and (max-width: 900px) {
 
   #xf-logo {
@@ -63,6 +68,7 @@ body {
     min-height: 29vh !important;
     max-height: 32vh !important;
     height: auto !important;
+    overflow: hidden !important;
 
   }
   .master-detail-iframe{min-height: 27vh;}

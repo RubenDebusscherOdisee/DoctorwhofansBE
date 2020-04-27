@@ -899,11 +899,13 @@ class acp_board
 	/**
 	* Minimum password length
 	*/
-	function password_length($value, $key)
+	function password_length($value, $key='')
 	{
 		global $user;
 
 		return '<input id="' . $key . '" type="number" min="1" max="999" name="config[min_pass_chars]" value="' . $value . '" /> ' . $user->lang['MIN_CHARS'];
+
+
 	}
 
 	/**

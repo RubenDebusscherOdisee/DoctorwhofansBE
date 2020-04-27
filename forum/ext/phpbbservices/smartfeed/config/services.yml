@@ -12,6 +12,7 @@ services:
             - '%core.root_path%'
             - '@phpbbservices.smartfeed.common'
             - '/ext/phpbbservices/smartfeed/'
+            - '@language'
     phpbbservices.smartfeed.controller.feed:
         class: phpbbservices\smartfeed\controller\feed
         arguments:
@@ -26,6 +27,8 @@ services:
             - '@request'
             - '@log'
             - '@phpbbservices.smartfeed.common'
+            - '@language'
+            - '@notification_manager'
     phpbbservices.smartfeed.common:
         class: phpbbservices\smartfeed\core\common
         arguments:
@@ -36,6 +39,5 @@ services:
             - '@config'
             - '@controller.helper'
             - '@template'
-            - '%core.php_ext%'
         tags:
             - { name: event.listener }

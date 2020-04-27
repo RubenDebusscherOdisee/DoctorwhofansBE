@@ -23,7 +23,7 @@
 	background-image:  url("./images/text_underline.png");
 }
 
-#comment {	
+#comment:not(textarea) {	
 	background-image:  url("./images/comment.png");
 }
 

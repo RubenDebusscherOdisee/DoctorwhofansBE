@@ -8,7 +8,7 @@
     $antwoord = [];//maak een object aan
 	$antwoord['Seasons'] = "Geen resultaten gevonden.";//geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8');//stel the charset in
-	$stmt1 = $conn->prepare("SELECT *,episodes.title as Episode_titel FROM episodes inner join serials on serial_id = serials.id where EXTRACT( MONTH FROM original_air_date)=EXTRACT( MONTH FROM curdate()) and EXTRACT( day FROM original_air_date)=EXTRACT( day FROM curdate())");//prepare de query (maak de query zonder de variabelen op te nemen)
+	$stmt1 = $conn->prepare("SELECT *,episodes.title as Episode_titel FROM episodes inner join serials on serial_id = serials.id where EXTRACT( MONTH FROM original_air_date)=EXTRACT( MONTH FROM CONVERT_TZ(CURRENT_TIMESTAMP(),'GMT','Europe/Brussels')) and EXTRACT( day FROM original_air_date)=EXTRACT( day FROM CONVERT_TZ(CURRENT_TIMESTAMP(),'GMT','Europe/Brussels'))");//prepare de query (maak de query zonder de variabelen op te nemen)
 	if(!$stmt1){//als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);
 	}

@@ -15,7 +15,7 @@ header('Content-Type: application/json');
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("select id, title, serial_id, story, episode_order, original_air_date, runtime, appreciation_index, missing, recreated, synopsis, FORMAT(uk_viewers_mm, 0,  'de_DE' ) as uk_viewers_mm from episodes where serial_id=?");
+	$stmt1 = $conn->prepare("select id, title, serial_id, story, episode_order, original_air_date, runtime, appreciation_index, missing, recreated, synopsis, FORMAT(uk_viewers_mm, 0,  'de_DE' ) as uk_viewers_mm from episodes where serial_id=? order by story");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);

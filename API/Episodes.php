@@ -15,7 +15,7 @@ header('Content-Type: application/json');
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("select * from episodes");
+	$stmt1 = $conn->prepare("select * from episodes order by story");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);

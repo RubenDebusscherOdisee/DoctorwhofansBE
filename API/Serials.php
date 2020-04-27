@@ -15,7 +15,7 @@ header('Content-Type: application/json');
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("select serials.id, serials.story, seasons.name as season, serials.serial as part,serials.title,serials.production_code,serials.image,group_concat(serials_doctors.doctor_id)as Doctors,serials.external_link from serials inner join seasons on serials.season_id=seasons.id inner join serials_doctors on serials_doctors.serial_id= serials.id group by serials.id");
+	$stmt1 = $conn->prepare("select serials.id, serials.story, seasons.name as season, serials.serial as part,serials.title,serials.production_code,serials.image,group_concat(serials_doctors.doctor_id)as Doctors,serials.external_link from serials inner join seasons on serials.season_id=seasons.id inner join serials_doctors on serials_doctors.serial_id= serials.id group by serials.id order by seasons.volgorde,serials.story");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);

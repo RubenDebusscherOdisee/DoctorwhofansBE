@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Smartfeed
-* @copyright (c) 2017 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2020 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -13,47 +13,37 @@ use phpbbservices\smartfeed\constants\constants;
 
 class ui
 {
-	/* @var \phpbb\config\config */
-	protected $config;
 
-	/* @var \phpbb\controller\helper */
-	protected $helper;
-
-	/* @var \phpbb\template\template */
-	protected $template;
-
-	/* @var \phpbb\user */
-	protected $user;
-	
-	protected $phpEx;
-
-	/* @var \phpbb\db\driver\factory  */
-	protected $db;
-
-	/* @var \phpbb\auth\auth */
-	protected $auth;
-
-	protected $phpbb_root_path; // Only used in functions.
-	
-	protected $common;
+	private $auth;
+	private $common;
+	private $config;
+	private $db;
+	private $ext_root_path;
+	private $helper;
+	private $language;
+	private $phpbb_root_path; // Only used in functions.
+	private $phpEx;
+	private $template;
+	private $user;
 
 	/**
 	* Constructor
 	*
+	* @param \phpbb\auth\auth						$auth
+	* @param \phpbbservices\smartfeed\core\common	$common
 	* @param \phpbb\config\config					$config
+	* @param \phpbb\db\driver\factory				$db
+	* @param string           						$ext_root_path     Path to smartfeed extension root
 	* @param \phpbb\controller\helper				$helper
+	* @param \phpbb\language\language 				$language 				Language object
+	* @param string									$phpbb_root_path
+	* @param string									$php_ext
 	* @param \phpbb\template\template				$template
 	* @param \phpbb\user							$user
-	* @param string									$php_ext
-	* @param \phpbb\db\driver\factory				$db
-	* @param \phpbb\auth\auth						$auth
-	* @param string									$phpbb_root_path
-	* @param \phpbbservices\smartfeed\core\common	$common
-	* @param string           						$ext_root_path     Path to smartfeed extension root
 	*/
 	
 	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user,
-		$php_ext, \phpbb\db\driver\factory $db, \phpbb\auth\auth $auth, $phpbb_root_path, \phpbbservices\smartfeed\core\common $common, $ext_root_path)
+		$php_ext, \phpbb\db\driver\factory $db, \phpbb\auth\auth $auth, $phpbb_root_path, \phpbbservices\smartfeed\core\common $common, $ext_root_path, \phpbb\language\language $language)
 	{
 		$this->config = $config;
 		$this->helper = $helper;
@@ -65,9 +55,7 @@ class ui
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->common = $common;
 		$this->ext_root_path = $ext_root_path;
-
-		// Load language variable specifically for this class
-		$this->user->add_lang_ext('phpbbservices/smartfeed', 'ui');
+		$this->language = $language;
 	}
 
 	/**
@@ -78,16 +66,19 @@ class ui
 	public function handle()
 	{
 
-		$display_name = $this->user->lang('SMARTFEED_TITLE');
-		
+		$display_name = $this->language->lang('SMARTFEED_TITLE');
+
+		// Load language variable specifically for this class
+		$this->language->add_lang(array('ui'), 'phpbbservices/smartfeed');
+
 		// Smartfeed cannot be used with Apache authentication unless the .htaccess file is modified to allow smartfeed.php to bypass
 		// Apache authentication. If you have made these changes then set the constant SMARTFEED_APACHE_HTACCESS_ENABLED to true in the ACP interface.
 		if (($this->config['auth_method'] == 'apache') && ($this->config['phpbbservices_smartfeed_apache_htaccess_enabled'] != 1))
 		{
-			$msg_text = ($this->user->data['user_type'] == USER_FOUNDER) ? $this->user->lang('SMARTFEED_APACHE_AUTHENTICATION_WARNING_ADMIN') : $this->user->lang('SMARTFEED_APACHE_AUTHENTICATION_WARNING_REG');
+			$msg_text = ($this->user->data['user_type'] == USER_FOUNDER) ? $this->language->lang('SMARTFEED_APACHE_AUTHENTICATION_WARNING_ADMIN') : $this->language->lang('SMARTFEED_APACHE_AUTHENTICATION_WARNING_REG');
 			trigger_error($msg_text, E_USER_NOTICE);
 		}
-		
+
 		// Create a list of required and excluded forum_ids
 		$required_forum_ids = (isset($this->config['phpbbservices_smartfeed_include_forums']) && strlen(trim($this->config['phpbbservices_smartfeed_include_forums'])) > 0) ? explode(',', $this->config['phpbbservices_smartfeed_include_forums']) : array();
 		$excluded_forum_ids = (isset($this->config['phpbbservices_smartfeed_exclude_forums']) && strlen(trim($this->config['phpbbservices_smartfeed_exclude_forums'])) > 0) ? explode(',', $this->config['phpbbservices_smartfeed_exclude_forums']) : array();
@@ -124,8 +115,8 @@ class ui
 		{
 			// Public (anonymous) users do not need to authenticate so no encrypted passwords are needed
 			$smartfeed_user_id = ANONYMOUS;
-			$encrypted_password = 'NONE';
-			$encrypted_password_with_ip = 'NONE';
+			$encrypted_password = constants::SMARTFEED_NONE;
+			$encrypted_password_with_ip = constants::SMARTFEED_NONE;
 			$this->template->assign_vars(array('S_SMARTFEED_IS_GUEST' => true, 'S_SMARTFEED_DAY_DEFAULT' => 'selected="selected"'));
 		}
 
@@ -206,8 +197,8 @@ class ui
 			
 			$sql = 'SELECT forum_name, forum_id, parent_id, forum_type
 					FROM ' . FORUMS_TABLE . ' 
-					WHERE ' . $this->db->sql_in_set('forum_id', $allowed_forum_ids) . ' AND forum_type <> ' . FORUM_LINK . '
-					ORDER BY left_id ASC';
+					WHERE ' . $this->db->sql_in_set('forum_id', $allowed_forum_ids) . ' AND forum_type <> ' . FORUM_LINK . " AND forum_password = ''
+					ORDER BY left_id ASC";
 			$result = $this->db->sql_query($sql);
 			
 			$this->template->assign_block_vars('show_forums', array());
@@ -323,21 +314,21 @@ class ui
 		// $this->user->ip = '2001:0DB8:AC10:FE01:0000:0000:0000:0000';
 
 		// Set up text for the IP authentication explanation string
-		$smartfeed_ip_auth_explain = sprintf($this->user->lang('SMARTFEED_IP_AUTHENTICATION_EXPLAIN'), $this->user->ip);
+		$smartfeed_ip_auth_explain = $this->language->lang('SMARTFEED_IP_AUTHENTICATION_EXPLAIN', $this->user->ip);
 		$max_items = ($this->config['phpbbservices_smartfeed_max_items'] == '0') ? 0 : 1;
-		$size_error_msg = $this->user->lang('SMARTFEED_SIZE_ERROR', $this->config['phpbbservices_smartfeed_max_items'], 0);
+		$size_error_msg = $this->language->lang('SMARTFEED_SIZE_ERROR', $this->config['phpbbservices_smartfeed_max_items'], 0);
 
 		// Set the template variables needed to generate a URL for Smartfeed. Note: most can be handled by template language variable substitution.
 		$this->template->assign_vars(array(
 		
-			'L_POWERED_BY'						=> sprintf($this->user->lang('POWERED_BY'), '<a href="' . $this->config['phpbbservices_smartfeed_url'] . '" class="postlink" onclick="window.open(this.href);return false;">' . $this->user->lang('SMARTFEED_POWERED_BY') . '</a>'),
+			'L_POWERED_BY'						=> $this->language->lang('POWERED_BY', '<a href="' . $this->config['phpbbservices_smartfeed_url'] . '" class="postlink" onclick="window.open(this.href);return false;">' . $this->language->lang('SMARTFEED_POWERED_BY') . '</a>'),
 			'L_SMARTFEED_EXCLUDED_FORUMS'		=> implode(",", $excluded_forum_ids),
 			'L_SMARTFEED_IGNORED_FORUMS'		=> implode(",", array_merge($required_forum_ids, $excluded_forum_ids)),
 			'L_SMARTFEED_IP_AUTHENTICATION_EXPLAIN'	=> $smartfeed_ip_auth_explain,
-			'L_SMARTFEED_LIMIT_SET_EXPLAIN'		=> ($this->config['phpbbservices_smartfeed_default_fetch_time_limit'] == '0') ? '' : sprintf($this->user->lang('SMARTFEED_LIMIT_SET_EXPLAIN'), round(($this->config['phpbbservices_smartfeed_default_fetch_time_limit']/24), 0)),
-			'L_SMARTFEED_MAX_ITEMS_EXPLAIN_MAX' => ($this->config['phpbbservices_smartfeed_max_items'] == 0) ? $this->user->lang('SMARTFEED_MAX_ITEMS_EXPLAIN_BLANK') : sprintf($this->user->lang('SMARTFEED_MAX_ITEMS_EXPLAIN'), $this->config['phpbbservices_smartfeed_max_items'], $max_items),
-			'L_SMARTFEED_MAX_WORD_SIZE_EXPLAIN' => ($this->config['phpbbservices_smartfeed_max_word_size'] == '0') ? $this->user->lang('SMARTFEED_MAX_WORD_SIZE_EXPLAIN_BLANK') : sprintf($this->user->lang('SMARTFEED_MAX_WORD_SIZE_EXPLAIN'), $this->config['phpbbservices_smartfeed_max_word_size']),
-			'L_SMARTFEED_NOT_LOGGED_IN'			=> !extension_loaded('openssl') ? $this->user->lang('SMARTFEED_NO_OPENSSL_SUPPORT') : sprintf($this->user->lang('SMARTFEED_NOT_LOGGED_IN'), $this->phpEx, $this->phpEx),
+			'L_SMARTFEED_LIMIT_SET_EXPLAIN'		=> ($this->config['phpbbservices_smartfeed_default_fetch_time_limit'] == '0') ? '' : $this->language->lang('SMARTFEED_LIMIT_SET_EXPLAIN', round(($this->config['phpbbservices_smartfeed_default_fetch_time_limit']/24), 0)),
+			'L_SMARTFEED_MAX_ITEMS_EXPLAIN_MAX' => ($this->config['phpbbservices_smartfeed_max_items'] == 0) ? $this->language->lang('SMARTFEED_MAX_ITEMS_EXPLAIN_BLANK') : $this->language->lang('SMARTFEED_MAX_ITEMS_EXPLAIN', $this->config['phpbbservices_smartfeed_max_items'], $max_items),
+			'L_SMARTFEED_MAX_WORD_SIZE_EXPLAIN' => ($this->config['phpbbservices_smartfeed_max_word_size'] == '0') ? $this->language->lang('SMARTFEED_MAX_WORD_SIZE_EXPLAIN_BLANK') : $this->language->lang('SMARTFEED_MAX_WORD_SIZE_EXPLAIN', $this->config['phpbbservices_smartfeed_max_word_size']),
+			'L_SMARTFEED_NOT_LOGGED_IN'			=> !extension_loaded('openssl') ? $this->language->lang('SMARTFEED_NO_OPENSSL_SUPPORT') : $this->language->lang('SMARTFEED_NOT_LOGGED_IN', append_sid($this->phpbb_root_path . 'ucp.' . $this->phpEx . '?mode=login'), append_sid($this->phpbb_root_path . 'ucp.' . $this->phpEx . '?mode=register')),
 			'LA_SMARTFEED_SIZE_ERROR'			=> $size_error_msg,
 			'S_SMARTFEED_ALL_BY_DEFAULT'		=> ($this->config['phpbbservices_smartfeed_all_by_default'] == '1') ? 'checked="checked"' : '',
 			'S_SMARTFEED_ATOM_10_VALUE'			=> constants::SMARTFEED_ATOM,
@@ -359,6 +350,7 @@ class ui
 			'S_SMARTFEED_LAST_QUARTER_VALUE'	=> constants::SMARTFEED_LAST_QUARTER_VALUE,
 			'S_SMARTFEED_LAST_MONTH_VALUE'		=> constants::SMARTFEED_LAST_MONTH_VALUE,
 			'S_SMARTFEED_LAST_TWO_WEEKS_VALUE'	=> constants::SMARTFEED_LAST_TWO_WEEKS_VALUE,
+			'S_SMARTFEED_LAST_POST' 			=> constants::SMARTFEED_LAST_POST,
 			'S_SMARTFEED_LAST_WEEK_VALUE'		=> constants::SMARTFEED_LAST_WEEK_VALUE,
 			'S_SMARTFEED_LAST_DAY_VALUE'		=> constants::SMARTFEED_LAST_DAY_VALUE,
 			'S_SMARTFEED_LAST_12_HOURS_VALUE'	=> constants::SMARTFEED_LAST_12_HOURS_VALUE,
@@ -369,8 +361,10 @@ class ui
 			'S_SMARTFEED_LAST_15_MINUTES_VALUE'	=> constants::SMARTFEED_LAST_15_MINUTES_VALUE,
 			'S_SMARTFEED_MARK_PRIVATE_MESSAGES' => constants::SMARTFEED_MARK_PRIVATE_MESSAGES,
 			'S_SMARTFEED_MAX_ITEMS'				=> $this->config['phpbbservices_smartfeed_max_items'], // was count_limit, now max_items
+			'S_SMARTFEED_MAX_ITEMS_REAL'		=> ($this->config['phpbbservices_smartfeed_max_items'] == 0) ? 10000 : $this->config['phpbbservices_smartfeed_max_items'], // was count_limit, now max_items
 			'S_SMARTFEED_MAX_ITEMS_L' 			=> constants::SMARTFEED_MAX_ITEMS,
 			'S_SMARTFEED_MAX_WORD_SIZE'			=> $this->config['phpbbservices_smartfeed_max_word_size'], // max_word_size
+			'S_SMARTFEED_MAX_WORD_SIZE_REAL'	=> ($this->config['phpbbservices_smartfeed_max_word_size'] == 0) ? 10000 : $this->config['phpbbservices_smartfeed_max_word_size'], // max_word_size
 			'S_SMARTFEED_MAX_WORDS' 			=> constants::SMARTFEED_MAX_WORDS,
 			'S_SMARTFEED_MIN_WORDS' 			=> constants::SMARTFEED_MIN_WORDS,
 			'S_SMARTFEED_NO_FORUMS'				=> $no_forums,
@@ -390,16 +384,21 @@ class ui
 			'S_SMARTFEED_SORT_BY' 				=> constants::SMARTFEED_SORT_BY,
 			'S_SMARTFEED_STANDARD'				=> constants::SMARTFEED_STANDARD,
 			'S_SMARTFEED_STANDARD_DESC'			=> constants::SMARTFEED_STANDARD_DESC,
+			'S_SMARTFEED_SUPPRESS_FORUM_NAMES'		=> $this->config['phpbbservices_smartfeed_suppress_forum_names'],
+			'S_SMARTFEED_SUPPRESS_FORUM_NAMES_C'	=> constants::SMARTFEED_SUPPRESS_FORUM_NAMES,
+			'S_SMARTFEED_SUPPRESS_USERNAMES'	=> !$this->config['phpbbservices_smartfeed_show_username_in_replies'],
 			'S_SMARTFEED_TIME_LIMIT' 			=> constants::SMARTFEED_TIME_LIMIT,
+			'S_SMARTFEED_TOPIC_TITLES' 			=> constants::SMARTFEED_TOPIC_TITLES,
 			'S_SMARTFEED_USER_ID' 				=> constants::SMARTFEED_USER_ID,
+			'S_SMARTFEED_USERNAMES' 			=> constants::SMARTFEED_USERNAMES,
 			'U_SMARTFEED_IMAGE_PATH'         	=> generate_board_url() . $this->ext_root_path . 'styles/all/theme/images/',
-		 	'UA_SMARTFEED_SITE_URL'				=> generate_board_url() . '/app.' . $this->phpEx . '/smartfeed/',
+			'UA_SMARTFEED_SITE_URL'				=> $this->helper->route('phpbbservices_smartfeed_feed_controller', array(), true, false, \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL),
 			'UA_SMARTFEED_USER_ID'				=> $smartfeed_user_id,
 
 			)
 		);
 				
-		return $this->helper->render('smartfeed_body.html', $display_name);
+		return $this->helper->render('@phpbbservices_smartfeed/smartfeed_body.html', $display_name);
 	
 	}
 
