@@ -4,7 +4,7 @@
 * About us extension for the phpBB Forum Software package.
 * English
 *
-* @copyright (c) 2014-2017 Crizzo <http://www.crizzo.de>
+* @copyright (c) 2014-2020 Crizzo <https://www.crizzo.de>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -56,6 +56,9 @@ $lang = array_merge($lang, array(
 	'ACP_TERMS_OF_USE_ENABLE_EXPLAIN'	=> 'Displays a link to the terms of use on the “About us”-page.',
 	'ACP_PRIVACY_ENABLE' 				=> 'Display privacy policy',
 	'ACP_PRIVACY_ENABLE_EXPLAIN'		=> 'Displays a link to the privacy policy on the “About us”-page.',
+
+	'ACP_META_NOINDEX_ENABLE'			=> 'Meta noindex',
+	'ACP_META_NOINDEX_ENABLE_EXPLAIN'	=> 'Tells search engine robots, that they must not index the “About us”-page. This option will not prevent robots from indexing the “About us”-page anyway!',
 
 	'DESCRIPTION_PRIVACY'			=> 'You can see the privacy policy here:',
 	'DESCRIPTION_TERMS_OF_USE'		=> 'You can see the terms of use here:',

@@ -38,8 +38,14 @@ class settings_module
 	/** @var \phpbb\language\language */
 	protected $translator;
 
+	/** @var \phpbb\user */
+	protected $user;
+
 	/** @var \blitze\sitemaker\services\icon_picker */
 	protected $icon;
+
+	/** @var \blitze\sitemaker\services\blocks\cleaner */
+	protected $blocks_cleaner;
 
 	/** @var \blitze\sitemaker\services\filemanager\settings */
 	protected $filemanager;
@@ -62,31 +68,29 @@ class settings_module
 	/** @var string */
 	public $u_action;
 
-	/** @var bool */
-	public $trigger_errors;
-
 	/**
 	 * settings_module constructor.
 	 */
-	public function __construct($trigger_errors = true)
+	public function __construct()
 	{
-		global $phpbb_container, $phpbb_dispatcher, $config, $db, $request, $template, $phpbb_root_path, $phpEx;
+		global $phpbb_container, $phpbb_dispatcher, $config, $db, $request, $template, $user, $phpbb_root_path, $phpEx;
 
 		$this->db = $db;
 		$this->config = $config;
 		$this->phpbb_dispatcher = $phpbb_dispatcher;
 		$this->request = $request;
 		$this->template = $template;
+		$this->user = $user;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $phpEx;
 
 		$this->config_text = $phpbb_container->get('config_text');
 		$this->finder = $phpbb_container->get('ext.manager')->get_finder();
 		$this->translator = $phpbb_container->get('language');
+		$this->blocks_cleaner = $phpbb_container->get('blitze.sitemaker.blocks.cleaner');
 		$this->filemanager = $phpbb_container->get('blitze.sitemaker.filemanager.settings');
 		$this->icon = $phpbb_container->get('blitze.sitemaker.icon_picker');
 		$this->mapper_factory = $phpbb_container->get('blitze.sitemaker.mapper.factory');
-		$this->trigger_errors = $trigger_errors;
 	}
 
 	/**
@@ -99,6 +103,7 @@ class settings_module
 
 		$form_key = 'blitze/sitemaker/settings';
 
+		$this->handle_cleanup($form_key);
 		$this->handle_submit($form_key);
 
 		add_form_key($form_key);
@@ -123,10 +128,33 @@ class settings_module
 			'styles'			=> $this->get_styles_data($layouts),
 			'layouts'			=> $layouts,
 			'menu_options'		=> $this->get_menu_options(),
+			'sm_user_lang'		=> $this->user->data['user_lang'],
 		));
 
 		$this->tpl_name = 'acp_settings';
 		$this->page_title = 'ACP_SM_SETTINGS';
+	}
+
+	/**
+	 * @param string $form_key
+	 * @return void
+	 */
+	protected function handle_cleanup($form_key)
+	{
+		if (!$this->request->is_set_post('submit') && $orphans = $this->blocks_cleaner->get_orphans())
+		{
+			$components = $this->request->variable('cleanup', array(0 => ''));
+
+			if ($this->request->is_set_post('orphans') && sizeof($components))
+			{
+				$this->check_form_key($form_key);
+				$this->blocks_cleaner->run($components);
+
+				trigger_error($this->translator->lang('BLOCKS_CLEANUP_DONE') . adm_back_link($this->u_action));
+			}
+
+			$this->template->assign_var('orphaned_blocks', $orphans);
+		}
 	}
 
 	/**
@@ -153,7 +181,8 @@ class settings_module
 
 			$this->save_filemanager_settings($settings);
 			$this->save_config_settings($settings);
-			$this->trigger_error($this->translator->lang('SETTINGS_SAVED') . adm_back_link($this->u_action));
+
+			trigger_error($this->translator->lang('SETTINGS_SAVED') . adm_back_link($this->u_action));
 		}
 	}
 
@@ -164,7 +193,7 @@ class settings_module
 	{
 		if (!check_form_key($form_key))
 		{
-			$this->trigger_error('FORM_INVALID', E_USER_WARNING);
+			trigger_error('FORM_INVALID', E_USER_WARNING);
 		}
 	}
 
@@ -219,16 +248,6 @@ class settings_module
 	}
 
 	/**
-	 * @param string $message
-	 * @param int $error_type
-	 * @return void
-	 */
-	protected function trigger_error($message, $error_type = E_USER_NOTICE)
-	{
-		$this->trigger_errors ? trigger_error($message, $error_type) : null;
-	}
-
-	/**
 	 * @return array
 	 */
 	protected function get_layouts()
@@ -278,7 +297,6 @@ class settings_module
 
 		if (sizeof($settings))
 		{
-			$settings['aviary_active'] = ($settings['aviary_apiKey']) ? 'true' : 'false';
 			$settings['image_watermark_position'] = ($settings['image_watermark_coordinates']) ? $settings['image_watermark_coordinates'] : $settings['image_watermark_position'];
 			unset($settings['image_watermark_coordinates']);
 

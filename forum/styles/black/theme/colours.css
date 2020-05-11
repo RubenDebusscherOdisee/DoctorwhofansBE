@@ -696,7 +696,7 @@ Colours and backgrounds for buttons.css
 .announce_unread_locked_mine		{ background-image: url("./images/announce_unread_locked.png"); }
 
 .forum_link							{ background-image: url("./images/forum_link.png"); }
-.forum_read							{ background-image: url("./images/forum_read.png"); }
+.forum_read							{ background-image: url("./images/forum_read.png");background-repeat: no-repeat;}
 .forum_read_locked					{ background-image: url("./images/forum_read_locked.png"); }
 .forum_read_subforum				{ background-image: url("./images/forum_read_subforum.png"); }
 .forum_unread						{ background-image: url("./images/forum_unread.png"); }

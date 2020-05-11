@@ -3,7 +3,7 @@
 *
 * About us extension for the phpBB Forum Software package.
 *
-* @copyright (c) 2014-2017 Crizzo <http://www.crizzo.de>
+* @copyright (c) 2014-2020 Crizzo <https://www.crizzo.de>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -19,7 +19,7 @@ class ext extends \phpbb\extension\base
 	/**
 	 * Enable extension if phpBB minimum version requirement is met
 	 *
-	 * Requires phpBB 3.2.0 due to usage of new language-include and font-awesome icons.
+	 * Requires phpBB 3.2.2 due to usage of new language-include and font-awesome icons.
 	 *
 	 * @return bool
 	 * @access public
@@ -27,6 +27,6 @@ class ext extends \phpbb\extension\base
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-		return phpbb_version_compare($config['version'], '3.2.0', '>=');
+		return phpbb_version_compare($config['version'], '3.2.2', '>=');
 	}
 }

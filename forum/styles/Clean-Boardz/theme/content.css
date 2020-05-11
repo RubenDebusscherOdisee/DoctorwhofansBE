@@ -82,6 +82,7 @@ ul.topiclist dd {
 ul.topiclist li.row dd {
 	padding: 4px 0 999px 0;
 	margin-bottom: -995px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 ul.topiclist dfn {
@@ -234,6 +235,7 @@ dd.time {
 dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd.redirect > span, dd.moderation > span {
 	display: block;
 	padding-left: 5px;
+	font-family: sans-serif;
 }
 
 dd.extra, dd.mark {

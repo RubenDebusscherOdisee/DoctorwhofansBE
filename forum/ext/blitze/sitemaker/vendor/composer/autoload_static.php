@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita87b43a4a773c27ff2c3c5aeaee77532
+class ComposerStaticInitaef6e006c91838713a8d81c521c22be6
 {
     public static $prefixLengthsPsr4 = array (
         'U' => 
@@ -28,11 +28,22 @@ class ComposerStaticInita87b43a4a773c27ff2c3c5aeaee77532
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'SimplePie' => 
+            array (
+                0 => __DIR__ . '/..' . '/simplepie/simplepie/library',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita87b43a4a773c27ff2c3c5aeaee77532::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita87b43a4a773c27ff2c3c5aeaee77532::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaef6e006c91838713a8d81c521c22be6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaef6e006c91838713a8d81c521c22be6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitaef6e006c91838713a8d81c521c22be6::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

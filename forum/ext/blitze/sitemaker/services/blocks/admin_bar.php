@@ -43,8 +43,8 @@ class admin_bar
 	/** @var \blitze\sitemaker\services\util */
 	protected $util;
 
-	/** @var string phpEx */
-	protected $php_ext;
+	/** @var array */
+	protected $lang_mapping;
 
 	/**
 	 * Constructor
@@ -59,9 +59,9 @@ class admin_bar
 	 * @param \blitze\sitemaker\services\filemanager\setup	$filemanager			Filemanager object
 	 * @param \blitze\sitemaker\services\icon_picker		$icons					Sitemaker icon picker object
 	 * @param \blitze\sitemaker\services\util				$util					Sitemaker util object
-	 * @param string										$php_ext				phpEx
+	 * @param array											$lang_mapping			Lang mapping array for tinymce
 	 */
-	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $controller_helper, ContainerInterface $phpbb_container, \phpbb\event\dispatcher_interface $phpbb_dispatcher, \phpbb\template\template $template, \phpbb\language\language $translator, \phpbb\user $user, \blitze\sitemaker\services\filemanager\setup $filemanager, \blitze\sitemaker\services\icon_picker $icons, \blitze\sitemaker\services\util $util, $php_ext)
+	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $controller_helper, ContainerInterface $phpbb_container, \phpbb\event\dispatcher_interface $phpbb_dispatcher, \phpbb\template\template $template, \phpbb\language\language $translator, \phpbb\user $user, \blitze\sitemaker\services\filemanager\setup $filemanager, \blitze\sitemaker\services\icon_picker $icons, \blitze\sitemaker\services\util $util, $lang_mapping)
 	{
 		$this->config = $config;
 		$this->controller_helper = $controller_helper;
@@ -73,7 +73,7 @@ class admin_bar
 		$this->filemanager = $filemanager;
 		$this->icons = $icons;
 		$this->util = $util;
-		$this->php_ext = $php_ext;
+		$this->lang_mapping = $lang_mapping;
 	}
 
 	/**
@@ -99,12 +99,13 @@ class admin_bar
 			'S_EDIT_MODE'		=> true,
 			'S_ROUTE_OPS'		=> $this->get_route_options($route),
 			'S_HIDE_BLOCKS'		=> $route_info['hide_blocks'],
-			'S_POSITION_OPS'	=> $this->get_excluded_position_options($route_info['ex_positions']),
 			'S_EX_POSITIONS'	=> join(', ', $route_info['ex_positions']),
 			'S_STYLE_OPTIONS'	=> style_select($style_id, true),
 			'S_STARTPAGE'		=> $this->startpage_is_set(),
 
 			'ICON_PICKER'		=> $this->icons->picker(),
+			'SM_USER_LANG'		=> $this->user->data['user_lang'],
+			'TINYMCE_LANG'		=> $this->get_tinymce_lang(),
 		));
 	}
 
@@ -143,6 +144,25 @@ class admin_bar
 	}
 
 	/**
+	 * @return string
+	 */
+	protected function get_tinymce_lang()
+	{
+		$user_lang = $this->user->data['user_lang'];
+
+		if (isset($this->lang_mapping[$user_lang]))
+		{
+			return $this->lang_mapping[$user_lang];
+		}
+		else
+		{
+			return preg_replace_callback('/_([a-z0-9]+)/i', function($parts) {
+				return strtoupper($parts[0]);
+			}, $user_lang);
+		}
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function get_block_actions()
@@ -158,6 +178,7 @@ class admin_bar
 			'set_route_prefs',
 			'set_startpage',
 			'update_block',
+			'update_column_width',
 		);
 
 		$actions = array();
@@ -222,16 +243,13 @@ class admin_bar
 	public function set_assets()
 	{
 		$assets = array(
-			'js'	=> array(
-				'@blitze_sitemaker/vendor/jquery-ui/jquery-ui.min.js',
-				'@blitze_sitemaker/vendor/tinymce/tinymce.min.js',
-				'@blitze_sitemaker/vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js',
-				'@blitze_sitemaker/vendor/twig.js/index.js',
-				1000 =>  '@blitze_sitemaker/assets/blocks/manager.min.js',
-			),
-			'css'   => array(
-				'@blitze_sitemaker/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css',
+			'css'	=> array(
 				'@blitze_sitemaker/assets/blocks/manager.min.css',
+			),
+			'js'	=> array(
+				'@blitze_sitemaker/assets/runtime.min.js',
+				'@blitze_sitemaker/assets/tinymce/tinymce.min.js',
+				'@blitze_sitemaker/assets/blocks/manager.min.js',
 			)
 		);
 
@@ -264,23 +282,6 @@ class admin_bar
 		{
 			$selected = ($route == $current_route) ? ' selected="selected"' : '';
 			$options .= '<option value="' . $route . '"' . $selected . '>' . $route . '</option>';
-		}
-
-		return $options;
-	}
-
-	/**
-	 * Get excluded position options
-	 *
-	 * @param array $ex_positions
-	 * @return string
-	 */
-	public function get_excluded_position_options(array $ex_positions)
-	{
-		$options = '';
-		foreach ($ex_positions as $position)
-		{
-			$options .= '<option value="' . $position . '" selected="selected">' . $position . '</option>';
 		}
 
 		return $options;

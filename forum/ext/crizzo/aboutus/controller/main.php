@@ -2,8 +2,8 @@
 /**
 *
 * About us extension for the phpBB Forum Software package.
-* 
-* @copyright (c) 2014-2017 Crizzo <http://www.crizzo.de>
+*
+* @copyright (c) 2014-2020 Crizzo <https://www.crizzo.de>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -81,6 +81,9 @@ class main
 			'ABOUTUS_OUTPUT'	=> $aboutus_text,
 			'TERMS_OF_USE'		=> $this->config['acp_aboutus_termsofuse_enable'],
 			'PRIVACY'			=> $this->config['acp_aboutus_privacy_enable'],
+
+			'META'				=> ($this->config['acp_aboutus_meta_noindex']) ? '<meta name="robots" content="noindex" />' : '',
+
 			'ABOUTUS_ENABLE'	=> $this->config['acp_aboutus_enable'],
 		));
 

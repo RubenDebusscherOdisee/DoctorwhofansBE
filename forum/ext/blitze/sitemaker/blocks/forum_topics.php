@@ -9,8 +9,6 @@
 
 namespace blitze\sitemaker\blocks;
 
-use Urodoz\Truncate\TruncateService;
-
 /**
  * Forum Topics Block
  */
@@ -27,6 +25,9 @@ class forum_topics extends forum_topics_config
 
 	/** @var \phpbb\user */
 	protected $user;
+
+	/** @var \Urodoz\Truncate\TruncateService */
+	protected $truncator;
 
 	/** @var \blitze\sitemaker\services\date_range */
 	protected $date_range;
@@ -59,13 +60,14 @@ class forum_topics extends forum_topics_config
 	 * @param \phpbb\content_visibility					$content_visibility	Content visibility object
 	 * @param \phpbb\language\language					$translator			Language object
 	 * @param \phpbb\user								$user				User object
+	 * @param \Urodoz\Truncate\TruncateService			$truncator			Truncator service
 	 * @param \blitze\sitemaker\services\date_range		$date_range			Date Range Object
 	 * @param \blitze\sitemaker\services\forum\data		$forum_data			Forum Data object
 	 * @param \blitze\sitemaker\services\forum\options	$forum_options		Forum Data object
 	 * @param string									$phpbb_root_path	Path to the phpbb includes directory.
 	 * @param string									$php_ext			php file extension
 	 */
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\content_visibility $content_visibility, \phpbb\language\language $translator, \phpbb\user $user, \blitze\sitemaker\services\date_range $date_range, \blitze\sitemaker\services\forum\data $forum_data, \blitze\sitemaker\services\forum\options $forum_options, $phpbb_root_path, $php_ext)
+	public function __construct(\phpbb\auth\auth $auth, \phpbb\content_visibility $content_visibility, \phpbb\language\language $translator, \phpbb\user $user, \Urodoz\Truncate\TruncateService $truncator, \blitze\sitemaker\services\date_range $date_range, \blitze\sitemaker\services\forum\data $forum_data, \blitze\sitemaker\services\forum\options $forum_options, $phpbb_root_path, $php_ext)
 	{
 		parent::__construct($forum_options);
 
@@ -73,6 +75,7 @@ class forum_topics extends forum_topics_config
 		$this->content_visibility = $content_visibility;
 		$this->translator = $translator;
 		$this->user = $user;
+		$this->truncator = $truncator;
 		$this->date_range = $date_range;
 		$this->forum_data = $forum_data;
 		$this->phpbb_root_path = $phpbb_root_path;
@@ -108,7 +111,6 @@ class forum_topics extends forum_topics_config
 	{
 		$this->set_display_fields();
 
-		$view = 'S_' . strtoupper($this->settings['template']);
 		$post_data = $this->get_post_data($topic_data);
 		$topic_data = array_values($topic_data);
 
@@ -116,7 +118,8 @@ class forum_topics extends forum_topics_config
 		unset($topic_data, $post_data);
 
 		$this->ptemplate->assign_vars(array(
-			$view				=> true,
+			'CONTEXT'			=> $this->settings['context'],
+			'TEMPLATE'			=> $this->settings['template'],
 			'S_IS_BOT'			=> $this->user->data['is_bot'],
 			'LAST_POST_IMG'		=> $this->user->img('icon_topic_latest'),
 			'NEWEST_POST_IMG'	=> $this->user->img('icon_topic_newest'),
@@ -207,8 +210,7 @@ class forum_topics extends forum_topics_config
 		$parse_flags = ($row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0) | OPTION_FLAG_SMILIES;
 		$row['post_text'] = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true);
 
-		$truncateService = new TruncateService();
-		return $truncateService->truncate($row['post_text'], $this->settings['preview_chars']);
+		return $this->truncator->truncate($row['post_text'], $this->settings['preview_chars']);
 	}
 
 	/**

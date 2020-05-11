@@ -93,8 +93,11 @@ function setCookie(cname, cvalue, exdays) {
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 	var expires = "expires=" + d.toUTCString();
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	$('meta[name=language]').attr('content', cvalue.replace('_', '-'));
-	$('html').attr('lang', cvalue.replace('_', '-'));
+	if(cname=="lang"){
+		$('meta[name=language]').attr('content', cvalue.replace('_', '-'));
+		$('html').attr('lang', cvalue.replace('_', '-'));
+	}
+	
 
 }
 
@@ -221,27 +224,6 @@ function changelang(taal) {
 	rerenderpage(getCookie("lang"), menu);
 	$('.col-6, .under, .path').fadeIn();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -464,7 +446,6 @@ function random() {
 			}
 		}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
-
 function getchildren(menu) {
 	$.ajax({
 		type: "GET",
@@ -484,7 +465,6 @@ function getchildren(menu) {
 			}
 		}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
-
 function videozoeken(taal, menu, zoekterm) {
 	zoekterm = $("#zoekterm").val()
 	$.ajax({
@@ -501,7 +481,6 @@ function videozoeken(taal, menu, zoekterm) {
 		}
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
-
 function quotezoeken(taal, menu, zoekterm) {
 	zoekterm = $("#zoekterm").val()
 	$.ajax({
@@ -518,7 +497,6 @@ function quotezoeken(taal, menu, zoekterm) {
 		}
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
-
 function companionsophalen(taal, menu, id) {
 	$.ajax({
 		type: "GET",
@@ -614,7 +592,6 @@ function companionsophalen(taal, menu, id) {
 		}
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
-
 function videosophalen(menu, id) {
 	$.ajax({
 		type: "GET",
@@ -760,6 +737,61 @@ function GetDownloadsByEpisode(Episode) {
 	}).always(function () {});
 }
 
+function makeid(length) {
+	var result           = '';
+	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+	var charactersLength = characters.length;
+	for ( var i = 0; i < length; i++ ) {
+	   result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
+ }
+function secondsToDhms(seconds) {
+
+	seconds = Number(seconds);
+  
+	var d = Math.floor(seconds / (3600 * 24));
+  
+	var h = Math.floor((seconds % (3600 * 24)) / 3600);
+  
+	var m = Math.floor((seconds % 3600) / 60);
+  
+	var s = Math.floor(seconds % 60);
+  
+  
+  
+	var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+  
+	var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+  
+	var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+  
+	var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+  
+	return dDisplay + hDisplay + mDisplay + sDisplay;
+  
+  }
+function GetSecondsforEpisodes(dataurl){
+	$.ajax({
+		type: "GET",
+		url: dataurl,
+		dataType: 'json',
+		cache: false
+	}).done(function (resultaat) {
+		var identifier = makeid(8);
+		$(".col-6").append("<div id='"+identifier+"'></div>");
+
+		for(var i=0;i<resultaat.data.length;i++){
+			$("#"+identifier).append("<div class=TimeDiv><span><b>"+resultaat.data[i].titel+":</b></span><br><p>"+secondsToDhms(resultaat.data[i].total).replace(/,\s*$/, "")+"</p></div>");
+			
+		}
+
+	}).fail(function(response, statusText, xhr) {
+
+                    }).always(function() {
+
+                    });
+}
 function GetOneRandomQuote() {
 	$.ajax({
 		type: "GET",
@@ -811,6 +843,12 @@ function contentophalen(taal, menu) {
 					var Character = resultaat.data[i].A_Waarde;
 					GetQuotesByCharacter(menu.split('_').join(' '));
 				}
+			}
+			if(resultaat.data[i].A_Pagina_Type=="Call"){
+				if(resultaat.data[i].A_Type=="GetSecondsforEpisodes"){
+					GetSecondsforEpisodes(resultaat.data[i].A_Waarde);
+				}
+
 			}
 			if (resultaat.data[i].A_Type === "EpisodeStatus") {
 				$("#Items").prepend("<div class='WikiItemTitel " + resultaat.data[i].A_Klasse + "'>" + translations[0].Status + ": " + resultaat.data[i].A_Waarde + "</div>");

@@ -118,11 +118,14 @@ a.forumtitle:hover, a.forumtitle:focus {
 
 a.topictitle {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.2em;
-	font-weight: bold;
-	text-decoration: none;
-	display: inline;
-	white-space: inherit;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: inherit;
+    max-width: 17em;
+    display: inline-flex;
+    margin-left: 4em;
+
 }
 
 a.topictitle:hover, a.topictitle:focus {

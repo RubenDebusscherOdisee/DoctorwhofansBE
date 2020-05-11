@@ -141,7 +141,7 @@ a:hover	{
 ---------------------------------------- */
 .wrap {
 	margin: 0 auto;
-	max-width: 1152px;
+	max-width: 100%;
 	min-width: 625px;
 	padding: 0 15px;
 }

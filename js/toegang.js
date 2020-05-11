@@ -85,7 +85,7 @@ $(function() {
       siz+=1;
       $('#size').text(siz);
       setCookie("size",siz,30);
-      $(".col-6,.under,footer").children().each(function() {
+      $(".col-6,.col-6 div,.under,footer").find("p,span,li,h1,h2,h3,h4,h5,h6,a,div").each(function() {
         var size = parseInt($(this).css("font-size"));
         size = size + 1 + "px";
         $(this).css({
@@ -101,7 +101,7 @@ $(function() {
       siz-=1;
       $('#size').text(siz);
       setCookie("size",siz,30);
-      $(".col-6,.under,footer").children().each(function() {
+      $(".col-6,.col-6 div,.under,footer").find("p,span,li,h1,h2,h3,h4,h5,h6,a,di").each(function() {
         var size = parseInt($(this).css("font-size"));
         size = size - 1 + "px";
         $(this).css({

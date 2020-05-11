@@ -127,9 +127,18 @@ li.header dd {
 	box-sizing: border-box;
 }
 
+dd .header .lastpost{
+	float: right;
+}
+dd .header .posts{
+	
+}
+
 li.header dl.row-item dt, li.header dl.row-item dd {
 	min-height: 0;
 }
+
+
 
 li.header dl.row-item dt .list-inner {
 	/* Tweak for headers alignment when folder icon used */

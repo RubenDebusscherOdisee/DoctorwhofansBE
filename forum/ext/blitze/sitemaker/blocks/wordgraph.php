@@ -92,12 +92,12 @@ class wordgraph extends block
 		$params = $this->get_graph_params($words_array, $settings);
 
 		// Sort words in result
-		$words = array_keys($words_array);
+		$words = array_filter(array_keys($words_array));
 		sort($words);
 
 		foreach ($words as $word)
 		{
-			$color = $params['min_sat'] + (($words_array[$word] - $params['min_count']) * $params['color_step']);
+			$color = (int) ($params['min_sat'] + (($words_array[$word] - $params['min_count']) * $params['color_step']));
 			$r = dechex($color);
 			$b = dechex($params['max_sat'] - $color);
 			$g = 'c';

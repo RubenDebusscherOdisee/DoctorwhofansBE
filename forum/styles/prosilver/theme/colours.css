@@ -107,6 +107,8 @@ a:hover { color: #D31141; }
 	background-color: #CADCEB;
 }
 
+
+.wordgraph li{display: inline-block; vertical-align: middle !important;}
 .panel {
 	background-color: #ECF1F3;
 	color: #28313F;

@@ -4,7 +4,7 @@
 * About us extension for the phpBB Forum Software package.
 * German (Formal honorifics)
 *
-* @copyright (c) 2014-2017 Crizzo <http://www.crizzo.de>
+* @copyright (c) 2014-2020 Crizzo <https://www.crizzo.de>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -56,6 +56,9 @@ $lang = array_merge($lang, array(
 	'ACP_TERMS_OF_USE_ENABLE_EXPLAIN'	=> 'Zeigt einen Link zu den Nutzungsbedingungen auf der Impressums-Seite an.',
 	'ACP_PRIVACY_ENABLE' 				=> 'Datenschutzrichtlinie anzeigen',
 	'ACP_PRIVACY_ENABLE_EXPLAIN'		=> 'Zeigt einen Link zu der Datenschutzrichtlinie auf der Impressums-Seite an.',
+
+	'ACP_META_NOINDEX_ENABLE'			=> 'Meta Noindex',
+	'ACP_META_NOINDEX_ENABLE_EXPLAIN'	=> 'Teilt Suchmaschinen-Robots mit, dass das Impressum nicht in den Index aufgenommen werden soll. Diese Option stellt nicht sicher, dass Robots das Impressum nicht dennoch aufrufen und indexieren!',
 
 	'DESCRIPTION_PRIVACY'				=> 'Sie können die Datenschutzrichtlinie hier nachlesen:',
 	'DESCRIPTION_TERMS_OF_USE'			=> 'Sie können die Nutzungsbedingungen hier nachlesen:',

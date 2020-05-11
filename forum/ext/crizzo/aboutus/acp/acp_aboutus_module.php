@@ -3,7 +3,7 @@
 *
 * About us extension for the phpBB Forum Software package.
 *
-* @copyright (c) 2014-2017 Crizzo <http://www.crizzo.de>
+* @copyright (c) 2014-2020 Crizzo <https://www.crizzo.de>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -25,7 +25,7 @@ class acp_aboutus_module
 	public function main($id, $mode)
 	{
 		global $request, $template;
-		global $config, $phpbb_root_path, $phpEx, $phpbb_container; 
+		global $config, $phpbb_root_path, $phpEx, $phpbb_container;
 
 		/** @var \phpbb\language\language $lang */
 		$language = $phpbb_container->get('language');
@@ -81,6 +81,7 @@ class acp_aboutus_module
 			{
 				$config->set('acp_aboutus_termsofuse_enable', $request->variable('acp_aboutus_termsofuse_enable', false));
 				$config->set('acp_aboutus_privacy_enable', $request->variable('acp_aboutus_privacy_enable', false));
+				$config->set('acp_aboutus_meta_noindex', $request->variable('acp_aboutus_meta_noindex', false));
 				$config->set('acp_aboutus_enable', $request->variable('acp_aboutus_enable', false));
 
 				$config_text->set_array(array(
@@ -102,30 +103,34 @@ class acp_aboutus_module
 		$aboutus_edit = generate_text_for_edit($aboutus_info, $aboutus_info_uid, $aboutus_info_flags);
 
 		$template->assign_vars(array(
-			'ERRORS'						=> $error,
 			'ACP_ABOUTUS_INFO'				=> $aboutus_edit['text'],
 			'ACP_ABOUTUS_INFO_PREVIEW'		=> $aboutus_info_preview,
-			'TERMS_OF_USE'					=> $config['acp_aboutus_termsofuse_enable'],
-			'PRIVACY'						=> $config['acp_aboutus_privacy_enable'],
+
 			'ABOUTUS_ENABLE'				=> $config['acp_aboutus_enable'],
-			
+
+			'ERRORS'						=> $error,
+			'META_NOINDEX'					=> $config['acp_aboutus_meta_noindex'],
+			'PRIVACY'						=> $config['acp_aboutus_privacy_enable'],
+			'TERMS_OF_USE'					=> $config['acp_aboutus_termsofuse_enable'],
+
 			'S_BBCODE_DISABLE_CHECKED'		=> !$aboutus_edit['allow_bbcode'],
-			'S_SMILIES_DISABLE_CHECKED'		=> !$aboutus_edit['allow_smilies'],
 			'S_MAGIC_URL_DISABLE_CHECKED'	=> !$aboutus_edit['allow_urls'],
-			
+			'S_SMILIES_DISABLE_CHECKED'		=> !$aboutus_edit['allow_smilies'],
+
 			'BBCODE_STATUS'					=> $language->lang('BBCODE_IS_ON', '<a href="' . $phpbb_container->get('controller.helper')->route('phpbb_help_bbcode_controller') . '">', '</a>'),
-			'SMILIES_STATUS'				=> $language->lang('SMILIES_ARE_ON'), 
-			'IMG_STATUS'					=> $language->lang('IMAGES_ARE_ON'),
+
 			'FLASH_STATUS'					=> $language->lang('FLASH_IS_ON'),
+			'IMG_STATUS'					=> $language->lang('IMAGES_ARE_ON'),
+			'SMILIES_STATUS'				=> $language->lang('SMILIES_ARE_ON'),
 			'URL_STATUS'					=> $language->lang('URL_IS_ON'),
 
 			'U_ACTION'						=> $this->u_action,
 
 			'S_BBCODE_ALLOWED'				=> true,
-			'S_SMILIES_ALLOWED'				=> true,
-			'S_BBCODE_IMG'					=> true,
 			'S_BBCODE_FLASH'				=> true,
+			'S_BBCODE_IMG'					=> true,
 			'S_LINKS_ALLOWED'				=> true,
+			'S_SMILIES_ALLOWED'				=> true,
 		));
 	// Assigning custom bbcodes
 	display_custom_bbcodes();

@@ -1,5 +1,4 @@
 services:
-
     blitze.sitemaker.block.attachments:
         class: blitze\sitemaker\blocks\attachments
         arguments:
@@ -33,6 +32,7 @@ services:
             - '@cache.driver'
             - '@dbal.conn'
             - '@request'
+            - '@blitze.sitemaker.util'
             - '%tables.sitemaker.cblocks%'
         calls:
             - [set_name, [blitze.sitemaker.block.custom]]
@@ -49,6 +49,18 @@ services:
             - '%tables.sitemaker.blocks%'
         calls:
             - [set_name, [blitze.sitemaker.block.featured_member]]
+        tags:
+            - { name: sitemaker.block }
+
+    blitze.sitemaker.block.feeds:
+        class: blitze\sitemaker\blocks\feeds
+        arguments:
+            - '@language'
+            - '@request'
+            - '@template.twig.environment'
+            - '%core.cache_dir%/%core.environment%'
+        calls:
+            - [set_name, [blitze.sitemaker.block.feeds]]
         tags:
             - { name: sitemaker.block }
 
@@ -72,6 +84,7 @@ services:
             - '@content.visibility'
             - '@language'
             - '@user'
+            - '@truncator'
             - '@blitze.sitemaker.date_range'
             - '@blitze.sitemaker.forum.data'
             - '@blitze.sitemaker.forum.options'
@@ -79,6 +92,15 @@ services:
             - '%core.php_ext%'
         calls:
             - [set_name, [blitze.sitemaker.block.forum_topics]]
+        tags:
+            - { name: sitemaker.block }
+
+    blitze.sitemaker.block.google_maps:
+        class: blitze\sitemaker\blocks\google_maps
+        arguments:
+            - '@template'
+        calls:
+            - [set_name, [blitze.sitemaker.block.google_maps]]
         tags:
             - { name: sitemaker.block }
 
@@ -98,6 +120,7 @@ services:
             - '@service_container'
             - '@template'
             - '@user'
+            - '@blitze.sitemaker.util'
             - '%core.root_path%'
             - '%core.php_ext%'
         calls:

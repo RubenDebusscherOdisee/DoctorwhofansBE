@@ -11,11 +11,11 @@ header('Content-Type: application/json');
     //maak een object aan
     $antwoord = [];
     //geef mee wat er in het object zit
-	$antwoord['Total'] = "Geen resultaten gevonden.";
+	$antwoord['data'] = "Geen resultaten gevonden.";
     //stel the charset in
 	mysqli_set_charset($conn,'utf8');
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT sum(time_to_sec(runtime)) as total,seasons.name,Shows.show_name FROM `episodes` inner join serials on serial_id=serials.id inner join seasons on serials.season_id=seasons.id inner join Shows on seasons.show_id=Shows.show_id group by seasons.id order by volgorde");
+	$stmt1 = $conn->prepare("SELECT sum(time_to_sec(runtime)) as total,concat('(',Shows.show_name,') ',seasons.name) as titel FROM `episodes` inner join serials on serial_id=serials.id inner join seasons on serials.season_id=seasons.id inner join Shows on seasons.show_id=Shows.show_id group by seasons.id");
     //als het preparen mislukt --> die
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
@@ -32,7 +32,7 @@ header('Content-Type: application/json');
 	    //return de json data
 	    $result = $stmt1->get_result();
 	    if($result->num_rows === 0) exit('No rows');
-        $antwoord['Total'] = $result->fetch_all(MYSQLI_ASSOC);
+        $antwoord['data'] = $result->fetch_all(MYSQLI_ASSOC);
         //zet het anwoord om in JSON
         $json_string = json_encode($antwoord, JSON_PRETTY_PRINT);
         echo $json_string;

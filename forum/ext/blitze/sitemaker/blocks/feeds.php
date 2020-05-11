@@ -47,7 +47,7 @@ class feeds extends block
 		$this->translator = $translator;
 		$this->request = $request;
 		$this->twig = $twig;
-		$this->cache_dir = $cache_dir;
+		$this->cache_dir = './cache/production/';
 	}
 
 	/**
@@ -175,6 +175,12 @@ class feeds extends block
 		{
 			try
 			{
+				/**
+				 * The below class cannot be added as a non-shared service using DI
+				 * as it does not follow best practises for class contructs.
+				 * It contains logic and method calls in the contructor for one thing.
+				 * Passing it as a non-shared service does not work
+				 */
 				$feed = new \blitze\sitemaker\services\simplepie\feed;
 				$feed->set_feed_url($feed_urls);
 				$feed->enable_cache((bool) $cache);
