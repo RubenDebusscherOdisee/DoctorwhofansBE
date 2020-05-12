@@ -9,7 +9,7 @@ Localsettings.php
 
 .lock
 .htpasswd
-
+.history
 *.mp4
 *.old
 *2.php

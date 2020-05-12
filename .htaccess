@@ -53,7 +53,7 @@ rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
 RewriteRule ^NL/([^/]*)$ /index.php?taal=NL [L]
 RewriteRule ^ENG/([^/]*)$ /index.php?taal=ENG [L]
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?menu=$1
+RewriteRule ^([\(\)a-zA-z0-9_-]+)/$ index.php?menu=$1
 
 <Files ~ "\.pdf$">
   Header set X-Robots-Tag "noindex, nofollow"
