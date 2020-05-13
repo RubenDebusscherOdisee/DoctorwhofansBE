@@ -1,15 +1,29 @@
 <?
+
 class tables_Topics{
 
 	function getTitle(&$record){
 		return $record->val('link').' : '.$record->val('topic');
 	}
 
+    function getChildren(&$record){
+        return df_get_records('Topics', array('parent_id'=>'='.$record->val('id')));
+    }
+    function afterSave(&$record){
 
+        //if(count(getChildren($record))<=0){
+          // return df_q("UPDATE Topics SET Uitklapbaar=0 WHERE id='".$record->val('parent_id')."'");
+        //}else if(count(getChildren($record))>0){
+            return df_q("UPDATE Topics SET Uitklapbaar=1 WHERE id='".$record->val('parent_id')."'");
+        //}else{
+            //return PEAR::raiseError("Errors occurred while updating parent.  Parent could not be updated", DATAFACE_E_NOTICE);
+      //  }
+    }
 
+    
 
-
-
+    
+    
 	function __import__csv($data, $defaultValues=array()){
         $records = array();
         $rows = explode("\n", $data);
