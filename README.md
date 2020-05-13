@@ -9,7 +9,7 @@
 
 ## Main site features
 * Powered by Ajax-calls who get their data directly from PHP files with prepared SQL statements
-* Multi langual (Nl/EN, others are in progress)
+* Multi lingual (Nl/EN, others are in progress)
 * Only uses cookies when needed (no ads)
 * Accessible menu
 * Custom search

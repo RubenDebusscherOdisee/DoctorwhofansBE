@@ -37,7 +37,7 @@ $(function () {
 						$(formMessages).text('Oops! An error occured and your message could not be sent.');
 					}
 				});
-		};
+		}
 	});
 });
 
@@ -277,7 +277,7 @@ function setLangstrings(langstring) {
 		filltext(); //fill these in first to verift function runs ok
 		renderpage(getCookie("lang"), menu);
 
-	})
+	});
 }
 
 
@@ -292,7 +292,7 @@ function filltext() {
 function ip_callback() {
 	$.get("/php/getIp.php", function (data) {
 		return data;
-	})
+	});
 }
 
 function checkmenu(menu) {
@@ -301,7 +301,7 @@ function checkmenu(menu) {
 		window.location.href = "https://www.doctorwhofans.be/API/index.html";
 		return;
 	}
-	gegevens = {}
+	gegevens = {};
 	gegevens.menu = menu;
 	gegevens.ip = ip_callback();
 	gegevens.session = getCookie("PHPSESSID");
@@ -370,7 +370,7 @@ function ZoekPagina() {
 	$("#resultquotes").remove();
 	$("#resultvideo").remove();
 	if (($("#zoekterm").val().indexOf('=') !== -1) || ($("#zoekterm").val().indexOf('<') !== -1) || ($("#zoekterm").val().indexOf('>') !== -1) || ($("#zoekterm").val().indexOf('</') !== -1)) {
-		alert("Error, invalid search parameter, please do not use '" + $("#zoekterm").val() + "'.")
+		alert("Error, invalid search parameter, please do not use '" + $("#zoekterm").val() + "'.");
 	} else {
 		zoeken(getCookie("lang"), menu, id, $("#zoekterm").val());
 		videozoeken(getCookie("lang"), menu, id, $("#zoekterm").val());
@@ -391,7 +391,7 @@ function ZoekPagina() {
 }
 
 function zoeken(taal, menu, zoekterm, ip, UID) {
-	zoekterm = $("#zoekterm").val()
+	zoekterm = $("#zoekterm").val();
 	$.ajax({
 		type: "GET",
 		url: "/php/zoeken.php?taal=" + taal + "&menu=" + menu + "&zoekterm=" + zoekterm,
@@ -466,7 +466,7 @@ function getchildren(menu) {
 		}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
 function videozoeken(taal, menu, zoekterm) {
-	zoekterm = $("#zoekterm").val()
+	zoekterm = $("#zoekterm").val();
 	$.ajax({
 		type: "GET",
 		url: "/php/zoekenvideo.php?taal=" + taal + "&menu=" + menu + "&zoekterm=" + zoekterm,
@@ -482,7 +482,7 @@ function videozoeken(taal, menu, zoekterm) {
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
 function quotezoeken(taal, menu, zoekterm) {
-	zoekterm = $("#zoekterm").val()
+	zoekterm = $("#zoekterm").val();
 	$.ajax({
 		type: "GET",
 		url: "/php/zoekenquote.php?taal=" + taal + "&menu=" + menu + "&zoekterm=" + zoekterm,
@@ -612,7 +612,7 @@ function videosophalen(menu, id) {
 					$(".main_vid").append("<h2>" + resultaat.data[i].Video_Name + "</h2>");
 					$(".main_vid").append("<iframe width='853' height='480' src='" + resultaat.data[i].Video_URL + "' frameborder='0' allowfullscreen></iframe>");
 				} else {
-					$(".main_vid").append("<h2>" + resultaat.data[i].Video_Name + "</h2>")
+					$(".main_vid").append("<h2>" + resultaat.data[i].Video_Name + "</h2>");
 					$(".main_vid").append("<video width='480' controls controlsList='nodownload'><source src='../" + resultaat.data[i].Video_URL + "' type='video/mp4'></video>");
 				}
 			} else {
@@ -799,9 +799,9 @@ function GetOneRandomQuote() {
 		dataType: 'json',
 		cache: false
 	}).done(function (resultaat) {
-		$('.quote').append("<p>" + resultaat.data[0].Quote + " ...</p>")
+		$('.quote').append("<p>" + resultaat.data[0].Quote + " ...</p>");
 		$('.quote').append("<a href='../Quotes/'>" + translations[0].ReadMore + "</a>");
-		$('.quote').append("<p>" + resultaat.data[0].Personage + " - " + resultaat.data[0].Aflevering + "</p>")
+		$('.quote').append("<p>" + resultaat.data[0].Personage + " - " + resultaat.data[0].Aflevering + "</p>");
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
 
@@ -827,7 +827,7 @@ function contentophalen(taal, menu) {
 			if (resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel" || resultaat.data[i].A_Type === "CharacterTitel") {
 				$(".col-6").prepend("<h1>" + resultaat.data[i].A_Waarde + "</h1>");
 				if (resultaat.data[i].A_Type === "EpisodeTitel") {
-					$(".under").prepend("<div id='Under_Upper'>")
+					$(".under").prepend("<div id='Under_Upper'>");
 					$("#Under_Upper").append("<div id='Quotes' class='anchor'></div>");
 					$("#Under_Upper").append("<div id='Downloads' class='anchor'><h2>" + translations[0].Downloads + "</h2></div>");
 					$("#Quotes").append("<h2>" + translations[0].Quotes + "</h2>");
@@ -837,7 +837,7 @@ function contentophalen(taal, menu) {
 
 				}
 				if (resultaat.data[i].A_Type === "CharacterTitel") {
-					$(".under").prepend("<div id='Under_Upper'>")
+					$(".under").prepend("<div id='Under_Upper'>");
 					$("#Under_Upper").append("<div id='Quotes'></div>");
 					$("#Quotes").append("<h2>" + translations[0].Quotes + "</h2>");
 					var Character = resultaat.data[i].A_Waarde;
@@ -937,7 +937,7 @@ function contentophalen(taal, menu) {
 				$(".col-6").append("<div class='" + resultaat.data[i].A_Klasse + "'>" + resultaat.data[i].A_Waarde + "</div>");
 			}
 			if (resultaat.data[i].A_Type === "Code") {
-				resultaat.data[i].A_Waarde;
+				var code = resultaat.data[i].A_Waarde;
 			}
 			if (resultaat.data[i].A_Type === "GetEpisodesofToday") {
 				GetEpisodesofToday();
@@ -979,8 +979,7 @@ function contentophalen(taal, menu) {
 			}
 			if (resultaat.data[i].A_Type === "Afbeelding") {
 				if (resultaat.data[i].A_Pagina_Type === "Wiki") {
-					var j;
-					for (j = 0; j < resultaat.data.length; j += 1) {
+					for (var j = 0; j < resultaat.data.length; j += 1) {
 						if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Bijschrift" || resultaat.data[j].A_Type === "Alt")) {
 							if(resultaat.data[j].A_Type === "Bijschrift"){
 								$("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyload' title='" + resultaat.data[j].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + "'><span>" + resultaat.data[j].A_Waarde + "</span></div>");
@@ -990,21 +989,20 @@ function contentophalen(taal, menu) {
 						}
 					}
 				} else if (resultaat.data[i].A_Pagina_Type === "Slide") {
-					for (j = 0; j < resultaat.data.length; j += 1) {
-						if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
-							$(".slideshow-container").append("<div class='mySlides fade'><img data-src='" + resultaat.data[i].A_Waarde + " lazyload' alt='" + resultaat.data[j].A_Waarde + " tile='" + resultaat.data[j].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[j].A_Waarde + "</div></div>");
+					for (var l = 0; l < resultaat.data.length; l += 1) {
+						if (resultaat.data[l].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[l].A_Type === "Alt" || resultaat.data[l].A_Type === "Bijschrift")) {
+							$(".slideshow-container").append("<div class='mySlides fade'><img data-src='" + resultaat.data[i].A_Waarde + " lazyload' alt='" + resultaat.data[l].A_Waarde + " tile='" + resultaat.data[l].A_Waarde + "'style='80%;padding-left:6em;'><div class='text'>" + resultaat.data[l].A_Waarde + "</div></div>");
 						}
 					}
 					setTimeout(function () {
-						showSlides(slideIndex);
+						showSlides(this.slideIndex);
 					}, 1000);
 				} else {
-					var j;
-					for (j = 0; j < resultaat.data.length; j += 1) {
-						if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Alt" || resultaat.data[j].A_Type === "Bijschrift")) {
+					for (var m = 0; m < resultaat.data.length; m += 1) {
+						if (resultaat.data[m].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[m].A_Type === "Alt" || resultaat.data[m].A_Type === "Bijschrift")) {
 							$(".col-6").append("<div id='" + resultaat.data[i].A_ID + "' class='foto_met_text " + resultaat.data[i].A_Klasse + "'></div>");
-							$("#" + resultaat.data[i].A_ID).append("<img data-src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + " title='" + resultaat.data[j].A_Waarde + "' class='" + resultaat.data[i].A_Klasse + " lazyload'>");
-							$("#" + resultaat.data[i].A_ID).append("<p class='" + resultaat.data[j].A_Klasse + "'>" + resultaat.data[j].A_Waarde + "</p>");
+							$("#" + resultaat.data[i].A_ID).append("<img data-src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[m].A_Waarde + " title='" + resultaat.data[m].A_Waarde + "' class='" + resultaat.data[i].A_Klasse + " lazyload'>");
+							$("#" + resultaat.data[i].A_ID).append("<p class='" + resultaat.data[m].A_Klasse + "'>" + resultaat.data[m].A_Waarde + "</p>");
 						}
 					}
 				}
@@ -1050,10 +1048,9 @@ function contentophalen(taal, menu) {
 		$('a[href^="http"]').each(function () {
 			var link = $(this).attr("href");
 			if (link.indexOf("doctorwhofans.be") === -1 && link.indexOf("https://www.facebook.com/DoctorWhoFansBE/") === -1 && link.indexOf("https://rubendebusscherodisee.github.io/DoctorwhofansBE/") === -1) {
-				$(this).after('<sup><a href="' + link + '" target="_blank" title="open in a new tab"><i class="fa fa-external-link" aria-hidden="true"></i></a></sup>')
-			}
+				return $(this).after('<sup><a href="' + link + '" target="_blank" title="open in a new tab"><i class="fa fa-external-link" aria-hidden="true"></i></a></sup>');
 
-		});
+		}
 		if (resultaat.tags != "No rows") {
 			$(".under").append("<aside id='Tags'></aside>");
 			var tagstring = "Tags: ";
@@ -1076,6 +1073,7 @@ function contentophalen(taal, menu) {
 
 
 
+});
 }
 
 
@@ -1134,7 +1132,7 @@ function contentophalen(taal, menu) {
 		});
 	};
 	$.fn.fitVids._count = 0;
-})(window.jQuery || window.Zepto)
+})(window.jQuery || window.Zepto);
 $(function () {
 	jQuery(".SitemapButton").click(function () {
 		jQuery(this).parent().next().toggle();
@@ -1145,7 +1143,7 @@ $(function () {
 		}
 	});
 
-})
+});
 
 function ToggleMenu() {
 	$('nav').slideToggle();
@@ -1189,7 +1187,7 @@ function showSlides(n) {
 	var i;
 	var slides = document.getElementsByClassName("mySlides");
 	if (n > slides.length) {
-		slideIndex = 1
+		slideIndex = 1;
 	}
 	for (i = 0; i < slides.length; i++) {
 		slides[i].style.display = "none";
@@ -1391,8 +1389,12 @@ function GetEpisodesofToday() {
 		restoreSelection: function (text, mode) {
 			//Function to restore the text selection range from the editor
 			var node;
-			typeof text !== 'undefined' ? text : false;
-			typeof mode !== 'undefined' ? mode : "";
+			if(typeof text !=='undefined'){
+				text=false;
+			}
+			if(typeof mode !=='undefined'){
+				mode="";
+			}
 			var range = $(this).data('currentRange');
 			if (range) {
 				if (window.getSelection) {
@@ -1402,7 +1404,7 @@ function GetEpisodesofToday() {
 							var el = document.createElement("div");
 							el.innerHTML = text;
 							var frag = document.createDocumentFragment(),
-								node, lastNode;
+								lastNode;
 							while ((node = el.firstChild)) {
 								lastNode = frag.appendChild(node);
 							}
@@ -1442,7 +1444,9 @@ function GetEpisodesofToday() {
 
 		insertTextAtSelection: function (text, mode) {
 			var sel, range, node;
-			typeof mode !== 'undefined' ? mode : "";
+			if(typeof mode !=='undefined'){
+				mode="";
+			}
 			if (window.getSelection) {
 				sel = window.getSelection();
 				if (sel.getRangeAt && sel.rangeCount) {
@@ -1454,7 +1458,7 @@ function GetEpisodesofToday() {
 						var el = document.createElement("div");
 						el.innerHTML = text;
 						var frag = document.createDocumentFragment(),
-							node, lastNode;
+							lastNode;
 						while ((node = el.firstChild)) {
 							lastNode = frag.appendChild(node);
 						}
@@ -1512,23 +1516,20 @@ function GetEpisodesofToday() {
 			handleFileSelect = function (evt) {
 				var files = evt.target.files; // FileList object
 				var output = [];
-				for (var i = 0, f; f = files[i]; i++) {
+				for (var i = 0, f; f == files[i]; i++) {
 					//Loop thorugh all the files
 					if (!f.type.match('image.*') || !f.name.match(/(?:gif|jpg|png|jpeg)$/)) { //Process only Images
 						methods.showMessage.apply(this, ["imgErrMsg_" + _idSuffix, "Invalid file type"]);
 						continue;
 					}
-					var reader = new FileReader();
+					let reader = new FileReader();
 					reader.onload = (function (imageFile) {
 						return function (e) {
 							//Render Thumnails
 							var li = $('<li/>', {
 								class: "col-xs-12 col-sm-6 col-md-3 col-lg-3"
 							});
-							var a = $('<a/>', {
-								href: "javascript:void(0)",
-								class: "thumbnail"
-							});
+							var a = $('<a/>', {href: "javascript:void(0)",class: "thumbnail"}); // jshint ignore:line
 							var image = $('<img/>', {
 								src: e.target.result,
 								title: escape(imageFile.name)
@@ -1536,11 +1537,11 @@ function GetEpisodesofToday() {
 								$('#imageList_' + _idSuffix).data('current', $(this).attr('src'));
 							});
 							li.append(a).appendTo($('#imageList_' + _idSuffix));
-						}
+						};
 					})(f);
 					reader.readAsDataURL(f);
 				}
-			}
+			};
 			var chooseFromLocal = $('<input/>', {
 				type: "file",
 				class: "inline-form-control",
@@ -1573,10 +1574,7 @@ function GetEpisodesofToday() {
 				var li = $('<li/>', {
 					class: "span6 col-xs-12 col-sm-6 col-md-3 col-lg-3"
 				});
-				var a = $('<a/>', {
-					href: "javascript:void(0)",
-					class: "thumbnail"
-				});
+				var a = $('<a/>', {href: "javascript:void(0)",class: "thumbnail"}); // jshint ignore:line
 				var image = $('<img/>', {
 					src: url,
 				}).error(function () {
@@ -1700,7 +1698,7 @@ function GetEpisodesofToday() {
 				type: "text",
 				class: "form-control form-control-width",
 				value: 1
-			})))))
+			})))));
 			return tblCntr;
 		},
 
@@ -1723,7 +1721,7 @@ function GetEpisodesofToday() {
 			})).append($('<input/>', {
 				id: "imgHidden",
 				type: "hidden"
-			}))
+			}));
 
 			return edtTablecntr;
 
@@ -1742,7 +1740,7 @@ function GetEpisodesofToday() {
 						tableElement.attr(attributes[i].attribute, attributes[i].value);
 				}
 			}
-			for (var i = 1; i <= tblRows; i++) {
+			for (i = 1; i <= tblRows; i++) {
 				var tblRow = $('<tr/>');
 				for (var j = 1; j <= tblColumns; j++) {
 					var tblColumn = $('<td/>').html('&nbsp;');
@@ -2324,7 +2322,7 @@ function GetEpisodesofToday() {
 						var bgPalletteDiv = $('<div/>', {
 							id: "bg_colorpellete"
 						});
-						var bgPallette = $('<ul />', {
+						let bgPallette = $('<ul />', {
 							id: "bgcolor_ui"
 						}).append($('<li />').css({
 							"width": "145px",
@@ -2337,12 +2335,12 @@ function GetEpisodesofToday() {
 						} else
 							editor.data("colorBtn", 1);
 						if (flag == 0) {
-							for (var i = 0; i < colors.length; i++) {
+							for (let i = 0; i < colors.length; i++) {
 								if (colors[i].hex != null) {
 									palette.append($('<li />').css('background-color', colors[i].hex).mousedown(function (event) {
 										event.preventDefault();
 									}).click(function () {
-										var hexcolor = methods.rgbToHex.apply(this, [$(this).css('background-color')]);
+										let hexcolor = methods.rgbToHex.apply(this, [$(this).css('background-color')]);
 										methods.restoreSelection.apply(this);
 										methods.setStyleWithCSS.apply(this);
 										document.execCommand('forecolor', false, hexcolor);
@@ -2354,7 +2352,7 @@ function GetEpisodesofToday() {
 									bgPallette.append($('<li />').css('background-color', colors[i].hex).mousedown(function (event) {
 										event.preventDefault();
 									}).click(function () {
-										var hexcolor = methods.rgbToHex.apply(this, [$(this).css('background-color')]);
+										let hexcolor = methods.rgbToHex.apply(this, [$(this).css('background-color')]);
 										methods.restoreSelection.apply(this);
 										methods.setStyleWithCSS.apply(this);
 										document.execCommand('backColor', false, hexcolor);
@@ -2377,7 +2375,7 @@ function GetEpisodesofToday() {
 							palette.appendTo(paletteDiv);
 							bgPallette.appendTo(bgPalletteDiv);
 							paletteDiv.appendTo(paletteCntr);
-							bgPalletteDiv.appendTo(paletteCntr)
+							bgPalletteDiv.appendTo(paletteCntr);
 							paletteCntr.insertAfter(button);
 							$('#paletteCntr').slideDown('slow');
 						} else
@@ -2574,8 +2572,8 @@ function GetEpisodesofToday() {
 						methods.restoreSelection.apply(this);
 						if ($('#imageList' + _idSuffix).data('current')) {
 							if (navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)) {
-								var imageStr = '<img src="' + $('#imageList' + _idSuffix).data('current') + '"/>'
-								methods.restoreSelection.apply(this, [imageStr, 'html'])
+								var imageStr = '<img src="' + $('#imageList' + _idSuffix).data('current') + '"/>';
+								methods.restoreSelection.apply(this, [imageStr, 'html']);
 							} else {
 								document.execCommand('insertimage', false, $('#imageList' + _idSuffix).data('current'));
 							}
@@ -2803,7 +2801,7 @@ function GetEpisodesofToday() {
 							$(this).data("editor").data("splcharsBtn", 1);
 
 						if (flag == 0) {
-							for (var i = 0; i < specialchars.length; i++) {
+							for (let i = 0; i < specialchars.length; i++) {
 								splCharUi.append($('<li />').html(specialchars[i].text).attr('title', specialchars[i].name).mousedown(function (event) {
 									event.preventDefault();
 								}).click(function (event) {
@@ -2818,7 +2816,7 @@ function GetEpisodesofToday() {
 								}));
 							}
 							splCharUi.prependTo(splCharDiv);
-							splCharDiv.insertAfter(button)
+							splCharDiv.insertAfter(button);
 							$('#specialchar').slideDown('slow');
 						} else
 							$('#specialchar').remove();
@@ -2831,7 +2829,7 @@ function GetEpisodesofToday() {
 					"tooltip": "Source",
 					"commandname": null,
 					"custom": function (button, params) {
-						methods.getSource.apply(this, [button, params])
+						methods.getSource.apply(this, [button, params]);
 					}
 				},
 				"params": {
@@ -2919,7 +2917,7 @@ function GetEpisodesofToday() {
 			$(this).data("editor", editor);
 			$(this).data("statusBar", statusBar);
 			var editor_Content = this;
-			if (settings['status_bar']) {
+			if (settings.status_bar) {
 				editor.keyup(function (event) {
 					var wordCount = methods.getWordCount.apply(editor_Content);
 					var charCount = methods.getCharCount.apply(editor_Content);
@@ -2952,8 +2950,8 @@ function GetEpisodesofToday() {
 					}
 					menuBar.append(group);
 				} else {
-					var menuItem = methods.createMenuItem.apply(this, [menuItems[item], settings[item], true]);
-					menuBar.append(menuItem);
+					this.menuItem = methods.createMenuItem.apply(this, [menuItems[item], settings[item], true]);
+					menuBar.append(this.menuItem);
 				}
 			}
 
@@ -3016,15 +3014,7 @@ function GetEpisodesofToday() {
 			});
 		},
 		createLinkContext: function (event, cMenuUl) {
-			var cMenuli = $('<li/>').append($('<a/>', {
-				id: "rem_link",
-				"href": "javascript:void(0)",
-				"text": "RemoveLink"
-			}).click(function (e) {
-				return function () {
-					$(e.target).contents().unwrap();
-					$('#context-menu').remove();
-				}
+			var cMenuli = $('<li/>').append($('<a/>', {id: "rem_link","href": "javascript:void(0)","text": "RemoveLink" }).click(function (e) {return function () {$(e.target).contents().unwrap();$('#context-menu').remove();}; // jshint ignore:line
 			}(event)));
 			cMenuli.appendTo(cMenuUl);
 
@@ -3074,7 +3064,7 @@ function GetEpisodesofToday() {
 			}).click(function (e) {
 				return function () {
 					$('#context-menu').remove();
-					var stamp = (new Date).getTime();
+					var stamp = (new Date()).getTime();
 					$('#imgAlt').val($(e.target).closest("img").attr("alt"));
 					$('#imgTarget').val('');
 
@@ -3086,11 +3076,11 @@ function GetEpisodesofToday() {
 						else
 							$('#imgTarget').val('');
 					} else {
-						$(e.target).closest("img").attr("id", "img_" + stamp)
+						$(e.target).closest("img").attr("id", "img_" + stamp);
 						$('#imgHidden').val("img_" + stamp);
 					}
 
-				}
+				};
 			}(event));
 			cMenuUl.append($('<li/>').append(modalTrigger))
 				.append($('<li/>').append($('<a/>', {
@@ -3100,7 +3090,7 @@ function GetEpisodesofToday() {
 						return function () {
 							$('#context-menu').remove();
 							$(e.target).closest("img").remove();
-						}
+						};
 					}(event))));
 		},
 
@@ -3170,7 +3160,7 @@ function GetEpisodesofToday() {
 					$('#tblCellpadding' + _idSuffix).val($(e.target).closest('table').attr("cellpadding"));
 
 
-				}
+				};
 			}(event));
 
 			cMenuUl.append($('<li/>', {
@@ -3201,7 +3191,7 @@ function GetEpisodesofToday() {
 								newRow.append(newColumn);
 							});
 							selectedRow.after(newRow);
-						}
+						};
 					}(event))))
 					.append($('<li/>').append($('<a/>', {
 						text: "Remove Row"
@@ -3210,7 +3200,7 @@ function GetEpisodesofToday() {
 							return function () {
 								$('#context-menu').remove();
 								$(e.target).closest("tr").remove();
-							}
+							};
 						}(event))))
 				)).append($('<li/>', {
 					class: "dropdown-submenu",
@@ -3240,7 +3230,7 @@ function GetEpisodesofToday() {
 								var newCell = $("<" + cellInSelectedColumn.prop("nodeName") + "/>").html("&nbsp;");
 								cellInSelectedColumn.after(newCell);
 							});
-						}
+						};
 					}(event))))
 					.append($('<li/>').append($('<a/>', {
 						text: "Remove Column"
@@ -3253,7 +3243,7 @@ function GetEpisodesofToday() {
 								selectedCell.closest("table").find("tr").each(function () {
 									$(this).children(":eq(" + columnIndex + ")").remove();
 								});
-							}
+							};
 						}(event))))
 				));
 			cMenuUl.append($('<li/>').append(modalTrigger))
@@ -3267,7 +3257,7 @@ function GetEpisodesofToday() {
 						return function () {
 							$('#context-menu').remove();
 							$(e.target).closest("table").remove();
-						}
+						};
 					}(event))));
 
 		},
@@ -3316,8 +3306,8 @@ function GetEpisodesofToday() {
 				e.preventDefault();
 			}).click(function (obj) {
 				return function () {
-					onSave.apply(obj)
-				}
+					onSave.apply(obj);
+				};
 			}(this))))));
 			modalElement.appendTo("body");
 			return modalTrigger;
@@ -3328,9 +3318,11 @@ function GetEpisodesofToday() {
 			//1.Create Select Options using Bootstrap Dropdown.
 			//2.Create modal dialog using bootstrap options
 			//3.Create menubar buttons binded with corresponding event actions
-			typeof returnElement !== 'undefined' ? returnElement : false;
+			if(typeof returnElement !== 'undefined'){
+				returnElement = false;
+			}
 
-			if (itemSettings["select"]) {
+			if (itemSettings.select) {
 				var menuWrapElement = $("<div/>", {
 					class: "btn-group"
 				});
@@ -3341,77 +3333,77 @@ function GetEpisodesofToday() {
 					class: "btn btn-default dropdown-toggle",
 					"data-toggle": "dropdown",
 					"href": "javascript:void(0)",
-					"title": itemSettings["tooltip"]
+					"title": itemSettings.tooltip
 				}).html(itemSettings["default"]).append($("<span/>", {
 					class: "caret"
 				})).mousedown(function (e) {
 					e.preventDefault();
 				}));
 				$.each(options, function (i, v) {
-					var option = $('<li/>')
+					var option = $('<li/>');
 					$("<a/>", {
 						tabindex: "-1",
-						href: "javascript:void(0)"
+						href: "javascript:void(0)",
 					}).html(i).appendTo(option);
 
 					option.click(function () {
 						$(this).parent().parent().data("value", v);
-						$(this).parent().parent().trigger("change")
+						$(this).parent().parent().trigger("change");
 					});
 					menuElement.append(option);
 				});
 				var action = "change";
-			} else if (itemSettings["modal"]) {
-				var menuWrapElement = methods.createModal.apply(this, [itemSettings["modalId"], itemSettings["modalHeader"], itemSettings["modalBody"], itemSettings["onSave"]]);
-				var menuElement = $("<i/>");
-				if (itemSettings["icon"])
-					menuElement.addClass(itemSettings["icon"]);
+			} else if (itemSettings.modal) {
+				this.menuWrapElement = methods.createModal.apply(this, [itemSettings.modalId, itemSettings.modalHeader, itemSettings.modalBody, itemSettings.onSave]);
+				let menuElement = $("<i/>");
+				if (itemSettings.icon)
+					menuElement.addClass(itemSettings.icon);
 				else
-					menuElement.html(itemSettings["text"]);
-				menuWrapElement.append(menuElement);
-				menuWrapElement.mousedown(function (obj, methods, beforeLoad) {
+					menuElement.html(itemSettings.text);
+				this.menuWrapElement.append(menuElement);
+				this.menuWrapElement.mousedown(function (obj, methods, beforeLoad) {
 					return function (e) {
 						e.preventDefault();
 						methods.saveSelection.apply(obj);
 						if (beforeLoad) {
 							beforeLoad.apply(obj);
 						}
-					}
-				}(this, methods, itemSettings["beforeLoad"]));
-				menuWrapElement.attr('title', itemSettings['tooltip']);
-				return menuWrapElement;
+					};
+				}(this, methods, itemSettings.beforeLoad));
+				this.menuWrapElement.attr('title', itemSettings.tooltip);
+				return this.menuWrapElement;
 			} else {
-				var menuWrapElement = $("<a/>", {
+				this.menuWrapElement = $("<a/>", {
 					href: 'javascript:void(0)',
 					class: 'btn btn-default'
 				});
-				var menuElement = $("<i/>");
-				if (itemSettings["icon"])
-					menuElement.addClass(itemSettings["icon"]);
+				this.menuElement = $("<i/>");
+				if (itemSettings.icon)
+					this.menuElement.addClass(itemSettings.icon);
 				else
-					menuElement.html(itemSettings["text"]);
-				var action = "click";
+					this.menuElement.html(itemSettings.text);
+				this.action = "click";
 			}
-			if (itemSettings["custom"]) {
-				menuWrapElement.bind(action, (function (obj, params) {
+			if (itemSettings.custom) {
+				this.menuWrapElement.bind(this.action, (function (obj, params) {
 					return function () {
 						methods.saveSelection.apply(obj);
-						itemSettings["custom"].apply(obj, [$(this), params]);
-					}
-				})(this, itemSettings['params']));
+						itemSettings.custom.apply(obj, [$(this), params]);
+					};
+				})(this, itemSettings.params));
 			} else {
-				menuWrapElement.data("commandName", itemSettings["commandname"]);
-				menuWrapElement.data("editor", $(this).data("editor"));
-				menuWrapElement.bind(action, function () {
-					methods.setTextFormat.apply(this)
+				this.menuWrapElement.data("commandName", itemSettings.commandname);
+				this.menuWrapElement.data("editor", $(this).data("editor"));
+				this.menuWrapElement.bind(this.action, function () {
+					methods.setTextFormat.apply(this);
 				});
 			}
-			menuWrapElement.attr('title', itemSettings['tooltip']);
-			menuWrapElement.css('cursor', 'pointer');
-			menuWrapElement.append(menuElement);
+			this.menuWrapElement.attr('title', itemSettings.tooltip);
+			this.menuWrapElement.css('cursor', 'pointer');
+			this.menuWrapElement.append(this.menuElement);
 			if (returnElement)
-				return menuWrapElement;
-			$(this).data("menuBar").append(menuWrapElement);
+				return this.menuWrapElement;
+			$(this).data("menuBar").append(this.menuWrapElement);
 		},
 
 		setTextFormat: function () {
@@ -3468,7 +3460,7 @@ function GetEpisodesofToday() {
 			var childNodes = node.children().each(function () {
 				count = count + methods.countWords.apply(this, [$(this)]);
 			});
-			return count
+			return count;
 		},
 
 		countChars: function (node) {
@@ -3556,7 +3548,7 @@ function GetEpisodesofToday() {
 			}
 		},
 
-	}
+	};
 
 	$.fn.Editor = function (method) {
 
@@ -3575,7 +3567,7 @@ function GetEpisodesofToday() {
 /*! lazysizes - v5.2.0 */
 ! function (a, b) {
 	var c = b(a, a.document, Date);
-	a.lazySizes = c, "object" == typeof module && module.exports && (module.exports = c)
+	a.lazySizes = c, "object" == typeof module && module.exports && (module.exports = c);
 }("undefined" != typeof window ? window : {}, function (a, b, c) {
 	"use strict";
 	var d, e;
@@ -3594,14 +3586,14 @@ function GetEpisodesofToday() {
 				customMedia: {},
 				init: !0,
 				expFactor: 1.5,
-				hFac: .8,
+				hFac: 0.8,
 				loadMode: 2,
 				loadHidden: !0,
 				ricTimeout: 0,
 				throttleDelay: 125
 			};
 			e = a.lazySizesConfig || a.lazysizesConfig || {};
-			for (b in c) b in e || (e[b] = c[b])
+			for (b in c) b in e || (e[b] = c[b]);
 		}(), !b || !b.getElementsByClassName) return {
 		init: function () {},
 		cfg: e,
@@ -3620,38 +3612,38 @@ function GetEpisodesofToday() {
 		p = {},
 		q = Array.prototype.forEach,
 		r = function (a, b) {
-			return p[b] || (p[b] = new RegExp("(\\s|^)" + b + "(\\s|$)")), p[b].test(a[i]("class") || "") && p[b]
+			return p[b] || (p[b] = new RegExp("(\\s|^)" + b + "(\\s|$)")), p[b].test(a[i]("class") || "") && p[b];
 		},
 		s = function (a, b) {
-			r(a, b) || a.setAttribute("class", (a[i]("class") || "").trim() + " " + b)
+			r(a, b) || a.setAttribute("class", (a[i]("class") || "").trim() + " " + b);
 		},
 		t = function (a, b) {
 			var c;
-			(c = r(a, b)) && a.setAttribute("class", (a[i]("class") || "").replace(c, " "))
+			(c = r(a, b)) && a.setAttribute("class", (a[i]("class") || "").replace(c, " "));
 		},
 		u = function (a, b, c) {
 			var d = c ? h : "removeEventListener";
 			c && u(a, b), o.forEach(function (c) {
-				a[d](c, b)
-			})
+				a[d](c, b);
+			});
 		},
 		v = function (a, c, e, f, g) {
 			var h = b.createEvent("Event");
-			return e || (e = {}), e.instance = d, h.initEvent(c, !f, !g), h.detail = e, a.dispatchEvent(h), h
+			return e || (e = {}), e.instance = d, h.initEvent(c, !f, !g), h.detail = e, a.dispatchEvent(h), h;
 		},
 		w = function (b, c) {
 			var d;
 			!g && (d = a.picturefill || e.pf) ? (c && c.src && !b[i]("srcset") && b.setAttribute("srcset", c.src), d({
 				reevaluate: !0,
 				elements: [b]
-			})) : c && c.src && (b.src = c.src)
+			})) : c && c.src && (b.src = c.src);
 		},
 		x = function (a, b) {
-			return (getComputedStyle(a, null) || {})[b]
+			return (getComputedStyle(a, null) || {})[b];
 		},
 		y = function (a, b, c) {
 			for (c = c || a.offsetWidth; c < e.minSize && b && !a._lazysizesWidth;) c = b.offsetWidth, b = b.parentNode;
-			return c
+			return c;
 		},
 		z = function () {
 			var a, c, d = [],
@@ -3660,55 +3652,55 @@ function GetEpisodesofToday() {
 				g = function () {
 					var b = f;
 					for (f = d.length ? e : d, a = !0, c = !1; b.length;) b.shift()();
-					a = !1
+					a = !1;
 				},
 				h = function (d, e) {
-					a && !e ? d.apply(this, arguments) : (f.push(d), c || (c = !0, (b.hidden ? k : l)(g)))
+					a && !e ? d.apply(this, arguments) : (f.push(d), c || (c = !0, (b.hidden ? k : l)(g)));
 				};
-			return h._lsFlush = g, h
+			return h._lsFlush = g, h;
 		}(),
 		A = function (a, b) {
 			return b ? function () {
-				z(a)
+				z(a);
 			} : function () {
 				var b = this,
 					c = arguments;
 				z(function () {
-					a.apply(b, c)
-				})
-			}
+					a.apply(b, c);
+				});
+			};
 		},
 		B = function (a) {
 			var b, d = 0,
 				f = e.throttleDelay,
 				g = e.ricTimeout,
 				h = function () {
-					b = !1, d = c.now(), a()
+					b = !1, d = c.now(), a();
 				},
 				i = m && g > 49 ? function () {
 					m(h, {
 						timeout: g
-					}), g !== e.ricTimeout && (g = e.ricTimeout)
+					}), g !== e.ricTimeout && (g = e.ricTimeout);
 				} : A(function () {
-					k(h)
+					k(h);
 				}, !0);
 			return function (a) {
 				var e;
-				(a = !0 === a) && (g = 33), b || (b = !0, e = f - (c.now() - d), e < 0 && (e = 0), a || e < 9 ? i() : k(i, e))
-			}
+				(a != 0 === a) && (g = 33), b || (b = !0, e = f - (c.now() - d), e < 0 && (e = 0), a || e < 9 ? i() : k(i, e));
+			};
 		},
 		C = function (a) {
 			var b, d, e = 99,
 				f = function () {
-					b = null, a()
+					b = null, a();
 				},
 				g = function () {
 					var a = c.now() - d;
-					a < e ? k(g, e - a) : (m || f)(f)
+					a < e ? k(g, e - a) : (m || f)(f);
 				};
 			return function () {
-				d = c.now(), b || (b = k(g, e))
-			}
+				d = c.now(), b || (b = k(g, e));
+			};
 		},
 		D = function () {
 			var g, m, o, p, y, D, F, G, H, I, J, K, L = /^img$/i,
@@ -3719,16 +3711,16 @@ function GetEpisodesofToday() {
 				Q = 0,
 				R = -1,
 				S = function (a) {
-					Q--, (!a || Q < 0 || !a.target) && (Q = 0)
+					Q--, (!a || Q < 0 || !a.target) && (Q = 0);
 				},
 				T = function (a) {
-					return null == K && (K = "hidden" == x(b.body, "visibility")), K || !("hidden" == x(a.parentNode, "visibility") && "hidden" == x(a, "visibility"))
+					return null == K && (K = "hidden" == x(b.body, "visibility")), K || !("hidden" == x(a.parentNode, "visibility") && "hidden" == x(a, "visibility"));
 				},
 				U = function (a, c) {
 					var d, e = a,
 						g = T(a);
 					for (G -= c, J += c, H -= c, I += c; g && (e = e.offsetParent) && e != b.body && e != f;)(g = (x(e, "opacity") || 1) > 0) && "visible" != x(e, "overflow") && (d = e.getBoundingClientRect(), g = I > d.left && H < d.right && J > d.top - 1 && G < d.bottom + 1);
-					return g
+					return g;
 				},
 				V = function () {
 					var a, c, h, j, k, l, n, o, q, r, s, t, u = d.elements;
@@ -3737,33 +3729,33 @@ function GetEpisodesofToday() {
 							if (u[c] && !u[c]._lazyRace)
 								if (!N || d.prematureUnveil && d.prematureUnveil(u[c])) ba(u[c]);
 								else if ((o = u[c][i]("data-expand")) && (l = 1 * o) || (l = P), r || (r = !e.expand || e.expand < 1 ? f.clientHeight > 500 && f.clientWidth > 500 ? 500 : 370 : e.expand, d._defEx = r, s = r * e.expFactor, t = e.hFac, K = null, P < s && Q < 1 && R > 2 && p > 2 && !b.hidden ? (P = s, R = 0) : P = p > 1 && R > 1 && Q < 6 ? r : O), q !== l && (D = innerWidth + l * t, F = innerHeight + l, n = -1 * l, q = l), h = u[c].getBoundingClientRect(), (J = h.bottom) >= n && (G = h.top) <= F && (I = h.right) >= n * t && (H = h.left) <= D && (J || I || H || G) && (e.loadHidden || T(u[c])) && (m && Q < 3 && !o && (p < 3 || R < 4) || U(u[c], l))) {
-							if (ba(u[c]), k = !0, Q > 9) break
+							if (ba(u[c]), k = !0, Q > 9) break;
 						} else !k && m && !j && Q < 4 && R < 4 && p > 2 && (g[0] || e.preloadAfterLoad) && (g[0] || !o && (J || I || H || G || "auto" != u[c][i](e.sizesAttr))) && (j = g[0] || u[c]);
-						j && !k && ba(j)
+						j && !k && ba(j);
 					}
 				},
 				W = B(V),
 				X = function (a) {
 					var b = a.target;
 					if (b._lazyCache) return void delete b._lazyCache;
-					S(a), s(b, e.loadedClass), t(b, e.loadingClass), u(b, Z), v(b, "lazyloaded")
+					S(a), s(b, e.loadedClass), t(b, e.loadingClass), u(b, Z), v(b, "lazyloaded");
 				},
 				Y = A(X),
 				Z = function (a) {
 					Y({
 						target: a.target
-					})
+					});
 				},
 				$ = function (a, b) {
 					try {
-						a.contentWindow.location.replace(b)
+						a.contentWindow.location.replace(b);
 					} catch (c) {
-						a.src = b
+						a.src = b;
 					}
 				},
 				_ = function (a) {
 					var b, c = a[i](e.srcsetAttr);
-					(b = e.customMedia[a[i]("data-media") || a[i]("media")]) && a.setAttribute("media", b), c && a.setAttribute("srcset", c)
+					(b = e.customMedia[a[i]("data-media") || a[i]("media")]) && a.setAttribute("media", b), c && a.setAttribute("srcset", c);
 				},
 				aa = A(function (a, b, c, d, f) {
 					var g, h, j, l, m, p;
@@ -3774,28 +3766,28 @@ function GetEpisodesofToday() {
 					})), a._lazyRace && delete a._lazyRace, t(a, e.lazyClass), z(function () {
 						var b = a.complete && a.naturalWidth > 1;
 						p && !b || (b && s(a, "ls-is-cached"), X(m), a._lazyCache = !0, k(function () {
-							"_lazyCache" in a && delete a._lazyCache
-						}, 9)), "lazy" == a.loading && Q--
-					}, !0)
+							"_lazyCache" in a && delete a._lazyCache;
+						}, 9)), "lazy" == a.loading && Q--;
+					}, !0);
 				}),
 				ba = function (a) {
 					if (!a._lazyRace) {
 						var b, c = L.test(a.nodeName),
 							d = c && (a[i](e.sizesAttr) || a[i]("sizes")),
 							f = "auto" == d;
-						(!f && m || !c || !a[i]("src") && !a.srcset || a.complete || r(a, e.errorClass) || !r(a, e.lazyClass)) && (b = v(a, "lazyunveilread").detail, f && E.updateElem(a, !0, a.offsetWidth), a._lazyRace = !0, Q++, aa(a, b, f, d, c))
+						(!f && m || !c || !a[i]("src") && !a.srcset || a.complete || r(a, e.errorClass) || !r(a, e.lazyClass)) && (b = v(a, "lazyunveilread").detail, f && E.updateElem(a, !0, a.offsetWidth), a._lazyRace = !0, Q++, aa(a, b, f, d, c));
 					}
 				},
 				ca = C(function () {
-					e.loadMode = 3, W()
+					e.loadMode = 3, W();
 				}),
 				da = function () {
-					3 == e.loadMode && (e.loadMode = 2), ca()
+					3 == e.loadMode && (e.loadMode = 2), ca();
 				},
 				ea = function () {
 					if (!m) {
 						if (c.now() - y < 999) return void k(ea, 999);
-						m = !0, e.loadMode = 3, W(), j("scroll", da, !0)
+						m = !0, e.loadMode = 3, W(), j("scroll", da, !0);
 					}
 				};
 			return {
@@ -3805,56 +3797,56 @@ function GetEpisodesofToday() {
 							var c = b.querySelectorAll("." + e.loadingClass);
 							c.length && c.forEach && l(function () {
 								c.forEach(function (a) {
-									a.complete && ba(a)
-								})
-							})
+									a.complete && ba(a);
+								});
+							});
 						}
 					}), a.MutationObserver ? new MutationObserver(W).observe(f, {
 						childList: !0,
 						subtree: !0,
 						attributes: !0
 					}) : (f[h]("DOMNodeInserted", W, !0), f[h]("DOMAttrModified", W, !0), setInterval(W, 999)), j("hashchange", W, !0), ["focus", "mouseover", "click", "load", "transitionend", "animationend"].forEach(function (a) {
-						b[h](a, W, !0)
-					}), /d$|^c/.test(b.readyState) ? ea() : (j("load", ea), b[h]("DOMContentLoaded", W), k(ea, 2e4)), d.elements.length ? (V(), z._lsFlush()) : W()
+						b[h](a, W, !0);
+					}), /d$|^c/.test(b.readyState) ? ea() : (j("load", ea), b[h]("DOMContentLoaded", W), k(ea, 2e4)), d.elements.length ? (V(), z._lsFlush()) : W();
 				},
 				checkElems: W,
 				unveil: ba,
 				_aLSL: da
-			}
+			};
 		}(),
 		E = function () {
 			var a, c = A(function (a, b, c, d) {
 					var e, f, g;
 					if (a._lazysizesWidth = d, d += "px", a.setAttribute("sizes", d), n.test(b.nodeName || ""))
 						for (e = b.getElementsByTagName("source"), f = 0, g = e.length; f < g; f++) e[f].setAttribute("sizes", d);
-					c.detail.dataAttr || w(a, c.detail)
+					c.detail.dataAttr || w(a, c.detail);
 				}),
 				d = function (a, b, d) {
 					var e, f = a.parentNode;
 					f && (d = y(a, f, d), e = v(a, "lazybeforesizes", {
 						width: d,
 						dataAttr: !!b
-					}), e.defaultPrevented || (d = e.detail.width) && d !== a._lazysizesWidth && c(a, f, e, d))
+					}), e.defaultPrevented || (d = e.detail.width) && d !== a._lazysizesWidth && c(a, f, e, d));
 				},
 				f = function () {
 					var b, c = a.length;
 					if (c)
-						for (b = 0; b < c; b++) d(a[b])
+						for (b = 0; b < c; b++) d(a[b]);
 				},
 				g = C(f);
 			return {
 				_: function () {
-					a = b.getElementsByClassName(e.autosizesClass), j("resize", g)
+					a = b.getElementsByClassName(e.autosizesClass), j("resize", g);
 				},
 				checkElems: g,
 				updateElem: d
-			}
+			};
 		}(),
 		F = function () {
-			!F.i && b.getElementsByClassName && (F.i = !0, E._(), D._())
+			!F.i && b.getElementsByClassName && (F.i = !0, E._(), D._());
 		};
 	return k(function () {
-		e.init && F()
+		e.init && F();
 	}), d = {
 		cfg: e,
 		autoSizer: E,
@@ -3867,5 +3859,5 @@ function GetEpisodesofToday() {
 		fire: v,
 		gW: y,
 		rAF: z
-	}
+	};
 });

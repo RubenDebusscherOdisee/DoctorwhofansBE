@@ -408,7 +408,7 @@
         <div class=taal>
             <a href="#" class="link" onClick='changelang("nl")'>
                 <img class="lazyload" data-src="../images/overlay/belgium_640.png"
-                    alt="vlag van Belgi&euml; voor Nederlands." class="foto_taal_button" />
+                    alt="vlag van België; voor Nederlands." class="foto_taal_button" />
                 Nederlands
                 <img class="lazyload" data-src="../images/overlay/netherlands_640.png"
                     alt="vlag van Nederland; voor Nederlands." class=foto_taal_button>
