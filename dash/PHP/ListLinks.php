@@ -13,7 +13,7 @@
 	mysqli_set_charset($conn,'utf8');
 	
 	$verified=false;
-	$stmt1 = $conn->prepare("SELECT * from Content where A_Waarde like '%<a href%' and A_Actief=1");
+	$stmt1 = $conn->prepare("SELECT Replace(Replace(A_Pagina,')',''),'(','') as A_Pagina,Replace(Replace(A_Waarde,')',''),'(','') as A_Waarde from Content where A_Waarde like '%<a href%' and A_Actief=1");
 	if(!$stmt1){
 	    	    die("Statement preparing failed: " . $conn->error);
 
