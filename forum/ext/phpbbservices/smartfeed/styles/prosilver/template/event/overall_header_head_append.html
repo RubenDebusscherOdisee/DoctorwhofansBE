@@ -47,6 +47,7 @@ function create_URL() {
 			forumString = forumString + "&{S_SMARTFEED_FORUMS}=" + itemId.substring(4, underscoreLoc);
 		}
 	});
+	console.log(forumString);
 
 	if ((thereAreRequiredForums) && (numChecked === 0)) {
 		forumString = forumString + "&f=-1"; // -1 means that no forums were selected but there are required forums
@@ -74,7 +75,7 @@ function create_URL() {
 	}
 
 	// Initialise the URL
-	url = "{UA_SMARTFEED_SITE_URL}feed";
+	url = "{UA_SMARTFEED_SITE_URL}/feed";
 
 	// If user logged in, add the specific variables
 	if (loggedIn) {
