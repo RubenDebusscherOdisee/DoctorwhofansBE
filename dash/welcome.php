@@ -111,7 +111,7 @@ if ($_SESSION["user"] == "") {
     </div>
     <div id="menu1" class="tab-pane fade">
       <div class='row'>
-        <div class="col-6 col-md-9">
+        <div class="col-6 col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#Fourth">
               Panel Heading
@@ -120,7 +120,7 @@ if ($_SESSION["user"] == "") {
             <div class="panel-body collapse in" id="Fourth"></div>
           </div>
         </div>
-        <div class="col-6 col-md-3">
+        <div class="col-6 col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#Third">
               Panel Heading
@@ -130,9 +130,18 @@ if ($_SESSION["user"] == "") {
             </div>
           </div>
         </div>
+        <div class="col-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#Eighth">
+              Panel Heading
+            </div>
+
+            <div class="panel-body collapse in" id="Eighth"></div>
+          </div>
+        </div>
       </div>
       <div class='row'>
-        <div class="col-6 col-md-9">
+        <div class="col-6 col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#Seventh">
               Panel Heading
@@ -141,7 +150,7 @@ if ($_SESSION["user"] == "") {
             <div class="panel-body collapse in" id="Seventh"></div>
           </div>
         </div>
-        <div class="col-6 col-md-3">
+        <div class="col-6 col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#Sixth">
               Panel Heading
@@ -152,7 +161,6 @@ if ($_SESSION["user"] == "") {
           </div>
         </div>
       </div>
-      
     </div>
     <div id="menu2" class="tab-pane fade">
     <div class='row'>
