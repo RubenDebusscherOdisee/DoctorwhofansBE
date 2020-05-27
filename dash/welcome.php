@@ -156,7 +156,7 @@ if ($_SESSION["user"] == "") {
               Panel Heading
             </div>
             <div class="panel-body collapse in" id="Sixth">
-              <table id="tab2" class="table table-striped"></table>
+              <table id="tab3" class="table table-striped"></table>
             </div>
           </div>
         </div>

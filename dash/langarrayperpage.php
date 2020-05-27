@@ -8,7 +8,7 @@
 	$antwoord['data'] = "Geen resultaten gevonden."; //geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8'); //stel the charset in
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT lpad(Topics.id,7,0) as id, A_Pagina as Pagina,count(DISTINCT A_Taal) as aantal_talen,  GROUP_CONCAT(DISTINCT A_Taal ORDER BY A_Taal ASC SEPARATOR ', ') as taal_array FROM `Content` inner join Topics on Topics.link=Content.A_Pagina group by A_Pagina");
+	$stmt1 = $conn->prepare("SELECT lpad(Topics.id,7,0) as id,concat('<span title=',A.A_Pagina,'>',Topics.topic,'</span>') as Pagina,count(DISTINCT A_Taal) as aantal_talen, GROUP_CONCAT(A.count order by A.count asc SEPARATOR ', ') as items FROM (SELECT A_ID,A_Level,A_Pagina,A_Taal, CONCAT(A_Taal, ' (', lpad(count(if(A_Actief=1,A_Taal,0)),3,0),')') AS count FROM V_Actieve_Content GROUP BY A_Pagina, A_Taal) A inner join Topics on Topics.link=A.A_Pagina GROUP BY A.A_Pagina");
     
 	if(!$stmt1){    //als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);

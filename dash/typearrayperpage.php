@@ -8,7 +8,7 @@
 	$antwoord['data'] = "Geen resultaten gevonden."; //geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8'); //stel the charset in
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT lpad(Topics.id,7,0) as id,concat(Topics.topic,' - ',A.A_Pagina) as Pagina, A.A_Taal as taal, GROUP_CONCAT(A.count order by A.A_Level,A.A_ID asc SEPARATOR ', ') as items FROM (SELECT A_ID,A_Level,A_Pagina,A_Taal, CONCAT(IF(A_Type !='WikiLooseItem', A_Type, concat('LI: ',LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1))), ' (', count(IF(A_Type !='WikiLooseItem', A_Type, concat('LI:',LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1)))), ')') AS count FROM Content GROUP BY A_Pagina, A_Taal,IF(A_Type !='WikiLooseItem', A_Type, LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1))) A inner join Topics on Topics.link=A.A_Pagina GROUP BY A.A_Pagina, A.A_Taal");
+	$stmt1 = $conn->prepare("SELECT lpad(Topics.id,7,0) as id,concat('<span title=',A.A_Pagina,'>',Topics.topic,'</span>') as Pagina, A.A_Taal as taal, GROUP_CONCAT(A.count order by A.A_Level,A.A_ID asc SEPARATOR ', ') as items FROM (SELECT A_ID,A_Level,A_Pagina,A_Taal, CONCAT(IF(A_Type !='WikiLooseItem', A_Type, concat('LI: ',LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1))), ' (', count(IF(A_Type !='WikiLooseItem', A_Type, concat('LI:',LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1)))), ')') AS count FROM V_Actieve_Content GROUP BY A_Pagina, A_Taal,IF(A_Type !='WikiLooseItem', A_Type, LEFT(A_Waarde,LOCATE(':',A_Waarde) - 1))) A inner join Topics on Topics.link=A.A_Pagina GROUP BY A.A_Pagina, A.A_Taal");
     
 	if(!$stmt1){    //als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);
