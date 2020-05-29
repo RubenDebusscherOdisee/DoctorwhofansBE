@@ -189,7 +189,7 @@
                     <ul class="sub-nav-group">
                         <h3>Characters</h3>
                         <li>
-                            <a href="../Companions/" aria-label="Companions">
+                            <a href="../Category:Companions/" aria-label="Companions">
                                 <span class="fa-layers fa-fw">
                                     <i class="fa fa-male" data-fa-transform="right:18"></i>
                                     <i class="fa fa-female" data-fa-transform="left-18"></i>

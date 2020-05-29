@@ -310,11 +310,11 @@ function checkmenu(menu) {
 	} else {
 		gegevens.session = "Unknown device, PWA activated";
 	}
-	if (menu.startsWith('Category') === true) {
-		var prefix = "Category_";
+	if (menu.startsWith('Category:') === true) {
+		var prefix = "Category:";
 		tag = menu.substr(prefix.length, menu.length);
 		$('.path').remove();
-		$('.col-6').append("<h1>" + translations[0].Category + ": " + tag.split('_').join(' ') + "</h1>");
+		$('.col-6').append("<h1>" + translations[0].Category + ": " + tag+ "</h1>");
 		$(".under").append("<div class='topics'></div>");
 		$.ajax({
 			type: "GET",
@@ -1056,9 +1056,9 @@ function contentophalen(taal, menu) {
 			var tagstring = "Tags: ";
 			for (var i = 0; i < resultaat.tags.length; i++) {
 				if (i == resultaat.tags.length - 1) {
-					tagstring += "<a href='../Category_" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>";
+					tagstring += "<a href='../Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>";
 				} else {
-					tagstring += "<a href='../Category_" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>, ";
+					tagstring += "<a href='../Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>, ";
 				}
 			}
 			$('#Tags').html(tagstring);
@@ -1067,13 +1067,11 @@ function contentophalen(taal, menu) {
 		if (getCookie("size") != "") {
 			getSizesfromCookie();
 		}
-	}).fail(function (response, statusText, xhr) {}).always(function () {
+	});
+}).fail(function (response, statusText, xhr) {}).always(function () {
 
 	});
 
-
-
-});
 }
 
 
