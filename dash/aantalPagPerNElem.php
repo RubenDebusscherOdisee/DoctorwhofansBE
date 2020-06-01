@@ -8,7 +8,7 @@
 	$antwoord['data'] = "Geen resultaten gevonden."; //geef mee wat er in het object zit
 	mysqli_set_charset($conn,'utf8'); //stel the charset in
 	/* prepare de query (maak de query zonder de variabelen op te nemen)*/
-	$stmt1 = $conn->prepare("SELECT count(Aantal_elem) as Aantal_Pag,Aantal_elem FROM `V_aantalItemsPerPagina` group by Aantal_elem");
+	$stmt1 = $conn->prepare("select count(A.pagina) as Aantal_Pag,A.Aantal_elem, GROUP_CONCAT(distinct A.pagina order by A.pagina asc SEPARATOR ', ') as pages from (SELECT LEFT(pagina, CHAR_LENGTH(pagina) - LOCATE('(', REVERSE(pagina))) as pagina,Aantal_elem FROM `V_aantalItemsPerPagina`) A GROUP by A.Aantal_elem");
     
 	if(!$stmt1){    //als het preparen mislukt --> die
         die("Statement preparing failed: " . $conn->error);

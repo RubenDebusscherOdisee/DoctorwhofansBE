@@ -84,17 +84,67 @@ function populateChart(el, type, tit, ur) {
     $('#'+el).parent().prev().html(tit);
     var lab = [];
     var dat = [];
+    var customtoolTips = [];
     
     $.ajax({type: "GET",url: ur,dataType: 'json',cache: false})
     .done(
         function (resultaat) {
             for (i = 0; i < resultaat.data.length; i += 1) {
                 lab.push(resultaat.data[i].Aantal_elem);
+                customtoolTips.push(resultaat.data[i].pages);
                 dat.push(resultaat.data[i].Aantal_Pag);
        
             }
+
+
+            Chart.defaults.global.tooltips.custom = function(tooltip) {
+                var tooltipEl = document.getElementById('chartjs-tooltip');
+                // Hide if no tooltip
+			if (tooltip.opacity === 0) {
+				tooltipEl.style.opacity = 0;
+				return;
+			}
+
+			// Set caret Position
+			tooltipEl.classList.remove('above', 'below', 'no-transform');
+			if (tooltip.yAlign) {
+				tooltipEl.classList.add(tooltip.yAlign);
+			} else {
+				tooltipEl.classList.add('no-transform');
+			}
+
+			function getBody(bodyItem) {
+				return bodyItem.lines;
+            }
+            
+            if(tooltip.body){
+                //console.log(tooltip)
+                var bodyLines = tooltip.body.map(getBody);
+                tooltipEl.innerHTML=bodyLines+"<br>";
+                tooltipEl.innerHTML+=customtoolTips[tooltip.dataPoints[0].index];
+                //console.log(customtoolTips)
+                //console.log(tooltip.dataPoints[0].index)
+            }
+
+            var positionY = this._chart.canvas.offsetTop;
+			var positionX = this._chart.canvas.offsetLeft;
+
+			// Display, position, and set styles for font
+			tooltipEl.style.opacity = 1;
+			tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+			tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+			tooltipEl.style.fontFamily = tooltip._bodyFontFamily;
+			tooltipEl.style.fontSize = tooltip.bodyFontSize;
+			tooltipEl.style.fontStyle = tooltip._bodyFontStyle;
+			tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+
+            }
             var ctx = document.getElementById(el).getContext('2d');
-            var chart = new Chart(ctx, {type: type,data: {labels: lab,datasets: [{label: tit,backgroundColor: bgc,borderColor: bgc,data: dat}]},options: {}});
+            var chart = new Chart(ctx, {type: type,data: {labels: lab,datasets: [{label: tit,backgroundColor: bgc,borderColor: bgc,data: dat}]},options: {
+                tooltips: {
+					enabled:false
+				},
+            }});
         }).fail(function (response, statusText, xhr) {}).always(function () {});
 }
 function createTable(el,tit,ur,pag) {

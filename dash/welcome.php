@@ -93,6 +93,7 @@ if ($_SESSION["user"] == "") {
             </div>
             <div class="panel-body collapse in" id="First">
               <canvas id="Chart1"></canvas>
+              <div id="chartjs-tooltip"></div>
             </div>
           </div>
         </div>
