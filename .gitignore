@@ -6,7 +6,6 @@ info.php
 config.ini
 conf.ini
 Localsettings.php
-
 .lock
 .htpasswd
 .history
@@ -26,5 +25,4 @@ DW.sql
 API/core
 forum/cache
 Adminold
-wiki
 admin/API/modules/excel/

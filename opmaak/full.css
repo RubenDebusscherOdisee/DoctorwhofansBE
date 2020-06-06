@@ -203,6 +203,11 @@ body {
     min-height: 100vh;
 }
 
+.dark-mode {
+  background-color: black;
+  color: white;
+  border-color:white;
+}
 .print {
     font-family: 'Times New Roman', Times, serif;
 }
@@ -1910,6 +1915,8 @@ input[type="email"] {
     height: 80%;
     overflow-y: auto;
 }
+
+
 
 @media only screen and (max-width: 828px) {
     .keuze {

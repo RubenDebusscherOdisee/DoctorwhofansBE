@@ -46,6 +46,7 @@
 
         gtag('config', 'UA-107369097-3');
     </script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>
         <?php $title = str_replace("_", " ", $menu);echo $title. " | Doctor Who Fans BE";?>
     </title>
@@ -80,6 +81,7 @@
         preload>
     <script>
         $(document).ready(function () {
+            checkModefromCookie();
             if ($(window).width() < 800) {
                 $('nav').hide();
             }
@@ -156,6 +158,7 @@
 
 <body class=init onload="">
     <button role=button onclick="ToggleMenu()" id=show-menu> <i class="fa fa-navicon"></i> Menu&nbsp;&nbsp; </button>
+    <!-- TODO: #42 Create a button to skip to the content for screen readers-->
 
     <nav>
         <ul class="nav-menu">
@@ -320,6 +323,8 @@
                             <input type="button" id="increase" value="+">
                             <span id="size">0</span>
                             <input type="button" id="decrease" value="-">
+                            <button onclick="ToggleNightMode()" id="NightMode"><i class="fa fa-moon-o"></i></button>
+                            <!--TODO: #40 Allow for different fonts, so user can change the font to one that works best for him/her-->
                         </fieldset>
                         <button id="print" type="button" onclick="window.print()">Print</button>
                         <button class="taal_link" type="button" title="taalkeuze">

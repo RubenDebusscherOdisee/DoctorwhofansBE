@@ -1,9 +1,14 @@
 {
     "Announcement": "At this moment, <a href='../Home/'>Doctor Who Fans Belgium</a> is still under construction. In the case there might be any questions, propositions, or additional information to provide, please feel free to contact me. Requests or submissions related to the videos, pictures, etc. are welcome as well. Contact information is provided on the corresponding page. You will also be able to contact us directly from that page",
     "Disclaimer": "Doctor Who and related marks are trademarks of the BBC. Copyright &copy;1963, Present The web pages on this site are for educational and entertainment purposes only. All other copyrights are property of their respective holders. Most of my sources are anonymous, so if you find any of your work, or you know any of the resources, please contact us and we will credit your work properly",
+    "NoEpisodeOftheDay": "Throughout history, not a single episode of Doctor Who aired in this day.",
+    "ReadMore":"Read more",
     "References": "References",
+    "Footnotes":"Footnotes",
     "Downloads": "Downloads",
     "Quotes": "Quotes",
+    "TOC": "Table of contents",
+    "Category": "Category",
     "Status": "Status",
     "Cast": "Cast",
     "Doctor": "Doctor",
@@ -28,19 +33,26 @@
     "Startdate": "Start date",
     "Enddate": "End date",
     "AirDate": "Aired on",
-    "TOC": "Table of contents",
+    "NoQuotesForEpisode":"We were unable to find any quotes for this episode.",
+    "NoDownloadsForEpisode":"We were unable to find any downloads for this episode.",
+    "Story_number":"Story number",
+    "Premiere_network":"Premiere network",
+    "Doctor_Who_Confidential":"Doctor Who Confidential",
+    "cover_date" : "Cover date",
+    "release_date" : "release date",
+    "previous_issue": "Previous issue",
+    "next_issue": "Next Issue",
+    "Editor":"Editor",
+    "Format":"Format",
+    "Publisher":"Publisher",
     "played_by":"Played by",
     "nr_seasons":"Number of seasons",
     "nr_appareances":"Number of appareances",
     "tenure":"Tenure",
     "first_episode":"First Episode",
     "last_episode":"Last Episode",
-    "Category": "Category",
-    "NoQuotesForChar":"We were unable to find any quotes for this character." ,
-    "NoQuotesForEpisode":"We were unable to find any quotes for this episode.",
-    "NoDownloadsForEpisode":"We were unable to find any downloads for this episode.",
-    "NoEpisodeOftheDay": "Throughout history, not a single episode of Doctor Who aired in this day.",
-    "ReadMore":"Read more"
-
+    "NoQuotesForChar":"We were unable to find any quotes for this character." 
+    
+    
 
 }
