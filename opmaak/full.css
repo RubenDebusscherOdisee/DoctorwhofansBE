@@ -1576,6 +1576,11 @@ input[type="email"] {
         max-width: 100%;
     }
 
+    
+    .mobilecentered {
+        float: initial;
+    }
+
     .links,
     .maxsixtyseven {
         max-width: 100% !important;

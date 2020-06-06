@@ -2,17 +2,18 @@
 <html>
     <head>
         <script>
-            var start = 535;
-            var end = 544;
-            startpag = 1550;
+            var items = [1159,1806,1807,1160,1808,1809]; 
 
-            for (start;start<=end;start++){
-                //document.writeln(startpag+',8,1,Issue '+ start+",0,1,default_class,0<br>");
-                document.writeln(startpag+',10,3,../images/magazines/DWM_'+ start+".jpg,1000,1,default_class,0<br>");
-                document.writeln(startpag+',9,4,Doctor Who Magazine: Issue '+ start+",1001,1,default_class,0<br>");
-                document.writeln(startpag+',9,4,Doctor Who Magazine: Uitgave '+ start+",1001,1,default_class,0<br>");  
-                startpag++              
-            }
+
+            items.forEach(function(elem, index){
+                document.writeln(elem+',1<br>');
+                document.writeln(elem+',2<br>');
+                document.writeln(elem+',3<br>');
+                document.writeln(elem+',4<br>');
+                document.writeln(elem+',5<br>');
+                document.writeln(elem+',6<br>');
+
+            });
         </script>
     </head>
     <body></body>
