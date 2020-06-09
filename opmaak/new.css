@@ -15,6 +15,7 @@ body {
     padding: 0px;
     margin: 0px;
     line-height: normal;
+    font-size: small;
 }
 
 
@@ -206,6 +207,7 @@ main img:not(#Loading, .quote_picture) {
     width: 46%;
     float: right;
     margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 
 .back-to-top {
@@ -328,11 +330,13 @@ main img:not(#Loading, .quote_picture) {
     padding: 0.4em;
     margin-top: -7em;
     margin-left: 1em;
-    margin-right: 0em;
+    margin-right: 2em;
 }
 
 #WikiDetails img {
-    max-width: 100%;
+    max-width: 75%;
+    display: block;
+    margin: auto;
 }
 
 .WikiItemTitel {
@@ -360,6 +364,7 @@ main img:not(#Loading, .quote_picture) {
 
 div.rechts {
     margin-left: 1em;
+    margin-right: 2em;
 }
 
 .links {
@@ -505,14 +510,10 @@ nav input[type=button] {
     clear: both;
 }
 
-.quote,
-.socialmedia {
-    margin-left: 1em;
-}
 .socialmedia{text-align: center;}
 .column {
     float: left;
-    min-width: 31.33%;
+    min-width: 30%;
 }
 
 .min_37 {
@@ -574,7 +575,6 @@ nav input[type=button] {
 
     .sub-nav.open {
         z-index: 4;
-        margin-top: 0.65em;
     }
 }
 
