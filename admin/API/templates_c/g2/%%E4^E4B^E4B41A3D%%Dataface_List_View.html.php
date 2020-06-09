@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-31 12:30:00
+<?php /* Smarty version 2.6.18, created on 2020-05-21 20:19:36
          compiled from Dataface_List_View.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'block', 'Dataface_List_View.html', 23, false),array('function', 'result_list', 'Dataface_List_View.html', 25, false),array('function', 'actions_menu', 'Dataface_List_View.html', 44, false),array('block', 'define_slot', 'Dataface_List_View.html', 24, false),array('block', 'use_macro', 'Dataface_List_View.html', 33, false),array('block', 'fill_slot', 'Dataface_List_View.html', 35, false),array('block', 'master_detail', 'Dataface_List_View.html', 36, false),array('block', 'master', 'Dataface_List_View.html', 36, false),array('block', 'translate', 'Dataface_List_View.html', 37, false),array('block', 'detail', 'Dataface_List_View.html', 93, false),array('modifier', 'escape', 'Dataface_List_View.html', 61, false),array('modifier', 'truncate', 'Dataface_List_View.html', 62, false),)), $this); ?>

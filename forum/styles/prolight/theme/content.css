@@ -127,11 +127,8 @@ li.header dd {
 	box-sizing: border-box;
 }
 
-dd .header .lastpost{
+.header .lastpost{
 	float: right;
-}
-dd .header .posts{
-	
 }
 
 li.header dl.row-item dt, li.header dl.row-item dd {

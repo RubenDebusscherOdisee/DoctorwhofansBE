@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2020-01-16 23:21:30
+<?php /* Smarty version 2.6.18, created on 2020-06-01 20:46:15
          compiled from xataface/modules/g2/advanced_find_form.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'translate', 'xataface/modules/g2/advanced_find_form.html', 2, false),array('function', 'actions_menu', 'xataface/modules/g2/advanced_find_form.html', 4, false),array('modifier', 'escape', 'xataface/modules/g2/advanced_find_form.html', 21, false),array('modifier', 'replace', 'xataface/modules/g2/advanced_find_form.html', 23, false),)), $this); ?>

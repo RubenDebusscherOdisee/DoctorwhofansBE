@@ -15,4 +15,9 @@ $app =& Dataface_Application::getInstance();
 $app->display();
 
 
+function before_form(){
+    $jt = Dataface_JavascriptTool::getInstance();
+    $jt->import('test/plugin.js');
+}
+
 ?>

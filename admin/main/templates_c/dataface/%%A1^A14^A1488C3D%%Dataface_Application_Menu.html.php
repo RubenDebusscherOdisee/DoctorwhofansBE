@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-12 13:42:48
+<?php /* Smarty version 2.6.18, created on 2020-06-01 19:38:24
          compiled from Dataface_Application_Menu.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'actions_menu', 'Dataface_Application_Menu.html', 20, false),)), $this); ?>

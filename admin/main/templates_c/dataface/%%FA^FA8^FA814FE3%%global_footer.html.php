@@ -1,2 +1,2 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-12 13:42:48
+<?php /* Smarty version 2.6.18, created on 2020-06-01 19:38:24
          compiled from global_footer.html */ ?>

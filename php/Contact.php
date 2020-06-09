@@ -16,17 +16,19 @@
             <br>
             <span>
                 <label for='email' >Email:</label>
-                <input type='email' name='email' id='email' /><span id="labelspan">(nodig indien wij weer contact met u willen opnemen)</span>
+                <input type='email' name='email' id='email' /><span id="labelspan"> (nodig indien wij weer contact met u willen opnemen)</span>
             </span>
             <input type="text" name="Phone" id="Phone" value="" style="display:none" tabindex="-1" autocomplete="off">
             
             <div class='text'>
-                <textarea id='txtEditor'></textarea>
+                <textarea id='txtEditor' style="display:block"></textarea>
             </div>
         </fieldset>
     </form>
 </div>
 <div>
     <h1>Social</h1>
+    <link rel="stylesheet" href="../opmaak/editor.css" async preload>
+    <script src="../js/editor.js" async></script>
     <iframe async src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDoctorWhoFansBE%2F&tabs=timeline&width=400&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=939167599586628" width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>      
 </div>

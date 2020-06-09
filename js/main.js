@@ -121,8 +121,6 @@ function checkmenu(menu) {
  function ZoekPagina(){
     event.preventDefault();
     $("#resultcontent").remove();
-    $("#resultquotes").remove();
-    $("#resultvideo").remove();
     if (($("#zoekterm").val().indexOf('=') !== -1)||($("#zoekterm").val().indexOf('<') !== -1)||($("#zoekterm").val().indexOf('>') !== -1)||($("#zoekterm").val().indexOf('</') !== -1)) {
         alert("Error, invalid search parameter, please do not use '"+$("#zoekterm").val()+"'.")
     } else {
@@ -173,8 +171,8 @@ function getpad(menu){
         function(resultaat) {
             $(".path").prepend("<span>" + resultaat.data[0].pad + "</span>");
             $(".path a").addClass("link");
-            if(menu === "Video" || resultaat.data[0].pad.search("Video") > 0) {videosophalen(menu);}
-            if(menu === "Quotes" || resultaat.data[0].pad.search("Quotes") > 0) {quotesophalen(menu, id);}
+            if(menu === "Video" || resultaat.data[0].pad.search("Video") > 0) {videosophalen(menu,ItemId);}
+            if(menu === "Quotes" || resultaat.data[0].pad.search("Quotes") > 0) {quotesophalen(menu, ItemId);}
         }).fail(function(response, statusText, xhr) {
     }).always(function() {
     });
@@ -249,89 +247,7 @@ function quotezoeken(taal, menu, zoekterm) {
     }).always(function() {
     });
 }
-function companionsophalen(taal, menu,id) {
-    $.ajax({
-        type: "GET",
-        url: "/php/companionsophalen.php?taal=" + taal + "&menu=" + menu,
-        dataType: 'json'
-    }).done(function(resultaat) {
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D1'>");
-        $("#D1").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D1') href='#First'>First Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down First Doctor'/></a></div>");
-        $("#D1").append("<div class ='result companion slide' id='resultD1'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D2'>");
-        $("#D2").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D2') href='#Second'>Second Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Second Doctor'/></a></div>");
-        $("#D2").append("<div class ='result companion slide' id='resultD2'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D3'>");
-        $("#D3").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D3') href='#Third'>Third Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Third Doctor'/></a></div>");
-        $("#D3").append("<div class ='result companion slide' id='resultD3'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D4'>");
-        $("#D4").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D4') href='#Fourth'>Fourth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Fourth Doctor'/></a></div>");
-        $("#D4").append("<div class ='result companion slide' id='resultD4'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D5'>");
-        $("#D5").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D5') href='#Fifth'>Fifth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Fifth Doctor'/></a></div>");
-        $("#D5").append("<div class ='result companion slide' id='resultD5'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D6'>");
-        $("#D6").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D6') href='#Sixth'>Sixth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Sixth Doctor'/></a></div>");
-        $("#D6").append("<div class ='result companion slide' id='resultD6'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D7'>");
-        $("#D7").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D7') href='#Seventh'>Seventh Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Seventh Doctor'/></a></div>");
-        $("#D7").append("<div class ='result companion slide' id='resultD7'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D8'>");
-        $("#D8").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D8') href='#Eighth'>Eighth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Eighth Doctor'/></a></div>");
-        $("#D8").append("<div class ='result companion slide' id='resultD8'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='DW'>");
-        $("#DW").append("<div class='header'><a class='opner' onclick=ToggleCompanion('DW') href='#War'>War Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down War Doctor'/></a></div>");
-        $("#DW").append("<div class ='result companion slide' id='resultDW'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D9'>");
-        $("#D9").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D9') href='#'>Ninth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Ninth Doctor'/></a></div>");
-        $("#D9").append("<div class ='result companion slide' id='resultD9'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D10'>");
-        $("#D10").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D10') href='#'>Tenth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Tenth Doctor'/></a></div>");
-        $("#D10").append("<div class ='result companion slide' id='resultD10'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D11'>");
-        $("#D11").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D11') href='#'>Eleventh Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Eleventh Doctor'/></a></div>");
-        $("#D11").append("<div class ='result companion slide' id='resultD11'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D12'>");
-        $("#D12").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D12') href='#'>Twelfth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Twelfth Doctor'/></a></div>");
-        $("#D12").append("<div class ='result companion slide' id='resultD12'></div>");
-        $(".open-close").append("<div class='resultset holder' style='border:1px solid yelllow' id='D13'>");
-        $("#D13").append("<div class='header'><a class='opner' onclick=ToggleCompanion('D13') href='#'>Thirteenth Doctor<img class='upDown lazyload' data-src='../images/up_down.png'alt='up-down Thirteenth Doctor'/></a></div>");
-        $("#D13").append("<div class ='result companion slide' id='resultD13'></div>");
-        var i;
-        for (i = 0; i < resultaat.data.length; i += 1) {
-            if(resultaat.data[i].Doctor == "1" || resultaat.data[i].Doctor2 == "1" || resultaat.data[i].Doctor3 == "1" || resultaat.data[i].Doctor4 == "1") {
-                $("#resultD1").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/'  ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "2" || resultaat.data[i].Doctor2 == "2" || resultaat.data[i].Doctor3 == "2" || resultaat.data[i].Doctor4 == "2") {
-                $("#resultD2").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/'  ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "3" || resultaat.data[i].Doctor2 == "3" || resultaat.data[i].Doctor3 == "3" || resultaat.data[i].Doctor4 == "3") {
-                $("#resultD3").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/'  ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "4" || resultaat.data[i].Doctor2 == "4" || resultaat.data[i].Doctor3 == "4" || resultaat.data[i].Doctor4 == "4") {
-                $("#resultD4").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "5" || resultaat.data[i].Doctor2 == "5" || resultaat.data[i].Doctor3 == "5" || resultaat.data[i].Doctor4 == "5") {
-                $("#resultD5").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "6" || resultaat.data[i].Doctor2 == "6" || resultaat.data[i].Doctor3 == "6" || resultaat.data[i].Doctor4 == "6") {
-                $("#resultD6").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "7" || resultaat.data[i].Doctor2 == "7" || resultaat.data[i].Doctor3 == "7" || resultaat.data[i].Doctor4 == "7") {
-                $("#resultD7").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "8" || resultaat.data[i].Doctor2 == "8" || resultaat.data[i].Doctor3 == "8" || resultaat.data[i].Doctor4 == "8") {
-                $("#resultD8").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "9" || resultaat.data[i].Doctor2 == "9" || resultaat.data[i].Doctor3 == "9" || resultaat.data[i].Doctor4 == "9") {
-                $("#resultDW").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "10" || resultaat.data[i].Doctor2 == "10" || resultaat.data[i].Doctor3 == "10" || resultaat.data[i].Doctor4 == "10") {
-                $("#resultD9").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "11" || resultaat.data[i].Doctor2 == "11" || resultaat.data[i].Doctor3 == "11" || resultaat.data[i].Doctor4 == "11") {
-                $("#resultD10").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "12" || resultaat.data[i].Doctor2 == "12" || resultaat.data[i].Doctor3 == "12" || resultaat.data[i].Doctor4 == "12") {
-                $("#resultD11").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "13" || resultaat.data[i].Doctor2 == "13" || resultaat.data[i].Doctor3 == "13" || resultaat.data[i].Doctor4 == "13") {
-                $("#resultD12").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-            if(resultaat.data[i].Doctor == "14" || resultaat.data[i].Doctor2 == "14" || resultaat.data[i].Doctor3 == "14" || resultaat.data[i].Doctor4 == "14") {
-                $("#resultD13").append("<div><a href='../" + resultaat.data[i].Pagina_Naam + "/' ><h3>" + resultaat.data[i].Naam + "</h3></a></div>");}
-        }
-    }).fail(function(response, statusText, xhr) {
-    }).always(function() {
-    });
-}
+
 function videosophalen(menu, id) {
     $.ajax({
         type: "GET",

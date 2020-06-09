@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2020-01-03 02:48:49
+<?php /* Smarty version 2.6.18, created on 2020-06-01 21:29:57
          compiled from copy_replace_quickform_element_template.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'copy_replace_quickform_element_template.html', 1, false),array('block', 'translate', 'copy_replace_quickform_element_template.html', 9, false),)), $this); ?>

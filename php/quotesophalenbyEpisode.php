@@ -7,7 +7,7 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select Quote, Personage,Topics.topic from QuotesTabel inner join Topics on Topics.id=Episode where Topics.link= ? ");
+	$stmt1 = $conn->prepare("select Quote, Personage,Aflevering,Class,QuotePic,Topics.topic from QuotesTabel inner join Topics on Topics.id=Episode where Topics.link= ? ");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}

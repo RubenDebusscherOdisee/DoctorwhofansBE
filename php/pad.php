@@ -7,7 +7,7 @@
 	$antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select getancestry(getid(?)) as pad");
+	$stmt1 = $conn->prepare("select getancestry(getid(?),' <i class=\"fa fa-arrow-right\"></i> ') as pad");
 	if(!$stmt1){
 	    die("Statement preparing failed: " . $conn->error);
 	}

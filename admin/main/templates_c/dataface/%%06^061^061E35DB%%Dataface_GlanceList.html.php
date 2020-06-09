@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-12 13:44:28
+<?php /* Smarty version 2.6.18, created on 2020-06-01 19:46:18
          compiled from Dataface_GlanceList.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'if_allowed', 'Dataface_GlanceList.html', 4, false),array('modifier', 'escape', 'Dataface_GlanceList.html', 5, false),array('function', 'block', 'Dataface_GlanceList.html', 8, false),array('function', 'record_actions', 'Dataface_GlanceList.html', 14, false),array('function', 'actions_menu', 'Dataface_GlanceList.html', 15, false),)), $this); ?>

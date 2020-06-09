@@ -50,10 +50,20 @@ rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
 
     </IfModule>
 </FilesMatch>
-RewriteRule ^NL/([^/]*)$ /index.php?taal=NL [L]
-RewriteRule ^ENG/([^/]*)$ /index.php?taal=ENG [L]
 RewriteEngine On
-RewriteRule ^([\(\)\:a-zA-z0-9_-]+)/$ index.php?menu=$1
+
+
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ^Quotes/([0-9]+)$ /index.php?menu=Quotes&id=$1 [L]
+
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ^Video/([0-9]+)$ /index.php?menu=Video&id=$1 [L]
+
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ([\(\)\:a-zA-z0-9_-]+)/$ index.php?menu=$1 [L]
 
 <Files ~ "\.pdf$">
   Header set X-Robots-Tag "noindex, nofollow"

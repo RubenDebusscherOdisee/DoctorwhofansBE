@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-12 13:50:02
+<?php /* Smarty version 2.6.18, created on 2020-06-01 20:05:32
          compiled from Dataface_RecordGrid.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'Dataface_RecordGrid.html', 20, false),)), $this); ?>

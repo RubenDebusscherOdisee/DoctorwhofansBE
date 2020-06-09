@@ -25,4 +25,5 @@ DW.sql
 API/core
 forum/cache
 Adminold
-admin/API/modules/excel/
+admin
+wiki

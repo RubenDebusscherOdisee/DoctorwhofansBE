@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-31 12:30:00
+<?php /* Smarty version 2.6.18, created on 2020-05-21 20:19:36
          compiled from Dataface_Fineprint.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date', 'Dataface_Fineprint.html', 21, false),array('block', 'translate', 'Dataface_Fineprint.html', 22, false),)), $this); ?>

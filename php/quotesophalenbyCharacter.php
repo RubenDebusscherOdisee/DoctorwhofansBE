@@ -7,7 +7,7 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select Quote, Personage,Aflevering from QuotesTabel where  Personage like ? ");
+	$stmt1 = $conn->prepare("select Quote, Personage,Aflevering,Class,QuotePic from QuotesTabel where  Personage like ? order by Level asc");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}

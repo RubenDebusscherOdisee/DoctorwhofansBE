@@ -14,6 +14,10 @@
         $_SESSION["Menu"]=$_SESSION["Menu"];
     }
     $menu = $_SESSION["Menu"];
+
+    if(isset($_GET['id'])){
+        $id= $_GET['id'];
+    }
 ?>
 <html lang="nl">
 
@@ -22,17 +26,17 @@
     <meta name="theme-color" content="#000090" />
     <link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('../sw.js').then(function (registration) {
+        //if ('serviceWorker' in navigator) {
+          //  window.addEventListener('load', function () {
+                //navigator.serviceWorker.register('../sw.js').then(function (registration) {
                     // Registration was successful
                     //console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
+               // }, function (err) {
                     // registration failed :(
-                    console.error('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
+                   // console.error('ServiceWorker registration failed: ', err);
+               // });
+          //  });
+       // }
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
@@ -65,8 +69,10 @@
     <script src="../js/full.js"></script>
     <script>
         var id;
+        var ItemId;
         session = "<?php echo session_id();?>";
         menu = '<?php echo $menu ;?>';
+        ItemId = '<?php echo $id ;?>';
         $(document).ready(function () {
             getAvailableLangcodes();
         });
@@ -76,11 +82,13 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" async></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" async preload>
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async preload>
+    <link rel=stylesheet href="../opmaak/new.css" async preload />
     <link rel=stylesheet href="../opmaak/full.min.css" async preload />
-    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async
-        preload>
     <script>
         $(document).ready(function () {
+            $(".col-6").hide();
+            $(".under").hide();
             checkModefromCookie();
             if ($(window).width() < 800) {
                 $('nav').hide();
@@ -145,10 +153,8 @@
         });
         setTimeout(function () {
             $("#loading_div").fadeOut(300);
-            setTimeout(function () {
-                $(".col-6").fadeIn(300);
-                $(".under").fadeIn(300)
-            }, 100)
+            $(".col-6").fadeIn(400);
+            $(".under").fadeIn(400);
         }, 1500);
     </script>
     <script type="text/javascript"
@@ -271,23 +277,22 @@
                         <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i> Pictures</a>
                         </li>
                         <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a></li>
-                        <li><a href="../Transcripts/"><i class="fa fa-file-text-o"
-                                    aria-hidden="true"></i>Transcripts</a></li>
-                        <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i>Cosplay</a></li>
+                        <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i> Transcripts</a></li>
+                        <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i> Cosplay</a></li>
+                        <li><a href="../Questions/"><i class="fa fa-question" aria-hidden="true"></i> Questions</a></li>
                     </ul>
                     <ul class="sub-nav-group">
                         <h3>To Join</h3>
                         <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a></li>
                         <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a></li>
-                        <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i>Links</a></li>
-                        <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i>DIY</a></li>
+                        <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i> Links</a></li>
+                        <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i> DIY</a></li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
                 <a href="../News/" aria-label="News"><i class="fa fa-newspaper-o" aria-hidden="true"></i> News</a>
             </li>
-
             <li class="nav-item">
                 <a href="https://forum.doctorwhofans.be"><i class="fa fa-comments-o"></i> Forum</a>
             </li>
@@ -301,8 +306,9 @@
                         <label for="zoekterm" class="zoeklabel">Zoeken: </label>
                         <input class="zoekterm" type="text" name="zoekterm" placeholder="Zoeken..." value=""
                             title="zoeken" id="zoekterm" />
-                        <button class="zoekknop" type="submit" title="Zoeken" name="zoeken" onclick="ZoekPagina()"
-                            value=" "></button>
+                        <button class="zoekknop" type="submit" title="Zoeken" name="zoeken" onclick="ZoekPagina()" value=" ">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
                     </form>
                 </div>
             </li>
@@ -323,22 +329,21 @@
                             <input type="button" id="increase" value="+">
                             <span id="size">0</span>
                             <input type="button" id="decrease" value="-">
-                            <button onclick="ToggleNightMode()" id="NightMode"><i class="fa fa-moon-o"></i></button>
+                            <button onclick="ToggleNightMode()" id="NightMode"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
                             <!--TODO: #40 Allow for different fonts, so user can change the font to one that works best for him/her-->
                         </fieldset>
                         <button id="print" type="button" onclick="window.print()">Print</button>
                         <button class="taal_link" type="button" title="taalkeuze">
-                            <img class="lazyload" data-src="../images/overlay/52349.png" alt="Globe voor taalkeuze"
-                                class="taal_link" /> Kies uw taal</button>
+                        <i class="fa fa-globe"></i> Kies uw taal</button>
                     </form>
                 </div>
             </li>
         </ul>
     </nav>
 
-    <div id="wrapper">
+    <main id="wrapper">
 
-        <div class="path"></div>
+        <div class="path DarkBlueBackground"></div>
         <div id=loading_div>
             <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
         </div>
@@ -368,17 +373,18 @@
                 }
             ?>
         </article>
-    </div>
+    </main>
 
     <footer id=footer class=col-5>
-        <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a>
-        <p class='mededeling'> </p>
-        <p class="socialmedia">
+        <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a><br>
+        <p class='mededeling max_34 column'> </p>
+        <div class="socialmedia column">
 
             <div class="sharethis-inline-follow-buttons"></div>
-            Or Share this page:
+            <span>Or Share this page:</span>
             <div class="sharethis-inline-share-buttons"></div>
-        </p>
+        </div>
+        <p class='quote bordered padded DarkBlueBackground max_20 column'></p>
         <p class=disclaimer>
         </p>
     </footer>
@@ -387,28 +393,10 @@
     <a href="#" id="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG"
             data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background></div>
-    <div id="overlay_Zoeken">
-        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png"
-                alt="Sluiten/Close" class=close_IMG /> Close</a>
-        <div class="open-close">
-            <div class="resultset holder" style="border:4px solid yelllow" id="resultset1">
-                <div class="header" style="width:100%;background-color:yellow;color:black">
-                    <a class="opner" href="#" onClick="ToggleResult('resultcontent')">Pages</a>
-                </div>
-            </div>
-            <div class="resultset second holder" style="border:1px solid yelllow" id="resultset2">
-                <div class="header" style="width:100%;background-color:yellow;color:black">
-                    <a class="opner" href="#" onClick="ToggleResult('resultvideo')">Videos</a>
-                </div>
-            </div>
-            <div class="resultset third holder" style="border:1px solid yelllow" id="resultset3">
-                <div class="header" style="width:100%;background-color:yellow;color:black">
-                    <a class="opner" href="#" onClick="ToggleResult('resultQuote')">Quotes</a>
-                </div>
-            </div>
-        </div>
+    <div id="overlay_Zoeken" class="darkBlueBackground bordered padded">
+        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>     
     </div>
-    <div id=overlay>
+    <div id=overlay class="darkBlueBackground bordered padded">
         <h1>Kies uw taal</h1>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("nl")'>

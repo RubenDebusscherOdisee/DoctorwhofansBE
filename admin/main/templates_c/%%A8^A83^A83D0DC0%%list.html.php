@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2019-12-31 14:18:57
+<?php /* Smarty version 2.6.18, created on 2020-06-01 19:38:25
          compiled from xataface/RelatedList/list.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'actions_menu', 'xataface/RelatedList/list.html', 29, false),array('modifier', 'count', 'xataface/RelatedList/list.html', 33, false),array('modifier', 'escape', 'xataface/RelatedList/list.html', 35, false),array('block', 'translate', 'xataface/RelatedList/list.html', 36, false),)), $this); ?>

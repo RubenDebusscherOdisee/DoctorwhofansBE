@@ -1,0 +1,691 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    line-height: normal;
+}
+
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+main {
+    min-height: 66vh;
+}
+footer{text-align: center;}
+main,
+footer {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    width: 99vw;
+    clear: both;
+}
+
+main a,
+footer a {
+    text-decoration: underline;
+    color: black
+}
+
+main a:hover,
+footer a:hover,
+main a:focus,
+footer a:focus {
+    text-decoration: none;
+
+}
+
+.toegankelijk a {
+    padding: 1px
+}
+
+.toegankelijk a:hover,
+.toegankelijk a:focus {
+    border: 1px solid;
+    padding: 0;
+}
+
+.dark-mode {
+    background-color: black !important;
+    color: white !important;
+    border-color: white !important;
+}
+
+.dark-mode a {
+    color: white
+}
+
+.dark-mode .nav-menu {
+    background-color: black
+}
+
+.dark-mode .nav-item>a.open {
+    color: black;
+}
+
+.dark-mode .sub-nav {
+    background-color: dimgrey
+}
+
+#Logo,
+#loading {
+    border-radius: 100%;
+}
+
+.dark-mode #Logo,
+.dark-mode #loading {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+
+#loading {
+    transform-origin: 50% 50%;
+    animation: 2s rotateRight infinite linear;
+    display: block;
+    margin: auto;
+}
+
+@keyframes rotateRight {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#show-menu {
+    text-decoration: none;
+    color: #fff;
+    background: #696969;
+    text-align: center;
+    padding: 0px 0;
+    display: none;
+    width: 100%;
+    z-index: 1;
+    height: 2em;
+}
+
+#Logo {
+    height: 2em;
+}
+
+#Quotes {
+    clear: both;
+}
+
+main img:not(#Loading, .quote_picture) {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.main_vid iframe,
+.main_vid video {
+    display: block;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.main_vid h2 {
+    display: block;
+    width: auto;
+    margin-left: 2em;
+    max-width: 50%;
+    margin-right: auto;
+}
+
+.main_quote {
+    display: inline-block;
+    min-width: 50%;
+    max-width: 64%;
+    padding: 2em;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 1em;
+}
+
+.main_quote img {
+    float: right;
+    width: 40%
+}
+
+.selectie div {
+    width: 50%;
+    display: inline-block;
+}
+
+.selectie div a {
+    display: block;
+}
+
+.itemsSitemap li {
+    list-style-type: none;
+}
+
+.spoilervid {
+    background-color: red;
+}
+
+.quoteitem {
+    display: inline-flex;
+    min-width: 25%;
+    max-width: 32%;
+    padding: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+    vertical-align: text-top;
+}
+
+.quoteitem img {
+    width: 46%;
+    float: right;
+    margin-right: 0.5em;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+    padding: 0px;
+    display: none;
+}
+
+.back-to-top img {
+    border-radius: 5px;
+    width: 5em;
+    height: 5em;
+}
+
+.bordered {
+    border: 5px inset yellow;
+    border-radius: 5px
+}
+
+.DarkBlueBackground {
+    background-color: #206090;
+    color: white
+}
+
+.smallItem {
+    width: 20%;
+}
+
+.wideItem {
+    max-width: 65%;
+}
+
+.smallItem img {
+    width: 100%;
+}
+
+.inline_vid {
+    width: 13%;
+    display: inline-flex;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.inline_vid div img {
+    display: inline;
+    width: 100%;
+}
+
+#overlay_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.5;
+    background-color: gray
+}
+
+#overlay_Zoeken,
+#overlay {
+    display: none;
+    position: absolute;
+    top: 8%;
+    overflow-y: auto;
+    width: 60%;
+    left: 20%;
+    height: 86vh;
+    ;
+}
+
+.OverzichtItem {
+    display: inline-flex;
+    min-width: 50%;
+}
+
+.OverzichtItem h3 {
+    display: inline;
+}
+
+.DarkBlueBackground a,
+.DarkBlueBackground a:hover,
+.DarkBlueBackground a:focus {
+    color: white;
+}
+
+.path {
+    width: fit-content;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-radius: 5em;
+    margin-top: 0.5em;
+}
+
+.path .fa-arrow-right {
+    color: yellow
+}
+
+#Inhoud {
+    max-width: 50%;
+    padding: 0.4em;
+    margin-top: 1em;
+    color: yellow;
+    text-align: center;
+}
+
+#Inhoud ol {
+    text-align: initial;
+    color: white
+}
+
+#WikiDetails {
+    max-width: 23%;
+    float: right;
+    padding: 0.4em;
+    margin-top: -7em;
+    margin-left: 1em;
+    margin-right: 0em;
+}
+
+#WikiDetails img {
+    max-width: 100%;
+}
+
+.WikiItemTitel {
+    text-align: center;
+    width: 100%;
+    background-color: #add8e6
+}
+
+.Volledig {
+    background-color: green;
+}
+
+.WikiRule {
+    color: yellow
+}
+
+.WikiRule span,
+.WikiRule ul li {
+    color: white
+}
+
+.rechts {
+    float: right;
+}
+
+div.rechts {
+    margin-left: 1em;
+}
+
+.links {
+    float: left;
+    display: block;
+    clear: left;
+    min-width: 65%;
+    max-width: 100%;
+}
+
+.Half {
+    width: 47%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    color: yellow
+}
+
+.contents {
+    display: contents;
+}
+
+.padded {
+    padding: 1em;
+}
+
+nav {
+    border-bottom: 1px solid black
+}
+
+nav a {
+    text-decoration: none;
+    color: black
+}
+
+/* mega menu list */
+.nav-menu {
+    display: block !important;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 15;
+    background-color: lightgrey;
+}
+
+/* a top level navigation item in the mega menu */
+.nav-item {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 0.5em;
+}
+
+.nav-item.right {
+    float: right;
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+
+.nav-item.right>.sub-nav {
+    position: absolute;
+    right: 0;
+    width: 37em;
+    margin-top: 0.1em;
+}
+
+/* first descendant link within a top level navigation item */
+.nav-item>a {
+    position: static;
+    display: inline-block;
+    padding: 0.5em 1em;
+    margin: 1px;
+}
+
+nav button,
+nav input[type=button] {
+    min-height: 2em
+}
+
+/* focus/open states of first descendant link within a top level 
+           navigation item */
+.nav-item>a:focus,
+.nav-item>a.open {
+    border: 1px solid #dedede;
+}
+
+/* open state of first descendant link within a top level 
+           navigation item */
+.nav-item>a.open {
+    background-color: #fff;
+    border-bottom: none;
+    z-index: 1;
+    border-radius: 6px;
+
+}
+
+/* sub-navigation panel */
+.sub-nav {
+    position: absolute;
+    display: none;
+    padding: 0.5em 1em;
+    background-color: lightgrey;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    z-index: 5;
+}
+
+/* sub-navigation panel open state */
+.sub-nav.open {
+    display: block;
+
+}
+
+/* list of items within sub-navigation panel */
+.sub-nav ul {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 0;
+    padding: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/* list item within sub-navigation panel */
+.sub-nav li {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1em;
+    line-height: 1.5em;
+}
+
+.disclaimer {
+    margin-top: 1em;
+    display: block;
+    clear: both;
+}
+
+.quote,
+.socialmedia {
+    margin-left: 1em;
+}
+.socialmedia{text-align: center;}
+.column {
+    float: left;
+    min-width: 31.33%;
+}
+
+.min_37 {
+    min-width: 37%;
+}
+
+.min_78 {
+    min-width: 78%;
+}
+
+.max_20 {
+    max-width: 20%;
+}
+
+.max_17 {
+    max-width: 17%;
+}
+
+.max_34 {
+    max-width: 34%;
+}
+
+.max_34 img {
+    max-width: 100%;
+}
+
+.TimeDiv {
+    display: inline-block;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+}
+
+.max_64 {
+    max-width: 64%;
+}
+
+.fix_eighty {
+    width: 80%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-menu {
+        min-height: 22em;
+    }
+
+    .nav-item {
+        width: 100%
+    }
+
+
+}
+
+@media only screen and (min-width: 1000px) {
+    nav {
+        display: block !important;
+        z-index: 5;
+    }
+
+    .sub-nav.open {
+        z-index: 4;
+        margin-top: 0.65em;
+    }
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 828px) {
+
+    #show-menu {
+        display: block;
+    }
+
+    .sub-nav {
+        position: initial;
+        width: 100vw;
+    }
+
+    .sub-nav ul {
+        width: 32%;
+        display: inline-block;
+        padding-left: 0;
+        width: 32%;
+        padding-right: 0;
+    }
+
+    .main_quote {
+        max-width: 100%;
+
+        margin-left: 0;
+        margin-right: 0
+    }
+
+    .quoteitem {
+        max-width: 48%;
+    }
+
+    .quoteitem img {
+        width: 100%
+    }
+
+    #WikiDetails {
+        max-width: 50%;
+        margin-top: 0em;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+
+    .nav-item {
+        width: 58%
+    }
+
+    .nav-item:first {
+        padding-top: 0;
+    }
+
+
+
+    .sub-nav ul {
+        display: inline-block;
+        padding-left: 0;
+        width: 32%;
+        padding-right: 0;
+    }
+
+    sub nav ul li a {
+        font-size: 0.8em;
+    }
+
+    .nav-item.right {
+        float: none;
+    }
+
+    .nav-item.right>.sub-nav {
+        width: 100%;
+        background-color: lightgray;
+    }
+
+    .sub-nav {
+        position: initial;
+        display: none;
+        top: 22em;
+        padding: 0.5em 1em;
+        border: 1px solid #dedede;
+        background-color: #fff;
+        width: 100vw;
+    }
+
+    .nav-item>.sub-nav {
+        z-index: 1;
+        background-color: lightgrey;
+        border-bottom: none;
+    }
+
+    .quoteitem {
+        max-width: 100%;
+    }
+
+    #WikiDetails {
+        max-width: 100%;
+        margin-top: 0em;
+        margin-bottom: 1em;
+    }
+
+    #Inhoud {
+        max-width: 100%;
+    }
+
+}

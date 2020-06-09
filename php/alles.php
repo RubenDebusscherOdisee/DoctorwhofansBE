@@ -13,12 +13,12 @@
     $antwoord['data'] = "Geen resultaten gevonden.";
     $antwoord['tags']= "no tags";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("select * from Content where A_Pagina = ? and A_Actief  and A_Taal=? ORDER BY A_level asc, A_ID asc");
+	$stmt1 = $conn->prepare("select * from content where A_Pagina = ? and A_Actief  and A_Taal=? ORDER BY A_level asc, A_ID asc");
 	$stmt2 = $conn->prepare("select categories.*,Topics.link,Topics.topic FROM cat_pages inner join categories on cat_pages.cat_id=categories.cat_id inner join Topics on Topics.id=cat_pages.page_id where Topics.link = ? order by categories.cat_name");
 
     //als het preparen mislukt --> die
 	if(!$stmt1){
-        die("Statem2nt preparing failed: " . $conn->error);
+        die("Statement preparing failed: " . $conn->error);
     }
     if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
