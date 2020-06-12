@@ -1,49 +1,28 @@
-/*
-Copyright © 2013 Adobe Systems Incorporated.
-
-Licensed under the Apache License, Version 2.0 (the “License”);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an “AS IS” BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-/**
- * See <a href="http://jquery.com">http://jquery.com</a>.
- * @name jquery
- * @class
- * See the jQuery Library  (<a href="http://jquery.com">http://jquery.com</a>) for full details.  This just
- * documents the function and classes that are added to jQuery by this plug-in.
- */
-
-/**
- * See <a href="http://jquery.com">http://jquery.com</a>
- * @name fn
- * @class
- * See the jQuery Library  (<a href="http://jquery.com">http://jquery.com</a>) for full details.  This just
- * documents the function and classes that are added to jQuery by this plug-in.
- * @memberOf jquery
- */
-
-/**
- * @fileOverview accessibleMegaMenu plugin
- *
- *<p>Licensed under the Apache License, Version 2.0 (the “License”)
- *<br />Copyright © 2013 Adobe Systems Incorporated.
- *<br />Project page <a href="https://github.com/adobe-accessibility/Accessible-Mega-Menu">https://github.com/adobe-accessibility/Accessible-Mega-Menu</a>
- * @version 0.1
- * @author Michael Jordan
- * @requires jquery
- */
-
 /*jslint browser: true, devel: true, plusplus: true, nomen: true */
 /*global jQuery, window, document */
+
+
+fixScale = function(doc) {
+
+	var addEvent = 'addEventListener',
+	    type = 'gesturestart',
+	    qsa = 'querySelectorAll',
+	    scales = [1, 1],
+	    meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+	function fix() {
+		meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+		doc.removeEventListener(type, fix, true);
+	}
+
+	if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+		fix();
+		scales = [.25, 1.6];
+		doc[addEvent](type, fix, true);
+	}
+
+};
+
 (function ($, window, document) {
     "use strict";
     var pluginName = "accessibleMegaMenu",
@@ -311,19 +290,27 @@ limitations under the License.
                     && panel.length === 0
                     && topli.find('.' + this.settings.panelClass).length === 1) {
                 if (!target.hasClass(this.settings.openClass)) {
-                    event.preventDefault();
-                    event.stopPropagation();
+                    if(event.target.href.includes('#')&& event.target.className.includes('topLink')){
+                        event.preventDefault();
+                        event.stopPropagation();   
+                    }
                     _togglePanel.call(this, event);
-                    this.justFocused = false;
+                        this.justFocused = false;
                 } else {
                     if (this.justFocused) {
-                        event.preventDefault();
-                        event.stopPropagation();
+                        if(event.target.href.includes('#')&& event.target.className.includes('topLink')){                            event.preventDefault();
+                            event.stopPropagation();
+                        }
                         this.justFocused = false;
+
+                        
                     } else if (isTouch || !isTouch && !this.settings.openOnMouseover) {
-                        event.preventDefault();
-                        event.stopPropagation();
+                        if(event.target.href.includes('#')&& event.target.className.includes('topLink')){                            event.preventDefault();
+                            event.stopPropagation();
+                        }
                         _togglePanel.call(this, event, target.hasClass(this.settings.openClass));
+
+                       
                     }
                 }
             }
@@ -919,187 +906,7 @@ limitations under the License.
         };
     }());
 
-    /* lightweight plugin wrapper around the constructor,
-       to prevent against multiple instantiations */
-
-    /**
-     * @class accessibleMegaMenu
-     * @memberOf jQuery.fn
-     * @classdesc Implements an accessible mega menu as a jQuery plugin.
-     * <p>The mega-menu It is modeled after the mega menu on {@link http://adobe.com|adobe.com} but has been simplified for use by others. A brief description of the interaction design choices can be found in a blog post at {@link http://blogs.adobe.com/accessibility/2013/05/adobe-com.html|Mega menu accessibility on adobe.com}.</p>
-     * <h3>Keyboard Accessibility</h3>
-     * <p>The accessible mega menu supports keyboard interaction modeled after the behavior described in the {@link http://www.w3.org/TR/wai-aria-practices/#menu|WAI-ARIA Menu or Menu bar (widget) design pattern}, however we also try to respect users' general expectations for the behavior of links in a global navigation. To this end, the accessible mega menu implementation permits tab focus on each of the six top-level menu items. When one of the menu items has focus, pressing the Enter key, Spacebar or Down arrow will open the submenu panel, and pressing the Left or Right arrow key will shift focus to the adjacent menu item. Links within the submenu panels are included in the tab order when the panel is open. They can also be navigated with the arrow keys or by typing the first character in the link name, which speeds up keyboard navigation considerably. Pressing the Escape key closes the submenu and restores focus to the parent menu item.</p>
-     * <h3>Screen Reader Accessibility</h3>
-     * <p>The accessible mega menu models its use of WAI-ARIA Roles, States, and Properties after those described in the {@link http://www.w3.org/TR/wai-aria-practices/#menu|WAI-ARIA Menu or Menu bar (widget) design pattern} with some notable exceptions, so that it behaves better with screen reader user expectations for global navigation. We don't use <code class="prettyprint prettyprinted" style=""><span class="pln">role</span><span class="pun">=</span><span class="str">"menu"</span></code> for the menu container and <code class="prettyprint prettyprinted" style=""><span class="pln">role</span><span class="pun">=</span><span class="str">"menuitem"</span></code> for each of the links therein, because if we do, assistive technology will no longer interpret the links as links, but instead, as menu items, and the links in our global navigation will no longer show up when a screen reader user executes a shortcut command to bring up a list of links in the page.</p>
-     * @example <h4>HTML</h4><hr/>
-&lt;nav&gt;
-    &lt;ul class=&quot;nav-menu&quot;&gt;
-        &lt;li class=&quot;nav-item&quot;&gt;
-            &lt;a href=&quot;?movie&quot;&gt;Movies&lt;/a&gt;
-            &lt;div class=&quot;sub-nav&quot;&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=0&quot;&gt;Action &amp;amp; Adventure&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=2&quot;&gt;Children &amp;amp; Family&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=7&quot;&gt;Dramas&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=9&quot;&gt;Foreign&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=14&quot;&gt;Musicals&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?movie&amp;genre=15&quot;&gt;Romance&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/div&gt;
-        &lt;/li&gt;
-        &lt;li class=&quot;nav-item&quot;&gt;
-            &lt;a href=&quot;?tv&quot;&gt;TV Shows&lt;/a&gt;
-            &lt;div class=&quot;sub-nav&quot;&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=20&quot;&gt;Classic TV&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=21&quot;&gt;Crime TV&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=27&quot;&gt;Reality TV&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=30&quot;&gt;TV Action&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;ul class=&quot;sub-nav-group&quot;&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=33&quot;&gt;TV Dramas&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;?tv&amp;genre=34&quot;&gt;TV Horror&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&amp;#8230;&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/div&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-     * @example <h4>CSS</h4><hr/>
-&#47;* Rudimentary mega menu CSS for demonstration *&#47;
-
-&#47;* mega menu list *&#47;
-.nav-menu {
-    display: block;
-    position: relative;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    z-index: 15;
-}
-
-&#47;* a top level navigation item in the mega menu *&#47;
-.nav-item {
-    list-style: none;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-&#47;* first descendant link within a top level navigation item *&#47;
-.nav-item &gt; a {
-    position: relative;
-    display: inline-block;
-    padding: 0.5em 1em;
-    margin: 0 0 -1px 0;
-    border: 1px solid transparent;
-}
-
-&#47;* focus/open states of first descendant link within a top level
-   navigation item *&#47;
-.nav-item &gt; a:focus,
-.nav-item &gt; a.open {
-    border: 1px solid #dedede;
-}
-
-&#47;* open state of first descendant link within a top level
-   navigation item *&#47;
-.nav-item &gt; a.open {
-    background-color: #fff;
-    border-bottom: none;
-    z-index: 1;
-}
-
-&#47;* sub-navigation panel *&#47;
-.sub-nav {
-    position: absolute;
-    display: none;
-    top: 2.2em;
-    margin-top: -1px;
-    padding: 0.5em 1em;
-    border: 1px solid #dedede;
-    background-color: #fff;
-}
-
-&#47;* sub-navigation panel open state *&#47;
-.sub-nav.open {
-    display: block;
-}
-
-&#47;* list of items within sub-navigation panel *&#47;
-.sub-nav ul {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 1em 0 0;
-    padding: 0;
-}
-
-&#47;* list item within sub-navigation panel *&#47;
-.sub-nav li {
-    display: block;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-     * @example <h4>JavaScript</h4><hr/>
-&lt;!-- include jquery --&gt;
-&lt;script src=&quot;http://code.jquery.com/jquery-1.10.1.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- include the jquery-accessibleMegaMenu plugin script --&gt;
-&lt;script src=&quot;js/jquery-accessibleMegaMenu.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- initialize a selector as an accessibleMegaMenu --&gt;
-&lt;script&gt;
-    $(&quot;nav:first&quot;).accessibleMegaMenu({
-        &#47;* prefix for generated unique id attributes, which are required to indicate aria-owns, aria-controls and aria-labelledby *&#47;
-        uuidPrefix: &quot;accessible-megamenu&quot;,
-
-        &#47;* css class used to define the megamenu styling *&#47;
-        menuClass: &quot;nav-menu&quot;,
-
-        &#47;* css class for a top-level navigation item in the megamenu *&#47;
-        topNavItemClass: &quot;nav-item&quot;,
-
-        &#47;* css class for a megamenu panel *&#47;
-        panelClass: &quot;sub-nav&quot;,
-
-        &#47;* css class for a group of items within a megamenu panel *&#47;
-        panelGroupClass: &quot;sub-nav-group&quot;,
-
-        &#47;* css class for the hover state *&#47;
-        hoverClass: &quot;hover&quot;,
-
-        &#47;* css class for the focus state *&#47;
-        focusClass: &quot;focus&quot;,
-
-        &#47;* css class for the open state *&#47;
-        openClass: &quot;open&quot;
-    });
-&lt;/script&gt;
-     * @param {object} [options] Mega Menu options
-     * @param {string} [options.uuidPrefix=accessible-megamenu] - Prefix for generated unique id attributes, which are required to indicate aria-owns, aria-controls and aria-labelledby
-     * @param {string} [options.menuClass=accessible-megamenu] - CSS class used to define the megamenu styling
-     * @param {string} [options.topNavItemClass=accessible-megamenu-top-nav-item] - CSS class for a top-level navigation item in the megamenu
-     * @param {string} [options.panelClass=accessible-megamenu-panel] - CSS class for a megamenu panel
-     * @param {string} [options.panelGroupClass=accessible-megamenu-panel-group] - CSS class for a group of items within a megamenu panel
-     * @param {string} [options.hoverClass=hover] - CSS class for the hover state
-     * @param {string} [options.focusClass=focus] - CSS class for the focus state
-     * @param {string} [options.openClass=open] - CSS class for the open state
-     * @param {string} [options.openDelay=0] - Open delay when opening menu via mouseover
-     * @param {string} [options.closeDelay=250] - Open delay when opening menu via mouseover
-     * @param {boolean} [options.openOnMouseover=false] - Should menu open on mouseover
-     */
+    
     $.fn[pluginName] = function (options) {
         return this.each(function () {
             var pluginInstance = $.data(this, "plugin_" + pluginName);
@@ -1113,9 +920,7 @@ limitations under the License.
 
     $.fn[pluginName].AccessibleMegaMenu = AccessibleMegaMenu;
 
-    /* :focusable and :tabbable selectors from
-       https://raw.github.com/jquery/jquery-ui/master/ui/jquery.ui.core.js */
-
+    
     /**
      * @private
      */
@@ -1170,30 +975,17 @@ limitations under the License.
     });
 }(jQuery, window, document));
 
-
-$("nav:first").accessibleMegaMenu({
-            /* prefix for generated unique id attributes, which are required 
-               to indicate aria-owns, aria-controls and aria-labelledby */
-            uuidPrefix: "accessible-megamenu",
+if (jQuery) {
+    (function ($) {
+        "use strict";
+        $(document).ready(function () {
+            // initialize the megamenu
+            $('.megamenu').accessibleMegaMenu();
             
-            /* css class used to define the megamenu styling */
-            menuClass: "nav-menu",
-            
-            /* css class for a top-level navigation item in the megamenu */
-            topNavItemClass: "nav-item",
-            
-            /* css class for a megamenu panel */
-            panelClass: "sub-nav",
-            
-            /* css class for a group of items within a megamenu panel */
-            panelGroupClass: "sub-nav-group",
-            
-            /* css class for the hover state */
-            hoverClass: "hover",
-            
-            /* css class for the focus state */
-            focusClass: "focus",
-            
-            /* css class for the open state */
-            openClass: "open"
+            // hack so that the megamenu doesn't show flash of css animation after the page loads.
+            setTimeout(function () {
+                $('body').removeClass('init');
+            }, 500);
         });
+    }(jQuery));
+}

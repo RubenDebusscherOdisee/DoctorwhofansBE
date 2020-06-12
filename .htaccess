@@ -38,15 +38,19 @@ rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
 
 
 #Rewrite everything to https
-<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+<FilesMatch "\.(ttf|otf|eot|woff|woff2|html|js|php|css)$">
     <IfModule mod_headers.c>
-        Header set Access-Control-Allow-Origin "https://www.doctorwhofans.be"
-        Header set Access-Control-Allow-Origin "https://doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://forum.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://dash.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://admin.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://API.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://wiki.doctorwhofans.be"
+        Header set Access-Control-Allow-Origin "https://*.doctorwhofans.be"
+        Header set Access-Control-Allow-Origin "https://www.doctorwhofans.be"
+        Header set Access-Control-Allow-Origin "https://*doctorwhofans.be"
+
+
+
 
     </IfModule>
 </FilesMatch>

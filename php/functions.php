@@ -252,7 +252,7 @@ function fetchCategoryTreeList($parent = 0, $user_tree_array = '') {
             if($row->topic =="Forum"){
                 $user_tree_array[] = "<li><a href ='https://forum.doctorwhofans.be' class='link' style='margin-left:2.3em;'>". $row->topic."</a></li>";
             }else{
-                $user_tree_array[] = "<li><a href ='/".$row->link."/' class='link'style='margin-left:2.3em;'>". $row->topic."</a></li>";
+                $user_tree_array[] = "<li><a href ='../".$row->link."/' class='link'style='margin-left:2.3em;'>". $row->topic."</a></li>";
             }
         }
 	  

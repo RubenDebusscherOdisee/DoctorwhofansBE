@@ -1,35 +1,21 @@
 "use strict";
 var siz;
-function addAcces(){
-    
-        event.preventdefault;
 
-            $('.link').addClass('toegankelijk')
+
+    function toggleAccess(){
+          $('.link').toggleClass('toegankelijk')
             //$('*').addClass('toegankelijk');
             //$('body').addClass('toegankelijk');
-            $('footer').addClass('toegankelijk').contents().addClass('toegankelijk');
-            $('.col-6').addClass('toegankelijk').contents().addClass('toegankelijk');
-            $('.link').addClass('toegankelijk');
-            $('.setting').addClass('toegankelijk');
-            $('#toegang').addClass('hide');
-            $('#toegangRemove').removeClass('hide');
-            $('*').addClass('toegankelijk');
-        
+            $('footer').toggleClass('toegankelijk').contents().toggleClass('toegankelijk');
+            $('.col-6').toggleClass('toegankelijk').contents().toggleClass('toegankelijk');
+            $('.link').toggleClass('toegankelijk');
+            $('.setting').toggleClass('toegankelijk');
+             $('#toegang').toggleClass('hide');
+            $('*').toggleClass('toegankelijk');
+
     }
     
-function removeAccess(){
-    $('.link').removeClass('toegankelijk')
-            //$('*').addClass('toegankelijk');
-            //$('body').addClass('toegankelijk');
-            $('footer').removeClass('toegankelijk').contents().removeClass('toegankelijk');
-            $('.col-6').removeClass('toegankelijk').contents().removeClass('toegankelijk');
-            $('.link').removeClass('toegankelijk');
-            $('.setting').removeClass('toegankelijk');
-             $('#toegang').removeClass('hide');
-            $('#toegangRemove').addClass('hide');
-            $('*').removeClass('toegankelijk');
-            
-}
+
 
 window.addEventListener("afterprint", Closeprint);
 
@@ -69,16 +55,10 @@ function printContent(){
 }
 
 
-function RemoveImg(){
-    $('img').hide();
-    $('#RestoreImages').removeClass('hide');
-    $('#RemoveImages').addClass('hide');
+function ToggleImg(){
+    $('img').toggle();
 }
-function RestoreImg(){
-    $('img').show();
-    $('#RestoreImages').addClass('hide');
-    $('#RemoveImages').removeClass('hide');
-}
+
 $(function() {
     $("#increase").click(function() {
       siz = parseInt($('#size').text());

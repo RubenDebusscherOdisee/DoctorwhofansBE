@@ -7,12 +7,15 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("Select concat('../',link,'/') as link, topic, sum(count_str(UPPER(CONCAT(A_waarde, A_pagina,link)),UPPER(?))) as Aantal from Content inner join Topics on Topics.link = A_Pagina where (A_Waarde like ? or A_Pagina like ? or topic like ?)  and A_Taal=? AND A_Actief = 1 AND A_Type <> 'Alt' AND A_Type <> 'Afbeelding' GROUP BY A_Pagina,A_Taal union select concat('../Quotes/',id) as link,substring(Quote,1,70) AS topic,sum(count_str(UPPER(CONCAT(Quote, Personage,Aflevering)),UPPER(?))) as Aantal from QuotesTabel where Quote like ? or Personage like ? or Aflevering like ? group by id UNION select concat('../Video/',id) as link, Video_name as topic,sum(count_str(UPPER(CONCAT(Video_Name, Video_Beschrijving)),UPPER(?))) as Aantal from Videos where Video_Name like ? or Video_Beschrijving like ? group by id ORDER BY Aantal DESC");
+	$stmt1 = $conn->prepare("call SearchFunction(?,?)");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}
-	$menu = $_GET['menu'];$taal = $_GET['taal'];$zoekterm = "%{$_GET['zoekterm']}%";$zoektermraw=$_GET['zoekterm'];
-	if(!$stmt1->bind_param("ssssssssssss",$zoektermraw,$zoekterm,$zoekterm,$zoekterm,$taal,$zoektermraw,$zoekterm,$zoekterm,$zoekterm,$zoektermraw,$zoekterm,$zoekterm)){
+	$menu = $_GET['menu'];
+	$taal = $_GET['taal'];
+	$zoekterm = $_GET['zoekterm'];
+	
+	if(!$stmt1->bind_param("ss",$zoekterm,$taal)){
 			    die("Statement binding failed: " . $conn->connect_error);
 	}
 	if(!$stmt1->execute()){
@@ -26,5 +29,10 @@
         echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 	}
     $stmt1->close();
-    $conn->close();
+	$conn->close();
+	
+
+
+
+	
 ?>
