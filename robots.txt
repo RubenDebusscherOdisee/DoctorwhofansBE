@@ -2,12 +2,9 @@ User-agent: *
 Disallow: /_/
 Disallow: /api/
 Disallow: /downloads/
-Disallow: /fonts/
-Disallow: /js/
 Disallow: /menu/
-Disallow: /opmaak/
-Disallow: /php/
 Disallow: /scratch/
 Disallow: /video/
 Disallow: /connect.php
 Disallow: /dbConfig.php
+Disallow: /*.ini$

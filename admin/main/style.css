@@ -10,6 +10,11 @@ body {
   overflow: hidden !important;
 
 }
+
+tr[id$='_form_row']{
+  display: inline-block;
+    width: 50%;
+}
 @media only screen and (max-width: 900px) {
 
   #xf-logo {
@@ -75,3 +80,4 @@ body {
 
   .table-headings{display: none;}
 }
+
