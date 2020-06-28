@@ -3106,7 +3106,7 @@ main,
 footer {
   padding-left: 1vw;
   padding-right: 1vw;
-  width: 99vw;
+  width: 98vw;
   clear: both;
 }
 
@@ -3238,9 +3238,19 @@ main img:not(#Loading, .quote_picture) {
   display: block;
 }
 
-.itemsSitemap li {
+#Sitemap li {
   list-style-type: none;
+  padding-top: 1em;
 }
+
+.SitemapButton{    margin-right: 1em;
+  border-radius: 5em;
+  border: 0px;
+  background-color: #206090;
+  color: white;
+  font-size: 1.5em;
+  width: 1.5em;
+  height: 1.5em;}
 
 .spoilervid {
   background-color: red;
@@ -3303,16 +3313,19 @@ main img:not(#Loading, .quote_picture) {
 }
 
 .inline_vid {
-  width: 13%;
+  min-width: 12%;
   display: inline-flex;
-  margin-left: 0.5em;
-  margin-bottom: 0.5em;
+  margin-left: 1.5em;
+  margin-top: 2em;
+  max-width: 14%;
+  font-size: initial;
 }
 
 .inline_vid div img {
   display: inline-block;
   width: 100%;
 }
+.inline_vid p{padding-left: 1em;}
 
 #overlay_background {
   position: absolute;
@@ -3425,9 +3438,11 @@ div.rechts {
   float: left;
   display: block;
   clear: left;
+  margin-right: 1.5em;
 
 }
-
+.Half.rechts {    margin-left: 0em;
+  margin-right: 0em;}
 .Half {
   width: 47%;
   display: inline-block;
@@ -3477,6 +3492,9 @@ nav a {
 .min_37 {
   min-width: 37%;
 }
+.min_74{
+  min-width: 74%;
+}
 
 .min_78 {
   min-width: 78%;
@@ -3499,19 +3517,19 @@ nav a {
 }
 
 .max_70 {
-  max-width: 70%;
+  max-width: 70% !important;
 }
 
 .max_79 {
-  max-width: 79%;
+  max-width: 79% !important;
 }
 
 .max_34 {
-  max-width: 34%;
+  max-width: 34% !important;
 }
 
 .max_64 {
-  max-width: 64%;
+  max-width: 64% !important;
 }
 
 

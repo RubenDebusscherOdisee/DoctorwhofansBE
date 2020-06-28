@@ -25,11 +25,17 @@
           "src": "images/logo/logo_512.png",
           "sizes": "512x512",
           "type": "image/png"
+        },
+        {
+          "src": "images/logo/maskable_icon.png",
+          "sizes": "571x571",
+          "type": "image/png",
+          "purpose": "any maskable"
         }  
       ],
-    "start_url": "https://www.doctorwhofans.be/Home/",
+    "start_url": "/",
     "background_color": "#000090",
     "display": "standalone",
-    "scope": "https://www.doctorwhofans.be/",
+    "scope": "/",
     "theme_color": "#000090"
   }

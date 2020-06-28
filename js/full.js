@@ -4345,38 +4345,6 @@ $(function () {
 
 
 
-$(function () {
-	$("#increase").click(function () {
-		siz = parseInt($('#size').text());
-		siz += 1;
-		$('#size').text(siz);
-		setCookie("size", siz, 30);
-		$(".col-6,.col-6 div,.under,footer").find("p,span,li,h1,h2,h3,h4,h5,h6,a,div").each(function () {
-			var size = parseInt($(this).css("font-size"));
-			size = size + 1 + "px";
-			$(this).css({
-				'font-size': size
-			});
-		});
-	});
-
-});
-$(function () {
-	$("#decrease").click(function () {
-		siz = parseInt($('#size').text());
-		siz -= 1;
-		$('#size').text(siz);
-		setCookie("size", siz, 30);
-		$(".col-6,.col-6 div,.under,footer").find("p,span,li,h1,h2,h3,h4,h5,h6,a,div").each(function () {
-			var size = parseInt($(this).css("font-size"));
-			size = size - 1 + "px";
-			$(this).css({
-				'font-size': size
-			});
-		});
-	});
-});
-
 
 $(function () {
 	$("#increase").click(function () {
@@ -4884,9 +4852,9 @@ function videosophalen(menu, id) {
 				}
 			} else {
 				if (resultaat.data[i].SPOILER === 1) {
-					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + " class='inline_vid bordered DarkBlueBackground spoilervid' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + " class='inline_vid bordered DarkBlueBackground spoilervid' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
 				} else {
-					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + "' class='inline_vid bordered DarkBlueBackground' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' style='display:inline;' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 13) + "...</p></div></a>");
+					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + "' class='inline_vid bordered DarkBlueBackground' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
 				}
 			}
 		}
@@ -5106,6 +5074,7 @@ function contentophalen(taal, menu) {
 		var i;
 
 		for (i = 0; i < resultaat.data.length; i += 1) {
+			
 			if (resultaat.data[i].A_Pagina_Type === "Slider") {
 				$(".col-6").append("<div class='slideshow-container'><a class='prev' onclick='plusSlides(-1)'>&#10094;</a><a class='next' onclick='plusSlides(1)'>&#10095;</a></div>");
 			}
@@ -5116,6 +5085,10 @@ function contentophalen(taal, menu) {
 			}
 			if (resultaat.data[i].A_Type === "Titel" || resultaat.data[i].A_Type === "EpisodeTitel" || resultaat.data[i].A_Type === "CharacterTitel") {
 				$(".col-6").prepend("<h1>" + resultaat.data[i].A_Waarde + "</h1>");
+				if(resultaat.data[i].A_Pagina_Type ==="Sitemap"){
+					$('.col-6').append('<ul id="Sitemap"></ul>')
+					createSiteMap("Sitemap");
+				}
 				if (resultaat.data[i].A_Type === "EpisodeTitel") {
 					$(".under").prepend("<div id='Under_Upper'>");
 					$("#Under_Upper").append("<div id='Quotes' class='anchor'></div>");
@@ -5154,6 +5127,15 @@ function contentophalen(taal, menu) {
 			if (resultaat.data[i].A_Type === "EpisodeMainEnemy") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].main_enemy + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
+			if (resultaat.data[i].A_Type === "EpisodeStoryNumber") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Story_number + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "EpisodePremiereNetwork") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Premiere_network + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "EpisodeDWConfidential") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Doctor_Who_Confidential + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
 			if (resultaat.data[i].A_Type === "EpisodeCompanionList") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].Companions + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
@@ -5173,12 +5155,12 @@ function contentophalen(taal, menu) {
 			if (resultaat.data[i].A_Type === "EpisodeNext") {
 				$(".Chronologie").append("<div class='Half Rechts'>" + translations[0].next_episode + ":<br>" + resultaat.data[i].A_Waarde + "</div>");
 			}
-			if (resultaat.data[i].A_Type === "EpisodePreviousIssue") {
+			if (resultaat.data[i].A_Type === "PreviousIssue") {
 				$("#Items").append("<div class='WikiItemTitel'>" + translations[0].Chronology + "</div>");
 				$("#Items").append("<div class='Chronologie'></div>");
 				$(".Chronologie").append("<div class='Half'>" + translations[0].previous_issue + ":<br>" + resultaat.data[i].A_Waarde + "</div>");
 			}
-			if (resultaat.data[i].A_Type === "EpisodeNextIssue") {
+			if (resultaat.data[i].A_Type === "NextIssue") {
 				$(".Chronologie").append("<div class='Half Rechts'>" + translations[0].next_issue + ":<br>" + resultaat.data[i].A_Waarde + "</div>");
 			}
 			if (resultaat.data[i].A_Type === "EpisodeWriterList") {
@@ -5187,6 +5169,23 @@ function contentophalen(taal, menu) {
 			if (resultaat.data[i].A_Type === "EpisodeEditorList") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].script_editor + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
+			if (resultaat.data[i].A_Type === "MagazineCoverDate") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].cover_date + ": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "MagazineReleaseDate") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].release_date + ": <span>" + convertDate(resultaat.data[i].A_Waarde) + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "MagazineFormat") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Format + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "MagazineEditor") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Editor + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "MagazinePublisher") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Publisher + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+
+			
 			if (resultaat.data[i].A_Type === "EpisodeProducerList") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].produced_by + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
@@ -5428,17 +5427,70 @@ function contentophalen(taal, menu) {
 	};
 	$.fn.fitVids._count = 0;
 })(window.jQuery || window.Zepto);
-$(function () {
-	jQuery(".SitemapButton").click(function () {
-		jQuery(this).parent().next().toggle();
-		if (jQuery(this).parent().next().attr('display') === 'none' || jQuery(this).text() == "+") {
-			jQuery(this).text("-");
-		} else if (jQuery(this).parent().next().attr('display') === 'block' || jQuery(this).text() == "-") {
-			jQuery(this).text("+");
+function getNestedChildren(arr, parent) {
+	var out = []
+	for(var i in arr) {
+		if(arr[i].parent_id == parent) {
+			var children = getNestedChildren(arr, arr[i].id)
+
+			if(children.length) {
+				arr[i].children = children
+			}
+			out.push(arr[i])
+		}
+	}
+	return out
+}
+
+function ToggleItems(){
+		$(event.target.nextElementSibling.nextElementSibling).slideToggle()
+		if ($(event.target).text() == "+") {
+	$(event.target).text("-");
+} else if ($(event.target).text() == "-") {
+	$(event.target).text("+");
+}
+
+
+}
+
+function createSiteMap(elem){
+	$.ajax({
+		type: "GET",
+		url: "https://www.doctorwhofans.be/php/Children2.php",
+		dataType: 'json',
+		cache: false,
+	}).done(
+		function(resultaat) {
+			//console.log(getNestedChildren(resultaat.data,0));
+			createList(document.getElementById(elem), getNestedChildren(resultaat.data,0));
+			$('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page')
+		}).fail(function(response, statusText, xhr) {
+	}).always(function() {
+	});
+}
+
+
+
+function createList(parent, array) {
+	array.forEach(function (o) {
+		var li = document.createElement("li"),
+			ul;
+
+			o.link = '../'+o.link+'/';
+
+		if (o.children) {
+			li.innerHTML = "<button class='SitemapButton' onclick=ToggleItems()>+</button><a href='"+o.link+"'>"+o.topic+"</a>";
+			parent.appendChild(li);
+			ul = document.createElement("ul");
+			ul.setAttribute('style','display:none');
+			li.appendChild(ul);
+			createList(ul, o.children);
+		}else{
+			li.innerHTML = "<a href='"+o.link+"'>"+o.topic+"</a>";
+			parent.appendChild(li);
 		}
 	});
-
-});
+}
 
 
 

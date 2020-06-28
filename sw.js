@@ -1,7 +1,16 @@
 var CACHE_NAME = 'my-site-cache-v2';
 var urlsToCache = [
-  '../*'
+  '../opmaak',
+  '../js',
+  '../images'
 ];
+let deferredPrompt;
+
+self.addEventListener('beforeinstallprompt', function (event){
+  event.preventDefault();
+  deferredPrompt = event;
+  showInstallPromotion();
+});
 
 self.addEventListener('install', function (event) {
   // Perform install steps
@@ -67,3 +76,11 @@ self.addEventListener('activate', function (event) {
     })
   );
 });
+
+
+
+
+
+function showInstallPromotion(){
+  console.log('install');
+}

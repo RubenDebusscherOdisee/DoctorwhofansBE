@@ -13,9 +13,9 @@ class release_1_0_1_schema extends \phpbb\db\migration\migration
 {
 	static public function depends_on()
 	{
-	return array('\hifikabin\largefont\migrations\v1x\release_1_0_0_schema');
+		return array('\hifikabin\largefont\migrations\v1x\release_1_0_0_schema');
 	}
-	
+
 	public function effectively_installed()
 	{
 		return $this->db_tools->sql_column_exists($this->table_prefix . 'users', 'user_font_size');

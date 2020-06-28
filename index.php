@@ -3,7 +3,7 @@
 
 <?php 
     if(isset($_GET['menu'])){
-        if (is_numeric($_GET['menu'])) {
+        if (is_numeric($_GET['menu'])||searchForFile($_SERVER['DOCUMENT_ROOT'].$_GET['menu'].".*")==TRUE) {
             $_SESSION["Menu"]='Home';
         }else{
             $_SESSION["Menu"]=$_GET['menu'];
@@ -18,11 +18,17 @@
     if(isset($_GET['id'])){
         $id= $_GET['id'];
     }
+
+    function searchForFile($fileToSearchFor){
+        $numberOfFiles = count(glob($fileToSearchFor));
+        if($numberOfFiles == 0){ return(FALSE); } else { return(TRUE);}
+    }
 ?>
 <html lang="nl">
 
 <head>
     <link rel="manifest" href="../manifest.json">
+    <link rel="manifest" href="../manifest.webmanifest">
     <meta name="theme-color" content="#000090" />
     <link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
     <script>
@@ -55,6 +61,7 @@
     <title>
         <?php $title = str_replace("_", " ", $menu);echo $title. " | Doctor Who Fans BE";?>
     </title>
+
     <meta name=author content="Ruben Debusscher" />
     <meta charset=UTF-8 />
     <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
@@ -92,6 +99,7 @@
             });
         })
         jQuery(document).ready(function () {
+            
             var c = 220,
                 b = 500;
             jQuery(".taal_link").click(function (f) {
@@ -380,20 +388,7 @@
             <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
         </div>
         <article class=col-6>
-            <?php
-                if($menu=="Sitemap"){
-                    $res = fetchCategoryTreeList();
-                    foreach ($res as $r) {
-                        echo  $r;
-                    }
-                    ?>
-            <script>
-                $(".parent").next().hide();
-                $(".col6 ul:first").css("margin-left", "-4em");
-            </script>
-            <?php
-                }
-                ?>
+           
         </article>
         <article class="under col-5">
             <?php

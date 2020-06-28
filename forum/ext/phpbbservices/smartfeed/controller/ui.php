@@ -392,7 +392,7 @@ class ui
 			'S_SMARTFEED_USER_ID' 				=> constants::SMARTFEED_USER_ID,
 			'S_SMARTFEED_USERNAMES' 			=> constants::SMARTFEED_USERNAMES,
 			'U_SMARTFEED_IMAGE_PATH'         	=> generate_board_url() . $this->ext_root_path . 'styles/all/theme/images/',
-			'UA_SMARTFEED_SITE_URL'				=> generate_board_url().'/',
+			'UA_SMARTFEED_SITE_URL'				=> generate_board_url(),
 			'UA_SMARTFEED_USER_ID'				=> $smartfeed_user_id,
 
 			)
