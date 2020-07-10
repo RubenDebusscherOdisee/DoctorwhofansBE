@@ -373,6 +373,11 @@ a {
     float: right;
 }
 
+.Missing {
+    color: yellow !;
+    background-color: red !important;
+}
+
 .WikiItemTitel {
     width: 100%;
     text-align: center;
@@ -381,10 +386,7 @@ a {
     clear: both;
 }
 
-.Missing {
-    color: yellow;
-    background-color: red;
-}
+
 
 .foto_met_text {
     border: 2px solid black;

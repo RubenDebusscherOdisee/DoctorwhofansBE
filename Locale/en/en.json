@@ -51,7 +51,13 @@
     "tenure":"Tenure",
     "first_episode":"First Episode",
     "last_episode":"Last Episode",
-    "NoQuotesForChar":"We were unable to find any quotes for this character." 
+    "NoQuotesForChar":"We were unable to find any quotes for this character.",
+    "NovelisedAs":"Novelised as",
+    "AdaptedInto":"Adapted into",
+    "AdaptedFrom":"Adapted from",
+    "BasedOn":"Based on",
+    "ScriptRelease":"Script Release",
+    "Tardisode": "TARDISOde"
     
     
 

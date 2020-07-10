@@ -51,5 +51,12 @@
     "tenure":"Periode",
     "first_episode":"Eerste aflevering",
     "last_episode":"Laatste aflevering",
-    "NoQuotesForChar":"Er werden voor dit personage nog geen quotes gevonden." 
+    "NoQuotesForChar":"Er werden voor dit personage nog geen quotes gevonden.",
+    "NovelisedAs":"Uitgegeven in boekvorm als",
+    "AdaptedInto":"Geadapteerd naar",
+    "AdaptedFrom":"Geadapteerd van",
+    "BasedOn":"Gebaseerd op",
+    "ScriptRelease":"Script Release",
+    "Tardisode": "TARDISOde"
+
 }

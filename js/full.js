@@ -5121,13 +5121,14 @@ function contentophalen(taal, menu) {
 				$("#Items").append("<div class=WikiRule>" + translations[0].Doctor + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
 			if (resultaat.data[i].A_Type === "EpisodeMainSetting") {
-				$("#Items").append("<div class=WikiItemTitel>" + translations[0].Story + "</div>");
+				
 				$("#Items").append("<div class=WikiRule>" + translations[0].main_setting + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
 			if (resultaat.data[i].A_Type === "EpisodeMainEnemy") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].main_enemy + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
 			if (resultaat.data[i].A_Type === "EpisodeStoryNumber") {
+				$("#Items").append("<div class=WikiItemTitel>" + translations[0].Story + "</div>");
 				$("#Items").append("<div class=WikiRule>" + translations[0].Story_number + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
 			if (resultaat.data[i].A_Type === "EpisodePremiereNetwork") {
@@ -5184,8 +5185,20 @@ function contentophalen(taal, menu) {
 			if (resultaat.data[i].A_Type === "MagazinePublisher") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].Publisher + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}
-
-			
+			if (resultaat.data[i].A_Type === "EpisodeNovelisedAs") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].NovelisedAs + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}if (resultaat.data[i].A_Type === "EpisodeAdaptedInto") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].AdaptedInto + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}if (resultaat.data[i].A_Type === "EpisodeTARDISOde") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].Tardisode + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
+			if (resultaat.data[i].A_Type === "EpisodeAdaptedFrom") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].AdaptedFrom + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}if (resultaat.data[i].A_Type === "EpisodeBasedOn") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].BasedOn + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}if (resultaat.data[i].A_Type === "EpisodeScriptRelease") {
+				$("#Items").append("<div class=WikiRule>" + translations[0].ScriptRelease + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
+			}
 			if (resultaat.data[i].A_Type === "EpisodeProducerList") {
 				$("#Items").append("<div class=WikiRule>" + translations[0].produced_by + ": <span>" + resultaat.data[i].A_Waarde + "</span></div>");
 			}

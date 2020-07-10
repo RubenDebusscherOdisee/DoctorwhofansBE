@@ -61,7 +61,7 @@ function buildpage(){
     createTable('Second', "Pagina's zonder titel","PagesWithoutTitle.php",'False');
     createTable('Third', "Populaire tijden","Populartimes.php",'False');
     createTable('Eighth', "Populaire tijden (oude versie)","Populartimes_old.php",'False');
-    createTable('Fourth', "Elementen per pagina (rode rijen hebben een reference op een andere pagina)","elementsperPage.php",'True');
+    createTable('Fourth', "Elementen per pagina","elementsperPage.php",'True');
     createTable('Seventh','Talen per pagina','langarrayperpage.php','True');
     createTable('Sixth','Types per pagina','typearrayperpage.php','True');
 

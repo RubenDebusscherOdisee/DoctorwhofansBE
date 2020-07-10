@@ -3412,6 +3412,12 @@ main img:not(#Loading, .quote_picture) {
   background-color: #add8e6
 }
 
+.Missing {
+  color: yellow !important;
+  background-color: red !important;
+}
+
+
 .Volledig {
   background-color: green;
 }
