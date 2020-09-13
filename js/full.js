@@ -1,4 +1,7 @@
 /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
+
+var Checkinterval;
+
 ! function (e, t) {
 	"use strict";
 	"object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
@@ -4604,7 +4607,7 @@ var currentTopic;
 var user;
 var UID = 0;
 var toon = "false";
-var slideIndex = 1;
+var slideIndex = 0;
 var ip;
 var session;
 var CONTENTID;
@@ -4701,25 +4704,40 @@ function checkmenu(menu) {
 				if (resultaat !== true) {
 					window.location.href = "https://www.doctorwhofans.be/notfound.html";
 				} else {
-					var interval = setInterval(function () {
+					Checkinterval = setInterval(function () {
 						$.ajax({
 							type: "GET",
 							url: "/php/alles.php?taal=" + getCookie("lang") + "&menu=" + menu,
 							dataType: 'json',
 							cache: false
 						}).done(function (resultaat) {
-							if (JSON.stringify(aantalrecords) == JSON.stringify(resultaat.data)) {} else {
-								if (confirm("Wilt u de nieuwe content ophalen?")) {
-									window.location.reload();
-								} else {
-									clearInterval(interval);
-								}
+							if (JSON.stringify(aantalrecords) != JSON.stringify(resultaat.data)) {
+								showUpdateDialog ();
 							}
 						}).fail(function (response, statusText, xhr) {}).always(function () {});
 					}, 10000);
 				}
 			}).fail(function (response, statusText, xhr) {}).always(function () {});
 	}
+
+}
+
+function showUpdateDialog(){
+	
+		$('.Yes').text(translations[0].Yes);
+		$('.No').text(translations[0].No);
+		$('#Update_text').text(translations[0].NewContent);
+		var e = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		document.getElementById("overlay_background").style.height = e;
+		$("#overlay_background, #overlay_Update").fadeIn(500);
+
+
+
+}
+
+function CloseDialogs(){
+	jQuery("[id^='overlay_'], #overlay").fadeOut(500);
+
 
 }
 
@@ -4745,7 +4763,6 @@ function ZoekPagina() {
 
 function zoeken(taal, menu, zoekterm, ip, UID) {
 	zoekterm = $("#zoekterm").val();
-	$("#overlay_background").height($("body").height())
 	$('#resultSet').html('');
 	$.ajax({
 		type: "GET",
@@ -5076,7 +5093,7 @@ function contentophalen(taal, menu) {
 		for (i = 0; i < resultaat.data.length; i += 1) {
 			
 			if (resultaat.data[i].A_Pagina_Type === "Slider") {
-				$(".col-6").append("<div class='slideshow-container'><a class='prev' onclick='plusSlides(-1)'>&#10094;</a><a class='next' onclick='plusSlides(1)'>&#10095;</a></div>");
+				$(".col-6").append("<div class='slideshow-container'><p id='SlidesCounter'></p><a class='prev' onclick='plusSlides(-1)'>&#10094;</a><a class='next' onclick='plusSlides(1)'>&#10095;</a></div>");
 			}
 			if (resultaat.data[i].A_Pagina_Type === "WikiPagina") {
 				$(".col-6").append("<div id='WikiDetails' class='bordered DarkBlueBackground'></div>");
@@ -5292,11 +5309,11 @@ function contentophalen(taal, menu) {
 				} else if (resultaat.data[i].A_Pagina_Type === "Slide") {
 					for (var l = 0; l < resultaat.data.length; l += 1) {
 						if (resultaat.data[l].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[l].A_Type === "Alt" || resultaat.data[l].A_Type === "Bijschrift")) {
-							$(".slideshow-container").append("<div class='mySlides'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[l].A_Waarde + "' title='" + resultaat.data[l].A_Waarde + "'style='width:80%;padding-left:6em;'><div class='text'>" + resultaat.data[l].A_Waarde + "</div></div>");
+							$(".slideshow-container").append("<div class='mySlides'><img src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[l].A_Waarde + "' title='" + resultaat.data[l].A_Waarde + "' class='" + resultaat.data[i].A_Klasse + "'><p class='text'>" + resultaat.data[l].A_Waarde + "</p></div>");
 						}
 					}
 					setTimeout(function () {
-						showSlides(this.slideIndex);
+						InitialSlides();
 					}, 1000);
 				} else {
 					for (var m = 0; m < resultaat.data.length; m += 1) {
@@ -5533,16 +5550,30 @@ function plusSlides(n) {
 	showSlides(slideIndex += n);
 }
 
+function InitialSlides(){
+	$( ".mySlides:eq( "+slideIndex+" )" ).fadeIn(800);
+	var slides = document.getElementsByClassName("mySlides");
+	var CurrentImageIndex = slideIndex.valueOf();
+	CurrentImageIndex = CurrentImageIndex +=1;
+	$("#SlidesCounter").text( CurrentImageIndex+' / '+ slides.length);
+}
+
 function showSlides(n) {
 	var i;
 	var slides = document.getElementsByClassName("mySlides");
-	if (n > slides.length) {
-		slideIndex = 1;
+	if (n >= slides.length) {
+		slideIndex = 0;
+	}
+	if(n ==-1){
+		slideIndex=slides.length-1;
 	}
 	for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
+		$( ".mySlides" ).fadeOut(400);
 	}
-	slides[slideIndex - 1].style.display = "block";
+	$( ".mySlides:eq( "+slideIndex+" )" ).fadeIn(800);
+	var CurrentImageIndex = slideIndex.valueOf();
+	CurrentImageIndex = CurrentImageIndex +=1;
+	$("#SlidesCounter").text( CurrentImageIndex+' / '+ slides.length);
 }
 $(window).scroll(function () {
 	if ($(this).scrollTop() > 100) {
@@ -6053,3 +6084,6 @@ function ToggleImg() {
 $(document).ready(function () {
 	window.addEventListener('onbeforeprint', printContent);
 });
+
+
+

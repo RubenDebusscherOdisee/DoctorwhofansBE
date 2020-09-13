@@ -1,0 +1,10 @@
+services:
+
+    phpbbservices.selectivemassemails.listener:
+        class: phpbbservices\selectivemassemails\event\main_listener
+        arguments:
+            - '@request'
+            - '@dbal.conn'
+            - '@language'
+        tags:
+            - { name: event.listener }

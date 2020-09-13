@@ -15,8 +15,20 @@ ul.topiclist li {
 
 ul.topiclist dl {
 	position: relative;
-	width:100%;
+	min-width:97%;
+	max-width: 100%;
 }
+.header .topics {margin-left: -2.5vw;}
+@media (max-width: 1024px) {
+	.header .topics {margin-left: -1vw;}
+}
+
+@media (min-width: 2000px) {
+	.header .topics {margin-left: -3vw;}
+  }
+
+
+
 
 ul.topiclist li.row dl {
 	margin: 2px 0;
@@ -53,7 +65,6 @@ ul.topiclist.two-columns dt {
 ul.topiclist dt .list-inner {
 	margin-right: 440px;
 	padding-left: 5px;
-	padding-right: 5px;
 }
 
 ul.topiclist.missing-column dt .list-inner {
@@ -157,9 +168,6 @@ dl.row-item dt {
 	background-size: 17px;
 }
 
-dl.row-item dt .list-inner {
-	padding-left: 52px;					/* Space for folder icon */
-}
 
 dl.row-item dt, dl.row-item dd {
 	min-height: 35px;
@@ -289,7 +297,7 @@ dd.option {
 }
 
 .search .postbody {
-	width: 68%
+	width: 68%;
 }
 
 /* Topic review panel
@@ -492,7 +500,7 @@ blockquote cite:before, .uncited:before {
 	padding-right: 5px;
 }
 
-blockquote cite > div {
+blockquote cite > span {
 	float: right;
 	font-weight: normal;
 }
@@ -561,6 +569,7 @@ blockquote .codebox {
 	clear: left;
 	border-top: 1px solid transparent;
 	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 .attachbox dd dd {

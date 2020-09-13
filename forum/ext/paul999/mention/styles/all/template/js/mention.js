@@ -15,7 +15,7 @@ $(document).ready(function () {
             },
 
             selectTemplate: function (item) {
-                return '[mention]' + item.original.value + '[/mention]';
+                return '[user]' + item.original.value + '[/user]';
             },
 
             values: function (text, cb) {

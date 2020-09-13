@@ -1,0 +1,38 @@
+{
+    "name": "rxu/listsubforumsincolumns",
+    "type": "phpbb-extension",
+    "description": "Allows to choose how subforums are listed - in line or in column(s) on per-forum basis.",
+    "homepage": "http://www.phpbbguru.net",
+    "version": "2.1.0",
+    "time": "2020-05-19",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Палыч",
+            "homepage": "http://www.phpbbguru.net",
+            "role": "Developer"
+        },
+        {
+            "name": "rxu",
+            "homepage": "http://www.phpbbguru.net",
+            "role": "Converting to extension"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phpbb/phpbb": ">=3.2.0",
+        "composer/installers": "~1.0.0"
+    },
+    "extra": {
+        "display-name": "List subforums in columns",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/list_subforums_in_columns",
+            "filename": "version_check",
+            "ssl": true
+        }
+    }
+}

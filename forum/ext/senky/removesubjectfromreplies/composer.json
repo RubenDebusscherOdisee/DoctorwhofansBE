@@ -2,7 +2,7 @@
     "name": "senky/removesubjectfromreplies",
     "type": "phpbb-extension",
     "description": "This extension will remove subject option from replies.",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "license": "GPL-2.0-only",
     "authors": [
         {
@@ -27,7 +27,8 @@
         "version-check": {
             "host": "www.phpbb.com",
             "directory": "/customise/db/extension/remove_subject_from_replies",
-            "filename": "version_check"
+            "filename": "version_check",
+            "ssl": true
         }
     }
 }

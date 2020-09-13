@@ -29,7 +29,7 @@
 		{section name=row loop=$data}
 		<tr class="listing">
 			{foreach from=$columns item=col}
-			<td>{$data[row][$col]}</td>
+			<td>{$data[row][$col]|escape}</td>
 			{/foreach}
 		</tr>
 		{/section}

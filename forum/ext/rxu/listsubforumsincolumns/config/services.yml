@@ -1,0 +1,7 @@
+services:
+    rxu.listsubforumsincolumns.listener:
+        class: rxu\listsubforumsincolumns\event\listener
+        arguments:
+            - '@request'
+        tags:
+            - { name: event.listener }

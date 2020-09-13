@@ -111,21 +111,10 @@
                     .clientHeight;
                 document.getElementById("overlay_background").style.height = e;
                 jQuery("#overlay_background, #overlay").fadeIn(b);
-                d();
                 return false
             });
-            jQuery(".close_zoeken").click(function (e) {
-                e.preventDefault();
-                jQuery("#overlay_background, #overlay_Zoeken").fadeOut(b);
-                a();
-                return false
-            });
-            jQuery(".close").click(function (e) {
-                e.preventDefault();
-                jQuery("#overlay_background, #overlay").fadeOut(b);
-                a();
-                return false
-            });
+            
+           
 
             function a() {
                 document.documentElement.style.overflow = "auto";
@@ -418,10 +407,14 @@
 
     <a href="#" id="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG"
             data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
-    <div id=overlay_background></div>
+    <div id=overlay_background onclick="CloseDialogs()"></div>
     <div id="overlay_Zoeken" class="darkBlueBackground bordered padded">
-        <a href=# class="close_zoeken link"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>
+        <a href=# class="close_zoeken link" onclick="CloseDialogs()"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>
         <div id="resultSet"></div>
+    </div>
+    <div id="overlay_Update" class="darkBlueBackground bordered padded">
+    <div id="Update_text"></div>
+    <button class="Yes" onclick="window.location.reload()"></button><button class="No" OnClick="clearInterval(Checkinterval);CloseDialogs()"></button>
     </div>
     <div id=overlay class="darkBlueBackground bordered padded">
         <h1>Kies uw taal</h1>
@@ -444,7 +437,7 @@
             </a>
         </div>
         <div class=taal>
-            <a href=# class="close link">
+            <a href=# class="close link"  onclick="CloseDialogs()"> 
                 <img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG />
                 Close</a>
         </div>

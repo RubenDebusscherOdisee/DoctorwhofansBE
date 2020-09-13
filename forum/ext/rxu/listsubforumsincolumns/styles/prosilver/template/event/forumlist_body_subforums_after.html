@@ -1,0 +1,12 @@
+{% if forumrow.S_COLUMNS_ENABLED %}
+	-->
+	<br /><strong>{{ forumrow.L_SUBFORUM_STR }}{{ lang('COLON') }}</strong><br />
+	<span class="list_subforums_in_columns">
+	{% for subforum in forumrow.subforum %}
+		<a href="{{ subforum.U_SUBFORUM }}" class="subforum{% if subforum.S_UNREAD %} unread{% else %} read{% endif %}" title="{% if subforum.S_UNREAD %}{{ lang('UNREAD_POSTS') }}{% else %}{{ lang('NO_UNREAD_POSTS') }}{% endif %}">
+		<i class="icon {% if subforum.IS_LINK %}fa-external-link{% else %}fa-file-o{% endif %} fa-fw {% if subforum.S_UNREAD %} icon-red{% else %} icon-blue{% endif %} icon-md" aria-hidden="true"></i>{{ subforum.SUBFORUM_NAME }}</a>{% if not subforum.S_LAST_ROW %}{{ lang('COMMA_SEPARATOR') }}{% endif %}
+		{% if not subforum.S_LAST_ROW %}<br />{% endif %}
+		{% if subforum.S_SWITCH_COLUMN and not subforum.S_LAST_ROW %}</span><span class="list_subforums_in_columns">{% endif %}
+	{% endfor %}
+	</span>
+{% endif %}

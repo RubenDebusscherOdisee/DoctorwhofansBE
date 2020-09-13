@@ -39,7 +39,7 @@ self.addEventListener('fetch', function (event) {
         return fetch(fetchRequest).then(
           function (response) {
           // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
+            if ((!response || response.status !== 200 || response.type !== 'basic') && response.url.indexOf('/php/') ==-1) {
               return response;
             }
             // IMPORTANT: Clone the response. A response is a stream

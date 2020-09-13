@@ -1,0 +1,15 @@
+.lfwwh_button_users, .lfwwh_button_bots {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+	color: inherit;
+}
+.lfwwh_debug {
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+	padding: 2px;
+	font-size: smaller;
+}

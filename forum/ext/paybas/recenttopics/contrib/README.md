@@ -1,21 +1,21 @@
-Recent Topics for phpBB 3.2
-============
+Recent Topics for phpBB 3.2 / 3.3 (cdb)
+==========
 
-Extension for phpBB 3.2 to display recent topics.
+Extension for phpBB to display recent topics.
 Based on NV Recent Topics for phpBB 3.0, by Joas Schilling ([nickvergessen](https://github.com/nickvergessen))
 
 #### Version
-v2.2.7 (25/02/2018)
-[![Build Status](https://api.travis-ci.org/Sajaki/RecentTopics.svg)](https://travis-ci.org/Sajaki/RecentTopics)
-
+v2.2.13 (29/06/2020) [![Build Status](https://travis-ci.org/Sajaki/RecentTopics.svg?branch=develop32)](https://travis-ci.org/Sajaki/RecentTopics)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+    
 #### Support
-- [Support forum](https://www.avathar.be/bbdkp/viewforum.php?f=65)
+- [Support forum](https://www.avathar.be/forum/viewforum.php?f=65)
 
 #### Requirements
 - phpBB 3.2.0 or higher
 
 #### Features
-- Adds a list of recent (or unread) topics to the index page.
+- Adds a list of recent (or unread) topics or last reply to topics to the index page.
 - UCP permissions and settings so users can choose their own preferences to override ACP.
 - can view all recent topics on a special page /app.php/rt (as of 2.2.7)
 - ACP / UCP Options:
@@ -30,11 +30,13 @@ v2.2.7 (25/02/2018)
   - exclusion of topics (by ID)
   - display parent forum name in the row
 - Inherits all styling from regular "viewforum" templates
+- filters "re: from replies" (as of 2.2.11)
 - compatible with 
    - "Pre:fixed" Extension from imkingdavid 
    - “Topic Prefix“ Extension from Stathis.
+   - official extension "phpbb/topicprefixes"
    - Mchat 2.0.1 (as of 2.2.3)  
-   - Collapsible Categories (as of 2.2.6)
+   - Collapsible Categories v2 (as of v2.2.9)
 - Tested on:
   - prosilver  
   - we_clearblue (only non-cdb verion), 
@@ -49,7 +51,7 @@ v2.2.7 (25/02/2018)
 - Portuguese, Arabic, Czech (as of 2.2.7) 
   
 ### Installation
-1. [Download the latest release](https://www.avathar.be/bbdkp/app.php/dlext/?view=detail&df_id=35) and unzip it.
+1. [Download the latest release](https://www.avathar.be/forum/app.php/dlext/?view=detail&df_id=35) and unzip it.
     - cdb build = built for phpBB CDB
     - standard build = has extra features, support for styles not in Cdb.
 2. Copy the entire contents from the unzipped folder to `/ext/paybas/recenttopics/`.

@@ -7,7 +7,7 @@
     $antwoord = [];
 	$antwoord['data'] = "Geen resultaten gevonden.";
 	mysqli_set_charset($conn,'utf8');
-	$stmt1 = $conn->prepare("call SearchFunction(?,?)");
+	$stmt1 = $conn->prepare("call SearchFullFunction(?,?)");
 	if(!$stmt1){
         die("Statement preparing failed: " . $conn->error);
 	}

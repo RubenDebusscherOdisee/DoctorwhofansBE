@@ -5,13 +5,7 @@
     "homepage": "https://github.com/MarkusWME/phpBB---Name-Suggestions",
     "version": "1.0.1",
     "time": "2017-05-27",
-    "keywords": [
-        "user",
-        "group",
-        "username",
-        "group name",
-        "suggestion"
-    ],
+    "keywords": ["user", "group", "username", "group name", "suggestion"],
     "license": "GPL-2.0",
     "authors": [
         {
@@ -22,8 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "phpbb/phpbb": ">=3.2"
+        "php": ">=5.3.3"
     },
     "extra": {
         "display-name": "Name Suggestions",
@@ -31,9 +24,9 @@
             "phpbb/phpbb": ">=3.2"
         },
         "version-check": {
-            "host": "www.phpbb.com",
-            "directory": "/customise/db/extension/name_suggestions",
-            "filename": "version_check"
+            "host": "api.pcgf.at",
+            "directory": "/phpbb",
+            "filename": "namesuggestions.json"
         }
     }
 }

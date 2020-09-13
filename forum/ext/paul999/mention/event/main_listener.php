@@ -31,7 +31,7 @@ class main_listener implements EventSubscriberInterface
 	/**
 	 * @var string
 	 */
-	private $regex = '#\[mention\]<\/s>(.*?)<e>\[\/mention\]#';
+	private $regex = '#\[user\]<\/s>(.*?)<e>\[\/user\]#';
 
 	/**
 	 * @var helper
@@ -351,7 +351,7 @@ class main_listener implements EventSubscriberInterface
 			return;
 		}
 		$page_data = $event['page_data'];
-		$page_data['MESSAGE'] = preg_replace('#\[mention\](.*?)\[\/mention\]#uis', '@\\1', $page_data['MESSAGE']);
+		$page_data['MESSAGE'] = preg_replace('#\[user\](.*?)\[\/user\]#uis', '@\\1', $page_data['MESSAGE']);
 		$event['page_data'] = $page_data;
 	}
 

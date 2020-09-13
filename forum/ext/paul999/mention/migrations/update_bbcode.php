@@ -32,7 +32,7 @@ class update_bbcode extends container_aware_migration
 		$install->install_bbcodes([
 			'mention' => [
 				'display_on_posting'	=> false,
-				'bbcode_match'		    => '[mention]{TEXT}[/mention]',
+				'bbcode_match'		    => '[user]{TEXT}[/user]',
 				'bbcode_tpl'		    => '<span class="mention">@{TEXT}</span>',
 			],
 		]);

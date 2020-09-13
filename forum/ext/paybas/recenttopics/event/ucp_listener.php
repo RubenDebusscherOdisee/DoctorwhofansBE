@@ -14,15 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use phpbb\language\language;
 
 /**
- * An EventSubscriber knows himself what events he is interested in.
- * If an EventSubscriber is added to an EventDispatcherInterface, the manager invokes
- * {@link getSubscribedEvents} and registers the subscriber as a listener for all
- * returned events.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
- * @author Jonathan Wage <jonwage@gmail.com>
- * @author Roman Borschel <roman@code-factory.org>
- * @author Bernhard Schussek <bschussek@gmail.com>
+ * Event listener
  */
 class ucp_listener implements EventSubscriberInterface
 {
@@ -56,6 +48,9 @@ class ucp_listener implements EventSubscriberInterface
 	 */
 	protected $language;
 
+	/* @var \phpbb\db\driver\driver_interface */
+	protected $db;
+
 	/**
 	 * ucp_listener constructor.
 	 *
@@ -65,13 +60,16 @@ class ucp_listener implements EventSubscriberInterface
 	 * @param \phpbb\template\template $template
 	 * @param \phpbb\user              $user
 	 * @param \phpbb\language\language $language
+	 * @param \phpbb\db\driver\driver_interface $db
 	 */
 	public function __construct(\phpbb\auth\auth $auth,
 		\phpbb\config\config $config,
 		\phpbb\request\request $request,
 		\phpbb\template\template $template,
 		\phpbb\user $user,
-		\phpbb\language\language $language)
+		\phpbb\language\language $language,
+		\phpbb\db\driver\driver_interface $db
+	)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -79,6 +77,7 @@ class ucp_listener implements EventSubscriberInterface
 		$this->template = $template;
 		$this->user = $user;
 		$this->language = $language;
+		$this->db = $db;
 	}
 
 	/**
@@ -89,6 +88,7 @@ class ucp_listener implements EventSubscriberInterface
 		return array(
 		'core.ucp_prefs_view_data'        => 'ucp_prefs_get_data',
 		'core.ucp_prefs_view_update_data' => 'ucp_prefs_set_data',
+		'core.ucp_register_data_after'		  => 'ucp_register_set_data'
 		);
 	}
 
@@ -102,7 +102,7 @@ class ucp_listener implements EventSubscriberInterface
 			$event['data'], array(
 			'rt_enable'          => $this->request->variable('rt_enable', (int) $this->user->data['user_rt_enable']),
 			'rt_location'        => $this->request->variable('rt_location', $this->user->data['user_rt_location']),
-			'rt_number'          => $this->request->variable('rt_number', $this->user->data['user_rt_number']),
+			'rt_number'          => $this->request->variable('rt_number', (int) $this->user->data['user_rt_number']),
 			'rt_sort_start_time' => $this->request->variable('rt_sort_start_time', (int) $this->user->data['user_rt_sort_start_time']),
 			'rt_unread_only'     => $this->request->variable('rt_unread_only', (int) $this->user->data['user_rt_unread_only']),
 			)
@@ -115,6 +115,7 @@ class ucp_listener implements EventSubscriberInterface
 
 			$template_vars = array();
 
+			// if authorised for one of these then set ucp master template variable to true
 			if ($this->auth->acl_get('u_rt_enable') || $this->auth->acl_get('u_rt_location') || $this->auth->acl_get('u_rt_sort_start_time') || $this->auth->acl_get('u_rt_unread_only'))
 			{
 				$template_vars += array(
@@ -198,5 +199,27 @@ class ucp_listener implements EventSubscriberInterface
 			'user_rt_unread_only'     => $event['data']['rt_unread_only'],
 			)
 		);
+	}
+
+	/**
+	 * After new user registration, set rt user parameters to default;
+	 * @param $event
+	 */
+	public function ucp_register_set_data($event)
+	{
+
+		$sql_ary = array(
+			'user_rt_enable'      => (int) $this->config['rt_index'],
+			'user_rt_sort_start_time'     => (int) $this->config['rt_sort_start_time'] ,
+			'user_rt_unread_only'      => (int) $this->config['rt_unread_only'],
+			'user_rt_location'      => $this->config['rt_location'],
+			'user_rt_number'      => ((int) $this->config['rt_number'] > 0 ? (int) $this->config['rt_number'] : 5 )
+		);
+
+		$sql = 'UPDATE ' . USERS_TABLE . '
+                SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+                WHERE user_id = ' . (int) $this->user->data['user_id'];
+
+		$this->db->sql_query($sql);
 	}
 }

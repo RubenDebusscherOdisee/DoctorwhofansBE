@@ -3100,6 +3100,7 @@ main {
 
 footer {
   text-align: center;
+
 }
 
 main,
@@ -3295,6 +3296,29 @@ main img:not(#Loading, .quote_picture) {
   border-radius: 5px
 }
 
+.mySlides{display: none;    position: fixed;
+  width: 100%;}
+
+.mySlides img{    clear: both;
+  margin: auto;
+  z-index: 100;
+  display: block;height: 32em;}
+  .mySlides p,.slideshow-container p{display: block;width: fit-content;max-width: 50%;margin: auto;}
+  .next{float: right;}
+
+.portrait{width: 20%;}
+
+.Wiki_Foto.portrait {
+  width: 70%;
+  margin: auto;
+  display: block;
+}
+
+.Wiki_Foto.landscape {
+  max-width: 100%;
+  margin: auto;
+}
+
 .DarkBlueBackground {
   background-color: #206090;
   color: white
@@ -3328,8 +3352,8 @@ main img:not(#Loading, .quote_picture) {
 .inline_vid p{padding-left: 1em;}
 
 #overlay_background {
-  position: absolute;
-  top: 2em;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   opacity: 0.5;
@@ -3338,15 +3362,16 @@ main img:not(#Loading, .quote_picture) {
 #overlay_Zoeken a{display: block;}
 #overlay_Zoeken a:hover,#overlay_Zoeken a:focus{text-decoration: none;}
 #overlay_Zoeken,
-#overlay {
+#overlay,#overlay_Update {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 8%;
   overflow-y: auto;
   width: 60%;
   left: 20%;
   height: 86vh;
-  ;
+  text-align: center;
+  line-height: 2em;
 }
 
 .OverzichtItem {
@@ -3392,7 +3417,7 @@ main img:not(#Loading, .quote_picture) {
 }
 
 #WikiDetails {
-  max-width: 23%;
+  width: 20%;
   float: right;
   padding: 0.4em;
   margin-top: -7em;
@@ -3400,11 +3425,7 @@ main img:not(#Loading, .quote_picture) {
   margin-right: 1em;
 }
 
-#WikiDetails img {
-  max-width: 75%;
-  display: block;
-  margin: auto;
-}
+
 
 .WikiItemTitel {
   text-align: center;
@@ -3559,6 +3580,8 @@ img[class*=" max_"] {
   margin-top: -20em
 }
 
+
+
 img[class^="negative_margin_top_"],
 img[class*=" negative_margin_top_"] {
   margin-top: 0;
@@ -3628,8 +3651,9 @@ img[class*=" negative_margin_top_"] {
   }
 
   #WikiDetails {
-    max-width: 50%;
+    max-width: 40%;
     margin-top: 0em;
+    margin-bottom: 1em;
   }
 }
 
@@ -3640,15 +3664,15 @@ img[class*=" negative_margin_top_"] {
     max-width: 100%;
   }
 
+  #Inhoud{min-width: 94%;}
+
   #WikiDetails {
-    max-width: 100%;
     margin-top: 0em;
     margin-bottom: 1em;
+    min-width: 94%; display: block;margin-left: auto;margin-right: auto;
   }
+  h2{clear:both}
 
-  #Inhoud {
-    max-width: 100%;
-  }
 
 }
 
@@ -4217,3 +4241,37 @@ img[class*=" negative_margin_top_"] {
   }
 }
 
+@media all and (max-width: 600px)
+{
+
+table {
+display: block;
+}
+
+table caption {
+display: inline-block;
+}
+
+table tbody tr {
+display: inline-grid;
+border: solid yellow inset 5px;
+}
+table thead th{border-right:1px solid;margin-right: 0.2rem;padding-right: 0.2rem;
+}
+
+table th {
+display: inline-block;
+border: none;
+margin-right: 0.2rem;
+}
+
+table td {
+display: table-cell;
+margin-right: 0.2rem;
+}
+
+.content_Table{min-width: 100%;}
+
+}
+.content_Table{    max-width: 96vw;
+  min-width: 65vw;text-align: center;}

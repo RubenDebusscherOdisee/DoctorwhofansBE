@@ -28,7 +28,9 @@ if (!defined('IN_PHPBB'))
 * @param int	$parent_id parent_id of the current set (default = 0)
 * @param array	$where	contains strings to compare closer on the where statement (additional)
 */
-function recalc_nested_sets(&$new_id, $pkey, $table, $parent_id = 0, $where = array())
+
+if(!function_exists('recalc_nested_sets')){
+	function recalc_nested_sets(&$new_id, $pkey, $table, $parent_id = 0, $where = array())
 {
 	global $db;
 
@@ -59,11 +61,14 @@ function recalc_nested_sets(&$new_id, $pkey, $table, $parent_id = 0, $where = ar
 	}
 	$db->sql_freeresult($result);
 }
+}
+
 
 /**
 * Simple version of jumpbox, just lists authed forums
 */
-function make_forum_select($select_id = false, $ignore_id = false, $ignore_acl = false, $ignore_nonpost = false, $ignore_emptycat = true, $only_acl_post = false, $return_array = false)
+if(!function_exists('make_forum_select')){
+	function make_forum_select($select_id = false, $ignore_id = false, $ignore_acl = false, $ignore_nonpost = false, $ignore_emptycat = true, $only_acl_post = false, $return_array = false)
 {
 	global $db, $auth, $phpbb_dispatcher;
 
@@ -154,11 +159,14 @@ function make_forum_select($select_id = false, $ignore_id = false, $ignore_acl =
 
 	return $forum_list;
 }
+}
+
 
 /**
 * Generate size select options
 */
-function size_select_options($size_compare)
+if(!function_exists('size_select_options')){
+	function size_select_options($size_compare)
 {
 	global $user;
 
@@ -175,6 +183,8 @@ function size_select_options($size_compare)
 
 	return $s_size_options;
 }
+}
+
 
 /**
 * Generate list of groups (option fields without select)
@@ -185,7 +195,10 @@ function size_select_options($size_compare)
 *
 * @return string The list of options.
 */
-function group_select_options($group_id, $exclude_ids = false, $manage_founder = false)
+
+
+if(!function_exists('group_select_options')){
+	function group_select_options($group_id, $exclude_ids = false, $manage_founder = false)
 {
 	global $db, $config, $phpbb_container;
 
@@ -214,6 +227,8 @@ function group_select_options($group_id, $exclude_ids = false, $manage_founder =
 
 	return $s_group_options;
 }
+}
+
 
 /**
 * Obtain authed forums list

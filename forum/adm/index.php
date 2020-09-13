@@ -22,7 +22,7 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 require($phpbb_root_path . 'common.' . $phpEx);
 require($phpbb_root_path . 'includes/functions_acp.' . $phpEx);
-require($phpbb_root_path . 'includes/functions_admin.' . $phpEx);
+include_once($phpbb_root_path . 'includes/functions_admin.' . $phpEx);
 require($phpbb_root_path . 'includes/functions_module.' . $phpEx);
 
 // Start session management

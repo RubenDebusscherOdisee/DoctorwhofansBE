@@ -51,7 +51,7 @@ class image extends operator implements image_interface
 
 	public function is_writable()
 	{
-		if ($this->filesystem->is_writable($this->img_path))
+		if ($this->filesystem->exists($this->img_path) && $this->filesystem->is_writable($this->img_path))
 		{
 			return true;
 		}
@@ -105,7 +105,7 @@ class image extends operator implements image_interface
 					$name = substr($file, 0, strrpos($file, '-x1.'));
 					if (!$this->filesystem->exists(array($name . '-x2' . $ext, $name . '-x3' . $ext)))
 					{
-						continue;
+						continue 2;
 					}
 					$images[] = basename($name) . $ext;
 			}
