@@ -5,11 +5,11 @@
 <div>
     <?php
         require("dbConfig.php");
-        $query = "SELECT COUNT(*) FROM events WHERE `status` = 1 and `date` >= current_date()";
+        $query = "SELECT COUNT(*) FROM events WHERE `status` = 1 and `event_date` >= current_date()";
         $result = mysqli_query($db,$query);
         $rows = mysqli_fetch_row($result);
         
-        if($rows ===0){
+        if($rows ==0){
             echo"<p style='clear:both;min-width:auto; width:100%;'>Sorry, we konden geen aankomende events vinden, probeer later opnieuw, of kijk in de kalender naar evenementen in het verleden.</p>";
             
         }else{
