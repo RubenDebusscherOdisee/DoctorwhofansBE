@@ -13,12 +13,68 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $( document ).ready(function() {
-               
+                $.ajax({
+                    type: "GET",
+                    url: "https://www.doctorwhofans.be/php/Children2.php",
+                    dataType: 'json',
+                    cache: false,
+                }).done(
+                    function(resultaat) {
+                        console.log(getNestedChildren(resultaat.data,0));
+                        createList(document.querySelector("ul"), getNestedChildren(resultaat.data,0));
+                    }).fail(function(response, statusText, xhr) {
+                }).always(function() {
+                });
             
             });
 
 
+        function getNestedChildren(arr, parent) {
+            var out = []
+            for(var i in arr) {
+                if(arr[i].parent_id == parent) {
+                    var children = getNestedChildren(arr, arr[i].id)
+
+                    if(children.length) {
+                        arr[i].children = children
+                    }
+                    out.push(arr[i])
+                }
+            }
+            return out
+        }
+
+    function ToggleItems(){
+                $(event.target.nextElementSibling.nextElementSibling).slideToggle()
+                if ($(event.target).text() == "+") {
+			$(event.target).text("-");
+		} else if ($(event.target).text() == "-") {
+			$(event.target).text("+");
+		}
+
+
+    }
         
+
+
+        function createList(parent, array) {
+            array.forEach(function (o) {
+                var li = document.createElement("li"),
+                    ul;
+
+                
+                if (o.children) {
+                    li.innerHTML = "<button class='SitemapButton' onclick=ToggleItems()>+</button><a href='"+o.link+"'>"+o.topic+"</a>";
+                    parent.appendChild(li);
+                    ul = document.createElement("ul");
+                    li.appendChild(ul);
+                    createList(ul, o.children);
+                }else{
+                    li.innerHTML = "<a href='"+o.link+"'>"+o.topic+"</a>";
+                    parent.appendChild(li);
+                }
+            });
+        }
             
         </script>
 

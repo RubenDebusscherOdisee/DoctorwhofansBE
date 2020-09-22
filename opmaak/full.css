@@ -5,6 +5,11 @@
     height: 2em;
 }
 
+.Missing {
+    color: yellow !important;
+    background-color: red !important;
+}
+
 .fa .fa-arrow-right{color:yellow}
 nav {
     border-bottom: 1px solid black
@@ -374,7 +379,7 @@ a {
 }
 
 .Missing {
-    color: yellow !;
+    color: yellow !important;
     background-color: red !important;
 }
 

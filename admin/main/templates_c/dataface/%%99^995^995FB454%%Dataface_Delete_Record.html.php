@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2020-01-17 00:13:50
+<?php /* Smarty version 2.6.18, created on 2020-07-01 13:08:11
          compiled from Dataface_Delete_Record.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'use_macro', 'Dataface_Delete_Record.html', 20, false),array('block', 'fill_slot', 'Dataface_Delete_Record.html', 21, false),array('block', 'define_slot', 'Dataface_Delete_Record.html', 23, false),array('function', 'block', 'Dataface_Delete_Record.html', 22, false),)), $this); ?>

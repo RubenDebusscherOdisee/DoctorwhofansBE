@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2020-01-17 00:13:50
+<?php /* Smarty version 2.6.18, created on 2020-07-01 13:08:11
          compiled from Dataface_DeleteForm.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('block', 'define_slot', 'Dataface_DeleteForm.html', 21, false),array('block', 'translate', 'Dataface_DeleteForm.html', 22, false),array('function', 'block', 'Dataface_DeleteForm.html', 25, false),)), $this); ?>

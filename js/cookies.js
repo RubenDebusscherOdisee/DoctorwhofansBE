@@ -81,7 +81,10 @@ function checkCookie() {
     if (menu === "News") {
         GetNews();
     }
-   
+    if (menu === "Companions") {
+        $(".col-6").append('<div class="open-close"></div>');
+        companionsophalen(taal, menu, id);
+    }
     contentophalen(taal, menu);
   }
 
@@ -114,7 +117,10 @@ function checkCookie() {
     if (menu === "News") {
         GetNews();
     }
-   
+    if (menu === "Companions") {
+        $(".col-6").append('<div class="open-close"></div>');
+        companionsophalen(taal, menu, id);
+    }
     //setLangstrings(taal);
     contentophalen(taal, menu);
   }

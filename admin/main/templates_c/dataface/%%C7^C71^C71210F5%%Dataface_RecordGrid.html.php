@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2020-06-01 20:05:32
+<?php /* Smarty version 2.6.18, created on 2020-09-13 13:51:03
          compiled from Dataface_RecordGrid.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'Dataface_RecordGrid.html', 20, false),)), $this); ?>
@@ -44,7 +44,7 @@ $this->_sections['row']['last']       = ($this->_sections['row']['iteration'] ==
 			<?php $_from = $this->_tpl_vars['columns']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['col']):
 ?>
-			<td><?php echo $this->_tpl_vars['data'][$this->_sections['row']['index']][$this->_tpl_vars['col']]; ?>
+			<td><?php echo ((is_array($_tmp=$this->_tpl_vars['data'][$this->_sections['row']['index']][$this->_tpl_vars['col']])) ? $this->_run_mod_handler('escape', true, $_tmp) : smarty_modifier_escape($_tmp)); ?>
 </td>
 			<?php endforeach; endif; unset($_from); ?>
 		</tr>
