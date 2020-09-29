@@ -1,4 +1,6 @@
 {
+    "PWATitle":"Ik kan sneller gevonden worden!",
+    "PWABody":"Wist je, dat je mij veel sneller kan terugvinden? Je kan mij makkelijk toevoegen aan je startscherm, en dan vind je mij onmiddelijk terug alsof ik een Echte App ben.</br>Heb je daar zin in? Klik dan op Ja.",
     "Announcement": "Momenteel is <a href='../Home/'>Doctor Who Fans België</a> in aanbouw. Als jullie nog verdere informatie, voorstellen of vragen hebben, mogen jullie me dat altijd laten weten. Ook verzoeken of inzendingen met betrekking tot de videos of foto's ed. zijn altijd welkom. Gegevens vind je op de contactpagina. Hier kan je ons ook rechtstreeks contacteren via het formulier.",
     "Disclaimer": "Doctor who en gerelateerde merken zijn geregistreerde merken van de BBC. Copyright &copy;1963 tot heden. De pagina's op deze website zijn uitsluitend voor educatieve - en entertainment doeleinden. Alle andere auteursrechten zijn eigendom van hun respectievelijke eigenaren. Het merendeel van onze bronnen zijn anoniem, dus als je eigen werk hierop tegenkomt of de bron kent, contacteer ons en wij zullen je werk de eer aandoen die het verdient.",
     "NoEpisodeOftheDay": "Op deze dag was er doorheen de geschiedenis geen aflevering van Doctor Who.",
@@ -61,5 +63,6 @@
     "BasedOn":"Gebaseerd op",
     "ScriptRelease":"Script Release",
     "Tardisode": "TARDISOde"
+
 
 }

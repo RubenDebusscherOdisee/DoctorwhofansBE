@@ -74,7 +74,7 @@ rewriteRule ^(.*) https://www.doctorwhofans.be/ [R=301,L]
         Header set Access-Control-Allow-Origin "https://wiki.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://*.doctorwhofans.be"
         Header set Access-Control-Allow-Origin "https://www.doctorwhofans.be"
-        Header set Access-Control-Allow-Origin "https://*doctorwhofans.be"
+        Header set Access-Control-Allow-Origin "*"
 
 
 

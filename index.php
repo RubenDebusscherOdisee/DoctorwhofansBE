@@ -366,6 +366,12 @@
                     </ol>
                 </div>
             </li>
+            <li class="rightItem installButton" onclick="A2HS()">
+                <h2><a href="#" class="toplink">Install <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                </h2>
+                <div class="cols-0">
+                </div>
+            </li>
 
         </ol>
     </nav>
@@ -411,6 +417,11 @@
     <div id="overlay_Zoeken" class="darkBlueBackground bordered padded">
         <a href=# class="close_zoeken link" onclick="CloseDialogs()"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>
         <div id="resultSet"></div>
+    </div>
+    <div id="overlay_PWA" class="darkBlueBackground bordered padded">
+                <h1 id="PWA_Title"></h1>
+                <p id="PWA_Body"></p>
+                <button class="Yes" onclick="window.location.reload()"></button><button class="No" OnClick="clearInterval(Checkinterval);CloseDialogs()"></button>
     </div>
     <div id="overlay_Update" class="darkBlueBackground bordered padded">
     <div id="Update_text"></div>

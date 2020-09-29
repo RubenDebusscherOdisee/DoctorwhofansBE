@@ -3380,7 +3380,8 @@ main img:not(#Loading, .quote_picture) {
 
 #overlay,
 #overlay_Update,
-#overlay_Zoeken {
+#overlay_Zoeken,
+#overlay_PWA {
     display: none;
     position: fixed;
     top: 8%;
@@ -3392,6 +3393,7 @@ main img:not(#Loading, .quote_picture) {
     line-height: 2em;
     z-index: 2
 }
+#overlay_PWA{height: 30vh;top:33%}
 
 .OverzichtItem {
     display: inline-flex;
@@ -4432,3 +4434,9 @@ img[class^=negative_margin_top_] {
 .timelines h2 {
     text-align: center
 }
+
+@media all and (display-mode: standalone) {
+    .installButton {
+      display: none;
+    }
+  }
