@@ -29,6 +29,19 @@ namespace oneall\sociallogin\auth\provider;
 */
 class oneall extends \phpbb\auth\provider\db
 {
+
+    /** @var \phpbb\db\driver\driver_interface $db */
+    protected $db;
+
+    /**
+    * Database Authentication Constructor
+    *
+    * @param \phpbb\db\driver\driver_interface $db
+    */
+    public function __construct(\phpbb\db\driver\driver_interface $db)
+    {
+        $this->db = $db;
+    }
     /**
      * {@inheritdoc}
      */
