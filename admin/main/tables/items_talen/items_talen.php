@@ -14,7 +14,8 @@ class tables_items_talen {
             $record->setValues(
                 array(
                     'item_id'=>(int)$Item_id,
-                    'taal_id'=>(int)$Taal_id
+                    'taal_id'=>(int)$Taal_id,
+                    'IT_Owner'=>tables_items_talen::IT_Owner__default()
                      )
                 );
             $records[] = $record;
@@ -56,6 +57,7 @@ class tables_items_talen {
                 array(
                     'item_id'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)->getValue(),
                     'taal_id'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue(),
+                    'IT_Owner'=>tables_items_talen::IT_Owner__default()
                     
                         )
                 );
@@ -71,5 +73,20 @@ class tables_items_talen {
         
     }
 
+    function IT_Owner__default(){
+        $auth =& Dataface_AuthenticationTool::getInstance();
+        $user =& $auth->getLoggedInUser();
+        if ( isset($user) ) return $user->val('User_Id');
+        return null;
+    }
+
+
+
+    function beforeSave (&$record){
+        $record->setValues(array(
+            'IT_Owner'=> tables_items_talen::IT_Owner__default(),
+        ));
+        //mail('logs@doctorwhofans.be','Subject Line', print_r($record)); 
+    }
 }
 ?>

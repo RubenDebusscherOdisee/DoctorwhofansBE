@@ -4905,7 +4905,7 @@ function quotesophalen(menu, id) {
 		}
 		for (i = 0; i < resultaat.data.length; i++) {
 			if (Number(id) === resultaat.data[i].id) {
-				$(".main_quote").append("<img class='quote_picture lazyload padded' data-src='../images/Quotes/" + resultaat.data[i].QuotePic + "'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
+				$(".main_quote").append("<img class='quote_picture lazyload padded' data-src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
 				$(".main_quote").append("<div><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
 			} else {
 				var quote = resultaat.data[i].Quote.substring(0, 60).replace(/<(.|\n)*?>/g, '');
@@ -4954,7 +4954,7 @@ function GetQuotesByCharacter(Character) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForChar + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/Quotes/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {
@@ -4978,7 +4978,7 @@ function GetQuotesByEpisode(Episode) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForEpisode + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/Quotes/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {

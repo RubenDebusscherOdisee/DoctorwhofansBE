@@ -46,8 +46,7 @@
 							{if $rv->logos|@count>0}
 								{foreach from=$rv->logos item=logo}
 									<div class="dataface-view-logo">
-									<span>{$ENV.url}</span>
-										<img src="https://www.doctorwhofans.be/images/Quotes/{$record->val($logo.name)}" alt="{$record->val($logo.name)}" style="width:100%"/>
+										<img src="https://www.doctorwhofans.be/images/{$ENV.table}/{$record->val($logo.name)}" alt="{$record->val($logo.name)}" style="width:100%"/>
 									</div>
 								{/foreach}
 							{else}
