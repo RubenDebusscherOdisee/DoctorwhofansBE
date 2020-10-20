@@ -34,34 +34,45 @@ class main_listener implements EventSubscriberInterface
 	const GUEST_HIDE_YES	= 1;	// Value for $this->config['primelinks_inlink_guest_hide'] and $this->config['primelinks_exlink_guest_hide']
 	const GUEST_HIDE_MSG	= 2;	// Value for $this->config['primelinks_inlink_guest_hide'] and $this->config['primelinks_exlink_guest_hide']
 
-	// Variables
-	/** @var \phpbb\template\template */
-	protected $template;
+	/**
+	* Variables
+	*/
+	protected $post_subjects = array();	// @var array cached post subjects
+	protected $topic_titles = array();	// @var array cached topic titles
+	protected $forum_names = array();	// @var array cached forum names
+	protected $site_url;				// @var string phpBB site path (without the path to phpBB)
 
-	/** @var \phpbb\user */
-	protected $user;
+	/**
+	* Service Containers
+	*/
+	protected $config;		// @var \phpbb\config\config
+	protected $db;			// @var \phpbb\db\driver\driver_interface
+	protected $template;	// @var \phpbb\template\template
+	protected $user;		// @var \phpbb\user
+	protected $php_ext;		// @var string php file extension
 
-	/** @var \phpbb\config\config */
-	protected $config;
-
-	/** @var string phpBB root path */
-	protected $board_url;
-
-	/** @var string phpBB domain host */
-	protected $board_host;
-
-	/** @var array settings for this extension */
-	protected $settings;
-
-	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config)
+	/**
+	* Constructor
+	*
+	* @param \phpbb\config\config				$config		Config object
+	* @param \phpbb\db\driver\driver_interface	$db			Database connection
+	* @param \phpbb\template\template 			$template	Template object
+	* @param \phpbb\user						$user		User object
+	* @param $phpExt							$phpExt		php file extension
+	* @access public
+	*/
+	public function __construct(
+		\phpbb\config\config $config,
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\template\template $template,
+		\phpbb\user $user,
+		$phpExt)
 	{
-		$this->template	= $template;
-		$this->user		= $user;
-		$this->config	= $config;
-
-		$this->board_url	= generate_board_url(true);
-		$this->board_url	= utf8_case_fold_nfc($this->board_url);
-		$this->board_host	= $this->extract_host($this->board_url);
+		$this->config		= $config;
+		$this->db			= $db;
+		$this->template		= $template;
+		$this->user			= $user;
+		$this->php_ext		= $phpExt;
 	}
 
 	static public function getSubscribedEvents()
@@ -226,9 +237,7 @@ class main_listener implements EventSubscriberInterface
 		$url = $this->extract_host($url);
 		$url = utf8_case_fold_nfc($url);
 		$url_split = array_reverse(explode('.', $url));
-
-		//$domain_list = is_string($domains) ? explode(';', $domains) : $domains;
-		$domain_list = is_string($domains) ? preg_split('/[\s,;]/', $domains, NULL, PREG_SPLIT_NO_EMPTY) : $domains;
+		$domain_list = is_string($domains) ? preg_split('/[\s,;]/', $domains, null, PREG_SPLIT_NO_EMPTY) : $domains;
 		foreach ($domain_list as $domain)
 		{
 			$domain = $this->extract_host($domain);
@@ -268,12 +277,17 @@ class main_listener implements EventSubscriberInterface
 	{
 		$url = strtolower($url);
 
+		if (!isset($this->site_url) || !$this->site_url)
+		{
+			$this->site_url = generate_board_url(true);
+			$this->site_url = utf8_case_fold_nfc($this->site_url);
+		}
+
 		// Compare the URLs
-		if (!($is_local = $this->match_domain($url, $this->board_url)))
+		if (!($is_local = $this->match_domain($url, $this->site_url)))
 		{
 			// If there is no scheme, then it's probably a relative, local link
 			$scheme = substr($url, 0, strpos($url, '://'));
-			//$is_local = !$scheme || ($scheme && !in_array($scheme, array('http', 'https', 'mailto', 'ftp', 'gopher')));
 			$is_local = !$scheme || ($scheme && !preg_match('/^[a-z0-9.]{2,16}$/i', $scheme));
 		}
 
@@ -347,6 +361,16 @@ class main_listener implements EventSubscriberInterface
 			return($message);
 		}
 
+		$skip_regex			= htmlspecialchars_decode($this->config['primelinks_skip_regex'], ENT_COMPAT);
+		$inlink_regex		= htmlspecialchars_decode($this->config['primelinks_inlink_regex'], ENT_COMPAT);
+		$exlink_regex		= htmlspecialchars_decode($this->config['primelinks_exlink_regex'], ENT_COMPAT);
+		$skip_prefix_regex	= htmlspecialchars_decode($this->config['primelinks_skip_prefix_regex'], ENT_COMPAT);
+		$use_titles_arr		= array();	// Used when replacing post, topic, and forum link text with their associated subject, title, or name
+		$posts_to_find		= array();	// Used when we need to find post subjects
+		$topics_to_find		= array();	// Used when we need to find topic titles
+		$forums_to_find		= array();	// Used when we need to find forum names
+		$replace			= array();
+
 		$this->user->add_lang_ext('primehalo/primelinks', 'common');
 		preg_match_all('#(<a\s[^>]+?>)(.*?)(</a>)#i', $message, $matches, PREG_SET_ORDER);
 		foreach ($matches as $linkbd)
@@ -368,7 +392,8 @@ class main_listener implements EventSubscriberInterface
 			}
 
 			// Check the link's protocol
-			$href	= $this->decode_entities($href);
+			$href	= $this->decode_entities($href);	// Decode encoded HTML entities
+			$href	= rawurldecode($href);				// Decode % sequences
 			$scheme	= substr($href, 0, strpos($href, ':'));
 			if ($scheme)
 			{
@@ -380,14 +405,14 @@ class main_listener implements EventSubscriberInterface
 			}
 
 			// Check if we should skip this link
-			if ($this->config['primelinks_skip_regex'] && @preg_match($this->config['primelinks_skip_regex'], $href))
+			if ($skip_regex && @preg_match($skip_regex, $href))
 			{
 				continue;
 			}
 
 			$is_local = null;
-			$is_local = ($this->config['primelinks_inlink_regex'] && @preg_match($this->config['primelinks_inlink_regex'], $href)) ? true : $is_local;
-			$is_local = ($this->config['primelinks_exlink_regex'] && @preg_match($this->config['primelinks_exlink_regex'], $href)) ? false : $is_local;
+			$is_local = ($inlink_regex && @preg_match($inlink_regex, $href)) ? true : $is_local;
+			$is_local = ($exlink_regex && @preg_match($exlink_regex, $href)) ? false : $is_local;
 			if ($is_local === null)
 			{
 				if ($this->config['primelinks_forbidden_domains'] && $this->match_domain($href, $this->config['primelinks_forbidden_domains']))
@@ -396,13 +421,13 @@ class main_listener implements EventSubscriberInterface
 					if (empty($this->config['primelinks_forbidden_new_url']))
 					{
 						$new_link = '<span class="link_removed">' . $new_text . '</span>';
+						$removed = true;
 					}
 					else
 					{
 						$new_link = $this->insert_attribute('href', $this->config['primelinks_forbidden_new_url'], $new_link, true) . $new_text . $linkbd['close'];
 					}
-					$searches[]		= $linkbd['full'];
-					$replacements[]	= $new_link;
+					$replace[$linkbd['full']] = $new_link;
 					continue;
 				}
 				$is_local = $this->is_url_local($href);
@@ -443,7 +468,7 @@ class main_listener implements EventSubscriberInterface
 			$is_guest = empty($this->user->data['is_registered']);
 			if ($new_target === false || ($is_guest && $this->config['primelinks_exlink_guest_hide'] && !$is_local) || ($is_guest && $this->config['primelinks_inlink_guest_hide'] && $is_local))
 			{
-				$new_text = $linkbd['text']; //$new_text = substr($linkbd['text'], 0, -4);
+				$new_text = $linkbd['text'];
 				if ($is_guest)
 				{
 					$new_text = (($this->config['primelinks_inlink_guest_hide'] == self::GUEST_HIDE_MSG) && $is_local) ? $this->user->lang['PRIMELINKS_INLINK_GUEST_MSG'] : $new_text;
@@ -451,23 +476,111 @@ class main_listener implements EventSubscriberInterface
 				}
 				$new_link = '<span class="link_removed">' . $new_text . '</span>';
 				$link = $linkbd['full'];
+				$removed = true;
 			}
 			else if ($is_local && $this->config['primelinks_inlink_prefix'])
 			{
-				$url_prefix = ($this->config['primelinks_skip_prefix_regex'] && @preg_match($this->config['primelinks_skip_prefix_regex'], $href)) ? '' : $this->config['primelinks_inlink_prefix'];
+				$url_prefix = ($skip_prefix_regex && @preg_match($skip_prefix_regex, $href)) ? '' : $this->config['primelinks_inlink_prefix'];
 				$new_link = str_replace('href="', 'href="' . $url_prefix, $new_link);
 			}
 			else if (!$is_local && $this->config['primelinks_exlink_prefix'])
 			{
-				$url_prefix = ($this->config['primelinks_skip_prefix_regex'] && @preg_match($this->config['primelinks_skip_prefix_regex'], $href)) ? '' : $this->config['primelinks_exlink_prefix'];
+				$url_prefix = ($skip_prefix_regex && @preg_match($skip_prefix_regex, $href)) ? '' : $this->config['primelinks_exlink_prefix'];
 				$new_link = str_replace('href="', 'href="' . $url_prefix, $new_link);
 			}
-			$searches[]		= $link;
-			$replacements[]	= $new_link;
-		}
-		if (isset($searches) && isset($replacements))
+
+			// Check to see if we should replace a local forum/topic/post link text with the forum/topic/post title instead
+			$board_path = !isset($board_path) ? generate_board_url() : $board_path;
+			if ($this->config['primelinks_inlink_use_titles'] && $is_local && empty($removed) && !empty($linkbd['text']) && strpos($href, str_replace('&amp;', '&', $linkbd['text'])) !== false) // Link is local and still exists and the link text contains a segment of the link URL
+			{
+				if (strpos($href, "{$board_path}/viewtopic.{$this->php_ext}") !== false || strpos($href, "./viewtopic.{$this->php_ext}") === 0 || strpos($href, "viewtopic.{$this->php_ext}") === 0)
+				{
+					parse_str(parse_url($href, PHP_URL_QUERY), $url_params);
+					if (!empty($url_params['p']))
+					{
+						$post_id = (int) $url_params['p'];
+						$posts_to_find[$post_id] = $post_id;
+						$use_titles_arr[$link . $linkbd['text'] . $linkbd['close']] = array('open' => $new_link, 'close' => $linkbd['close'], 'post_id' => $post_id);
+					}
+					else if (!empty($url_params['t']))
+					{
+						$topic_id = (int) $url_params['t'];
+						$topics_to_find[$topic_id] = $topic_id;
+						$use_titles_arr[$link . $linkbd['text'] . $linkbd['close']] = array('open' => $new_link, 'close' => $linkbd['close'], 'topic_id' => $topic_id);
+					}
+				}
+				else if (strpos($href, "{$board_path}/viewforum.{$this->php_ext}") !== false || strpos($href, "./viewforum.{$this->php_ext}") === 0 || strpos($href, "viewforum.{$this->php_ext}") === 0)
+				{
+					parse_str(parse_url($href, PHP_URL_QUERY), $url_params);
+					if (!empty($url_params['f']))
+					{
+						$forum_id = (int) $url_params['f'];
+						$forums_to_find[$forum_id] = $forum_id;
+						$use_titles_arr[$link . $linkbd['text'] . $linkbd['close']] = array('open' => $new_link, 'close' => $linkbd['close'], 'forum_id' => $forum_id);
+					}
+				}
+			}
+			$replace[$link] = $new_link;
+		} // end foreach of all matched links
+
+		// Make sure we're not looking up information we already have cached
+		$posts_to_find	= array_diff_key($posts_to_find, $this->post_subjects);
+		$topics_to_find	= array_diff_key($topics_to_find, $this->topic_titles);
+		$forums_to_find	= array_diff_key($forums_to_find, $this->forum_names);
+
+		// Find post subjects
+		if (!empty($posts_to_find))
 		{
-			$message = str_replace($searches, $replacements, $message);
+			$sql = 'SELECT post_id, post_subject FROM ' . POSTS_TABLE . ' WHERE ' . $this->db->sql_in_set('post_id', $posts_to_find);
+			$result = $this->db->sql_query($sql);
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$this->post_subjects[$row['post_id']] = $row['post_subject'];
+			}
+		}
+
+		// Find topic titles
+		if (!empty($topics_to_find))
+		{
+			$sql = 'SELECT topic_id, topic_title FROM ' . TOPICS_TABLE . ' WHERE ' . $this->db->sql_in_set('topic_id', $topics_to_find);
+			$result = $this->db->sql_query($sql);
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$this->topic_titles[$row['topic_id']] = $row['topic_title'];
+			}
+		}
+
+		// Find forum names
+		if (!empty($forums_to_find))
+		{
+			$sql = 'SELECT forum_id, forum_name FROM ' . FORUMS_TABLE . ' WHERE ' . $this->db->sql_in_set('forum_id', $forums_to_find);
+			$result = $this->db->sql_query($sql);
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$this->forum_names[$row['forum_id']] = $row['forum_name'];
+			}
+		}
+
+		// Update the link text for links to posts, topics, and forums
+		if (!empty($use_titles_arr))
+		{
+			foreach ($use_titles_arr as $key => $v)
+			{
+				$middle = null;
+				$middle = (isset($v['post_id']) && isset($this->post_subjects[$v['post_id']])) ? $this->post_subjects[$v['post_id']] : $middle;
+				$middle = (is_null($middle) && isset($v['topic_id']) && isset($this->topic_titles[$v['topic_id']])) ? $this->topic_titles[$v['topic_id']] : $middle;
+				$middle = (is_null($middle) && isset($v['forum_id']) && isset($this->forum_names[$v['forum_id']])) ? $this->forum_names[$v['forum_id']] : $middle;
+				if ($middle !== null)
+				{
+					$replace[$key] = $v['open'] . $middle . $v['close'];
+				}
+			}
+		}
+
+		// Replace the original links with our updated links
+		if (!empty($replace))
+		{
+			$message = strtr($message, $replace);
 		}
 		return($message);
 	}

@@ -13,6 +13,9 @@ namespace rmcgirr83\birthdaycake\event;
 /**
 * @ignore
 */
+use phpbb\language\language;
+use phpbb\user;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -20,42 +23,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\request\request */
-	protected $request;
-
-	/** @var \phpbb\template\template */
-	protected $template;
+	/** @var \phpbb\language\language */
+	protected $language;
 
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string phpBB root path */
-	protected $phpbb_root_path;
-
-	/** @var string phpEx */
-	protected $php_ext;
-
 	/**
-	* the path to the images directory
+	* Constructor
 	*
-	*@var string
+	* @param \phpbb\language\language			$language			Language object
+	* @param \phpbb\user                        $user           	User object
+	* @access public
 	*/
-	protected $birthdaycake_path;
-
-	public function __construct(
-		\phpbb\request\request $request,
-		\phpbb\template\template $template,
-		\phpbb\user $user,
-		$phpbb_root_path,
-		$php_ext,
-		$birthdaycake_path)
+	public function __construct(language $language, user $user)
 	{
-		$this->request = $request;
-		$this->template = $template;
+		$this->language = $language;
 		$this->user = $user;
-		$this->root_path = $phpbb_root_path;
-		$this->php_ext = $php_ext;
-		$this->images_path = $birthdaycake_path;
 	}
 
 	/**
@@ -68,11 +52,27 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
+			'core.viewtopic_assign_template_vars_before'	=> 'assign_lang_var',
 			'core.viewtopic_cache_user_data'			=> 'viewtopic_cache_user_data',
 			'core.viewtopic_cache_guest_data'			=> 'viewtopic_cache_guest_data',
 			'core.viewtopic_modify_post_row'			=> 'viewtopic_modify_post_row',
 			'core.memberlist_prepare_profile_data'		=> 'memberlist_prepare_profile_data',
+			'core.search_get_posts_data'				=> 'search_get_posts_data',
+			'core.search_modify_tpl_ary'				=> 'search_modify_tpl_ary',
+			'core.search_results_modify_search_title'	=> 'assign_lang_var',
 		);
+	}
+
+	/**
+	 * Add lang var
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
+	public function assign_lang_var($event)
+	{
+		$this->language->add_lang('birthdaycake', 'rmcgirr83/birthdaycake');
 	}
 
 	/**
@@ -112,10 +112,8 @@ class listener implements EventSubscriberInterface
 	*/
 	public function viewtopic_modify_post_row($event)
 	{
-		$birthdaycake = $this->get_user_birthdaycake($event['user_poster_data']['user_birthday']);
-
 		$event['post_row'] = array_merge($event['post_row'],array(
-			'USER_BIRTHDAYCAKE' => $birthdaycake,
+			'BIRTHDAYCAKE' => $this->birthdaycake($event['user_poster_data']['user_birthday']),
 		));
 	}
 
@@ -128,21 +126,57 @@ class listener implements EventSubscriberInterface
 	*/
 	public function memberlist_prepare_profile_data($event)
 	{
+		$this->language->add_lang('birthdaycake', 'rmcgirr83/birthdaycake');
+
 		$array = $event['template_data'];
-		$array['BIRTHDAYCAKE'] = $this->get_user_birthdaycake($event['data']['user_birthday']);
+		$array['BIRTHDAYCAKE'] = $this->birthdaycake($event['data']['user_birthday']);
 		$event['template_data'] = $array;
 	}
 
 	/**
-	 * Get user birthdaycake
+	* Display birthdaycake on search
+	*
+	* @param object $event The event object
+	* @return null
+	* @access public
+	*/
+	public function search_get_posts_data($event)
+	{
+		$array = $event['sql_array'];
+		$array['SELECT'] .= ', u.user_birthday';
+		$event['sql_array'] = $array;
+	}
+
+	/**
+	* Display birthdaycake on search
+	*
+	* @param object $event The event object
+	* @return null
+	* @access public
+	*/
+	public function search_modify_tpl_ary($event)
+	{
+		if ($event['show_results'] == 'topics')
+		{
+			return;
+		}
+
+		$array = $event['tpl_ary'];
+		$array = array_merge($array, [
+			'USER_BIRTHDAYCAKE'	=> $this->birthdaycake($event['row']['user_birthday']),
+		]);
+		$event['tpl_ary'] = $array;
+	}
+
+	/**
+	 * birthdaycake
 	 *
 	 * @param string $user_birthday User's Birthday
-	 * @return string Zodiac image
+	 * @return bool
 	 */
-	private function get_user_birthdaycake($user_birthday)
+	private function birthdaycake($user_birthday)
 	{
-		$birthdaycake = '';
-		$this->user->add_lang_ext('rmcgirr83/birthdaycake', 'birthdaycake');
+		$is_birthday = false;
 		if (!empty($user_birthday))
 		{
 			$time = $this->user->create_datetime();
@@ -152,9 +186,10 @@ class listener implements EventSubscriberInterface
 
 			if ($bday === (int) $now['mday'] && $bmonth === (int) $now['mon'])
 			{
-				$birthdaycake = '<img src="' . $this->root_path . $this->images_path . 'icon_birthday.gif" alt="' . $this->user->lang['VIEWTOPIC_BIRTHDAY'] . '" title="' . $this->user->lang['VIEWTOPIC_BIRTHDAY'] . '"  style="vertical-align:middle;" />';
+				$is_birthday = true;
+
 			}
 		}
-		return $birthdaycake;
+		return $is_birthday;
 	}
 }

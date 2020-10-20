@@ -46,6 +46,7 @@ function init($site_path, $dataface_url){
             } else {
                 if ($dataface_url{0} !== '/') {
                     $dataface_url = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/' . $dataface_url;
+                    print_r($dataface_url);
                 }
             }
 

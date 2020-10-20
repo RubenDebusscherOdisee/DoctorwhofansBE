@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Digests
-* @copyright (c) 2020 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2019 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -32,7 +32,7 @@ class common
 	 * @param \phpbb\user 				$user 				The user object
 	 */
 
-	public function __construct(\phpbb\language\language $language, $phpbb_root_path,  \phpbb\filesystem\filesystem $filesystem, \phpbb\log\log $phpbb_log, \phpbb\user $user)
+	public function __construct(\phpbb\language\language $language, $phpbb_root_path, \phpbb\filesystem\filesystem $filesystem, \phpbb\log\log $phpbb_log, \phpbb\user $user)
 	{
 		$this->filesystem = $filesystem;
 		$this->language = $language;

@@ -3,10 +3,10 @@ services:
         class: rmcgirr83\searchusertopics\event\listener
         arguments:
             - '@auth'
-            - '@config'			
+            - '@config'
             - '@dbal.conn'
+            - '@language'
             - '@template'
-            - '@user'
             - '%core.root_path%'
             - '%core.php_ext%'
         tags:

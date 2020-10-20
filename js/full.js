@@ -4794,6 +4794,19 @@ function getpad(menu) {
 		cache: false
 	}).done(
 		function (resultaat) {
+			var PathEl="";
+    if (Object.keys(resultaat.Path).length > 0) {
+      for (i = 0; i < Object.keys(resultaat.Path).length; i++) {
+        PathEl+=" <a href='../"+resultaat.Path[i].link+"'>" + resultaat.Path[i].topic + "</a> <i class='fa fa-arrow-right'></i>";
+
+      }
+      $('.path').html(PathEl);
+      $('.path').show();
+    }else{
+
+    }
+
+
 			$(".path").prepend("<span>" + resultaat.data[0].pad + "</span>");
 			$(".path a").addClass("link");
 			if (menu === "Video" || resultaat.data[0].pad.search("Video") > 0) {

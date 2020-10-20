@@ -2795,7 +2795,7 @@ class Dataface_Record {
 						$this->getMimetype($fieldname,$index,$where,$sort).' file icon',
 						df_absolute_url(DATAFACE_URL).'/images/document_icon.gif'
 						);
-					$val = '<img src="'.df_escape($file_icon).'"/><a href="'.$val.'" target="_blank"';
+					$val = '<img src="'.df_escape($file_icon).'"/><a href="'.ltrim($val,"/main//").'" target="_blank"';
 					foreach ($params as $pkey=>$pval){
 						$val .= ' '.df_escape($pkey).'="'.df_escape($pval).'"';
 					}

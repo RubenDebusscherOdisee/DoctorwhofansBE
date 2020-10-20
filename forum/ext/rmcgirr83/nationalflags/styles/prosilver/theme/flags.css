@@ -1,8 +1,8 @@
 ul.flags {
+    width:100%;
     text-align:center;
 	list-style-type: none;
-	margin-left:0%;
-	display: block !important;
+	padding-bottom: 6px;
 }
 
 ul.flags li {

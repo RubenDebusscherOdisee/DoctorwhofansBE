@@ -5,16 +5,30 @@ body {
 #main_table {
   width: 100%;
 }
-
+fil
 #xf-master-detail-s {
   overflow: hidden !important;
 
 }
+input:disabled {
+  background-color: rgba(239, 239, 239, 0.3) !important;
+  border-color: rgba(118, 118, 118, 0.3) !important;
+  cursor: default !important;
 
+}
 tr[id$='_form_row']{
   display: inline-block;
-    width: 50%;
 }
+#xf-master-detail{
+  min-height:100% !important;
+  margin:0 !important; padding:0 !important
+}
+
+.floatHeader{position: initial !important;}
+.xf-form-group-wrapper{width: 99%;}
+
+.gutter.gutter-vertical{display: none;}
+
 @media only screen and (max-width: 900px) {
 
   #xf-logo {

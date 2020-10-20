@@ -1,18 +1,39 @@
 <?php
 
 class tables_alles {
+    
 
-    function getPreferences(){
-        $mytable =& Dataface_Table::loadTable('alles') ; // load the table named 'my_table'
+    function isAdmin(){
         $auth =& Dataface_AuthenticationTool::getInstance();
         $user =& $auth->getLoggedInUser();
-        if ( $user and  $user->val('Rol') != 'ADMIN' ){
-            // We apply the security filter to non admin users.
-            $mytable->setSecurityFilter(array('A_Owner'=>$user->val('User_Id')));
-    
-        }
-        return array();  // Mandatory!! getPreferences() must return array.
+        if ( $user and  $user->val('Rol') == 'ADMIN' ){return true;}else{return false;}
     }
+
+    function getUser (){
+        $auth =& Dataface_AuthenticationTool::getInstance();
+        $user =& $auth->getLoggedInUser();
+        return $user;
+    }
+
+
+   function getPermissions($record){
+    if ( tables_alles::isAdmin() ) return null;  // just use defaults
+    $user = tables_alles::getUser();
+
+    if($user and $record){
+        if($user->val('User_Id') == $record->val('A_Owner')){
+            return Dataface_PermissionsTool::getRolePermissions('CAR_OWNER');
+        }else if($user){
+            return Dataface_PermissionsTool::getRolePermissions('CAR_USER');
+
+        }else{return null;}
+    }else{ 
+           return null;  // default permissions otherwise
+    }
+    
+    }
+
+
 
     function getTitle($record){
 		return $record->val('id');
@@ -30,16 +51,10 @@ class tables_alles {
         //$jt->import('abbr/plugin.js');
 
     }
-    function A_Owner__default(){
-        $auth =& Dataface_AuthenticationTool::getInstance();
-        $user =& $auth->getLoggedInUser();
-        if ( isset($user) ) return $user->val('User_Id');
-        return null;
-    }
+    
 
     
     function __import__csv($data, $defaultValues=array()){
-        $defaultOwner = tables_alles::A_Owner__default();
         $records = array();
         $rows = explode("\n", $data);
         foreach ( $rows as $row ){
@@ -55,8 +70,7 @@ class tables_alles {
                     'A_Level'=>(int)$A_Level,
                     'A_Actief'=>(int)$A_Actief,
                     'A_Klasse'=>$A_Klasse,
-                    'A_Hoort_Bij'=>(int)$A_Hoort_Bij,
-                    'A_Owner'=> $defaultOwner
+                    'A_Hoort_Bij'=>(int)$A_Hoort_Bij
                      )
                 );
             $records[] = $record;
@@ -84,7 +98,6 @@ class tables_alles {
 		
           
         $app = Dataface_Application::getInstance();
-        $defaultOwner = tables_alles::A_Owner__default();
 		$ligne=2; // starting line for reading cells
 		while ($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)!=""){
 			
@@ -102,8 +115,7 @@ class tables_alles {
                     'A_Level'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $ligne)->getValue(),
                     'A_Actief'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $ligne)->getValue(),
                     'A_Klasse'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $ligne)->getValue(),
-                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue(),
-                    'A_Owner'=> tables_alles::A_Owner__default()
+                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue()
                         )
                 );
                 $records[] =$record;
@@ -118,7 +130,22 @@ class tables_alles {
         
     }
 
-    
+    function beforeInsert(Dataface_Record $record){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and !$record->val('A_Owner') ){
+            $record->setValue('A_Owner', $user->val('User_Id'));
+        }
+      }
+
+      
+      function beforeCopy( Dataface_Record $original, array $values){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and $original->val('A_Owner') != $original->val('A_Owner') ){
+            $original->setValue('A_Owner', $user->val('User_Id'));
+        }
+      }
+
+       
    
 }
 ?>

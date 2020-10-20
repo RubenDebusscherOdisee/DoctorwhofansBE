@@ -11,7 +11,7 @@
     }else if ($_SESSION["Menu"] ==null){
         $_SESSION["Menu"]='Home';
     }else{
-        $_SESSION["Menu"]=$_SESSION["Menu"];
+        $_SESSION["Menu"]="Home";
     }
     $menu = $_SESSION["Menu"];
 

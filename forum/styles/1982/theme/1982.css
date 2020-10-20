@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'perfect_dos_vga_437_winRg';
+    src: url('fonts/perfect_dos_vga_437_win-webfont.eot');
+    src: url('fonts/perfect_dos_vga_437_win-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/perfect_dos_vga_437_win-webfont.woff2') format('woff2'),
+         url('fonts/perfect_dos_vga_437_win-webfont.woff') format('woff'),
+         url('fonts/perfect_dos_vga_437_win-webfont.ttf') format('truetype'),
+         url('fonts/perfect_dos_vga_437_win-webfont.svg#perfect_dos_vga_437_winRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.wrap, .headerbar, .navbar, .rules, .forabg, .forumbg, .panel, blockquote, .codebox, .attachbox {
+	box-shadow:-7px 7px 0 #4c4c4c;
+	margin-bottom:14px;
+}
+
+.panel .panel {
+	box-shadow: none;
+}
+
+.button-search {
+	border-right-color: #aaaaaa;
+}
+
+a:hover > .icon::before {
+	text-decoration: underline;
+}
+
+a.button:hover > .icon::before {
+	text-decoration: none;
+}
+
+/*remove icons from drop boxes, but not the mark read notification icon (.icon-xl) */
+.dropdown .icon:not(.icon-xl) {
+	display: none;
+}
+
+/* add square brackets to links */
+
+a::before {
+	content: "[";
+	opacity: 0.5;
+}
+
+a::after {
+	content: "]";
+	opacity: 0.5;
+}
+
+a:hover::before, a:hover::after, .button:hover > .icon {
+	opacity: 1;
+}
+
+/* don't add brackets to these links as they are out of place */
+
+a.logo::before, a.logo::after,
+a.button-search-end::before, a.button-search-end::after,
+a.notification-block::before, a.notification-block::after,
+a.anchor::before, a.anchor::after,
+a.row-item-link:not(.list-inner)::before, a.row-item-link::after,
+a.jumpbox-sub-link::before, a.jumpbox-sub-link::after,
+.contact-icons a::before, .contact-icons a::after,
+a.avatar::before, a.avatar::after,
+.smiley-box a::before, .smiley-box a::after,
+.responsive-tab-link::before, .responsive-tab-link::after,
+.colour-palette a::before, .colour-palette a::after,
+.alert_close::before, .alert_close::after
+{
+	content: "";
+}
+
+.site-name, .site-name:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.site-description p {
+	color: #ffff55;
+	font-size: 1.3em;
+}
+
+.navbar, .navbar a {
+	color: #ffffff;
+}
+
+.navbar .dropdown, .navbar .dropdown a {
+	color: #0000ff;
+}
+
+li.row:first-of-type {
+	border-top: none;
+}
+
+.pagination .button {
+	vertical-align: inherit;
+}
+
+.pagination .icon {
+	color: #000000;
+	font-weight: bold;
+}
+
+/* font awesome replacements, cos it looks way too modern! */
+.icon {
+	width: auto;
+	font-weight: bold;
+	opacity: 0.75;
+}
+
+a:hover .icon {
+	opacity: 1;
+}
+
+/* \2005 = small space, \00a0 = full space */
+
+.search-box .fa-search::before { content: ">"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-cog::before { content: "*"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.navbar .fa-bars::before { content: "\2005\2261\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-question-circle::before { content: "\2005?\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-pencil-square-o::before { content: "+\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-power-off::before { content: ">\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.navbar .fa-cogs::before { content: "\2005*\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-gavel::before { content: "\2005\00a1\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-bell::before { content: "\2005!\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-inbox::before { content: "\2005\@\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-home::before { content: "\007f\00a0"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-search::before { content: "?"; font-family: 'perfect_dos_vga_437_winRg'; }
+.mark_read .fa-check-circle::before { content: "x"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-envelope::before { content: "\2005\0022\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-shield::before { content: "\2005\03b1\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-group::before { content: "\2005\2248\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-trash::before { content: "\2005x\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-square-o::before { content: "X\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+.navbar .fa-check-square-o::before { content: "\221a\2005"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.subforum.unread .fa-file-o::before, .subforum.read .fa-file-o::before { content: ">\00a0"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-external-link::before { content: "\25a0\00a0"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-external-link-square::before { content: ">"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-chevron-circle-up::before { content: "^"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-chevron-right::before { content: ">"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-chevron-left::before { content: "<"; font-family: 'perfect_dos_vga_437_winRg'; }
+.pagination .fa-clone::before { content: ""; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-file::before { content: "*"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-paperclip::before { content: "+"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-bar-chart::before { content: "%"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-exclamation::before { content: "!"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-pencil::before { content: "+"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-times::before { content: "X"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-info::before { content: "?"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-quote-left::before, .fa-quote-right::before { content: '"'; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-exclamation-triangle::before { content: "!!"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-bold::before { content: "B"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-italic::before { content: "I"; font-style: italic; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-underline::before { content: "U"; text-decoration: underline; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-code::before { content: "<>"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-list::before { content: "\2261"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-list-ol::before { content: "1\2261"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-asterisk::before { content: "*"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-image::before { content: "img"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-link::before { content: "\221e"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-flash::before { content: "f"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-tint::before { content: "\2593"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-wrench::before { content: "?"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-sort-amount-asc::before { content: "\2261"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-sort-down::before { content: "\00a0v"; font-family: 'perfect_dos_vga_437_winRg'; }
+.fa-gavel::before { content: "\00a1"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-commenting-o::before { content: "@"; font-family: 'perfect_dos_vga_437_winRg'; }
+blockquote cite::before, .uncited::before { content: '"..."'; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.jumpbox-return .fa-angle-left::before { content: ""; font-family: 'perfect_dos_vga_437_winRg'; }
+
+.fa-times-circle::before { content: "X"; font-family: 'perfect_dos_vga_437_winRg'; }
+
+/* Responsive... */
+@media (max-width: 700px) {
+	a .icon {
+		opacity: 1;
+	}
+	
+	.wrap, .headerbar, .navbar, .rules, .forabg, .forumbg, .panel {
+		box-shadow:0px 7px 0 #4c4c4c;
+	}
+	
+	.codebox, blockquote, .attachbox {
+		margin-left: 5px;
+	}
+}
