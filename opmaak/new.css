@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);
+
 @font-face {
     font-family: FontAwesome;
     src: url(../fonts/fontawesome-webfont.eot?v=4.7.0);
@@ -124,6 +125,7 @@
         -webkit-transform: rotate(0);
         transform: rotate(0)
     }
+
     100% {
         -webkit-transform: rotate(359deg);
         transform: rotate(359deg)
@@ -135,6 +137,7 @@
         -webkit-transform: rotate(0);
         transform: rotate(0)
     }
+
     100% {
         -webkit-transform: rotate(359deg);
         transform: rotate(359deg)
@@ -3078,19 +3081,32 @@ h2 {
 }
 
 main {
-    min-height: 66vh
+    min-height: 66vh;
+    width: 98vw;
+
 }
 
 footer {
-    text-align: center
+    text-align: center;
+    background-color: #7ea4c8;
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 2vh;
+    padding-top: 1vh;
+    border-top: 6px solid #306190;
+
 }
 
 footer,
 main {
     padding-left: 1vw;
     padding-right: 1vw;
-    width: 98vw;
     clear: both
+}
+
+article {
+    padding-left: 4vw;
+    padding-right: 4vw;
 }
 
 footer a,
@@ -3117,12 +3133,12 @@ main a:hover {
 }
 
 .dark-mode {
-    background-color: #000!important;
-    color: #fff!important;
-    border-color: #fff!important;
-    background-image: none!important;
-    background: #000!important;
-    text-shadow: none!important
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+    background-image: none !important;
+    background: #000 !important;
+    text-shadow: none !important
 }
 
 .dark-mode a {
@@ -3131,7 +3147,7 @@ main a:hover {
 
 .dark-mode a:focus,
 .dark-mode a:hover {
-    color: #fff!important
+    color: #fff !important
 }
 
 .dark-mode .nav-menu {
@@ -3393,7 +3409,11 @@ main img:not(#Loading, .quote_picture) {
     line-height: 2em;
     z-index: 2
 }
-#overlay_PWA{height: 30vh;top:33%}
+
+#overlay_PWA {
+    height: 30vh;
+    top: 33%
+}
 
 .OverzichtItem {
     display: inline-flex;
@@ -3453,8 +3473,8 @@ main img:not(#Loading, .quote_picture) {
 }
 
 .Missing {
-    color: #ff0!important;
-    background-color: red!important
+    color: #ff0 !important;
+    background-color: red !important
 }
 
 .Volledig {
@@ -3562,24 +3582,24 @@ nav a {
 }
 
 .max_70 {
-    max-width: 70%!important
+    max-width: 70% !important
 }
 
 .max_79 {
-    max-width: 79%!important
+    max-width: 79% !important
 }
 
 .max_34 {
-    max-width: 34%!important
+    max-width: 34% !important
 }
 
 .max_64 {
-    max-width: 64%!important
+    max-width: 64% !important
 }
 
 img[class*=" max_"],
 img[class^=max_] {
-    max-width: 100%!important
+    max-width: 100% !important
 }
 
 .TimeDiv {
@@ -3607,12 +3627,12 @@ img[class^=negative_margin_top_] {
 }
 
 .dark-mode .accessible-megamenu-toggle>span:not(.sr-only) {
-    background: #fff!important
+    background: #fff !important
 }
 
 .fa.fa-arrow-down {
     transition: .9s;
-    display: inline-block!important
+    display: inline-block !important
 }
 
 .open .fa.fa-arrow-down,
@@ -3630,31 +3650,39 @@ img[class^=negative_margin_top_] {
         margin-left: 2em;
         margin-right: 2em
     }
+
     div.rechts img {
         max-width: 100%
     }
+
     .disclaimer {
         max-width: 100%
     }
+
     [class*=" negative_margin_top_"],
     [class^=negative_margin_top_] {
         margin-top: 0
     }
+
     [class*=" max_"],
     [class^=max_] {
-        max-width: 100%!important
+        max-width: 100% !important
     }
+
     .main_quote {
         max-width: 100%;
         margin-left: 0;
         margin-right: 0
     }
+
     .quoteitem {
         max-width: 48%
     }
+
     .quoteitem img {
         width: 100%
     }
+
     #WikiDetails {
         max-width: 40%;
         margin-top: 0;
@@ -3666,9 +3694,11 @@ img[class^=negative_margin_top_] {
     .quoteitem {
         max-width: 100%
     }
+
     #Inhoud {
         min-width: 94%
     }
+
     #WikiDetails {
         margin-top: 0;
         margin-bottom: 1em;
@@ -3677,13 +3707,14 @@ img[class^=negative_margin_top_] {
         margin-left: auto;
         margin-right: auto
     }
+
     h2 {
         clear: both
     }
 }
 
 .fa {
-    display: initial!important
+    display: initial !important
 }
 
 .sr-only {
@@ -3767,13 +3798,13 @@ img[class^=negative_margin_top_] {
 
 .accessible-megamenu>.accessible-megamenu-top-nav-item a[aria-expanded]:focus,
 .accessible-megamenu>.accessible-megamenu-top-nav-item a[aria-expanded]:hover {
-    color: #333!important;
+    color: #333 !important;
     outline-offset: -1px
 }
 
 .accessible-megamenu>.accessible-megamenu-top-nav-item .dark-mode a[aria-expanded]:focus,
 .accessible-megamenu>.accessible-megamenu-top-nav-item .dark-mode a[aria-expanded]:hover {
-    color: #fff!important;
+    color: #fff !important;
     outline-offset: -1px
 }
 
@@ -3795,8 +3826,8 @@ img[class^=negative_margin_top_] {
 }
 
 .current_page {
-    color: red!important;
-    text-decoration: underline double!important
+    color: red !important;
+    text-decoration: underline double !important
 }
 
 .accessible-megamenu>.accessible-megamenu-top-nav-item:first-child a[aria-expanded] {
@@ -4077,22 +4108,23 @@ img[class^=negative_margin_top_] {
 }
 
 .rightItem {
-    float: right!important;
+    float: right !important;
     margin-right: 1em
 }
 
 #search {
-    margin-right: 1em!important
+    margin-right: 1em !important
 }
 
 .rightBox {
-    left: -15.2vw!important
+    left: -15.2vw !important
 }
 
 @media (max-width:920px) {
     .accessible-megamenu>.accessible-megamenu-top-nav-item {
         position: static
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-1,
     .accessible-megamenu .accessible-megamenu-panel.cols-3,
     .accessible-megamenu .accessible-megamenu-panel.cols-4,
@@ -4103,23 +4135,28 @@ img[class^=negative_margin_top_] {
         left: 0;
         right: 0
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
         width: 44%
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li {
         width: 100%
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li {
         min-height: 256px
     }
+
     .accessible-megamenu .accessible-megamenu-panel>ol>li {
         float: left;
         display: block;
         margin-right: 1em;
         margin-bottom: 1em
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li:nth-of-type(3),
     .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li:nth-of-type(3),
     .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li:nth-of-type(3) {
@@ -4134,30 +4171,36 @@ img[class^=negative_margin_top_] {
         display: block;
         z-index: 3
     }
+
     .accessible-megamenu-toggle~.accessible-megamenu>.accessible-megamenu-top-nav-item {
         height: 0;
         overflow: hidden;
         visibility: collapse
     }
+
     .accessible-megamenu-toggle[aria-expanded=true]~.accessible-megamenu>.accessible-megamenu-top-nav-item {
         height: auto;
         overflow: visible;
         visibility: visible
     }
+
     .accessible-megamenu {
         height: auto;
         padding-top: 3.077em;
         z-index: 2
     }
+
     .accessible-megamenu>.accessible-megamenu-top-nav-item {
         border-right: 0;
         float: none;
         width: 100%;
         height: auto
     }
+
     .accessible-megamenu>.accessible-megamenu-top-nav-item a[aria-expanded] {
         box-shadow: none
     }
+
     .accessible-megamenu .accessible-megamenu-panel,
     .accessible-megamenu .accessible-megamenu-panel.open {
         position: relative;
@@ -4166,26 +4209,31 @@ img[class^=negative_margin_top_] {
         box-shadow: none;
         padding-bottom: 0
     }
+
     .accessible-megamenu .accessible-megamenu-panel.open {
         padding-bottom: .769em;
         max-height: 350px;
         overflow: auto
     }
+
     .rightBox {
-        left: 0!important
+        left: 0 !important
     }
+
     #search {
-        margin-right: 0!important
+        margin-right: 0 !important
     }
 }
 
 @media (max-width:452px) {
+
     .accessible-megamenu .accessible-megamenu-panel.cols-1>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
         width: 100%
     }
+
     .accessible-megamenu .accessible-megamenu-panel.cols-3>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4>ol>li,
     .accessible-megamenu .accessible-megamenu-panel.cols-4b>ol>li {
@@ -4193,11 +4241,13 @@ img[class^=negative_margin_top_] {
         border-left: none;
         box-shadow: none
     }
+
     .rightBox {
-        left: 0!important
+        left: 0 !important
     }
+
     #search {
-        margin-right: 0!important
+        margin-right: 0 !important
     }
 }
 
@@ -4205,27 +4255,33 @@ img[class^=negative_margin_top_] {
     table {
         display: block
     }
+
     table caption {
         display: inline-block
     }
+
     table tbody tr {
         display: inline-grid;
         border: solid #ff0 inset 5px
     }
+
     table thead th {
         border-right: 1px solid;
         margin-right: .2rem;
         padding-right: .2rem
     }
+
     table th {
         display: inline-block;
         border: none;
         margin-right: .2rem
     }
+
     table td {
         display: table-cell;
         margin-right: .2rem
     }
+
     .content_Table {
         min-width: 100%
     }
@@ -4299,18 +4355,22 @@ img[class^=negative_margin_top_] {
     #calendar_div {
         width: 100%
     }
+
     #calender_section_top li {
         transform-origin: 0 0;
         transform: rotate(90deg);
         height: 4em
     }
+
     #calender_section_bot li {
         height: 6em;
         padding-left: 0
     }
+
     #calender_section_bot ul {
         padding-left: 1em
     }
+
     #calender_section_top ul {
         padding-left: 30px
     }
@@ -4411,21 +4471,25 @@ img[class^=negative_margin_top_] {
     .timeline::after {
         left: 31px
     }
+
     .container {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px
     }
+
     .container::before {
         left: 60px;
         border: medium solid var(--bg-color-darkBlue);
         border-width: 10px 10px 10px 0;
         border-color: transparent var(--bg-color-darkBlue) transparent transparent
     }
+
     .leftt::after,
     .right::after {
         left: 15px
     }
+
     .right {
         left: 0
     }
@@ -4437,6 +4501,6 @@ img[class^=negative_margin_top_] {
 
 @media all and (display-mode: standalone) {
     .installButton {
-      display: none;
+        display: none;
     }
-  }
+}

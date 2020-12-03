@@ -22,11 +22,11 @@
 		//return de json data
 	    $result = $stmt->get_result();
 	    if($result->num_rows === 0) {
-			echo 'false';  
-		    return; 
+			echo 'false';
+		    return;
 	    }else{
-			echo 'true';  
-			return; 
+			echo 'true';
+			return;
 		}
 	}
     $stmt->close();

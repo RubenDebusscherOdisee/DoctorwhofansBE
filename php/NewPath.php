@@ -25,12 +25,10 @@
 				$parentsarray = explode(',', $parents);
 				$resultarray = array_map('intval', array_filter($parentsarray, 'is_numeric'));
 
-				
+
 	}
 		$stmt1->close();
 		$antwoord['data'] = "Geen resultaten gevonden.";
-
-		
 
 
 		$in  = str_repeat('?,', count($resultarray) - 1) . '?';

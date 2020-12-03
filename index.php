@@ -27,23 +27,25 @@
 <html lang="nl">
 
 <head>
-    <link rel="manifest" href="../manifest.json">
-    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#000090" />
-    <link rel="apple-touch-icon" href="../images/logo/apple-icon.png">
+    <link rel="apple-touch-icon" href="images/logo/apple-icon.png">
     <script>
+
+
+
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('../sw.js').then(function (registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration
-                        .scope);
-                }, function (err) {
-                    //registration failed :(
-                    console.error('ServiceWorker registration failed: ', err);
-                });
-            });
+        navigator.serviceWorker.register('sw.js')
+        .then((reg) => {
+            // registration worked
+            console.log('Registration succeeded. Scope is ' + reg.scope);
+        }).catch((error) => {
+            // registration failed
+            console.log('Registration failed with ' + error);
+        });
         }
+        
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
@@ -58,8 +60,19 @@
         gtag('config', 'UA-107369097-3');
     </script>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <?php
+        if (strripos($menu, '/') !== false) {
+            $title = strrchr($menu, '/');;
+            $title = str_replace('/', '', $title);
+            $title = str_replace("_", " ", $title);
+        
+            
+        }else{
+            $title = str_replace("_"," ", $menu);
+        }
+            ?>
     <title>
-        <?php $title = str_replace("_", " ", $menu);echo $title. " | Doctor Who Fans BE";?>
+        <?php echo $title. " | Doctor Who Fans BE";?>
     </title>
 
     <meta name=author content="Ruben Debusscher" />
@@ -72,22 +85,31 @@
     <META NAME="ROBOTS" CONTENT="NOYDIR, NOODP, NOARCHIVE" />
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.ico" />
-    <link rel=icon href="../images/favicon.ico" type="Images/ico" async>
-    <script src="../js/full.min.js"></script>
+    <link rel=icon href="https://www.doctorwhofans.be/images/favicon.ico" type="Images/ico" async>
+    <script src='https://www.doctorwhofans.be/js/full.js'></script>
     <script defer>
         var id;
         var ItemId;
         session = "<?php echo session_id();?>";
         menu = '<?php echo $menu ;?>';
         ItemId = '<?php echo $id ;?>';
+        var rootURL = getRootUrl();
         $(document).ready(function () {
             getAvailableLangcodes();
+            $("nav a[href$='.html']" ).each(function(){ 
+            var oldUrl = $(this).attr("href"); // Get current url
+            oldUrl = rootURL+oldUrl
+            var newUrl = oldUrl.replace("http://", "https://"); // Create new url
+            $(this).attr("href", newUrl); // Set href value
+        });
         });
     </script>
-    <link rel=stylesheet href="../opmaak/new.min.css" async defer preload />
+    <link rel=stylesheet href="https://www.doctorwhofans.be/opmaak/new.min.css" async defer preload />
     <script defer>
         $(document).ready(function () {
-            $('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page')
+            var currentPage = rootURL+window.location.pathname;
+            $('li a[href$="'+window.location.pathname+'"]').addClass('current_page');
+            $('li a[href$="'+window.location.pathname+'"]').parent().parent().parent().parent().parent().parent().children('h2').children().addClass('current_page');
             $(".col-6").hide();
             $(".under").hide();
             checkModefromCookie();
@@ -159,8 +181,8 @@
         </button>
         <ol>
             <li>
-                <h2><a href="../Home/" class="toplink"><img class="lazyload" data-src="../images/gallifreyan_black.png"
-                            alt="Logo of Doctorwhofans Belgium" id="Logo" />Home</a></h2>
+                <h2><a href="Home.html" class="toplink"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/gallifreyan_black.png"
+                            alt="Logo of Doctor Who Fans Belgium" id="Logo" />Home</a></h2>
                 <div class="cols-0">
                 </div>
             </li>
@@ -169,53 +191,53 @@
                 <div class="cols-4c">
                     <ol>
                         <li class="accessible-megamenu-panel-group">
-                            <h3><a href="../The_Doctor/">The Doctor</a></h3>
+                            <h3><a href="The_Doctor.html">The Doctor</a></h3>
                             <ol>
-                                <li><a href="../First_Doctor/">First Doctor</a></li>
-                                <li><a href="../Second_Doctor/">Second Doctor</a></li>
-                                <li><a href="../Third_Doctor/">Third Doctor</a></li>
-                                <li><a href="../Fourth_Doctor/">Fourth Doctor</a></li>
-                                <li><a href="../Fifth_Doctor/">Fifth Doctor</a></li>
-                                <li><a href="../Sixth_Doctor/">Sixth Doctor</a></li>
-                                <li><a href="../Seventh_Doctor/">Seventh Doctor</a></li>
-                                <li><a href="../Eighth_Doctor/">Eighth Doctor</a></li>
+                                <li><a href="First_Doctor.html">First Doctor</a></li>
+                                <li><a href="Second_Doctor.html">Second Doctor</a></li>
+                                <li><a href="Third_Doctor.html">Third Doctor</a></li>
+                                <li><a href="Fourth_Doctor.html">Fourth Doctor</a></li>
+                                <li><a href="Fifth_Doctor.html">Fifth Doctor</a></li>
+                                <li><a href="Sixth_Doctor.html">Sixth Doctor</a></li>
+                                <li><a href="Seventh_Doctor.html">Seventh Doctor</a></li>
+                                <li><a href="Eighth_Doctor.html">Eighth Doctor</a></li>
 
                                 <hr>
-                                <li><a href="../War_Doctor/">The War Doctor</a></li>
-                                <li><a href="../Ninth_Doctor/">Ninth Doctor</a></li>
-                                <li><a href="../Tenth_Doctor/">Tenth Doctor</a></li>
-                                <li><a href="../Eleventh_Doctor/">Eleventh Doctor</a></li>
-                                <li><a href="../Twelfth_Doctor/">Twelfth Doctor</a></li>
-                                <li><a href="../Thirteenth_Doctor/">Thirteenth Doctor</a></li>
+                                <li><a href="War_Doctor.html">The War Doctor</a></li>
+                                <li><a href="Ninth_Doctor.html">Ninth Doctor</a></li>
+                                <li><a href="Tenth_Doctor.html">Tenth Doctor</a></li>
+                                <li><a href="Eleventh_Doctor.html">Eleventh Doctor</a></li>
+                                <li><a href="Twelfth_Doctor.html">Twelfth Doctor</a></li>
+                                <li><a href="Thirteenth_Doctor.html">Thirteenth Doctor</a></li>
                             </ol>
                         </li>
                         <li class="accessible-megamenu-panel-group">
-                            <h3><a href="../Characters/">Characters</a></h3>
+                            <h3><a href="Characters.html">Characters</a></h3>
                             <ol>
                                 <li>
-                                    <a href="../Category:Companions/" aria-label="Companions"> Companions <i
+                                    <a href="Category:Companions.html" aria-label="Companions"> Companions <i
                                             class="fa fa-male"></i><i class="fa fa-female"></i>
                                     </a>
                                 </li>
-                                <li><a href="../Villains/">Villains</a></li>
-                                <li><a href="../Allies/">Allies</a></li>
+                                <li><a href="Villains.html">Villains</a></li>
+                                <li><a href="Allies.html">Allies</a></li>
                             </ol>
                             <hr>
                             <h2>Spin-off</h2>
                             <ol>
-                                <li><a href="../Torchwood/"><img class="lazyload" data-src="../images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
-                                <li><a href="../Sarah_Jane_Adventures/"><img class="lazyload" data-src="../images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
-                                <li><a href="../Class/"><img class="lazyload" data-src="../images/Class.png" alt="Class logo" /> Class</a></li>
+                                <li><a href="Torchwood.html"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/Torchwood.png" alt="Torchwood logo" />Torchwood</a></li>
+                                <li><a href="Sarah_Jane_Adventures.html"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/SJA.png" alt="Sarah Jane Adventures logo" /> Sarah Jane Adventures</a></li>
+                                <li><a href="Class.html"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/Class.png" alt="Class logo" /> Class</a></li>
                             </ol>
                         </li>
                         <li class="accessible-megamenu-panel-group">
                             <h3>Concepts</h3>
                             <ol>
-                                <li><a href="../TARDIS/"><img class="lazyload" data-src="../images/tardis.png"
+                                <li><a href="TARDIS.html"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/tardis.png"
                                             alt="TARDIS logo" />T.A.R.D.I.S</a></li>
-                                <li><a href="../Sonic_Screwdriver/">Sonic Screwdriver</a>
+                                <li><a href="Sonic_Screwdriver.html">Sonic Screwdriver</a>
                                 </li>
-                                <li><a href="../UNIT/"><img class="lazyload" data-src="../images/UNIT.png"
+                                <li><a href="UNIT.html"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/UNIT.png"
                                             alt="UNIT logo" />
                                         UN.I.T</a></li>
 
@@ -223,12 +245,12 @@
                             </ol>
                             <hr>
                             <ol>
-                                <li><a href="../Species/">Species</a></li>
-                                <li><a href="../Places/"><i class="fa fa-compass" aria-hidden="true"></i> Places</a>
+                                <li><a href="Species.html">Species</a></li>
+                                <li><a href="Places.html"><i class="fa fa-compass" aria-hidden="true"></i> Places</a>
                                 </li>
-                                <li><a href="../Times/"><i class="fa fa-code-fork" aria-hidden="true"></i> Times</a>
+                                <li><a href="Times.html"><i class="fa fa-code-fork" aria-hidden="true"></i> Times</a>
                                 </li>
-                                <li><a href="../Quotes/"> <i class="fa fa-quote-right" aria-hidden="true"></i> Quotes</a></li>
+                                <li><a href="Quotes.html"> <i class="fa fa-quote-right" aria-hidden="true"></i> Quotes</a></li>
                             </ol>
                         </li>
                     </ol>
@@ -241,27 +263,27 @@
                         <li class="accessible-megamenu-panel-group">
                             <h3>The Show</h3>
                             <ol>
-                                <li><a href="../Synopsis/">Synopsis</a></li>
-                                <li><a href="../Episodes/">Episodes</a></li>
-                                <li><a href="../History/">History</a></li>
-                                <li><a href="../Crew/">Crew</a></li>
-                                <li><a href="../Cast/">Cast</a></li>
-                                <li><a href="../Music/"><i class="fa fa-music" aria-hidden="true"></i> Music</a></li>
+                                <li><a href="Synopsis.html">Synopsis</a></li>
+                                <li><a href="Episodes.html">Episodes</a></li>
+                                <li><a href="History.html">History</a></li>
+                                <li><a href="Crew.html">Crew</a></li>
+                                <li><a href="Cast.html">Cast</a></li>
+                                <li><a href="Music.html"><i class="fa fa-music" aria-hidden="true"></i> Music</a></li>
                                 <hr>
-                                <li><a href="../Reviews/">Reviews</a></li>
+                                <li><a href="Reviews.html">Reviews</a></li>
                             </ol>
                         </li>
                         <li class="accessible-megamenu-panel-group">
                             <h3>Media</h3>
                             <ol>
-                                <li><a href="../DVD/">DVD</a></li>
-                                <li><a href="../Books/"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
-                                <li><a href="../Comics/">Comics</a></li>
-                                <li><a href="../Audio/">Audio</a></li>
-                                <li><a href="../Non_Fiction/"> Non-fiction</a></li>
-                                <li><a href="../Magazines/">Magazines</a></li>
-                                <li><a href="../Varia/">Varia</a></li>
-                                <li><a href="../Merchandise/">Merchandise</a></li>
+                                <li><a href="DVD.html">DVD</a></li>
+                                <li><a href="Books.html"><i class="fa fa-book" aria-hidden="true"></i> Books</a></li>
+                                <li><a href="Comics.html">Comics</a></li>
+                                <li><a href="Audio.html">Audio</a></li>
+                                <li><a href="Non_Fiction.html"> Non-fiction</a></li>
+                                <li><a href="Magazines.html">Magazines</a></li>
+                                <li><a href="Varia.html">Varia</a></li>
+                                <li><a href="Merchandise.html">Merchandise</a></li>
                             </ol>
                         </li>
                     </ol>
@@ -274,38 +296,38 @@
                         <li class="accessible-megamenu-panel-group">
                             <h3>To Watch</h3>
                             <ol>
-                                <li><a href="../Pictures/"><i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                <li><a href="Fans/Pictures.html"><i class="fa fa-file-image-o" aria-hidden="true"></i>
                                         Pictures</a></li>
-                                <li><a href="../Video/"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a>
+                                <li><a href="Video.html"><i class="fa fa-youtube-play" aria-hidden="true"></i> Video</a>
                                 </li>
-                                <li><a href="../Transcripts/"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <li><a href="Transcripts.html"><i class="fa fa-file-text-o" aria-hidden="true"></i>
                                         Transcripts</a></li>
                             </ol>
                             <hr>
                             <h3>To learn</h3>
                             <ol>
-                                <li><a href="../Questions/"><i class="fa fa-question" aria-hidden="true"></i>
+                                <li><a href="Questions.html"><i class="fa fa-question" aria-hidden="true"></i>
                                         Questions</a></li>
                             </ol>
                         </li>
                         <li class="accessible-megamenu-panel-group">
                             <h3>To Do</h3>
                             <ol>
-                                <li><a href="../Events/"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
+                                <li><a href="Events.html"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
                                 </li>
-                                <li><a href="../Fanclubs/"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a>
+                                <li><a href="Fanclubs.html"><i class="fa fa-users" aria-hidden="true"></i> Fanclubs</a>
                                 </li>
-                                <li><a href="../Links/"><i class="fa fa-link" aria-hidden="true"></i> Links</a></li>
-                                <li><a href="../Cosplay/"><i class="fa fa-user-secret" aria-hidden="true"></i>
+                                <li><a href="Links.html"><i class="fa fa-link" aria-hidden="true"></i> Links</a></li>
+                                <li><a href="Cosplay.html"><i class="fa fa-user-secret" aria-hidden="true"></i>
                                         Cosplay</a></li>
-                                <li><a href="../DIY/"><i class="fa fa-wrench" aria-hidden="true"></i> DIY</a></li>
+                                <li><a href="DIY.html"><i class="fa fa-wrench" aria-hidden="true"></i> DIY</a></li>
                             </ol>
                         </li>
                     </ol>
                 </div>
             </li>
             <li>
-                <h2><a href="../News/" class="toplink">News <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                <h2><a href="News.html" class="toplink">News <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
                 </h2>
                 <div class="cols-0">
                 </div>
@@ -317,7 +339,7 @@
                 </div>
             </li>
             <li>
-                <h2><a href="../Contact/" class="toplink">Contact <i class="fa fa-envelope" aria-hidden="true"></i></a>
+                <h2><a href="Contact.html" class="toplink">Contact <i class="fa fa-envelope" aria-hidden="true"></i></a>
                 </h2>
                 <div class="cols-0">
                 </div>
@@ -380,7 +402,7 @@
 
         <div class="path DarkBlueBackground"></div>
         <div id=loading_div>
-            <img id=loading data-src="../images/gallifreyan_blue.png" class="lazyload loading_img" alt="Laden">
+            <img id=loading data-src="https://www.doctorwhofans.be/images/gallifreyan_blue.png" class="lazyLoad loading_img" alt="Laden">
         </div>
         <article class=col-6>
            
@@ -396,11 +418,11 @@
             ?>
         </article>
     </main>
-
+<i class="fa"
     <footer id=footer class=col-5>
-        <a href="../Sitemap/" class=" socialmedia_full link">Sitemap</a><br>
+        <a href="Sitemap.html" class=" socialMedia_full link">Sitemap</a><br>
         <p class='mededeling max_34 column'> </p>
-        <div class="socialmedia column">
+        <div class="socialMedia column">
 
             <div class="sharethis-inline-follow-buttons"></div>
             <span>Or Share this page:</span>
@@ -411,11 +433,11 @@
         </p>
     </footer>
 
-    <a href="#" id="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyload back_to_top_IMG"
-            data-src="../images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
+    <a href="#" id="Back_To_Top" class="back-to-top" onclick="topFunction(0)"><img class="lazyLoad back_to_top_IMG"
+            data-src="https://www.doctorwhofans.be/images/back_to_top.png" class=back_to_top_IMG alt="Back to top" /></a>
     <div id=overlay_background onclick="CloseDialogs()"></div>
     <div id="overlay_Zoeken" class="darkBlueBackground bordered padded">
-        <a href=# class="close_zoeken link" onclick="CloseDialogs()"><img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>
+        <a href=# class="close_zoeken link" onclick="CloseDialogs()"><img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG /> Close</a>
         <div id="resultSet"></div>
     </div>
     <div id="overlay_PWA" class="darkBlueBackground bordered padded">
@@ -431,27 +453,26 @@
         <h1>Kies uw taal</h1>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("nl")'>
-                <img class="lazyload" data-src="../images/overlay/belgium_640.png"
+                <img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/belgium_640.png"
                     alt="vlag van België; voor Nederlands." class="foto_taal_button" />
                 Nederlands
-                <img class="lazyload" data-src="../images/overlay/netherlands_640.png"
+                <img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/netherlands_640.png"
                     alt="vlag van Nederland; voor Nederlands." class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
             <a href="#" class="link" onClick='changelang("en")'>
-                <img class="lazyload" data-src="../images/overlay/united_kingdom_640.png"
+                <img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/united_kingdom_640.png"
                     alt="vlag van Engeland voor Engels." class="foto_taal_button" />
                 English
-                <img class="lazyload" data-src="../images/overlay/united_states_of_america_64.png"
+                <img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/united_states_of_america_64.png"
                     alt="vlag van de VS; voor Engels." class=foto_taal_button>
             </a>
         </div>
         <div class=taal>
             <a href=# class="close link"  onclick="CloseDialogs()"> 
-                <img class="lazyload" data-src="../images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG />
+                <img class="lazyLoad" data-src="https://www.doctorwhofans.be/images/overlay/981077-32.png" alt="Sluiten/Close" class=close_IMG />
                 Close</a>
-        </div>
     </div>
 
 </body>

@@ -1,6 +1,8 @@
 /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 
 var Checkinterval;
+var RootURL = getRootUrl();
+
 
 ! function (e, t) {
 	"use strict";
@@ -457,18 +459,18 @@ var Checkinterval;
 					n = t;
 					while (n = n.parentNode) s.unshift(n);
 					while (a[r] === s[r]) r++;
-					return r ? pe(a[r], s[r]) : a[r] == p ? -1 : s[r] == p ? 1 : 0
-				}), C
+					return r ? pe(a[r], s[r]) : a[r] == p ? -1 : s[r] == p ? 1 : 0;
+				}), C;
 			}, se.matches = function (e, t) {
-				return se(e, null, null, t)
+				return se(e, null, null, t);
 			}, se.matchesSelector = function (e, t) {
 				if (T(e), d.matchesSelector && E && !N[t + " "] && (!s || !s.test(t)) && (!v || !v.test(t))) try {
 					var n = c.call(e, t);
-					if (n || d.disconnectedMatch || e.document && 11 !== e.document.nodeType) return n
+					if (n || d.disconnectedMatch || e.document && 11 !== e.document.nodeType) return n;
 				} catch (e) {
-					N(t, !0)
+					N(t, !0);
 				}
-				return 0 < se(t, C, null, [e]).length
+				return 0 < se(t, C, null, [e]).length;
 			}, se.contains = function (e, t) {
 				return (e.ownerDocument || e) != C && T(e), y(e, t);
 			}, se.attr = function (e, t) {
@@ -525,14 +527,14 @@ var Checkinterval;
 				},
 				preFilter: {
 					ATTR: function (e) {
-						return e[1] = e[1].replace(te, ne), e[3] = (e[3] || e[4] || e[5] || "").replace(te, ne), "~=" === e[2] && (e[3] = " " + e[3] + " "), e.slice(0, 4)
+						return e[1] = e[1].replace(te, ne), e[3] = (e[3] || e[4] || e[5] || "").replace(te, ne), "~=" === e[2] && (e[3] = " " + e[3] + " "), e.slice(0, 4);
 					},
 					CHILD: function (e) {
-						return e[1] = e[1].toLowerCase(), "nth" === e[1].slice(0, 3) ? (e[3] || se.error(e[0]), e[4] = +(e[4] ? e[5] + (e[6] || 1) : 2 * ("even" === e[3] || "odd" === e[3])), e[5] = +(e[7] + e[8] || "odd" === e[3])) : e[3] && se.error(e[0]), e
+						return e[1] = e[1].toLowerCase(), "nth" === e[1].slice(0, 3) ? (e[3] || se.error(e[0]), e[4] = +(e[4] ? e[5] + (e[6] || 1) : 2 * ("even" === e[3] || "odd" === e[3])), e[5] = +(e[7] + e[8] || "odd" === e[3])) : e[3] && se.error(e[0]), e;
 					},
 					PSEUDO: function (e) {
 						var t, n = !e[6] && e[2];
-						return G.CHILD.test(e[0]) ? null : (e[3] ? e[2] = e[4] || e[5] || "" : n && X.test(n) && (t = h(n, !0)) && (t = n.indexOf(")", n.length - t) - n.length) && (e[0] = e[0].slice(0, t), e[2] = n.slice(0, t)), e.slice(0, 3))
+						return G.CHILD.test(e[0]) ? null : (e[3] ? e[2] = e[4] || e[5] || "" : n && X.test(n) && (t = h(n, !0)) && (t = n.indexOf(")", n.length - t) - n.length) && (e[0] = e[0].slice(0, t), e[2] = n.slice(0, t)), e.slice(0, 3));
 					}
 				},
 				filter: {
@@ -553,15 +555,15 @@ var Checkinterval;
 					ATTR: function (n, r, i) {
 						return function (e) {
 							var t = se.attr(e, n);
-							return null == t ? "!=" === r : !r || (t += "", "=" === r ? t === i : "!=" === r ? t !== i : "^=" === r ? i && 0 === t.indexOf(i) : "*=" === r ? i && -1 < t.indexOf(i) : "$=" === r ? i && t.slice(-i.length) === i : "~=" === r ? -1 < (" " + t.replace(B, " ") + " ").indexOf(i) : "|=" === r && (t === i || t.slice(0, i.length + 1) === i + "-"))
-						}
+							return null == t ? "!=" === r : !r || (t += "", "=" === r ? t === i : "!=" === r ? t !== i : "^=" === r ? i && 0 === t.indexOf(i) : "*=" === r ? i && -1 < t.indexOf(i) : "$=" === r ? i && t.slice(-i.length) === i : "~=" === r ? -1 < (" " + t.replace(B, " ") + " ").indexOf(i) : "|=" === r && (t === i || t.slice(0, i.length + 1) === i + "-"));
+						};
 					},
 					CHILD: function (h, e, t, g, v) {
 						var y = "nth" !== h.slice(0, 3),
 							m = "last" !== h.slice(-4),
 							x = "of-type" === e;
 						return 1 === g && 0 === v ? function (e) {
-							return !!e.parentNode
+							return !!e.parentNode;
 						} : function (e, t, n) {
 							var r, i, o, a, s, u, l = y !== m ? "nextSibling" : "previousSibling",
 								c = e.parentNode,
@@ -574,9 +576,9 @@ var Checkinterval;
 										a = e;
 										while (a = a[l])
 											if (x ? a.nodeName.toLowerCase() === f : 1 === a.nodeType) return !1;
-										u = l = "only" === h && !u && "nextSibling"
+										u = l = "only" === h && !u && "nextSibling";
 									}
-									return !0
+									return !0;
 								}
 								if (u = [m ? c.firstChild : c.lastChild], m && p) {
 									d = (s = (r = (i = (o = (a = c)[S] || (a[S] = {}))[a.uniqueID] || (o[a.uniqueID] = {}))[h] || [])[0] === k && r[1]) && r[2], a = s && c.childNodes[s];
@@ -4299,7 +4301,7 @@ $(function () {
 			mail.name = $('#name').val();
 			mail.subject = $('#subject').val();
 			mail.emailToReply = $('#email').val();
-			jQuery.get('https://www.doctorwhofans.be/mail.html', function (data) {
+			jQuery.get(RootURL+'mail.html', function (data) {
 				var template = data;
 			});
 			mail.message = $("#txtEditor").Editor("getText");
@@ -4434,6 +4436,14 @@ function setCookie(cname, cvalue, exdays) {
 	}
 
 
+}
+function getRootUrl() {
+	
+return	window.location.origin 
+			? window.location.origin + '/'
+			: window.location.protocol + '/' + window.location.host + '/';
+	
+	//
 }
 
 
@@ -4661,7 +4671,7 @@ function ip_callback() {
 function checkmenu(menu) {
 	if (menu == "API") {
 		event.preventDefault();
-		window.location.href = "https://www.doctorwhofans.be/API/index.html";
+		window.location.href = RootURL+"API/index.html";
 		return;
 	}
 	gegevens = {};
@@ -4686,8 +4696,9 @@ function checkmenu(menu) {
 			cache: false
 		}).done(function (resultaat) {
 			for (var i = 0; i < resultaat.data.length; i++) {
-				//$('.under').append("<a href='../"+resultaat.data[i].link+"/'>"+resultaat.data[i].topic+"</a>")
-				$(".topics").append("<div class='OverzichtItem'><a href='../" + resultaat.data[i].link + "/'  ><h2>" + resultaat.data[i].topic + "</h2></a></div>");
+				//$('.under').append("<a href=RootURL+'"+resultaat.data[i].link+"/'>"+resultaat.data[i].topic+"</a>")
+				var ItemURL = RootURL + resultaat.data[i].link + ".html";
+				$(".topics").append("<div class='OverzichtItem'><a href="+ ItemURL+"><h2>" + resultaat.data[i].topic + "</h2></a></div>");
 
 			}
 
@@ -4703,7 +4714,7 @@ function checkmenu(menu) {
 		}).done(
 			function (resultaat) {
 				if (resultaat !== true) {
-					window.location.href = "https://www.doctorwhofans.be/notfound.html";
+					window.location.href = RootURL+"notfound.html";
 				} else {
 					Checkinterval = setInterval(function () {
 						$.ajax({
@@ -4797,7 +4808,8 @@ function getpad(menu) {
 			var PathEl="";
     if (Object.keys(resultaat.Path).length > 0) {
       for (i = 0; i < Object.keys(resultaat.Path).length; i++) {
-        PathEl+=" <a href='../"+resultaat.Path[i].link+"'>" + resultaat.Path[i].topic + "</a> <i class='fa fa-arrow-right'></i>";
+				var pathLink = RootURL+resultaat.Path[i].link+'.html';
+        PathEl+=" <a href="+pathLink+">" + resultaat.Path[i].topic + "</a> <i class='fa fa-arrow-right'></i>";
 
       }
       $('.path').html(PathEl);
@@ -4807,13 +4819,11 @@ function getpad(menu) {
     }
 
 
-			$(".path").prepend("<span>" + resultaat.data[0].pad + "</span>");
-			$(".path a").addClass("link");
-			if (menu === "Video" || resultaat.data[0].pad.search("Video") > 0) {
+			if (menu === "Video" ) {
 				videosophalen(menu, ItemId);
 
 			}
-			if (menu === "Quotes" || resultaat.data[0].pad.search("Quotes") > 0) {
+			if (menu === "Quotes" ) {
 				quotesophalen(menu, ItemId);
 				if (getCookie('mode') == 'night') {
 					$('*').addClass('dark-mode')
@@ -4832,12 +4842,12 @@ function random() {
 	}).done(
 		function (resultaat) {
 			for (i = 0; i < resultaat.data.length; i += 1) {
-				$("#links").append("<a href='../" + resultaat.data[i].link + "/' >" + resultaat.data[i].topic + "</a></br>");
+				$("#links").append("<a href="+RootURL+ resultaat.data[i].link + ".html' >" + resultaat.data[i].topic + "</a></br>");
 			}
 		}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
 
-function getchildren(menu) {
+function getChildren(menu) {
 	$.ajax({
 		type: "GET",
 		url: "/php/children.php?menu=" + menu,
@@ -4848,10 +4858,11 @@ function getchildren(menu) {
 		function (resultaat) {
 			var i;
 			for (i = 0; i < resultaat.data.length; i += 1) {
+			var	ItemURL = RootURL + resultaat.data[i].link+ '.html';
 				if (resultaat.data[i].direct_children > 0) {
-					$(".topics").append("<div class='OverzichtItem'><a href='../" + resultaat.data[i].link + "/'  >" + resultaat.data[i].topic + "<span>(Pages: " + resultaat.data[i].direct_children + ")</span></a></div>");
+					$(".topics").append("<div class='OverzichtItem'><a href='"+ItemURL+"'>" + resultaat.data[i].topic + "<span>(Pages: " + resultaat.data[i].direct_children + ")</span></a></div>");
 				} else {
-					$(".topics").append("<div class='OverzichtItem'><a href='../" + resultaat.data[i].link + "/'  >" + resultaat.data[i].topic + "</a></div>");
+					$(".topics").append("<div class='OverzichtItem'><a href='"+ItemURL+"'>" + resultaat.data[i].topic + "</a></div>");
 				}
 			}
 		}).fail(function (response, statusText, xhr) {}).always(function () {});
@@ -4879,13 +4890,13 @@ function videosophalen(menu, id) {
 					$(".main_vid").append("<iframe width='853' height='480' src='" + resultaat.data[i].Video_URL + "' frameborder='0' allowfullscreen></iframe>");
 				} else {
 					$(".main_vid").append("<h2>" + resultaat.data[i].Video_Name + "</h2>");
-					$(".main_vid").append("<video width='480' controls controlsList='nodownload'><source src='../" + resultaat.data[i].Video_URL + "' type='video/mp4'></video>");
+					$(".main_vid").append("<video width='480' controls controlsList='nodownload'><source src="+RootURL + resultaat.data[i].Video_URL + "' type='video/mp4'></video>");
 				}
 			} else {
 				if (resultaat.data[i].SPOILER === 1) {
-					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + " class='inline_vid bordered DarkBlueBackground spoilervid' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
+					$(".vid_choice").append("<a href="+RootURL +"'Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + " class='inline_vid bordered DarkBlueBackground spoilervid' ><div><img data-src=RootURL+'" + resultaat.data[i].Video_Image + "' class='lazyLoad' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
 				} else {
-					$(".vid_choice").append("<a href='../Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + "' class='inline_vid bordered DarkBlueBackground' ><div><img data-src='../" + resultaat.data[i].Video_Image + "' class='lazyload' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
+					$(".vid_choice").append("<a href="+RootURL +"'Video/" + resultaat.data[i].id + "' title='" + resultaat.data[i].Video_Name + "' class='inline_vid bordered DarkBlueBackground' ><div><img data-src="+RootURL+ resultaat.data[i].Video_Image + "' class='lazyLoad' alt='" + resultaat.data[i].Video_Name + "'><p title='" + resultaat.data[i].Video_Name + "'>" + resultaat.data[i].Video_Name.substr(0, 30) + "...</p></div></a>");
 				}
 			}
 		}
@@ -4902,7 +4913,7 @@ function videosophalen(menu, id) {
 function quotesophalen(menu, id) {
 	$.ajax({
 		type: "GET",
-		url: "/php/quotesophalen.php?menu=" + menu + "&id=" + id,
+		url: rootURL+"php/quotesophalen.php?menu=" + menu + "&id=" + id,
 		dataType: 'json',
 		cache: false
 	}).done(function (resultaat) {
@@ -4918,14 +4929,16 @@ function quotesophalen(menu, id) {
 		}
 		for (i = 0; i < resultaat.data.length; i++) {
 			if (Number(id) === resultaat.data[i].id) {
-				$(".main_quote").append("<img class='quote_picture lazyload padded' data-src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
+				var ImgUrl = rootURL+'images/QuotesTabel/'+resultaat.data[i].QuotePic;
+				$(".main_quote").append("<img class='quote_picture lazyLoad padded' data-src='"+ImgUrl+"'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
 				$(".main_quote").append("<div><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
 			} else {
 				var quote = resultaat.data[i].Quote.substring(0, 60).replace(/<(.|\n)*?>/g, '');
+				var QuoteLink = RootURL + "Quotes/"+resultaat.data[i].id;
 				if (i % 2 === 0) {
-					$(".linkerquote").append("<a href='../Quotes/" + resultaat.data[i].id + "'>" + quote + "</a>");
+					$(".linkerquote").append("<a href='" +QuoteLink+"'>" + quote + "</a>");
 				} else {
-					$(".rechterquote").append("<a href='../Quotes/" + resultaat.data[i].id + "'>" + quote + "</a>");
+					$(".rechterquote").append("<a href='" +QuoteLink+"'>" + quote + "</a>");
 				}
 			}
 		}
@@ -4948,7 +4961,7 @@ function GetNews() {
 			$(".news").append("<div class='newsitem' id='" + resultaat.data[i].id + "'></div>");
 			$("#" + resultaat.data[i].id).append("<h2>" + resultaat.data[i].Titel + "</h2>");
 			$("#" + resultaat.data[i].id).append("<h3>" + resultaat.data[i].Datum + "</h3>");
-			$("#" + resultaat.data[i].id).append("<img data-src='" + resultaat.data[i].Foto + "' alt='" + resultaat.data[i].alt + "' class='" + resultaat.data[i].Class + " lazyload'/><span class='" + resultaat.data[i].Class_Text + "'>" + resultaat.data[i].Bericht + "</span>");
+			$("#" + resultaat.data[i].id).append("<img data-src='" + resultaat.data[i].Foto + "' alt='" + resultaat.data[i].alt + "' class='" + resultaat.data[i].Class + " lazyLoad'/><span class='" + resultaat.data[i].Class_Text + "'>" + resultaat.data[i].Bericht + "</span>");
 		}
 
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
@@ -4967,7 +4980,7 @@ function GetQuotesByCharacter(Character) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForChar + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='"+RootURL+"images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {
@@ -4991,7 +5004,7 @@ function GetQuotesByEpisode(Episode) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForEpisode + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src="+RootURL+"images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {
@@ -5089,7 +5102,7 @@ function GetOneRandomQuote() {
 		cache: false
 	}).done(function (resultaat) {
 		$('.quote').append("<p>" + resultaat.data[0].Quote + " ...</p>");
-		$('.quote').append("<a href='../Quotes/" + resultaat.data[0].id + "'>" + translations[0].ReadMore + "</a>");
+		$('.quote').append("<a href="+RootURL+"Quotes/" + resultaat.data[0].id + "'>" + translations[0].ReadMore + "</a>");
 		$('.quote').append("<p>" + resultaat.data[0].Personage + " - " + resultaat.data[0].Aflevering + "</p>");
 	}).fail(function (response, statusText, xhr) {}).always(function () {});
 }
@@ -5307,16 +5320,16 @@ function contentophalen(taal, menu) {
 			}
 			if (resultaat.data[i].A_Pagina_Type === "Overzicht") {
 				$(".under").append("<div class='topics'></div>");
-				getchildren(menu);
+				getChildren(menu);
 			}
 			if (resultaat.data[i].A_Type === "Afbeelding") {
 				if (resultaat.data[i].A_Pagina_Type === "Wiki") {
 					for (var j = 0; j < resultaat.data.length; j += 1) {
 						if (resultaat.data[j].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[j].A_Type === "Bijschrift" || resultaat.data[j].A_Type === "Alt")) {
 							if (resultaat.data[j].A_Type === "Bijschrift") {
-								$("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyload' title='" + resultaat.data[j].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + "'><span>" + resultaat.data[j].A_Waarde + "</span></div>");
+								$("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyLoad' title='" + resultaat.data[j].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + "'><span>" + resultaat.data[j].A_Waarde + "</span></div>");
 							} else {
-								$("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyload' title='" + resultaat.data[j].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + "'></div>");
+								$("#WikiDetails").prepend("<div><img data-src='" + resultaat.data[i].A_Waarde + "' class='Wiki_Foto " + resultaat.data[i].A_Klasse + " lazyLoad' title='" + resultaat.data[j].A_Waarde + "' alt='" + resultaat.data[j].A_Waarde + "'></div>");
 							}
 						}
 					}
@@ -5333,7 +5346,7 @@ function contentophalen(taal, menu) {
 					for (var m = 0; m < resultaat.data.length; m += 1) {
 						if (resultaat.data[m].A_Hoort_Bij === resultaat.data[i].A_ID && (resultaat.data[m].A_Type === "Alt" || resultaat.data[m].A_Type === "Bijschrift")) {
 							$(".col-6").append("<div id='" + resultaat.data[i].A_ID + "' class='foto_met_text bordered DarkBlueBackground " + resultaat.data[i].A_Klasse + "'></div>");
-							$("#" + resultaat.data[i].A_ID).append("<img data-src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[m].A_Waarde + " title='" + resultaat.data[m].A_Waarde + "' class='" + resultaat.data[i].A_Klasse + " lazyload'>");
+							$("#" + resultaat.data[i].A_ID).append("<img data-src='" + resultaat.data[i].A_Waarde + "' alt='" + resultaat.data[m].A_Waarde + " title='" + resultaat.data[m].A_Waarde + "' class='" + resultaat.data[i].A_Klasse + " lazyLoad'>");
 							if (resultaat.data[m].A_Type === "Bijschrift") {
 								$("#" + resultaat.data[i].A_ID).append("<p class='" + resultaat.data[m].A_Klasse + "'>" + resultaat.data[m].A_Waarde + "</p>");
 
@@ -5391,14 +5404,14 @@ function contentophalen(taal, menu) {
 				var tagstring = "Tags: ";
 				for (var i = 0; i < resultaat.tags.length; i++) {
 					if (i == resultaat.tags.length - 1) {
-						tagstring += "<a href='../Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>";
+						tagstring += "<a href="+RootURL+"Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + ".html'>" + resultaat.tags[i].cat_name + "</a>";
 					} else {
-						tagstring += "<a href='../Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + "/'>" + resultaat.tags[i].cat_name + "</a>, ";
+						tagstring += "<a href="+RootURL+"Category:" + resultaat.tags[i].cat_name.split(' ').join('_') + ".html'>" + resultaat.tags[i].cat_name + "</a>, ";
 					}
 				}
 				$('#Tags').html(tagstring);
 			}
-			//checkModefromCookie()
+			checkModefromCookie()
 
 			if (getCookie("size") != "") {
 				getSizesfromCookie();
@@ -5500,14 +5513,14 @@ function ToggleItems(){
 function createSiteMap(elem){
 	$.ajax({
 		type: "GET",
-		url: "https://www.doctorwhofans.be/php/Children2.php",
+		url: RootURL+"php/Children2.php",
 		dataType: 'json',
 		cache: false,
 	}).done(
 		function(resultaat) {
 			//console.log(getNestedChildren(resultaat.data,0));
 			createList(document.getElementById(elem), getNestedChildren(resultaat.data,0));
-			$('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page')
+			$('li a[href="'+rootURL+window.location.pathname+'"]').addClass('current_page')
 		}).fail(function(response, statusText, xhr) {
 	}).always(function() {
 	});
@@ -5519,8 +5532,12 @@ function createList(parent, array) {
 	array.forEach(function (o) {
 		var li = document.createElement("li"),
 			ul;
+			if (o.link.includes('.html')){
+				o.link = RootURL+o.link;
+			}else{
+				o.link = RootURL+o.link+'.html';
 
-			o.link = '../'+o.link+'/';
+			}
 
 		if (o.children) {
 			li.innerHTML = "<button class='SitemapButton' onclick=ToggleItems()>+</button><a href='"+o.link+"'>"+o.topic+"</a>";
@@ -5733,12 +5750,12 @@ function GetEpisodesofToday() {
 	var d, e;
 	if (function () {
 			var b, c = {
-				lazyClass: "lazyload",
-				loadedClass: "lazyloaded",
-				loadingClass: "lazyloading",
-				preloadClass: "lazypreload",
-				errorClass: "lazyerror",
-				autosizesClass: "lazyautosizes",
+				lazyClass: "lazyLoad",
+				loadedClass: "lazyLoaded",
+				loadingClass: "lazyLoading",
+				preloadClass: "lazyPreload",
+				errorClass: "lazyError",
+				autosizesClass: "lazyAutosizes",
 				srcAttr: "data-src",
 				srcsetAttr: "data-srcset",
 				sizesAttr: "data-sizes",
@@ -5768,7 +5785,7 @@ function GetEpisodesofToday() {
 		l = a.requestAnimationFrame || k,
 		m = a.requestIdleCallback,
 		n = /^picture$/i,
-		o = ["load", "error", "lazyincluded", "_lazyloaded"],
+		o = ["load", "error", "lazyincluded", "_lazyLoaded"],
 		p = {},
 		q = Array.prototype.forEach,
 		r = function (a, b) {
@@ -5898,7 +5915,7 @@ function GetEpisodesofToday() {
 				X = function (a) {
 					var b = a.target;
 					if (b._lazyCache) return void delete b._lazyCache;
-					S(a), s(b, e.loadedClass), t(b, e.loadingClass), u(b, Z), v(b, "lazyloaded");
+					S(a), s(b, e.loadedClass), t(b, e.loadingClass), u(b, Z), v(b, "lazyLoaded");
 				},
 				Y = A(X),
 				Z = function (a) {
