@@ -32,15 +32,17 @@ if(!$stmt1->execute()){
 	if(count($resultarray)>0){
 
 		$in  = str_repeat('?,', count($resultarray) - 1) . '?';
-		$sql = "SELECT link,topic from Topics where id in ($in) order by parent_id asc";
+		$sql = "SELECT link,topic from Topics where id in ($in) order BY FIELD (id, $in) desc";
 
 
 		$stmt2 = $conn->prepare($sql);
 		if(!$stmt2){
 			die("Statement preparing failed: " . $conn->error);
 		}
-		$types = str_repeat('s', count($resultarray));
-		if(!$stmt2->bind_param($types,...$resultarray)){
+		$newArray=array_merge($resultarray,$resultarray);
+		$types = str_repeat('s', count($newArray));
+		
+		if(!$stmt2->bind_param($types,...$newArray)){
 			die("Statement binding failed: " . $conn->connect_error);
 		}
 		if(!$stmt2->execute()){
