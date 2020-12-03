@@ -1,7 +1,7 @@
 <?php
 /**
  * @package       OneAll Social Login
- * @copyright     Copyright 2011-2017 http://www.oneall.com
+ * @copyright     Copyright 2011-Present http://www.oneall.com
  * @license       GPL-2.0
  *
  * This program is free software; you can redistribute it and/or
@@ -169,7 +169,8 @@ class listener implements EventSubscriberInterface
                 'OA_SOCIAL_LOGIN_EMBED_LIBRARY' => 1,
                 'OA_SOCIAL_LOGIN_API_SUBDOMAIN' => addslashes($this->config['oa_social_login_api_subdomain']),
                 'OA_SOCIAL_LOGIN_CALLBACK_URI' => addslashes($this->helper->get_current_url()),
-                'OA_SOCIAL_LOGIN_PROVIDERS' => implode("','", explode(",", $this->config['oa_social_login_providers']))
+                'OA_SOCIAL_LOGIN_PROVIDERS' => implode("','", explode(",", $this->config['oa_social_login_providers'])),
+                'OA_SOCIAL_LOGIN_RAND' => mt_rand(99999, 9999999)
             ));
 
             // User must not be logged in

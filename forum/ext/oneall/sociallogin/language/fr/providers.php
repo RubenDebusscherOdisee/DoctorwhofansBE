@@ -1,7 +1,7 @@
 <?php
 /**
  * @package       OneAll Social Login
- * @copyright     Copyright 2011-2017 http://www.oneall.com
+ * @copyright     Copyright 2011-Present http://www.oneall.com
  * @license       GPL-2.0
  *
  * This program is free software; you can redistribute it and/or
@@ -56,9 +56,11 @@ $lang = array_merge($lang, array(
     'OA_SOCIAL_LOGIN_P_LINKEDIN' => 'LinkedIn',
     'OA_SOCIAL_LOGIN_P_LIVEJOURNAL' => 'LiveJournal',
     'OA_SOCIAL_LOGIN_P_MAILRU' => 'Mail.ru',
+    'OA_SOCIAL_LOGIN_P_MIXER' => 'Mixer',
     'OA_SOCIAL_LOGIN_P_MEETUP' => 'Meetup',
     'OA_SOCIAL_LOGIN_P_ODNOKLASSNIKI' => 'Odnoklassniki',
     'OA_SOCIAL_LOGIN_P_OPENID' => 'OpenID',
+    'OA_SOCIAL_LOGIN_P_PATREON' => 'Patreon',
     'OA_SOCIAL_LOGIN_P_PAYPAL' => 'PayPal',
     'OA_SOCIAL_LOGIN_P_PINTEREST' => 'Pinterest',
     'OA_SOCIAL_LOGIN_P_PIXELPIN' => 'PixelPin',

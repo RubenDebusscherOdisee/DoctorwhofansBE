@@ -1,7 +1,7 @@
 <?php
 /**
  * @package       OneAll Social Login
- * @copyright     Copyright 2011-2017 http://www.oneall.com
+ * @copyright     Copyright 2011-Present http://www.oneall.com
  * @license       GPL-2.0
  *
  * This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@ namespace oneall\sociallogin\core;
 class helper
 {
     // Version
-    const USER_AGENT = 'SocialLogin/4.5.3 phpBB/3.1.x (+http://www.oneall.com/)';
+    const USER_AGENT = 'SocialLogin/4.7.2 phpBB/3.1.x (+http://www.oneall.com/)';
 
     // @var \phpbb\config\config
     protected $config;
@@ -206,9 +206,9 @@ class helper
      */
     public function remove_login_token_for_user_id($user_id)
     {
-    	// Remove old tokens.
-    	$sql = "DELETE FROM " . $this->table_prefix . "oasl_login_token WHERE user_id = " . (int) $user_id;
-    	$this->db->sql_query($sql);
+        // Remove old tokens.
+        $sql = "DELETE FROM " . $this->table_prefix . "oasl_login_token WHERE user_id = " . (int) $user_id;
+        $this->db->sql_query($sql);
     }
 
     /**
@@ -229,28 +229,28 @@ class helper
         // We have found a useable login_token.
         if (is_array($result) && !empty($result['login_token']))
         {
-        	$login_token = $result['login_token'];
+            $login_token = $result['login_token'];
         }
         // Create a new and unique token.
         else
         {
-	        do
-	        {
-	            $login_token = $this->get_uuid_v4();
-	        }
-	        while ($this->get_user_id_for_login_token($login_token) !== false);
+            do
+            {
+                $login_token = $this->get_uuid_v4();
+            } while ($this->get_user_id_for_login_token($login_token) !== false);
 
-	        // Add the new token.
-	        $sql_arr = array(
-	            'login_token' => $login_token,
-	            'user_id' => $user_id,
-	            'date_creation' => time());
+            // Add the new token.
+            $sql_arr = array(
+                'login_token' => $login_token,
+                'user_id' => $user_id,
+                'date_creation' => time());
 
-	        $sql = "INSERT INTO " . $this->table_prefix . "oasl_login_token " . $this->db->sql_build_array('INSERT', $sql_arr);
-	        $this->db->sql_query($sql);
+            $sql = "INSERT INTO " . $this->table_prefix . "oasl_login_token " . $this->db->sql_build_array('INSERT', $sql_arr);
+            $this->db->sql_query($sql);
         }
 
         // Done
+
         return $login_token;
     }
 
@@ -896,6 +896,7 @@ class helper
         }
 
         // No entry found.
+
         return false;
     }
 
@@ -1106,10 +1107,12 @@ class helper
             }
 
             // Done.
+
             return true;
         }
 
         // An error occured.
+
         return false;
     }
 
@@ -1341,7 +1344,7 @@ class helper
                                         }
 
                                         // Remove the login token.
-                                        $this->remove_login_token_for_user_id ($user_id_login_token);
+                                        $this->remove_login_token_for_user_id($user_id_login_token);
 
                                         // Log the user in.
                                         $this->do_login($user_id_login_token);
@@ -1567,8 +1570,13 @@ class helper
             $user_inactive_time = 0;
         }
 
+        // On 3.3 max_pass_chars is empty by default
+        $min_pass_chars = (int) $this->config['min_pass_chars'];
+        $max_pass_chars = (int) $this->config['max_pass_chars'];
+        $max_pass_chars = $max_pass_chars < $min_pass_chars ? $min_pass_chars : $max_pass_chars;
+
         // Generate a random password.
-        $new_password = gen_rand_string_friendly(max(8, mt_rand((int) $this->config['min_pass_chars'], (int) $this->config['max_pass_chars'])));
+        $new_password = gen_rand_string_friendly(max(8, mt_rand($min_pass_chars, $max_pass_chars)));
 
         // Setup user details.
         $user_row = array(
@@ -1991,7 +1999,7 @@ class helper
                 while (!$header_found && (list(, $header) = each($headers)))
                 {
                     // Try to parse a redirection header.
-                    if (preg_match("/(Location:|URI:)[^(\n)]*/", $header, $matches))
+                    if (preg_match("/(Location:|URI:)[^(\n)]*/i", $header, $matches))
                     {
                         // Sanitize redirection url.
                         $url_tmp = trim(str_replace($matches[1], "", $matches[0]));
@@ -2015,6 +2023,7 @@ class helper
         }
 
         // Done
+
         return $result;
     }
 
@@ -2163,7 +2172,7 @@ class helper
             while (!$header_found && (list(, $header) = each($headers)))
             {
                 // Check for location header
-                if (preg_match("/(Location:|URI:)[^(\n)]*/", $header, $matches))
+                if (preg_match("/(Location:|URI:)[^(\n)]*/i", $header, $matches))
                 {
                     // Sanitize redirection url.
                     $url_tmp = trim(str_replace($matches[1], "", $matches[0]));
@@ -2181,6 +2190,7 @@ class helper
         }
 
         // Done
+
         return $result;
     }
 }

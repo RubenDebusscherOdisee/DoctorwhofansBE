@@ -1,1 +1,8 @@
+@font-face {
+  font-family: 'Eleventh Doctor';
+  src: url(https://www.doctorwhofans.be/fonts/Doctor.otf);
+    font-weight: bold;
+
+}
+
 .forum_read							{background-repeat: no-repeat;}

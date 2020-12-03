@@ -262,6 +262,11 @@ function bbspecial(bbcode, bbcodeId) {
 					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
 						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
+							<optgroup label="Doctor Who">
+								{% for font in ['Eleventh Doctor'] %}
+									<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
+								{% endfor %}
+							</optgroup>
 							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
 								{% set safeFonts = ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Times New Roman', 'Tahoma', 'Trebuchet MS', 'Verdana'] %}
 								{% if S_ALLOW_CDN %}{% set safeFonts = safeFonts|merge(['Open Sans']) %}{% endif %}
@@ -279,6 +284,7 @@ function bbspecial(bbcode, bbcodeId) {
 									<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
 								{% endfor %}
 							</optgroup>
+
 						</select>
 					{% else %}
 						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>
