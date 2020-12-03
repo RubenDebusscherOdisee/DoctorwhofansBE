@@ -1,6 +1,39 @@
 <?php
 
 class tables_alles {
+    
+
+    function isAdmin(){
+        $auth =& Dataface_AuthenticationTool::getInstance();
+        $user =& $auth->getLoggedInUser();
+        if ( $user and  $user->val('Rol') == 'ADMIN' ){return true;}else{return false;}
+    }
+
+    function getUser (){
+        $auth =& Dataface_AuthenticationTool::getInstance();
+        $user =& $auth->getLoggedInUser();
+        return $user;
+    }
+
+
+   function getPermissions($record){
+    if ( tables_alles::isAdmin() ) return null;  // just use defaults
+    $user = tables_alles::getUser();
+
+    if($user and $record){
+        if($user->val('User_Id') == $record->val('A_Owner')){
+            return Dataface_PermissionsTool::getRolePermissions('CAR_OWNER');
+        }else if($user){
+            return Dataface_PermissionsTool::getRolePermissions('CAR_USER');
+
+        }else{return null;}
+    }else{ 
+           return null;  // default permissions otherwise
+    }
+    
+    }
+
+
 
     function getTitle($record){
 		return $record->val('id');
@@ -17,7 +50,9 @@ class tables_alles {
         //$jt->import('timestamp/plugin.js');
         //$jt->import('abbr/plugin.js');
 
-}
+    }
+    
+
     
     function __import__csv($data, $defaultValues=array()){
         $records = array();
@@ -42,12 +77,11 @@ class tables_alles {
         }
         return $records;
     }
-    
 
     function __import__excel_spreadsheet($data, $defaultValues=array()){
         import(DATAFACE_SITE_PATH."/include/PHPExcel/Classes/PHPExcel.php");
         $records = array();  // the array that will hold the records to be imported.
-            
+        
         // First let's import the excel parser and parse the data into a 
         // data structure so we can work with it.
         $tempdir = DATAFACE_SITE_PATH.'/templates_c';
@@ -64,7 +98,6 @@ class tables_alles {
 		
           
         $app = Dataface_Application::getInstance();
-
 		$ligne=2; // starting line for reading cells
 		while ($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)!=""){
 			
@@ -82,7 +115,7 @@ class tables_alles {
                     'A_Level'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $ligne)->getValue(),
                     'A_Actief'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $ligne)->getValue(),
                     'A_Klasse'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $ligne)->getValue(),
-                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue(),
+                    'A_Hoort_Bij'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $ligne)->getValue()
                         )
                 );
                 $records[] =$record;
@@ -97,5 +130,22 @@ class tables_alles {
         
     }
 
+    function beforeInsert(Dataface_Record $record){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and !$record->val('A_Owner') ){
+            $record->setValue('A_Owner', $user->val('User_Id'));
+        }
+      }
+
+      
+      function beforeCopy( Dataface_Record $original, array $values){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and $original->val('A_Owner') != $original->val('A_Owner') ){
+            $original->setValue('A_Owner', $user->val('User_Id'));
+        }
+      }
+
+       
+   
 }
 ?>

@@ -1,21 +1,23 @@
-<a class="category<!-- IF S_NATIONALFLAGS_HIDDEN --> hidden-category<!-- ENDIF -->" style="display: none; height: 0"></a>
+<a class="category{% if S_NATIONALFLAGS_HIDDEN %} hidden-category{% endif %}" style="display: none; height: 0"></a>
 <div class="forabg" id="flags">
 	<div class="inner">
 	<ul class="topiclist">
 		<li class="header">
-			<dl class="<!-- IF PHPBB_IS_32 -->row-item<!-- ELSE -->icon<!-- ENDIF -->">
-				<dt><!-- IF U_FLAGS --><a href="{U_FLAGS}"><!-- ENDIF -->{L_NATIONAL_FLAGS}<!-- IF U_FLAGS --></a><!-- ENDIF --></dt>
+			<dl class="row-item">
+				<dt>{% if U_FLAGS %}<a href="{{ U_FLAGS }}">{% endif %}{{ lang('NATIONAL_FLAGS') }}{% if U_FLAGS %}</a>{% endif %}</dt>
 				<dd></dd>
 			</dl>
-			<!-- IF U_NATIONALFLAGS_COLLAPSE_URL --><a href="{U_NATIONALFLAGS_COLLAPSE_URL}" class="collapse-btn collapse-<!-- IF S_NATIONALFLAGS_HIDDEN -->show<!-- ELSE -->hide<!-- ENDIF -->" data-hidden="{S_NATIONALFLAGS_HIDDEN}" data-ajax="phpbb_collapse" data-overlay="true" title="{L_COLLAPSIBLE_CATEGORIES_TITLE}" style="display: none; line-height: 0;"></a><!-- ENDIF -->
+			{% set S_CC_FORUM_HIDDEN = S_NATIONALFLAGS_HIDDEN %}
+			{% set U_CC_COLLAPSE_URL = U_NATIONALFLAGS_COLLAPSE_URL %}
+			{% include '@phpbb_collapsiblecategories/collapsible_categories_button.html' ignore missing %}
 		</li>
 	</ul>
 	<ul class="forums flags collapsible">
-	<!-- BEGIN flag -->
+	{% for flag in loops.flag %}
 		<li class="flags_bg flagslist">
-			<a href="{flag.U_FLAG}">{flag.FLAG}</a><br>{flag.FLAG_USERS}
+			<a href="{{ flag.U_FLAG }}">{{ flag.FLAG }}</a><br>{{ flag.FLAG_USERS }}
 		</li>
-	<!-- END flag -->
+	{% endfor %}
 	</ul>
 	</div>
 </div>

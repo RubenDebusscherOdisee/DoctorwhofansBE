@@ -1,7 +1,7 @@
 <?php
 /**
  * @package       OneAll Social Login
- * @copyright     Copyright 2011-2017 http://www.oneall.com
+ * @copyright     Copyright 2011-Present http://www.oneall.com
  * @license       GPL-2.0
  *
  * This program is free software; you can redistribute it and/or
@@ -442,6 +442,22 @@ class sociallogin_acp_module
                             $status_message = $user->lang['OA_SOCIAL_LOGIN_API_CREDENTIALS_KEYS_WRONG'];
                             break;
 
+                        // Limit Exceed
+                        case 403:
+                            $data = json_decode($result->get_data(), true);
+                            $error_message = !empty($data['response']['request']['status']['info']) ? $data['response']['request']['status']['info'] : null;
+
+                            if (!empty($error_message) && strpos($error_message, 'exceeded') !== false)
+                            {
+                                $status_message = $user->lang['OA_SOCIAL_LOGIN_API_CREDENTIALS_OK'];
+                                $status_success = true;
+                            }
+                            else
+                            {
+                                $status_message = $user->lang['OA_SOCIAL_LOGIN_API_CREDENTIALS_CHECK_COM'];
+                            }
+                            break;
+
                         // Wrong Subdomain.
                         case 404:
                             $status_message = $user->lang['OA_SOCIAL_LOGIN_API_CREDENTIALS_SUBDOMAIN_WRONG'];
@@ -549,9 +565,11 @@ class sociallogin_acp_module
             'linkedin' => $user->lang['OA_SOCIAL_LOGIN_P_LINKEDIN'],
             'livejournal' => $user->lang['OA_SOCIAL_LOGIN_P_LIVEJOURNAL'],
             'mailru' => $user->lang['OA_SOCIAL_LOGIN_P_MAILRU'],
+            'mixer' => $user->lang['OA_SOCIAL_LOGIN_P_MIXER'],
             'meetup' => $user->lang['OA_SOCIAL_LOGIN_P_MEETUP'],
             'odnoklassniki' => $user->lang['OA_SOCIAL_LOGIN_P_ODNOKLASSNIKI'],
             'openid' => $user->lang['OA_SOCIAL_LOGIN_P_OPENID'],
+            'patreon' => $user->lang['OA_SOCIAL_LOGIN_P_PATREON'],
             'paypal' => $user->lang['OA_SOCIAL_LOGIN_P_PAYPAL'],
             'pinterest' => $user->lang['OA_SOCIAL_LOGIN_P_PINTEREST'],
             'pixelpin' => $user->lang['OA_SOCIAL_LOGIN_P_PIXELPIN'],

@@ -1,11 +1,4 @@
 {% if S_INCLUDE_DIGESTS_MANUAL_MAILER %}
-{% if not definition.INCLUDED_JQUERYUI1121JS %}
-{% DEFINE INCLUDED_JQUERYUI1121JS = true %}
-{% INCLUDEJS '@phpbbservices_digests/jquery-ui-1.12.1.min.js' %}
-{% endif %}
-{% if not definition.INCLUDED_DATETIMEPICKERJS %}
-{% DEFINE INCLUDED_DATETIMEPICKERJS = true %}
-{% INCLUDEJS '@phpbbservices_digests/jquery.datetimepicker.js' %}
 <script>
 	$(document).ready(function(){
 		$('#phpbbservices_digests_test_date_hour').datetimepicker({
@@ -14,5 +7,4 @@
 		})
 	});
 </script>
-{% endif %}
 {% endif %}

@@ -96,6 +96,13 @@ class tables_Topics{
         return $records;
         
     }
+
+    function beforeInsert(Dataface_Record $record){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and !$record->val('T_Owner') ){
+            $record->setValue('T_Owner', $user->val('User_Id'));
+        }
+      }
 }
 
 ?>

@@ -4245,6 +4245,7 @@ if (jQuery) {
 		$(document).ready(function () {
 			// initialize the megamenu
 			$('.megamenu').accessibleMegaMenu();
+			$('.installButton').hide();
 
 			// hack so that the megamenu doesn't show flash of css animation after the page loads.
 			setTimeout(function () {
@@ -4793,6 +4794,19 @@ function getpad(menu) {
 		cache: false
 	}).done(
 		function (resultaat) {
+			var PathEl="";
+    if (Object.keys(resultaat.Path).length > 0) {
+      for (i = 0; i < Object.keys(resultaat.Path).length; i++) {
+        PathEl+=" <a href='../"+resultaat.Path[i].link+"'>" + resultaat.Path[i].topic + "</a> <i class='fa fa-arrow-right'></i>";
+
+      }
+      $('.path').html(PathEl);
+      $('.path').show();
+    }else{
+
+    }
+
+
 			$(".path").prepend("<span>" + resultaat.data[0].pad + "</span>");
 			$(".path a").addClass("link");
 			if (menu === "Video" || resultaat.data[0].pad.search("Video") > 0) {
@@ -4904,7 +4918,7 @@ function quotesophalen(menu, id) {
 		}
 		for (i = 0; i < resultaat.data.length; i++) {
 			if (Number(id) === resultaat.data[i].id) {
-				$(".main_quote").append("<img class='quote_picture lazyload padded' data-src='../images/Quotes/" + resultaat.data[i].QuotePic + "'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
+				$(".main_quote").append("<img class='quote_picture lazyload padded' data-src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "'/><h1>" + resultaat.data[i].Aflevering + "</h1>");
 				$(".main_quote").append("<div><p class='quotetext'>" + resultaat.data[i].Quote + "</p><p>" + resultaat.data[i].Personage + "</p><div>");
 			} else {
 				var quote = resultaat.data[i].Quote.substring(0, 60).replace(/<(.|\n)*?>/g, '');
@@ -4953,7 +4967,7 @@ function GetQuotesByCharacter(Character) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForChar + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/Quotes/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Aflevering + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {
@@ -4977,7 +4991,7 @@ function GetQuotesByEpisode(Episode) {
 			$("#Quotes").append("<p>" + translations[0].NoQuotesForEpisode + "</p>");
 		} else {
 			for (i = 0; i < resultaat.data.length; i++) {
-				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/Quotes/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
+				$("#Quotes").append("<div class='quoteitem bordered DarkBlueBackground " + resultaat.data[i].Class + "'><div class='quoteQuote'><p><img src='../images/QuotesTabel/" + resultaat.data[i].QuotePic + "' alt='" + resultaat.data[i].Aflevering + "'/>" + resultaat.data[i].Quote + "</p></img><div class='quoteEpisode'><p><b>" + resultaat.data[i].Personage + "</b></p></div></div>");
 			}
 		}
 	}).fail(function (response, statusText, xhr) {
@@ -6085,5 +6099,60 @@ $(document).ready(function () {
 	window.addEventListener('onbeforeprint', printContent);
 });
 
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+	// Update UI notify the user they can install the PWA
+	console.log("Ik kan geinstalleerd worden!!")
+	$('.installButton').css('display','block');
+
+  //showInstallPromotion();
+});
 
 
+function A2HS(){
+	// Hide the app provided install promotion
+  $('.installButton').css('display','none');
+  // Show the install prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
+    }
+  });
+}
+
+window.addEventListener('appinstalled', (evt) => {
+	$('.installButton').css('display','none');
+  console.log('INSTALL: Success');
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  let displayMode = 'browser tab';
+  if (navigator.standalone) {
+    displayMode = 'standalone-ios';
+  }
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    displayMode = 'standalone';
+  }
+  // Log launch display mode to analytics
+  console.log('DISPLAY_MODE_LAUNCH:', displayMode);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  window.matchMedia('(display-mode: standalone)').addListener((evt) => {
+    let displayMode = 'browser tab';
+    if (evt.matches) {
+      displayMode = 'standalone';
+    }
+    // Log display mode change to analytics
+    console.log('DISPLAY_MODE_CHANGED', displayMode);
+  });
+});

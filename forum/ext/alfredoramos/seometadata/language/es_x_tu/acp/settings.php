@@ -24,7 +24,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_SEO_METADATA_EXPLAIN' => 'Los cambios en los siguientes valores sólo serán aplicados a los temas nuevos, si deseas que tambien sean aplicados a los temas antiguos, necesitarás limpiar la caché.',
+	'ACP_SEO_METADATA_EXPLAIN' => '<p>Aquí puedes configurar los meta datos que desees generar y mostrar. Consulta las <a href="https://www.phpbb.com/customise/db/extension/seo_metadata/faq" rel="external nofollow noreferrer noopener" target="_blank"><strong>Preguntas Frecuentes</strong></a> para obtener más información. Si requieres de ayuda, por favor visita la sección de <a href="https://www.phpbb.com/customise/db/extension/seo_metadata/support" rel="external nofollow noreferrer noopener" target="_blank"><strong>Soporte</strong></a>.</p>',
+	'ACP_SEO_METADATA_INFO' => 'Los cambios en los siguientes valores sólo serán aplicados a los temas nuevos, si deseas que también sean aplicados a los temas antiguos, necesitarás limpiar la caché.',
 
 	'ACP_SEO_METADATA_META_DESCRIPTION' => 'Habilitar descripción',
 	'ACP_SEO_METADATA_META_DESCRIPTION_EXPLAIN' => 'Metatag de descripción.',
@@ -46,12 +47,15 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'URL de la imagen por defecto que será usada en metaetiquetas como <samp>og:image</samp>. Solo será usada si no se puede encontrar una imagen en la página actual. La imagen debe ser mayor a <samp>200</samp>x<samp>200</samp>px y su ruta debe ser relativa a <samp>%s</samp>',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS' => 'Dimensiones de la imagen por defecto',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Ancho x alto de la imagen por defecto. Coloca <samp>0</samp> en ambos para intentar estimar sus dimensiones.',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Ancho x alto de la imagen por defecto.',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_WIDTH' => 'Ancho de imagen por defecto',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_HEIGHT' => 'Alto de imagen por defecto',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE' => 'Tipo de la imagen por defecto',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE_EXPLAIN' => 'El tipo de MIME de la imagen por defecto. Déjalo en blanco para intentar estimar el tipo, si no conoces esta información o no estas seguro.',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE_EXPLAIN' => 'El tipo de MIME de la imagen por defecto.',
+
+	'ACP_SEO_METADATA_LOCAL_IMAGES' => 'Imágenes locales',
+	'ACP_SEO_METADATA_LOCAL_IMAGES_EXPLAIN' => 'Extrae imágenes del cuerpo del mensaje únicamente de su dominio (<samp>%s</samp>).',
 
 	'ACP_SEO_METADATA_ATTACHMENTS' => 'Incluir adjuntos',
 	'ACP_SEO_METADATA_ATTACHMENTS_EXPLAIN' => 'También se incluirán imágenes adjuntas. Serán elegidas en el mismo orden en el que fueron subidas.',
@@ -62,18 +66,15 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_POST_METADATA' => 'Metadatos de mensajes',
 	'ACP_SEO_METADATA_POST_METADATA_EXPLAIN' => 'También generará metadatos para URLs de mensajes específicos.',
 
-	'ACP_SEO_METADATA_LOCAL_IMAGES' => 'Imágenes locales',
-	'ACP_SEO_METADATA_LOCAL_IMAGES_EXPLAIN' => 'Extrae imágenes del cuerpo del mensaje únicamente de su dominio (<samp>%s</samp>).',
-
-	'ACP_SEO_METADATA_DATA_EXPLAIN' => 'Los metadatos son generados de manera dinámica usando los datos de su foro.',
+	'ACP_SEO_METADATA_DATA_EXPLAIN' => 'Los metadatos son generados de manera dinámica usando los datos de tu foro.',
 
 	'ACP_SEO_METADATA_GLOBAL_SETTINGS' => 'Ajustes globales',
 
 	'ACP_SEO_METADATA_OPEN_GRAPH_SETTINGS' => 'Ajustes de Open Graph',
 	'ACP_SEO_METADATA_OPEN_GRAPH' => 'Habilitar Open Graph',
 
-	'ACP_SEO_METADATA_FACEBOOK_APPLICATION' => 'ID de la applicación de Facebook',
-	'ACP_SEO_METADATA_FACEBOOK_APPLICATION_EXPLAIN' => 'Identificador de tu applicación de Facebook.',
+	'ACP_SEO_METADATA_FACEBOOK_APPLICATION' => 'ID de aplicación de Facebook',
+	'ACP_SEO_METADATA_FACEBOOK_APPLICATION_EXPLAIN' => 'Identificador de tu aplicación de Facebook.',
 	'ACP_SEO_METADATA_FACEBOOK_PUBLISHER' => 'Editor de Facebook',
 	'ACP_SEO_METADATA_FACEBOOK_PUBLISHER_EXPLAIN' => 'La URL de tu página de Facebook.',
 
@@ -87,7 +88,9 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_JSON_LD_LOGO' => 'Logotipo del editor',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'Un logotipo personalizado usado por Google en los resultados de búsqueda. Debe ser mayor a <samp>112</samp>x<samp>112</samp>px y su ruta debe ser relativa a <samp>%s</samp>',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS' => 'Dimensiones del logotipo del editor',
-	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Ancho x alto del logotipo del editor. Coloca <samp>0</samp> en ambos para intentar estimar sus dimensiones.',
+	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Ancho x alto del logotipo del editor.',
+
+	'ACP_SEO_METADATA_EXTRACTED_IMAGE_DATA' => 'Este dato se extraerá de la imagen.',
 
 	'ACP_SEO_METADATA_VALIDATE_INVALID_FIELDS' => 'Valores inválidos para los campos: %s',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_IMAGE' => 'El valor especificado como imagen <samp>%1$s</samp> generó una URL vacía.<br>Pudo ser debido a que la imagen no existe o que el nombre de archivo intentó salir de la ruta <samp>/images/</samp>',

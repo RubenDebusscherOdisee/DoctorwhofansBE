@@ -1,8 +1,8 @@
 <?php
 /**
- * @package   	OneAll Social Login
- * @copyright 	Copyright 2011-2017 http://www.oneall.com
- * @license   	GPL-2.0
+ * @package       OneAll Social Login
+ * @copyright     Copyright 2011-Present http://www.oneall.com
+ * @license       GPL-2.0
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,10 +25,27 @@
 namespace oneall\sociallogin\auth\provider;
 
 /**
-* OneAll authentication provider for phpBB3
-*/
+ * OneAll authentication provider for phpBB3
+ */
 class oneall extends \phpbb\auth\provider\db
 {
+    /**
+     * Database Authentication Constructor
+     *
+     * @param \phpbb\db\driver\driver_interface $db
+     */
+    public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\config\config $config, \phpbb\passwords\manager $passwords_manager, \phpbb\request\request $request, \phpbb\user $user, \Symfony\Component\DependencyInjection\ContainerInterface $phpbb_container, $phpbb_root_path, $php_ext)
+    {
+        $this->db = $db;
+        $this->config = $config;
+        $this->passwords_manager = $passwords_manager;
+        $this->request = $request;
+        $this->user = $user;
+        $this->phpbb_root_path = $phpbb_root_path;
+        $this->php_ext = $php_ext;
+        $this->phpbb_container = $phpbb_container;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -37,21 +54,19 @@ class oneall extends \phpbb\auth\provider\db
         return array(
             'TEMPLATE_FILE' => '@oneall_sociallogin/auth_provider_oneall.html',
             'TEMPLATE_VARS' => array(
-            ),
+            )
         );
     }
 
-
     /**
-    * {@inheritdoc}
-    */
+     * {@inheritdoc}
+     */
     public function get_login_data()
     {
         $login_data = array(
-            'TEMPLATE_FILE'     => '@oneall_sociallogin/login_body_oneall.html',
+            'TEMPLATE_FILE' => '@oneall_sociallogin/login_body_oneall.html'
         );
 
         return $login_data;
     }
-
 }

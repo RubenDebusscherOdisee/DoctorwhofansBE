@@ -13,6 +13,7 @@
 		{% DEFINE INCLUDED_ACPDIGESTSJS = true %}
 	{% endif %}
 {% endif %}
+
 {% if S_EDIT_SUBSCRIBERS %}
 <script>
 	var collapseImageIdSrc = '{{ IMAGE_PATH }}collapse.png';
@@ -79,7 +80,6 @@
 		// Tests to see if the named form field is in the stack to be submitted.
 		return (toSubmit.indexOf(name) !== -1);
 	}
-
 </script>
 {% endif %}
 
@@ -561,5 +561,4 @@
 	{{ S_FORM_TOKEN }}
 	</fieldset>
 </form>
-
 {% INCLUDE 'overall_footer.html' %}

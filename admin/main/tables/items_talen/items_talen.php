@@ -55,7 +55,7 @@ class tables_items_talen {
 			$record->setValues(
                 array(
                     'item_id'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)->getValue(),
-                    'taal_id'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue(),
+                    'taal_id'=>(int)$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue()
                     
                         )
                 );
@@ -71,5 +71,14 @@ class tables_items_talen {
         
     }
 
+
+
+
+    function beforeInsert(Dataface_Record $record){
+        $user = Dataface_AuthenticationTool::getInstance()->getLoggedInUser();
+        if ( $user and !$record->val('IT_Owner') ){
+            $record->setValue('IT_Owner', $user->val('User_Id'));
+        }
+      }
 }
 ?>

@@ -13,6 +13,16 @@ namespace rmcgirr83\nationalflags\event;
 /**
 * @ignore
 */
+use phpbb\auth\auth;
+use phpbb\config\config;
+use phpbb\controller\helper;
+use phpbb\db\driver\driver_interface;
+use phpbb\language\language;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb\extension\manager;
+use rmcgirr83\nationalflags\core\nationalflags;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -32,6 +42,9 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver */
 	protected $db;
 
+	/** @var \phpbb\language\language */
+	protected $language;
+
 	/** @var \phpbb\request\request */
 	protected $request;
 
@@ -45,7 +58,7 @@ class listener implements EventSubscriberInterface
 	protected $ext_manager;
 
 	/** @var string phpBB root path */
-	protected $phpbb_root_path;
+	protected $root_path;
 
 	/** @var string phpEx */
 	protected $php_ext;
@@ -60,37 +73,40 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\config\config               $config         Config object
 	* @param \phpbb\controller\helper           $helper         Controller helper object
 	* @param \phpbb\db\driver\driver			$db				Database object
+	* @param \phpbb\language\language			$language		Language object
 	* @param \phpbb\request\request				$request		Request object
 	* @param \phpbb\template\template           $template       Template object
 	* @param \phpbb\user                        $user           User object
-	* @param \phpbb\extension\manager			$ext_manager		Extension manager object
-	* @param string                             $phpbb_root_path	phpBB root path
-	* @param string                             $php_ext			phpEx
+	* @param \phpbb\extension\manager			$ext_manager	Extension manager object
+	* @param string                             $root_path		phpBB root path
+	* @param string                             $php_ext		phpEx
 	* @param \rmcgirr83\nationalflags\core\nationalflags	$nationalflags	methods to be used by class
 	* @access public
 	*/
 	public function __construct(
-			\phpbb\auth\auth $auth,
-			\phpbb\config\config $config,
-			\phpbb\controller\helper $helper,
-			\phpbb\db\driver\driver_interface $db,
-			\phpbb\request\request $request,
-			\phpbb\template\template $template,
-			\phpbb\user $user,
-			\phpbb\extension\manager $ext_manager,
-			$phpbb_root_path,
+			auth $auth,
+			config $config,
+			helper $helper,
+			driver_interface $db,
+			language $language,
+			request $request,
+			template $template,
+			user $user,
+			manager $ext_manager,
+			$root_path,
 			$php_ext,
-			\rmcgirr83\nationalflags\core\nationalflags $nationalflags)
+			nationalflags $nationalflags)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
 		$this->helper = $helper;
 		$this->db = $db;
+		$this->language = $language;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		$this->ext_manager	 = $ext_manager;
-		$this->root_path = $phpbb_root_path;
+		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 		$this->nationalflags = $nationalflags;
 
@@ -106,9 +122,8 @@ class listener implements EventSubscriberInterface
 	 */
 	static public function getSubscribedEvents()
 	{
-		return array(
-			'core.common'								=> 'common',
-			'core.user_setup'							=> 'user_setup',
+		return [
+			'core.user_setup_after'						=> 'user_setup_after',
 			'core.index_modify_page_title'				=> 'index_modify_page_title',
 			'core.page_header_after'					=> 'page_header_after',
 			'core.ucp_profile_modify_profile_info'		=> 'user_flag_profile',
@@ -133,39 +148,24 @@ class listener implements EventSubscriberInterface
 			'core.memberlist_prepare_profile_data'		=> 'memberlist_prepare_profile_data',
 			'core.display_forums_modify_template_vars'	=> 'display_forums_modify_template_vars',
 			'core.viewforum_modify_topicrow'			=> 'viewforum_modify_topicrow',
-		);
+		];
 	}
 
 	/**
 	 * Check for and create if needed users and flags cache
 	 *
 	 * @param object $event The event object
-	 * @retun null
-	 * @access public
-	 */
-	public function common($event)
-	{
-		$this->nationalflags->build_users_and_flags();
-	}
-
-	/**
-	 * Set up the flags and add the lang vars
-	 *
-	 * @param object $event The event object
 	 * @return null
 	 * @access public
 	 */
-	public function user_setup($event)
+	public function user_setup_after($event)
 	{
+		$this->language->add_lang('common', 'rmcgirr83/nationalflags');
 		// Need to ensure the flags are cached on page load
 		$this->nationalflags->cache_flags();
 
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'rmcgirr83/nationalflags',
-			'lang_set' => 'common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
+		// Regenerate the users and flags cache too
+		$this->nationalflags->build_users_and_flags();
 	}
 
 	/**
@@ -194,7 +194,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function page_header_after($event)
 	{
-		if (!$this->auth->acl_get('u_chgprofileinfo'))
+		if (!$this->user->data['is_registered'] || !$this->auth->acl_get('u_chgprofileinfo'))
 		{
 			return;
 		}
@@ -209,7 +209,7 @@ class listener implements EventSubscriberInterface
 		{
 			$this->template->assign_vars(array(
 				'S_FLAG_MESSAGE'	=> (empty($this->user->data['user_flag'])) ? true : false,
-				'L_FLAG_PROFILE'	=> $this->user->lang('USER_NEEDS_FLAG', '<a href="' . append_sid("{$this->root_path}ucp.$this->php_ext", 'i=profile') . '">', '</a>'),
+				'L_FLAG_PROFILE'	=> $this->language->lang('USER_NEEDS_FLAG', '<a href="' . append_sid("{$this->root_path}ucp.$this->php_ext", 'i=profile') . '">', '</a>'),
 			));
 		}
 	}
@@ -266,7 +266,7 @@ class listener implements EventSubscriberInterface
 		if ($event['submit'] && empty($event['data']['user_flag']) && $this->config['flags_required'])
 		{
 			$array = $event['error'];
-			$array[] = $this->user->lang['MUST_CHOOSE_FLAG'];
+			$array[] = $this->language->lang('MUST_CHOOSE_FLAG');
 			$event['error'] = $array;
 		}
 	}
@@ -280,6 +280,9 @@ class listener implements EventSubscriberInterface
 	 */
 	public function user_flag_profile_sql($event)
 	{
+		//call function to trash the users_and_flags cache so it's regenerated
+		$this->nationalflags->trash_the_cache();
+
 		$event['sql_ary'] = array_merge($event['sql_ary'], array(
 				'user_flag' => $event['data']['user_flag'],
 		));
@@ -294,6 +297,9 @@ class listener implements EventSubscriberInterface
 	 */
 	public function user_flag_registration_sql($event)
 	{
+		//call function to trash the users_and_flags cache so it's regenerated
+		$this->nationalflags->trash_the_cache();
+
 		$event['user_row'] = array_merge($event['user_row'], array(
 				'user_flag' => $this->request->variable('user_flag', 0),
 		));
@@ -312,7 +318,7 @@ class listener implements EventSubscriberInterface
 		{
 			if (strrpos($event['row']['session_page'], 'app.' . $this->php_ext . '/flags') === 0)
 			{
-				$event['location'] = $this->user->lang('FLAGS_VIEWONLINE');
+				$event['location'] = $this->language->lang('FLAGS_VIEWONLINE');
 				$event['location_url'] = $this->helper->route('rmcgirr83_nationalflags_display');
 			}
 		}

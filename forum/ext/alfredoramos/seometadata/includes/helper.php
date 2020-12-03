@@ -143,7 +143,10 @@ class helper
 					'description' => $default['description']
 				],
 				'twitter_cards' => [
-					'twitter:card' => 'summary',
+					'twitter:card' => $this->is_wide_image(
+						$default['image']['width'],
+						$default['image']['height']
+					) ? 'summary_large_image' : 'summary',
 					'twitter:site' => trim($this->config['seo_metadata_twitter_publisher']),
 					'twitter:title' => '',
 					'twitter:description' => $default['description'],
@@ -235,14 +238,16 @@ class helper
 						$this->metadata['open_graph']['og:image:type'] = $value['type'];
 					}
 
-					if (isset($value['width']))
+					if (isset($value['width'], $value['height']))
 					{
-						$this->metadata['open_graph']['og:image:width'] = (int) $value['width'];
-					}
+						$value['width'] = (int) $value['width'];
+						$value['height'] = (int) $value['height'];
 
-					if (isset($value['height']))
-					{
-						$this->metadata['open_graph']['og:image:height'] = (int) $value['height'];
+						$this->metadata['open_graph']['og:image:width'] = $value['width'];
+						$this->metadata['open_graph']['og:image:height'] = $value['height'];
+						$this->metadata['twitter_cards']['twitter:card'] = $this->is_wide_image(
+							$value['width'], $value['height']
+						) ? 'summary_large_image' : 'summary';
 					}
 				break;
 
@@ -296,7 +301,7 @@ class helper
 		$this->template->destroy_block_vars('SEO_METADATA');
 		$data = $this->get_metadata();
 
-		// Twitter cards can use Open Graph data
+		// Twitter Cards can use Open Graph data
 		if ((int) $this->config['seo_metadata_open_graph'] === 1 &&
 			(int) $this->config['seo_metadata_twitter_cards'] === 1)
 		{
@@ -427,7 +432,6 @@ class helper
 
 		// DOM manipulation
 		$dom = new \DOMDocument;
-		$dom->preserveWhiteSpace = false;
 		$dom->loadXML($description);
 		$xpath = new \DOMXPath($dom);
 
@@ -1099,8 +1103,14 @@ class helper
 		// Add image information (URL, width, height, and MIME type)
 		$data['info'] = $this->get_image_info($url);
 
+		// Could not get image information
+		if (empty($data['info']))
+		{
+			return false;
+		}
+
 		// Fix MIME type
-		if (is_int($data['info']['type']))
+		if (isset($data['info']['type']) && is_int($data['info']['type']))
 		{
 			$data['info']['type'] = image_type_to_mime_type($data['info']['type']);
 		}
@@ -1235,6 +1245,32 @@ class helper
 		}
 
 		return $is_reply;
+	}
+
+	/**
+	 * Twitter Cards summary with large image.
+	 *
+	 * https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image
+	 *
+	 * @param integer $width
+	 * @param integer $height
+	 *
+	 * @param bool
+	 */
+	public function is_wide_image($width = 0, $height = 0)
+	{
+		$width = abs((int) $width);
+		$height = abs((int) $height);
+
+		if (empty($width) || empty($height))
+		{
+			return false;
+		}
+
+		$is_wide = ($width >= 300 && $height >= 157);
+		$is_wide = $is_wide && ($width >= (($height - 10) * 1.5));
+
+		return $is_wide;
 	}
 
 	/**

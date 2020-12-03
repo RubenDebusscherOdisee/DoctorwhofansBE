@@ -2,7 +2,7 @@
 
 /**
 *
-* Topic icons on index extension for the phpBB Forum Software package.
+* Topic icon on index extension for the phpBB Forum Software package.
 *
 * @copyright (c) 2016 Rich McGirr (RMcGirr83)
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -14,76 +14,137 @@ namespace rmcgirr83\topicicononindex\event;
 /**
 * Event listener
 */
+use phpbb\auth\auth;
+use phpbb\cache\service as cache_service;
+use phpbb\db\driver\driver_interface;
+use phpbb\language\language;
+use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	protected $icons = array();
-
-	/** @var \phpbb\auth\auth */
+	/** @var auth */
 	protected $auth;
 
-	/** @var \phpbb\cache\driver\driver_interface */
+	/** @var cache_service */
 	protected $cache;
 
+	/** @var driver_interface */
+	protected $db;
+
+	/** @var language */
+	protected $language;
+
+	/** @var template */
+	protected $template;
+
+	/**
+	* Constructor
+	*
+	* @param \phpbb\auth\auth					$auth		Auth object
+	* @param cache_service						$cache		Cache object
+	* @param \phpbb\db\driver\driver_interface	$db			Database object
+	* @param \phpbb\language\language			$language	Lanugage object
+	* @param \phbb\template\template			$template	Template object
+	* @return \rmcgirr83\topicicononindex\event\listener
+	* @access public
+	*/
 	public function __construct(
-		\phpbb\auth\auth $auth,
-		\phpbb\cache\service $cache)
+		auth $auth,
+		cache_service $cache,
+		driver_interface $db,
+		language $language,
+		template $template)
 	{
 		$this->auth = $auth;
 		$this->cache = $cache;
+		$this->db = $db;
+		$this->language = $language;
+		$this->template = $template;
 	}
 
+	/**
+	* Assign functions defined in this class to event listeners in the core
+	*
+	* @return array
+	* @static
+	* @access public
+	*/
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.display_forums_modify_sql'			=> 'modify_sql',
-			'core.display_forums_modify_forum_rows'		=> 'forums_modify_forum_rows',
+			'core.acp_extensions_run_action_after'	=> 'acp_extensions_run_action_after',
 			'core.display_forums_modify_template_vars'	=> 'forums_modify_template_vars',
 		);
 	}
 
-	public function modify_sql($event)
+	/* Display additional metdate in extension details
+	*
+	* @param $event			event object
+	* @param return null
+	* @access public
+	*/
+	public function acp_extensions_run_action_after($event)
 	{
-		$this->icons = $this->cache->obtain_icons();
-
-		$sql_array = $event['sql_ary'];
-		$sql_array['SELECT'] .= ', t.icon_id';
-		$sql_array['LEFT_JOIN'][] = array('FROM' => array(TOPICS_TABLE => 't'), 'ON' => 'f.forum_last_post_id = t.topic_last_post_id');
-		$event['sql_ary'] = $sql_array;
-	}
-
-	public function forums_modify_forum_rows($event)
-	{
-		$forum_rows = $event['forum_rows'];
-		$parent_id = $event['parent_id'];
-		$row = $event['row'];
-
-		if ($row['forum_last_post_time'] >= $forum_rows[$parent_id]['forum_last_post_time'])
+		if ($event['ext_name'] == 'rmcgirr83/topicicononindex' && $event['action'] == 'details')
 		{
-			if ($row['enable_icons'] && !empty($row['icon_id']))
-			{
-				$forum_rows[$parent_id]['enable_icons'] = $row['enable_icons'];
-				$forum_rows[$parent_id]['icon_id'] = $row['icon_id'];
-			}
+			$this->language->add_lang('common', $event['ext_name']);
+			$this->template->assign_var('S_BUY_ME_A_BEER_TIOI', true);
 		}
-		$event['forum_rows'] = $forum_rows;
 	}
 
+	/**
+	* generate cache of forum topic icons
+	*
+	* @return array
+	* @access private
+	*/
+	private function get_topic_icons()
+	{
+		$sql = 'SELECT topic_last_post_id, icon_id
+			FROM ' . TOPICS_TABLE . '
+			WHERE icon_id <> 0';
+		$result = $this->db->sql_query($sql, 300);
+		$topic_icons = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$topic_icons[$row['topic_last_post_id']] = $row['icon_id'];
+		}
+		$this->db->sql_freeresult($result);
+
+		return $topic_icons;
+	}
+
+	/**
+	 * Show the topic icon if authed to read the forum
+	 *
+	 * @event	object $event	The event object
+	 * @return	null
+	 * @access	public
+	 */
 	public function forums_modify_template_vars($event)
 	{
+
+		$icons = $this->cache->obtain_icons();
+		$topic_icons = $this->get_topic_icons();
+
 		$row = $event['row'];
 		$template = $event['forum_row'];
-		$forum_icon = array();
+		$forum_icon = [];
 
-		if ($row['enable_icons'] && !empty($row['icon_id']) && $row['forum_password_last_post'] === '' && $this->auth->acl_get('f_read', $row['forum_id_last_post']))
+		if ($row['enable_icons'] && $row['forum_password_last_post'] === '' && $this->auth->acl_get('f_read', $row['forum_id']))
 		{
-			$forum_icon = array(
-				'TOPIC_ICON_IMG' 		=> $this->icons[$row['icon_id']]['img'],
-				'TOPIC_ICON_IMG_WIDTH'	=> $this->icons[$row['icon_id']]['width'],
-				'TOPIC_ICON_IMG_HEIGHT'	=> $this->icons[$row['icon_id']]['height'],
-				'TOPIC_ICON_ALT'		=> !empty($this->icons[$row['icon_id']]['alt']) ? $this->icons[$row['icon_id']]['alt'] : '',
-			);
+			if (!empty($topic_icons[$row['forum_last_post_id']]))
+			{
+				$icon_id = $topic_icons[$row['forum_last_post_id']];
+
+				$forum_icon = [
+					'TOPIC_ICON_IMG' 		=> $icons[$icon_id]['img'],
+					'TOPIC_ICON_IMG_WIDTH'	=> $icons[$icon_id]['width'],
+					'TOPIC_ICON_IMG_HEIGHT'	=> $icons[$icon_id]['height'],
+					'TOPIC_ICON_ALT'		=> !empty($icons[$icon_id]['alt']) ? $icons[$icon_id]['alt'] : '',
+				];
+			}
 		}
 
 		$event['forum_row'] = array_merge($template, $forum_icon);

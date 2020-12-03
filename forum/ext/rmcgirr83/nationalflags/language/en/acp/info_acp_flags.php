@@ -15,7 +15,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -32,7 +32,7 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	//Module and page titles
 	'ACP_CAT_FLAGS'						=> 'National Flags',
 	'ACP_FLAGS'							=> 'National Flags',
@@ -40,4 +40,4 @@ $lang = array_merge($lang, array(
 	'LOG_FLAGS_DELETED'					=> '<strong>Deleted flag</strong><br>» %1$s',
 	'LOG_FLAG_EDIT'						=> '<strong>Updated flag</strong><br>» %1$s',
 	'LOG_FLAG_ADD'						=> '<strong>Added new flag</strong><br>» %1$s',
-));
+]);

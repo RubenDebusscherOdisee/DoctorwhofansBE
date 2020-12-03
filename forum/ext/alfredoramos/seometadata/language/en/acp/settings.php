@@ -24,7 +24,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_SEO_METADATA_EXPLAIN' => 'Changes to the following values will only be applied to new topics, if you want it to be applied to old topics too, you will need to purge the cache.',
+	'ACP_SEO_METADATA_EXPLAIN' => '<p>Here you can configure the meta data you want to generate and display. Consult the <a href="https://www.phpbb.com/customise/db/extension/seo_metadata/faq" rel="external nofollow noreferrer noopener" target="_blank"><strong>FAQ</strong></a> for more information. If you require assistance, please visit the <a href="https://www.phpbb.com/customise/db/extension/seo_metadata/support" rel="external nofollow noreferrer noopener" target="_blank"><strong>Support</strong></a> section.</p>',
+	'ACP_SEO_METADATA_INFO' => 'Changes to the following values will only be applied to new topics, if you want it to be applied to old topics too, you will need to purge the cache.',
 
 	'ACP_SEO_METADATA_META_DESCRIPTION' => 'Enable description',
 	'ACP_SEO_METADATA_META_DESCRIPTION_EXPLAIN' => 'Description metatag.',
@@ -46,12 +47,12 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'Default image URL for meta tags such as <samp>og:image</samp>. It will only be used if an image cannot be found within the current page. It must be larger than <samp>200</samp>x<samp>200</samp>px and relative to <samp>%s</samp>',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS' => 'Default image dimensions',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Width x height of default image. Set both to <samp>0</samp> to try to guess the image dimensions.',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Width x height of default image.',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_WIDTH' => 'Default image width',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_HEIGHT' => 'Default image height',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE' => 'Default image type',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE_EXPLAIN' => 'The MIME type of default image. Leave it blank to try to guess the type, if you do not know this information or are unsure.',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_TYPE_EXPLAIN' => 'The MIME type of default image.',
 
 	'ACP_SEO_METADATA_LOCAL_IMAGES' => 'Local images',
 	'ACP_SEO_METADATA_LOCAL_IMAGES_EXPLAIN' => 'Only extract post images from your domain (<samp>%s</samp>).',
@@ -87,7 +88,9 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_JSON_LD_LOGO' => 'Publisher logo',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'A custom logo used by Google in the search results. It must be larger than <samp>112</samp>x<samp>112</samp>px and relative to <samp>%s</samp>',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS' => 'Publisher logo dimensions',
-	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Width x height of publisher logo. Set both to <samp>0</samp> to try to guess the image dimensions.',
+	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Width x height of publisher logo.',
+
+	'ACP_SEO_METADATA_EXTRACTED_IMAGE_DATA' => 'This data will be extracted from the image.',
 
 	'ACP_SEO_METADATA_VALIDATE_INVALID_FIELDS' => 'Invalid values for fields: %s',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_IMAGE' => 'The value specified for image <samp>%1$s</samp> generated an empty URL.<br>It could be due a non-existent image was specified or the file name was trying to go outside the <samp>/images/</samp> path.',

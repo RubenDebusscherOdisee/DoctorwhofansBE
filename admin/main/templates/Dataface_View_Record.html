@@ -46,13 +46,12 @@
 							{if $rv->logos|@count>0}
 								{foreach from=$rv->logos item=logo}
 									<div class="dataface-view-logo">
-									<span>{$ENV.url}</span>
-										<img src="https://www.doctorwhofans.be/images/Quotes/{$record->val($logo.name)}" alt="{$record->val($logo.name)}" style="width:100%"/>
+										<img src="https://www.doctorwhofans.be/images/{$ENV.table}/{$record->val($logo.name)}" alt="{$record->val($logo.name)}" style="width:100%"/>
 									</div>
 								{/foreach}
 							{else}
 								<div class="dataface-view-logo">
-								<img src="{$ENV.DATAFACE_URL|escape}/images/missing_logo.gif" alt="Missing Logo"/>
+								<img src="https://admin.doctorwhofans.be/main/xataface/images/missing_logo.gif" alt="Missing Logo"/>
 								</div>
 							{/if}
 							
@@ -67,7 +66,7 @@
 							{if !$ENV.prefs.hide_record_search}
 							<div id="record-search">
 								
-								<img src="{$ENV.DATAFACE_URL|escape}/images/search_icon.gif" />
+								<img src="https://admin.doctorwhofans.be/main/xataface/images/search_icon.gif" />
 								<input type="text" size="15" name="--subsearch" id="--subsearch" value="{$ENV.APPLICATION_OBJECT->getQueryParam('-subsearch')|escape}" onchange="doSubSearch();" />
 								{literal}
 								<script language="javascript">

@@ -18,7 +18,7 @@ ul.topiclist dl {
 	min-width:97%;
 	max-width: 100%;
 }
-.header .topics {margin-left: -2.5vw;}
+.header .topics {margin-left: -2.5vw;min-width: 7vw;}
 @media (max-width: 1024px) {
 	.header .topics {margin-left: -1vw;}
 }

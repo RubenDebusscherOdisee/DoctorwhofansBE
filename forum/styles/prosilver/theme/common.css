@@ -1,5 +1,19 @@
 /* General Markup Styles
 ---------------------------------------- */
+
+@font-face {
+  font-family: 'Eleventh Doctor';
+	src: url(https://www.doctorwhofans.be/fonts/Doctor.otf);
+	font-weight:100;
+	
+
+}
+option[style="font-family:Eleventh Doctor"] {
+	font-size: 2em;
+}
+span[style^="font-family:Eleventh Doctor"] {
+	line-height: 1em;
+	font-size: 4em;}
 html {
 	font-size: 100%;
 	/* Always show a scrollbar for short pages - stops the jump when the scrollbar appears. non-IE browsers */

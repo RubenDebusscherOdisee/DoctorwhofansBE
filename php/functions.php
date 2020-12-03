@@ -36,58 +36,58 @@ function getCalender($year = '',$month = ''){
 ?>
     <div id="calender_section">
         <h2>
-            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>
+            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>&nbsp;
             <select name="month_dropdown" class="month_dropdown dropdown"><?php echo getAllMonths($dateMonth); ?></select>
-            <select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>
+            <select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>&nbsp;
+            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y"); ?>','<?php echo date("m"); ?>');">Vandaag</a>&nbsp;
             <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">&gt;&gt;</a>
         </h2>
         <div id="event_list" class="none"></div>
         <div id="calender_section_top">
             <ul>
-                <li>Zondag</li>
                 <li>Maandag</li>
                 <li>Dinsdag</li>
                 <li>Woensdag</li>
                 <li>Donderdag</li>
                 <li>Vrijdag</li>
                 <li>Zaterdag</li>
+                <li>Zondag</li>
+
             </ul>
         </div>
         <div id="calender_section_bot">
             <ul>
             <?php 
                 $dayCount = 1; 
-                for($cb=1;$cb<=$boxDisplay;$cb++){
+                for($cb=2;$cb<=$boxDisplay;$cb++){
                     if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
                         //Current date
                         $currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
+                        $currentBirthDay = '-'.$dateMonth.'-'.$dayCount;
                         $eventNum = 0;
                         //Include db configuration file
                         include 'dbConfig.php';
                         //Get number of events based on the current date
-                        $result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 union SELECT  title FROM V_Birthdays WHERE V_Birthdays.date ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+1,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+2,SUBSTRING(date,5)) ='".$currentDate."'union SELECT concat(title, '(',year(date),')') as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE())+3,SUBSTRING(date,5)) ='".$currentDate."'");
-                      //$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 union SELECT concat((TIMESTAMPDIFF(YEAR, date, CURRENT_DATE())+1), 'th ',title) as title FROM `events` WHERE `status` = 1 and verjaardag = 1 and concat(year(CURRENT_DATE()),SUBSTRING(date,5)) ='".$currentDate."'");
+                        $result = $db->query("SELECT title FROM events WHERE event_date = '".$currentDate."' AND status = 1 union select title from birthdays where birthday_date like '%".$currentBirthDay."' and status=1");
                         $eventNum = $result->num_rows;
                         //Define date cell color
                         if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
-                            echo '<li date="'.$currentDate.'" class="grey date_cell">';
+                            echo '<li date="'.$currentDate.'" class="Today date_cell">';
                         }elseif($eventNum > 0){
-                            echo '<li date="'.$currentDate.'" class="light_sky date_cell">';
+                            echo '<li date="'.$currentDate.'" class="hasEvent date_cell" onclick="getEvents(\''.$currentDate.'\');">';
                         }else{
                             echo '<li date="'.$currentDate.'" class="date_cell">';
                         }
                         //Date cell
                         echo '<span>';
                         echo $dayCount;
-                        echo '</span>';
-                        
+                        if($eventNum >0){
+                            echo ' ('.$eventNum.')</span>';
+                        }else{
+                            echo '</span>';
+                        }
                         //Hover event popup
-                        echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
-                        echo '<div class="date_window">';
-                        echo '<div class="popup_event">Events ('.$eventNum.')</div>';
-                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" class="link" style="color: white;
-                        font-size: 1.3em;">view events</a>':'';
-                        echo '</div></div>';
+                       
                         
                         echo '</li>';
                         $dayCount++;
@@ -138,11 +138,9 @@ function getCalender($year = '',$month = ''){
         $(document).ready(function(){
             $('.date_cell').mouseenter(function(){
                 date = $(this).attr('date');
-                $(".date_popup_wrap").fadeOut();
                 $("#date_popup_"+date).fadeIn();    
             });
             $('.date_cell').mouseleave(function(){
-                $(".date_popup_wrap").fadeOut();        
             });
             $('.month_dropdown').on('change',function(){
                 getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
@@ -193,8 +191,10 @@ function getEvents($date = ''){
     include 'dbConfig.php';
     $eventListHTML = '';
     $date = $date?$date:date("Y-m-d");
+    $birthDay = $date?$date:date("m-d");
+    $birthDay= substr($birthDay, 4);
     //Get events based on the current date
-    $result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1 union SELECT  title FROM V_Birthdays where V_Birthdays.date ='".$date."'");
+    $result = $db->query("SELECT title FROM events WHERE event_date = '".$date."' AND status = 1 union select  concat(title,' (',TIMESTAMPDIFF(year,birthday_date , curdate()),' - ',extract(year from birthday_date),')')  as title from birthdays where birthday_date like '%".$birthDay."' and status=1");
     if($result->num_rows > 0){
         $eventListHTML = '<h2 style="background-color:white;">Events on '.date("l, d M Y",strtotime($date)).'</h2>';
         $eventListHTML .= '<ul>';
