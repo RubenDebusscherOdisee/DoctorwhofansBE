@@ -418,7 +418,6 @@
             ?>
         </article>
     </main>
-<i class="fa"
     <footer id=footer class=col-5>
         <a href="Sitemap.html" class=" socialMedia_full link">Sitemap</a><br>
         <p class='mededeling max_34 column'> </p>
