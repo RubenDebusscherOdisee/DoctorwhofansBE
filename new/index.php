@@ -27,8 +27,8 @@ $_SESSION["Menu"]="";?>
     <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="http://localhost/test/js/new.js"></script>
-    <link rel="stylesheet" href="http://localhost/test/css/main.css" />
+    <script src="/js/new.js"></script>
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
 
 <body>
