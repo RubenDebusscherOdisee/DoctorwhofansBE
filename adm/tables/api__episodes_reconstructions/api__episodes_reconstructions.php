@@ -56,8 +56,8 @@ class tables_api__episodes_reconstructions {
       $record->setValues($defaultValues);
       $record->setValues(
         array(
-          'ER_reconstruction_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)->getValue(),
-          'ER_episode_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue(),
+          'ER_Reconstruction_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)->getValue(),
+          'ER_Episode_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue()
 
           )
       );
