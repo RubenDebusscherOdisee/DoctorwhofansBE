@@ -1,0 +1,83 @@
+<main>
+  <div class="main__path"></div>
+  <article>
+
+
+  </article>
+</main>
+<style scoped>
+  main {
+    z-index: 5;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    min-height: var(--height-for-main);
+  }
+
+  .main__path {
+    z-index: 1;
+    top:4em;
+    color: var(--font-color-darkblue-white);
+    background-color: var(--bg-color-darkBlue);
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-left: 1em;
+    margin-bottom: 1.5em;
+    display: none;
+    width: fit-content;
+    margin-top: 1em;
+  }
+  
+  .main__path a,#WikiDetails a,#Inhoud a{
+    color: var(--font-color-darkblue-white);
+  }
+  .main__path a:focus,.main__path a:hover,#WikiDetails a:hover,#WikiDetails a:focus,#Inhoud a:hover,#Inhoud a:focus{
+    text-decoration: none;
+    color:var(--nav-hover-color);
+  }
+
+
+
+  main h1 {
+
+    z-index: 1;
+    top: 4em;
+    color: var(--font-color-darkblue-white);
+    background-color: var(--bg-color-darkBlue);
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    width: fit-content;display: inline-block;
+  }
+  article{padding-left: 4vw;padding-right: 4vw;}
+
+  @media only screen and (max-width: 600px) {
+    main {
+      padding: 0;
+    }
+
+    main h1 {
+      position: initial;
+      top: 1;
+      width: 92%;
+      float: none;
+      margin-bottom: 0;
+      margin-right: auto;
+      margin-top: 0.2em;
+
+    }
+
+    .main__path,.footer__EpisodesOfTheDay {
+      position:initial;
+      top:1;width: 92%;float: none;margin-bottom: 0;
+      margin-right: auto;margin-left: auto;margin-top: 0.2em;
+  
+    }
+  }
+</style> 
+<script>
+  
+
+
+  
+  
+</script>
