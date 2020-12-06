@@ -156,6 +156,23 @@ var varlist;
 
 jQuery(document).ready(function(){
   buildLogo('#logo','#ffff00');
+  // bind a click event to the 'skip' link
+  $(".skip").click(function(event){
+    
+    // strip the leading hash and declare
+    // the content we're skipping to
+    var skipTo="#"+this.href.split('#')[1];
+
+    // Setting 'tabindex' to -1 takes an element out of normal 
+    // tab flow but allows it to be focused via javascript
+    $(skipTo).attr('tabindex', -1).on('blur focusout', function () {
+
+        // when focus leaves this element, 
+        // remove the tabindex attribute
+        $(this).removeAttr('tabindex');
+
+    }).focus(); // focus on the content container
+});
 
 });
 
@@ -368,7 +385,7 @@ function DownloadsForEpisode(Downloads){
   var downList="<ul>";
   for(var down=0;down<Downloads.length;down++){
     if(Downloads[down].download_Type=="Subtitle"){
-      downList+="<li> Subtitle: <a href='https://www.doctorwhofans.be/downloads/"+Downloads[down].download_File+"'>"+Downloads[down].download_Name+"</a> ("+Downloads[down].language_Name.toUpperCase()+")</li>";
+      downList+="<li> Subtitle: <a download href='https://www.doctorwhofans.be/downloads/"+Downloads[down].download_File+"'>"+Downloads[down].download_Name+"</a> ("+Downloads[down].language_Name.toUpperCase()+")</li>";
 
     }
   }

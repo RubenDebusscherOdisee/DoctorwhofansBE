@@ -32,6 +32,8 @@ $_SESSION["Menu"]="";?>
 </head>
 
 <body>
+<a href="#SiteContent" class="sr-only skip">Skip to content</a>
+
     <?php
         include_once 'includes/nav.html';
         include_once 'includes/main.html';
