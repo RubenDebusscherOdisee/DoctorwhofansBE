@@ -238,7 +238,23 @@
 			}
 			//$antwoord['Content']="Er is nog geen content gevonden";
 			$stmtContent->close();
-			$antwoord['Downloads']="Er zijn nog geen downloads voor deze pagina";
+			$stmtDownloads = $conn->prepare('select * from Downloads where download_Page=?');
+			if(!$stmtDownloads){
+				die('Statement preparing failed: ' . $conn->error);
+			}
+			if(!$stmtDownloads->bind_param('i',$current_Page_Id)){
+				die('Statement binding failed: ' . $conn->connect_error);
+			}
+			if(!$stmtDownloads->execute()){
+				die('Statement execution failed: ' . $stmtDownloads->error);
+			}else{
+				$resultDownloads = $stmtDownloads->get_result();
+				if($resultDownloads->num_rows === 0){
+					$antwoord['Downloads']='No rows';
+				} else{
+					$antwoord['Downloads'] = $resultDownloads->fetch_all(MYSQLI_ASSOC);
+				}
+			}
 			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 			return;
 		}

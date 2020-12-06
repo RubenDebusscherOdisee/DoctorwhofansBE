@@ -159,7 +159,6 @@ jQuery(document).ready(function(){
 
 });
 
-
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -288,8 +287,8 @@ function Doctor(DoctorData){
 function Serial(EpisodeData){
   //$('main article h1').html(EpisodeData.Serial[0].serial_Title);
   CreateWikiDetails();
-  var episodeKeys= ['Doctors','Companions','First_Aired_on','Last_Aired_On','Production_code','Order',];
-  var episodestrings=['Doctors','Companions','First episode aired on','Last episode aired on','Production Code','Order'];
+  var episodeKeys= ['Doctors','Companions','First_Aired_on','Last_Aired_On','Total_Runtime','Production_code','Order',];
+  var episodestrings=['Doctors','Companions','First episode aired on','Last episode aired on','Total Runtime','Production Code','Order'];
   
   PopulateWikiDetailsStatic(episodeKeys,episodestrings);
   WikiImage(EpisodeData.Serial[0].serial_Image,'api__serials');
@@ -300,11 +299,12 @@ function Serial(EpisodeData){
   $('#WikiLast_Aired_On p').html(LocalDate(EpisodeData.Serial.Episodes[EpisodeData.Serial.Episodes.length-1].episode_Original_airdate));
   $('#WikiLast_Aired_On').append("<hr>");
   $('#WikiProduction_code p').html(EpisodeData.Serial[0].serial_Production_code);
-
+  $('#WikiTotal_Runtime p').html(EpisodeData.Serial[0]["Total Runtime"].substring(0, EpisodeData.Serial[0]["Total Runtime"].indexOf('.')));
   $('#Previous p').html(PreviousNextLink(EpisodeData.Serial[0].Previous_Episode,EpisodeData.Serial[0].Previous_Link));
   $('#Next p').html(PreviousNextLink(EpisodeData.Serial[0].Next_Episode,EpisodeData.Serial[0].Next_Link));
 
   Episodes(EpisodeData.Serial.Episodes);
+  $('#Downloads').html(DownloadsForEpisode(EpisodeData.Downloads));
 
   //DumpInfo(EpisodeData);
 }
@@ -337,7 +337,7 @@ function Serial(EpisodeData){
 * * Small functions that support the bigger functions for reusability
 */
 /** 
-* *Get year of a date
+* * Get year of a date
 * @param original takes the string of a date
 */ 
 function getYear(original) {
@@ -362,6 +362,18 @@ function CompanionsForEpisode(Companions){
     }
   }
   return complist.slice(0,-2);
+}
+
+function DownloadsForEpisode(Downloads){
+  var downList="<ul>";
+  for(var down=0;down<Downloads.length;down++){
+    if(Downloads[down].download_Type=="Subtitle"){
+      downList+="<li> Subtitle: <a href='https://www.doctorwhofans.be/downloads/"+Downloads[down].download_File+"'>"+Downloads[down].download_Name+"</a> ("+Downloads[down].language_Name.toUpperCase()+")</li>";
+
+    }
+  }
+  downList+="</ul>";
+  return downList;
 }
 
 function CreateWikiDetails(){
@@ -420,6 +432,7 @@ function Episodes(episodes){
     tableRow+='<td>'+episodes[i].episode_Title+'</td>';
     tableRow+='<td>'+episodes[i].Runtime+'</td>';
     tableRow+='<td>'+LocalDate(episodes[i].episode_Original_airdate)+'</td>';
+    tableRow+='<td>'+episodes[i].episode_Original_Network+'</td>';
     tableRow+='<td>'+episodes[i].episode_UK_viewers+'</td>';
     tableRow+='<td>'+episodes[i].episode_Appreciation_index+'</td>';
     var statesObject=JSON.parse(episodes[i].state);
