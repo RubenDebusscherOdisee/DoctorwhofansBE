@@ -6,3 +6,7 @@ services:
         tags: [{ name: event.listener }]
     dmzx.scheduledmaintenance.controller.acp:
         class: dmzx\scheduledmaintenance\controller\acp_controller
+    # aliases to allow autowiring not conflicting with other extensions
+
+    phpbb\template\template: '@template'
+ 

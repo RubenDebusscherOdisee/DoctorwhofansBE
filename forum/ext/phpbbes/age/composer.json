@@ -2,8 +2,9 @@
     "name": "phpbbes/age",
     "type": "phpbb-extension",
     "description": "Display Age users on your board, in viewtopic page only.",
-    "homepage": "http://www.phpbb-es.com",
-    "version": "1.0.3",
+    "homepage": "https://www.phpbb-es.com",
+    "version": "1.0.4",
+    "time": "2020-10-04",
     "keywords": [
         "phpbb",
         "phpbbes",
@@ -12,7 +13,7 @@
         "age",
         "viewtopic"
     ],
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "Raul Arroyo",
@@ -22,8 +23,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "phpbb/phpbb": ">=3.2.0"
+        "php": ">=5.4.7",
+        "phpbb/phpbb": ">=3.2.0",
+        "composer/installers": "~1.0.0"
     },
     "extra": {
         "display-name": "phpBB Display Age Users",
@@ -33,7 +35,8 @@
         "version-check": {
             "host": "www.phpbb.com",
             "directory": "/customise/db/extension/phpbb_display_age_users",
-            "filename": "version_check"
+            "filename": "version_check",
+            "ssl": true
         }
     }
 }

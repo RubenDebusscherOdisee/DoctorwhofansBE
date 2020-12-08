@@ -1,0 +1,34 @@
+services:
+    phpbbde.tou.main_listener:
+        class: phpbbde\tou\event\main
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@config_text'
+            - '@controller.helper'
+            - '@user'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - {name: event.listener}
+    phpbbde.tou.main_controller:
+        class: phpbbde\tou\controller\main
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@language'
+            - '@controller.helper'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+    phpbbde.tou.listener:
+        class: phpbbde\tou\event\permission_listener
+        arguments:
+            - '@auth'
+        tags:
+            - { name: event.listener }

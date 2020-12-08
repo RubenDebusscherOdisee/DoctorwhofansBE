@@ -104,7 +104,7 @@
         });
         });
     </script>
-    <link rel=stylesheet href="https://www.doctorwhofans.be/opmaak/new.min.css" async defer preload />
+    <link rel=stylesheet href="https://www.doctorwhofans.be/opmaak/new.min.css" defer preload />
     <script defer>
         $(document).ready(function () {
             var currentPage = rootURL+window.location.pathname;
