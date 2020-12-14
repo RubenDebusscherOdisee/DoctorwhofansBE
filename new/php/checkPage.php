@@ -128,25 +128,7 @@
 								}else{
 									$antwoord['Serial']['Episodes'] = $result->fetch_all(MYSQLI_ASSOC);
 									$stmtEpisodes->close();
-									$stmtDoctor = $conn->prepare("select Doctor_With_Link.* from api__serials_doctors inner join Doctor_With_Link on Doctor_With_Link.doctor_id=api__serials_doctors.DF_Doctor_Id where api__serials_doctors.DF_Serial_Id=?");
-									if(!$stmtDoctor){
-										die("Statement prepare failed: " . $conn->connect_error);
-									}
-									if(!$stmtDoctor->bind_param("i",$API_Item)){
-										die("Statement binding failed: " . $conn->connect_error);
-									}
-									if(!$stmtDoctor->execute()){
-										die("Statement execution failed: " . $stmtDoctor->error);
-									}else{
-										//return de json data
-										$result = $stmtDoctor->get_result();
-										if($result->num_rows === 0){
-											$antwoord['Serial']['Doctors'] = "No Doctors for this episode";
-										}else{
-											$antwoord['Serial']['Doctors'] = $result->fetch_all(MYSQLI_ASSOC);
-										}
-									}
-									$stmtCharacters = $conn->prepare("select Characters_With_Actor.* from api__serials_characters inner join Characters_With_Actor on Characters_With_Actor.character_Id=api__serials_characters.SC_Character_Id where api__serials_characters.SC_Serial_Id=?");
+									$stmtCharacters = $conn->prepare("select Characters_With_Actor.*,SC_Type from api__serials_characters inner join Characters_With_Actor on Characters_With_Actor.character_Id=api__serials_characters.SC_Character_Id where api__serials_characters.SC_Serial_Id=?");
 									if(!$stmtCharacters){
 										die("Statement prepare failed: " . $conn->connect_error);
 									}
@@ -159,7 +141,7 @@
 										//return de json data
 										$result = $stmtCharacters->get_result();
 										if($result->num_rows === 0){
-											$antwoord['Serial']['Characters'] = "No Characters for this episode";
+											$antwoord['Serial']['Characters'] = "";
 										}else{
 											$antwoord['Serial']['Characters'] = $result->fetch_all(MYSQLI_ASSOC);
 										}

@@ -22,14 +22,15 @@ class tables_api__serials_characters {
     $records = array();
     $rows = explode("\n", $data);
     foreach ( $rows as $row ){
-      list($doctor_Id,$serial_Id,) = explode(',', $row);
+      list($doctor_Id,$serial_Id,$SC_Type) = explode(',', $row);
       $record = new Dataface_Record('api__serials_characters', array());
       $record->setValues($defaultValues);
 
       $record->setValues(
         array(
           'SC_Character_Id'=>$doctor_Id,
-          'SC_Serial_Id'=>$serial_Id
+          'SC_Serial_Id'=>$serial_Id,
+          'SC_Type'=>$SC_Type
         )
       );
       $records[] = $record;
@@ -58,7 +59,7 @@ class tables_api__serials_characters {
         array(
           'SC_Character_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ligne)->getValue(),
           'SC_Serial_Id'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ligne)->getValue(),
-
+          'SC_Type'=>$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $ligne)->getValue()
           )
       );
       $records[] =$record;

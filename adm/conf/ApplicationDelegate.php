@@ -14,8 +14,7 @@ class conf_ApplicationDelegate {
 
     function getPreferences(){
         $table_owner_id = [
-            'management__users'=>'User_Id'
-            
+            'management__users'=>'user_Id',
         ];
        if (isset($_GET['-table'])){
            $currentTable=$_GET['-table'];

@@ -2,32 +2,45 @@ html,
 body {
   max-width: 100% !important;
 }
+
 #main_table {
   width: 100%;
 }
-fil
-#xf-master-detail-s {
+
+fil #xf-master-detail-s {
   overflow: hidden !important;
 
 }
+
 input:disabled {
   background-color: rgba(239, 239, 239, 0.3) !important;
   border-color: rgba(118, 118, 118, 0.3) !important;
   cursor: default !important;
 
 }
-tr[id$='_form_row']{
+
+tr[id$='_form_row'] {
   display: inline-block;
 }
-#xf-master-detail{
-  min-height:100% !important;
-  margin:0 !important; padding:0 !important
+
+#xf-master-detail {
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
-.floatHeader{position: initial !important;}
-.xf-form-group-wrapper{width: 99%;}
+.floatHeader {
+  position: initial !important;
+}
 
-.gutter.gutter-vertical{display: none;}
+.xf-form-group-wrapper {
+  width: 99%;
+}
+
+.gutter.gutter-vertical {
+  display: none;
+}
 
 @media only screen and (max-width: 900px) {
 
@@ -41,9 +54,9 @@ tr[id$='_form_row']{
     display: block;
   }
 
-  tbody {
+  /*tbody {
     display: block;
-  }
+  }*/
 
   #main_table tr:not(.table-headings) {
     display: block;
@@ -80,7 +93,7 @@ tr[id$='_form_row']{
     padding-left: 30px;
     min-height: 29vh !important;
     max-height: 32vh !important;
-    height:auto !important
+    height: auto !important
   }
 
   #xf-master-detail-s {
@@ -90,8 +103,12 @@ tr[id$='_form_row']{
     overflow: hidden !important;
 
   }
-  .master-detail-iframe{min-height: 27vh;}
 
-  .table-headings{display: none;}
+  .master-detail-iframe {
+    min-height: 27vh;
+  }
+
+  .table-headings {
+    display: none;
+  }
 }
-

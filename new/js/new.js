@@ -156,6 +156,7 @@ var varlist;
 
 jQuery(document).ready(function(){
   buildLogo('#logo','#ffff00');
+  
   // bind a click event to the 'skip' link
   $(".skip").click(function(event){
     
@@ -176,6 +177,17 @@ jQuery(document).ready(function(){
 
 });
 
+function replaceRelativeLinks(){
+   $("a[href]")
+  .each(function () {
+    //this.href = this.href.replace('..',window.location.origin);
+    $(this).attr('href',$(this).attr('href').replace('..',window.location.origin))
+    //console.log($(this).attr('href'));
+
+  }); 
+
+
+}
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -268,6 +280,7 @@ function GetContent(menu){
         default:
           // code block
       }
+      replaceRelativeLinks();
       varlist =initTOC({
       selector:'h2, h3, h4, h5, h6',
       scope:'article',
@@ -277,6 +290,7 @@ function GetContent(menu){
       $("#Inhoud").append(varlist); 
     });
   }
+  
 }
 
 function Content(Content){
@@ -309,7 +323,7 @@ function Serial(EpisodeData){
   
   PopulateWikiDetailsStatic(episodeKeys,episodestrings);
   WikiImage(EpisodeData.Serial[0].serial_Image,'api__serials');
-  $('#WikiDoctors p').html(DoctorsForEpisode(EpisodeData.Serial.Doctors));
+  $('#WikiDoctors p').html(DoctorsForEpisode(EpisodeData.Serial.Characters));
   $('#WikiCompanions p').html(CompanionsForEpisode(EpisodeData.Serial.Characters));
   $('#WikiCompanions').append("<hr>");
   $('#WikiFirst_Aired_On p').html(LocalDate(EpisodeData.Serial.Episodes[0].episode_Original_airdate));
@@ -329,7 +343,7 @@ function Serial(EpisodeData){
   var PathEl="";
   if(Path.length >0){
     for(var i=0;i<Path.length;i++){
-      PathEl+=" <a href='https://www.doctorwhofans.be/"+Path[i].page_Link+".html'>" + Path[i].page_Name + "</a> <i class='fa fa-arrow-right'></i>";
+      PathEl+=" <a href='"+window.location.origin+"/"+Path[i].page_Link+".html'>" + Path[i].page_Name + "</a> <i class='fa fa-arrow-right'></i>";
     }
     $('.main__path').html(PathEl);
     $('.main__path').show();
@@ -366,15 +380,20 @@ function getYear(original) {
 function DoctorsForEpisode(Doctors){
   var drlist="";
   for(var dr=0;dr<Doctors.length;dr++){
-    drlist+="<a href='https://www.doctorwhofans.be/"+Doctors[dr].link+".html'>"+Doctors[dr].doctor_Incarnation+"</a>, ";
+    if(Doctors[dr].character_Type.startsWith("Doctor")){
+      drlist+="<a href='"+window.location.origin+"/"+Doctors[dr].link+".html'>"+Doctors[dr].character_First_name+" "+Doctors[dr].character_Last_name+"</a>, ";
+
+    }
   }
   return drlist.slice(0,-2);
 }
 function CompanionsForEpisode(Companions){
   var complist="";
   for(var comp=0;comp<Companions.length;comp++){
-    if(Companions[comp].character_Type=="Companion"){
-      complist+="<a href='https://www.doctorwhofans.be/"+Companions[comp].link+".html'>"+Companions[comp].character_First_name+" "+Companions[comp].character_Last_name+"</a>, ";
+    if(Companions[comp].character_Type.startsWith("Companion")){
+      var name = Companions[comp].character_First_name;
+      name+=(Companions[comp].character_Last_name==null)?'':" "+Companions[comp].character_Last_name;
+      complist+="<a href='"+window.location.origin+"/"+Companions[comp].link+".html'>"+name+"</a>, ";
 
     }
   }
@@ -385,7 +404,7 @@ function DownloadsForEpisode(Downloads){
   var downList="<ul>";
   for(var down=0;down<Downloads.length;down++){
     if(Downloads[down].download_Type=="Subtitle"){
-      downList+="<li> Subtitle: <a download href='https://www.doctorwhofans.be/downloads/"+Downloads[down].download_File+"'>"+Downloads[down].download_Name+"</a> ("+Downloads[down].language_Name.toUpperCase()+")</li>";
+      downList+="<li> Subtitle: <a download href='"+window.location.origin+"/"+Downloads[down].download_File+"'>"+Downloads[down].download_Name+"</a> ("+Downloads[down].language_Name.toUpperCase()+")</li>";
 
     }
   }
@@ -426,7 +445,7 @@ function DumpInfo(data){
 
 function PreviousNextLink(EpisodeText,EpisodeLink){
   if(EpisodeLink!=null){
-    return '<a href="https://www.doctorwhofans.be/'+EpisodeLink+'.html">'+EpisodeText+'</a>';
+    return '<a href="'+window.location.origin+'/'+EpisodeLink+'.html">'+EpisodeText+'</a>';
 
   }else{
     return '<span> <hr> </span>';
