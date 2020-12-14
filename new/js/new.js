@@ -327,8 +327,16 @@ function Serial(EpisodeData){
   $('#WikiCompanions p').html(CompanionsForEpisode(EpisodeData.Serial.Characters));
   $('#WikiCompanions').append("<hr>");
   $('#WikiFirst_Aired_On p').html(LocalDate(EpisodeData.Serial.Episodes[0].episode_Original_airdate));
-  $('#WikiLast_Aired_On p').html(LocalDate(EpisodeData.Serial.Episodes[EpisodeData.Serial.Episodes.length-1].episode_Original_airdate));
-  $('#WikiLast_Aired_On').append("<hr>");
+  if(EpisodeData.Serial.Episodes.length >1){
+    $('#WikiLast_Aired_On p').html(LocalDate(EpisodeData.Serial.Episodes[EpisodeData.Serial.Episodes.length-1].episode_Original_airdate));
+    $('#WikiLast_Aired_On').append("<hr>");
+
+  }else{
+    $('#WikiLast_Aired_On').remove();
+    $('#WikiFirst_Aired_On span').html('Aired on')
+    $('#WikiFirst_Aired_On').append("<hr>");
+
+  }
   $('#WikiProduction_code p').html(EpisodeData.Serial[0].serial_Production_code);
   $('#WikiTotal_Runtime p').html(EpisodeData.Serial[0]["Total Runtime"].substring(0, EpisodeData.Serial[0]["Total Runtime"].indexOf('.')));
   $('#Previous p').html(PreviousNextLink(EpisodeData.Serial[0].Previous_Episode,EpisodeData.Serial[0].Previous_Link));
