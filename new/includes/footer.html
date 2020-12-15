@@ -1,28 +1,47 @@
 <footer>
-
+  <section class="footer__SocialMedia">
+    <div class="sharethis-inline-follow-buttons"></div>
+    <span>Or Share this page:</span>
+    <div class="sharethis-inline-share-buttons"></div>
+  </section>
+  
   <div class="footer__EpisodesOfTheDay">
     <p class="p__EpisodesOfTheDay"></p>
     <ol></ol>
   </div>
 </footer>
 <style>
+  html {
+    position: relative;
+    min-height: 100%;
+}
+.st-total{
+  color: var(--font-color-darkblue-white) !important;
+
+}
   footer {
     bottom: 0;
     width: 100%;
-    min-height: 9em;
-    height: 16vh;
+    min-height: 14em;
+    height: fit-content;
     clear:both;
     background-color: #7ea4c8;
     padding-top: 1em;
+    padding-bottom: 1em;
+
     margin-top:14em;
     border-top: 6px solid #306190;
-    border-bottom: solid 13em #7EA4C4;
+    display:none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    width: 100%;
 
 
 
   }
-
-  .footer__EpisodesOfTheDay {
+  .footer__EpisodesOfTheDay,.footer__SocialMedia {
     z-index: 1;
     color: var(--font-color-darkblue-white);
     background-color: var(--bg-color-darkBlue);
@@ -33,5 +52,7 @@
     float: right;
     right: 0;
 
+  }
+  .footer__SocialMedia{float: left;    margin-left: 1em;
   }
 </style>

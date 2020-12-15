@@ -29,6 +29,9 @@ $_SESSION["Menu"]="";?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/new.js"></script>
     <link rel="stylesheet" href="/css/main.css" />
+    <script type="text/javascript"
+        src="https://platform-api.sharethis.com/js/sharethis.js#property=5e66a481fb4445001239b600&product=inline-share-buttons"
+        async="async" async defer></script>
 </head>
 
 <body>

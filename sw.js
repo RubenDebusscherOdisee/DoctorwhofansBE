@@ -80,7 +80,6 @@ self.addEventListener('activate', function (event) {
 
 
 
-
 function showInstallPromotion(){
   console.log('install');
 }
