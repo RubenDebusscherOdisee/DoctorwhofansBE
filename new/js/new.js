@@ -199,7 +199,7 @@ function replaceRelativeLinks(){
    $("a[href]")
   .each(function () {
     //this.href = this.href.replace('..',window.location.origin);
-    $(this).attr('href',$(this).attr('href').replace('..',window.location.origin))
+    $(this).attr('href',$(this).attr('href').replace('..',window.location.origin));
     //console.log($(this).attr('href'));
 
   }); 
@@ -351,7 +351,7 @@ function Serial(EpisodeData){
 
   }else{
     $('#WikiLast_Aired_On').remove();
-    $('#WikiFirst_Aired_On span').html('Aired on')
+    $('#WikiFirst_Aired_On span').html('Aired on');
     $('#WikiFirst_Aired_On').append("<hr>");
 
   }
@@ -407,7 +407,13 @@ function DoctorsForEpisode(Doctors){
   var drlist="";
   for(var dr=0;dr<Doctors.length;dr++){
     if(Doctors[dr].character_Type.startsWith("Doctor")){
-      drlist+="<a href='"+window.location.origin+"/"+Doctors[dr].link+".html'>"+Doctors[dr].character_First_name+" "+Doctors[dr].character_Last_name+"</a>, ";
+      if(Doctors[dr].SC_Type=="Regular"){
+        drlist+="<a href='"+window.location.origin+"/"+Doctors[dr].link+".html'>"+Doctors[dr].character_First_name+" "+Doctors[dr].character_Last_name+"</a>, ";
+
+      }else{
+        drlist+="<a href='"+window.location.origin+"/"+Doctors[dr].link+".html'>"+Doctors[dr].character_First_name+" "+Doctors[dr].character_Last_name+"</a> ("+Doctors[dr].SC_Type+"), ";
+
+      }
 
     }
   }
