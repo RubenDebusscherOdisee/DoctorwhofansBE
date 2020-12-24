@@ -293,6 +293,7 @@ function GetContent(menu){
       populateEpisodesOfTheDay(response.EpisodesOf_The_day);
       document.title = response.Page[0].page_Name;
       Content(response.Content);
+      ChildPages(response.ChildPages);
       switch(response.Page[0].pagetype_Name) {
         case "Default":
           console.log("Dit is een default page");
@@ -329,7 +330,16 @@ function GetContent(menu){
 }
 
 
-
+function ChildPages(Pages){
+  var OverzichtEl="";
+  if(Pages.length >0){
+    for(var i=0;i<Pages.length;i++){
+      OverzichtEl+=" <a href='"+window.location.origin+"/"+Pages[i].page_Link+".html'>" + Pages[i].page_Name + "</a>";
+    }
+    $('.Overzicht').html(OverzichtEl);
+    $('.main__path').show();
+  }
+}
 
 
 

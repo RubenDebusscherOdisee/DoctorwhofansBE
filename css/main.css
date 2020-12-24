@@ -3152,6 +3152,15 @@ table tr {
     color: var(--font-color-darkblue-white)
 }
 
+.Overzicht a{
+    display: inline-flex;
+    /* width: 23%; */
+    text-align: center;
+    /* margin-left: 9em; */
+    margin-right: 3em;
+    min-width: 14em;
+
+}
 main article img {
     width: 100%;
 }

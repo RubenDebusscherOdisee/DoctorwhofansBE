@@ -247,6 +247,24 @@
 					echo "Zoek de data van een Crewlid: ".$Page_Name;
 					break;
 			}
+			$stmtChildPages = $conn->prepare('SELECT page_Link,page_Name FROM management__pages where page_Parent_Id=? order by page_Name');
+			if(!$stmtChildPages){
+				die('Statement preparing failed: ' . $conn->error);
+			}
+			if(!$stmtChildPages->bind_param("i",$current_Page_Id)){
+				die('Statement binding failed: ' . $conn->connect_error);
+			}
+			if(!$stmtChildPages->execute()){
+				die('Statement execution failed: ' . $stmtChildPages->error);
+			}else{
+				$result = $stmtChildPages->get_result();
+				if($result->num_rows === 0){
+					$antwoord['ChildPages']="";
+				} else{
+					$antwoord['ChildPages'] = $result->fetch_all(MYSQLI_ASSOC);
+				}
+			}
+			$stmtChildPages->close();
 			$stmtContent = $conn->prepare('SELECT * FROM content_With_Lang where item_Page=? and language_Name=?');
 			if(!$stmtContent){
 				die('Statement preparing failed: ' . $conn->error);
