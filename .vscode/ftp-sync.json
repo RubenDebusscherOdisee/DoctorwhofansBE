@@ -16,7 +16,10 @@
     "ignore": [
         "\\.vscode",
         "\\.git",
-        "\\.DS_Store"
+        "\\.DS_Store",
+        "\\.old",
+        "\\.new"
+
     ],
     "generatedFiles": {
         "extensionsToInclude": [

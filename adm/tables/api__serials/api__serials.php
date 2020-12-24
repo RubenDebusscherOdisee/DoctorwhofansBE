@@ -70,24 +70,6 @@ class tables_api__serials {
       return $records;
   }
 
-  function Crew__addTag($record, $value){
-    list($first,$last) = explode(' ', $value);
-
-    $rec = new Dataface_Record('api__crew', array());
-    $rec->setValues(array(
-      'crew_First_name'=>$first,
-      'crew_Last_name'=>$last
-    ));
-    return $rec;
-  }
-  function Characters__addTag($record, $value){
-    list($first,$last) = explode(' ', $value);
-    $rec = new Dataface_Record('api__characters', array());
-    $rec->setValues(array(
-      'character_First_name'=>$first,
-      'character_Last_name'=>$last
-    ));
-    return $rec;
-  }
+  
 }
 ?>

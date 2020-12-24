@@ -1,1 +1,1 @@
-<!-- IF postrow.POSTER_AGE --><dd><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
+{% if postrow.POSTER_AGE %}<dd><strong>{{ lang('AGE') ~ lang('COLON') }}</strong> {{ postrow.POSTER_AGE }}</dd>{% endif %}
