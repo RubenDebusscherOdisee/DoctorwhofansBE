@@ -1,1 +1,0 @@
-<?php $connAPI =mysqli_connect("doctorwhofans.be.mysql", "doctorwhofans_be_api", "50DkeZD7b0MMQys1hRu9C15xDX1QzRx5hDc6", "doctorwhofans_be_api");?>
