@@ -337,7 +337,6 @@ function ChildPages(Pages){
       OverzichtEl+=" <a href='"+window.location.origin+"/"+Pages[i].page_Link+".html'>" + Pages[i].page_Name + "</a>";
     }
     $('.Overzicht').html(OverzichtEl);
-    $('.main__path').show();
   }
 }
 
