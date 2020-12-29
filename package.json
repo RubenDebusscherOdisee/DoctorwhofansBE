@@ -1,0 +1,24 @@
+{
+  "name": "doctorwhofansbe",
+  "version": "1.0.0",
+  "description": "* Main Site built from Scratch\r * Forum powered by PHPBB\r * API client for episodes on own database built from scratch (WIP - usable for main features)\r * Interface for managing API and main site powered by Xataface\r * Dashboard for custom analytics built from scratch with help of Graph.js and Bootstrap",
+  "main": "sw.js",
+  "dependencies": {
+    "jquery-resizable-dom": "^0.35.0",
+    "web-push": "^3.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubenDebusscher/DoctorwhofansBE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RubenDebusscher/DoctorwhofansBE/issues"
+  },
+  "homepage": "https://github.com/RubenDebusscher/DoctorwhofansBE#readme"
+}

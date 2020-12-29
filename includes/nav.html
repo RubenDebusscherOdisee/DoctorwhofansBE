@@ -175,7 +175,7 @@
                 <div class="cols-0">
                 </div>
             </li>
-            <li id="search" class="rightItem" style="display:none">
+            <li id="search" class="rightItem">
                 <h2><a href="#Search">Zoeken <i class="fa fa-search" aria-hidden="false" title="Zoeken"></i></a></h2>
                 <div class="cols-4d2 rightBox">
                     <ol>
@@ -183,7 +183,7 @@
                             <label for="zoekterm" class="zoeklabel">Zoeken: </label>
                             <input class="zoekterm" type="text" name="zoekterm" placeholder="Zoeken..." value=""
                                 title="zoeken" id="zoekterm" />
-                            <button class="zoekknop" type="submit" title="Zoeken" name="zoeken" onclick="ZoekPagina()"
+                            <button class="searchButton" type="submit" title="Zoeken" name="zoeken" onclick="SearchContent()"
                                 value=" ">
                                 <i class="fa fa-search" aria-hidden="false"></i>
                             </button>
@@ -191,7 +191,7 @@
                     </ol>
                 </div>
             </li>
-            <li class="rightItem"style="display:none">
+            <li class="rightItem">
                 <h2><a href="#Search">Settings <i class="fa fa-gear" aria-hidden="false" title="Settings"></i></a></h2>
                 <div class="cols-4d2 rightBox">
                     <h3>Settings</h3>
@@ -199,7 +199,7 @@
                         <form>
                             <fieldset>
                                 <legend>Accessibility</legend>
-                                <button class=toegang id=toegang onclick="toggleAccess()" type="button">Toegankelijkheid
+                                <!-- <button class=toegang id=toegang onclick="toggleAccess()" type="button">Toegankelijkheid
                                     verhogen</button>
 
                                 <button class="RemoveImages" id="RemoveImages" type="button"
@@ -211,10 +211,10 @@
                                 <button onclick="ToggleNightMode()" id="NightMode"><i class="fa fa-moon-o"
                                         aria-hidden="false"></i></button>
                                 <!--TODO: #40 Allow for different fonts, so user can change the font to one that works best for him/her-->
-                            </fieldset>
+                           <!----> </fieldset>
                             <button id="print" type="button" onclick="window.print()">Print</button>
                             <button class="taal_link" type="button" title="taalkeuze">
-                                <i class="fa fa-globe"></i> Kies uw taal</button>
+                                <i class="fa fa-globe"></i> Kies uw taal</button> -->
                         </form>
                     </ol>
                 </div>

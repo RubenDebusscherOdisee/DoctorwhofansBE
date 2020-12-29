@@ -41,8 +41,13 @@
 			}else{
 				//return de json data
 				$result = $stmtEOTD->get_result();
-				if($result->num_rows === 0) exit('No rows');
+				if($result->num_rows === 0){
+					$antwoord['EpisodesOf_The_day'] = "";
+
+				} else{
 					$antwoord['EpisodesOf_The_day'] = $result->fetch_all(MYSQLI_ASSOC);
+
+				}
 			}
 			$stmtEOTD->close();
 			$stmtPathArray = $conn->prepare("SELECT `GetAncestry`(?) AS 'parents'");
@@ -233,7 +238,7 @@
 					//return de json data
 					$result = $stmtCharacter->get_result();
 					if($result->num_rows === 0){
-						$antwoord['Character']="No Character found";
+						$antwoord['Character']=" Character found";
 					}else{
 						$antwoord['Character'] = $result->fetch_all(MYSQLI_ASSOC);
 						$stmtCharacter->close();

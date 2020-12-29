@@ -171,11 +171,11 @@ $( window ).resize(function() {
   footerAlign();
 });
 jQuery(document).ready(function(){
-  footerAlign();
   getAvailableLangcodes();
-
+  footerAlign();
   buildLogo('#logo','#ffff00');
   GetContent(menu);
+
 
   // bind a click event to the 'skip' link
   $(".skip").click(function(event){
@@ -230,7 +230,7 @@ function setCookie(cname, cvalue, exdays) {
 function getAvailableLangcodes() {
 	$.ajax({
 		type: "GET",
-		url: "https://www.doctorwhofans.be/php/getAvailableLanguages.php",
+		url: "https://www.doctorwhofans.be/php/getAvaliableLanguages.php",
 		dataType: 'json',
 		crossDomain: true,
 		cache: false
@@ -261,7 +261,7 @@ function checkCookie() {
 
 	var lang = getCookie("lang");
 	if (lang == "") {
-		if (AvailableLangCodes.includes(navigator.language) === true) {
+		if (AvailableLangCodes.data.includes(navigator.language) === true) {
 			setCookie("lang", navigator.language, 30);
 		} else {
 			setCookie("lang", "nl", 30);
@@ -270,6 +270,9 @@ function checkCookie() {
 }
 
 function GetContent(menu){
+  if(getCookie("lang")==""){
+    setCookie("lang", "nl", 30);
+  }
   if(menu !=""){
     
     var form = new FormData();
@@ -291,9 +294,11 @@ function GetContent(menu){
     $.ajax(settings).done(function (response) {
       populatePath(response.Path);
       populateEpisodesOfTheDay(response.EpisodesOf_The_day);
+      footerAlign();
       document.title = response.Page[0].page_Name;
       Content(response.Content);
       ChildPages(response.ChildPages);
+      GetSecondsforEpisodes($('#Tiles').attr('data-srcFile'));
       switch(response.Page[0].pagetype_Name) {
         case "Default":
           console.log("Dit is een default page");
@@ -354,23 +359,8 @@ $(event.target).text("+");
 }
 
 function createSiteMap(elem,Sitemap){
-/* $.ajax({
-  type: "GET",
-  url: "https://www.doctorwhofans.be/php/Children2.php",
-  dataType: 'json',
-  cache: false,
-}).done(
-  function(resultaat) {
-    //console.log(getNestedChildren(resultaat.data,0));
-    createList(document.getElementById(elem), getNestedChildren(resultaat.data,0));
-    $('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page')
-  }).fail(function(response, statusText, xhr) {
-}).always(function() {
-}); */
-  //createList(document.getElementById(elem), getNestedChildren(response,0));
   createList(document.getElementById(elem), getNestedChildren(Sitemap,null));
-
-    $('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page');
+  $('li a[href="..'+window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1)+'"]').addClass('current_page');
 }
 
 function getNestedChildren(arr, parent) {
@@ -587,9 +577,6 @@ function PreviousNextLink(EpisodeText,EpisodeLink){
   }
 }
 function Episodes(episodes){
-  //$('main article').append("<h2>Episodes</h2>");
-  //$('main article').append("<table id='EpisodeTable'></table>");
-  //$('#EpisodeTable').append('<tr><th>Episode</th><th>Title</th><th>Run time</th><th>Original Air date</th><th>UK viewers</th><th>Appreciation Index</th><th>Status</th></tr>');
   var tableRow;
   var tabledata;
   for(var i=0;i<episodes.length;i++){
@@ -628,3 +615,109 @@ function buildLogo(element,color){
 
 
 
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+	// Update UI notify the user they can install the PWA
+	console.log("Ik kan geïnstalleerd worden!!");
+	$('.installButton').css('display','block');
+
+  //showInstallPromotion();
+});
+
+
+function A2HS(){
+	// Hide the app provided install promotion
+  $('.installButton').css('display','none');
+  // Show the install prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
+    }
+  });
+}
+
+window.addEventListener('appinstalled', (evt) => {
+	$('.installButton').css('display','none');
+  console.log('INSTALL: Success');
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  let displayMode = 'browser tab';
+  if (navigator.standalone) {
+    displayMode = 'standalone-ios';
+  }
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    displayMode = 'standalone';
+  }
+  // Log launch display mode to analytics
+  console.log('DISPLAY_MODE_LAUNCH:', displayMode);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  window.matchMedia('(display-mode: standalone)').addListener((evt) => {
+    let displayMode = 'browser tab';
+    if (evt.matches) {
+      displayMode = 'standalone';
+    }
+    // Log display mode change to analytics
+    console.log('DISPLAY_MODE_CHANGED', displayMode);
+  });
+});
+
+
+function secondsToDhms(seconds) {
+
+	seconds = Number(seconds);
+
+	var d = Math.floor(seconds / (3600 * 24));
+
+	var h = Math.floor((seconds % (3600 * 24)) / 3600);
+
+	var m = Math.floor((seconds % 3600) / 60);
+
+	var s = Math.floor(seconds % 60);
+
+
+
+	var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+
+	var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+
+	var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+
+	var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+
+	return dDisplay + hDisplay + mDisplay + sDisplay;
+
+}
+
+function GetSecondsforEpisodes(dataurl) {
+	$.ajax({
+		type: "GET",
+		url: 'https://www.doctorwhofans.be/php/'+dataurl,
+		dataType: 'json',
+		cache: false
+	}).done(function (resultaat) {
+    var Tiles = "";
+
+		for (var i = 0; i < resultaat.data.length; i++) {
+			Tiles +="<div class='TimeDiv padded max_20 DarkBlueBackground bordered'><b>" + resultaat.data[i].titel + ": </b><span> " + secondsToDhms(resultaat.data[i].total).replace(/,\s*$/, "") + "</span></div>";
+
+    }
+    $('#Tiles').html(Tiles);    
+
+	}).fail(function (response, statusText, xhr) {
+
+	}).always(function () {
+
+	});
+}

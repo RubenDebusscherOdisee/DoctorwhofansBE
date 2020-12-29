@@ -3152,7 +3152,7 @@ table tr {
     color: var(--font-color-darkblue-white)
 }
 
-.Overzicht a{
+.Overzicht a {
     display: inline-flex;
     /* width: 23%; */
     text-align: center;
@@ -3161,13 +3161,54 @@ table tr {
     min-width: 14em;
 
 }
+
 main article img {
     width: 100%;
 }
-#Sitemap {list-style-type: none;}
 
-#Sitemap ul {list-style-type: none;}
-#Sitemap ul li{list-style-type: none;}
+.TimeDiv {
+    display: inline-flex;
+    margin-left: .5em;
+    margin-bottom: .5em;
+    margin-right: .5em
+}
+
+.TimeDiv span {
+    padding-left: 0.5em;
+}
+
+input:required:invalid,
+input:invalid {
+    background-color: #c00000;
+}
+
+input:valid {
+    background: #306090;color:white
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
+
+#Sitemap {
+    list-style-type: none;
+}
+
+#Sitemap ul {
+    list-style-type: none;
+}
+
+#Sitemap ul li {
+    list-style-type: none;
+}
 
 .SitemapButton {
     margin-right: 1em;
@@ -3179,14 +3220,16 @@ main article img {
     width: 1.5em;
     height: 1.5em
 }
+
 .rightFloat {
     float: right;
-    margin-left:1em;
+    margin-left: 1em;
 
 }
-.leftFloat{
+
+.leftFloat {
     float: left;
-    margin-right:1em;
+    margin-right: 1em;
 
 }
 
@@ -3353,8 +3396,9 @@ span hr {
     border-radius: 6px;
     color: var(--font-color-darkblue-white)
 }
+
 main article a:hover,
-main article a:focus{
+main article a:focus {
     text-decoration: none
 }
 

@@ -26,6 +26,22 @@ $_SESSION["Menu"]="";?>
     <meta charset=UTF-8 />
     <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#306090"/>
+    <link rel="apple-touch-icon" href="images/logo/apple-icon.png">
+    <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    // Registration was successful
+                    //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                    // registration failed :(
+                    console.error('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
     <script>
