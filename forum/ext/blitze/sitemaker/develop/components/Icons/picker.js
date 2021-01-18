@@ -12,8 +12,6 @@ import OutsideClick from '../OutsideClick';
 
 import './picker.scss';
 
-/* global $ */
-
 const pluginName = 'iconPicker';
 const dataPlugin = `plugin_${pluginName}`;
 const defaults = {
@@ -42,7 +40,7 @@ Plugin.prototype = {
 
 		$.extend(this.options, options);
 
-		this.$container.on('click', this.options.selector, e => {
+		this.$container.on('click', this.options.selector, (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -50,18 +48,36 @@ Plugin.prototype = {
 
 			if (!this.$element || this.$element.context !== $element.context) {
 				this.showPicker($element);
+				const $iconCats = this.$fontList.find('.icon-cat');
+				const height = $iconCats.eq(0).height();
+
+				// create cache of icon cats and their heights relative to the top of the icons list container
+				// we only do this once
+				this.catsCache =
+					this.catsCache ||
+					$iconCats
+						.map((i, el) => {
+							const $category = $(el);
+							const { top } = $category.position();
+							return {
+								id: $category.attr('id'),
+								top,
+								bottom: top + height,
+							};
+						})
+						.get();
 			} else {
 				this.hidePicker();
 			}
 		});
 
-		this.$icons.find('i').click(e => {
+		this.$icons.find('i').click((e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.selectIcon($(e.currentTarget));
 		});
 
-		this.$iconsSearch.keyup(e => {
+		this.$iconsSearch.keyup((e) => {
 			const keyword = $(e.currentTarget).val();
 			if (keyword.length) {
 				this.$icons
@@ -73,36 +89,47 @@ Plugin.prototype = {
 			}
 		});
 
-		this.$iconsDiv
+		const $categoriesList = this.$iconsDiv
 			.width(this.options.width)
 			.find('#icons-font-cat-list')
-			.find('a')
-			.click(e => {
+			.change((e) => {
 				e.preventDefault();
-				e.stopImmediatePropagation();
 				this.$iconsSearch.val('');
 				this.$icons.show();
-				this.scrollToIcon($($(e.currentTarget).attr('href')));
+				this.scrollToIcon($($(e.target).find(':selected').val()));
 			});
 
-		this.$iconsDiv.find('#icon-picker-insert').click(e => {
+		this.$fontList.on('scroll', () => {
+			if (!this.$iconsSearch.val().length) {
+				// find icon cat that is in viewport
+				const category = this.catsCache.find((cat) =>
+					this.isInViewport(cat),
+				);
+
+				if (category) {
+					$categoriesList.val(`#${category.id}`);
+				}
+			}
+		});
+
+		this.$iconsDiv.find('#icon-picker-insert').click((e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.insertIcon(this.selectedIcon);
 		});
 
-		this.$iconsDiv.find('#icon-picker-none').click(e => {
+		this.$iconsDiv.find('#icon-picker-none').click((e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.insertIcon('');
 		});
 
-		this.$customization.find('.icons-customize').change(e => {
+		this.$customization.find('.icons-customize').change((e) => {
 			e.preventDefault();
 			this.previewIcon();
 		});
 
-		this.$colorBoxes.click(e => {
+		this.$colorBoxes.click((e) => {
 			e.preventDefault();
 			this.$colorBoxes.removeClass('selected');
 			$(e.currentTarget)
@@ -113,9 +140,7 @@ Plugin.prototype = {
 			this.previewIcon();
 		});
 
-		const $tabs = $('#icons-tab')
-			.tabs()
-			.parent();
+		const $tabs = $('#icons-tab').tabs().parent();
 
 		// fix the classes
 		const tabsBottomSelector =
@@ -132,6 +157,13 @@ Plugin.prototype = {
 
 		this.hidePicker = this.hidePicker.bind(this);
 		OutsideClick(this.$iconsDiv, this.hidePicker);
+	},
+
+	isInViewport(cat) {
+		const viewportTop = this.$fontList.scrollTop();
+		const viewportBottom = viewportTop + this.$fontList.height() / 2;
+
+		return cat.bottom > viewportTop && cat.top < viewportBottom;
 	},
 
 	getIconProps(iconClass) {
@@ -151,7 +183,9 @@ Plugin.prototype = {
 	insertIcon(icon) {
 		if ($.isEmptyObject(currentItem) !== true) {
 			const iconClass = this.getIconProps(icon);
-			const iconHtml = iconClass ? `<i class="${iconClass}"></i>` : '';
+			const iconHtml = iconClass
+				? `<i class="${iconClass}" aria-hidden="true"></i>`
+				: '';
 
 			currentItem.html(iconHtml);
 			this.options.onSelect.call(this, currentItem, iconClass, iconHtml);
@@ -175,40 +209,40 @@ Plugin.prototype = {
 
 	setCurrentIcon($element) {
 		const $currIcon = $element.find('i');
-		const $inputs = this.$customization.find(':input');
+		const $settings = this.$customization
+			.find(':input')
+			.removeAttr('checked')
+			.removeAttr('selected');
 
 		this.$colorBoxes.removeClass('selected');
 		this.$fontList.find('a').removeClass('icon-selected');
-		this.$customization.get(0).reset();
-		this.$customization.find('select').val('');
 		this.selectedIcon = '';
 
 		if ($currIcon.length) {
-			const iconInfo = $currIcon
-				.attr('class')
-				.trim()
-				.split(' ');
-			iconInfo.shift();
+			const iconInfo = $currIcon.attr('class').trim().split(' ');
+			const prefix = iconInfo.shift();
 
 			const iconClass = iconInfo.shift();
-			const $icon = this.$fontList.find(`.${iconClass}`);
+			const $icon = this.$fontList.find(`.${iconClass}`).eq(0);
 
 			if ($icon.length > 0) {
 				$icon.parent().addClass('icon-selected');
 
-				this.selectedIcon = `fa ${iconClass}`;
+				this.selectedIcon = `${prefix} ${iconClass}`;
 				this.scrollToIcon($icon, true);
 
-				const $selects = $inputs.filter('select').children();
+				const $selects = $settings.filter('select').children();
+				const $inputs = $settings.not('select');
 
 				$.each(iconInfo, (i, val) => {
-					$selects.filter(`[value=${val}]`).attr('selected', true);
 					$inputs.filter(`[value=${val}]`).attr('checked', true);
+					$selects.filter(`[value=${val}]`).parent().val(val);
 				});
 
 				const $color = this.$customization.find(
 					'input[name=color]:checked',
 				);
+
 				if ($color.length > 0) {
 					$color.prev().addClass('selected');
 				}
@@ -241,7 +275,7 @@ Plugin.prototype = {
 	},
 
 	scrollToIcon: function scrollToIcon($element, center) {
-		let adjustment = 20;
+		let adjustment = 0;
 		if (center) {
 			adjustment = -(this.$fontList.height() / 2);
 		}

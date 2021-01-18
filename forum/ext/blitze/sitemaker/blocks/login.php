@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package sitemaker
@@ -34,6 +35,9 @@ class login extends block
 
 	/** @var string */
 	protected $php_ext;
+
+	/** @var string */
+	protected $block_template = '@blitze_sitemaker/blocks/login.html';
 
 	/**
 	 * Constructor
@@ -75,11 +79,11 @@ class login extends block
 	{
 		$settings = $bdata['settings'];
 
-		$content = '';
+		$data = [];
 		if (!$this->user->data['is_registered'] || $edit_mode === true)
 		{
 			$this->hide_quicklogin();
-			$this->ptemplate->assign_vars(array(
+			$data = array(
 				'S_SHOW_HIDE_ME'		=> ($settings['show_hide_me']) ? true : false,
 				'S_AUTOLOGIN_ENABLED'   => ($settings['allow_autologin']) ? true : false,
 				'S_FORM_TOKEN'			=> $this->util->get_form_key('login'),
@@ -87,20 +91,18 @@ class login extends block
 				'U_REGISTER'			=> append_sid("{$this->phpbb_root_path}ucp." . $this->php_ext, 'mode=register'),
 				'U_SEND_PASSWORD'		=> append_sid("{$this->phpbb_root_path}ucp." . $this->php_ext, 'mode=sendpassword'),
 				'U_REDIRECT'			=> reapply_sid(ltrim(rtrim(build_url(array('edit_mode')), '?'), './../'))
-			));
-
-			$content = $this->ptemplate->render_view('blitze/sitemaker', 'blocks/login.html', 'login_block');
+			);
 		}
 		else if ($settings['show_member_menu'])
 		{
 			$block = $this->phpbb_container->get('blitze.sitemaker.block.member_menu');
-			$block->set_template($this->ptemplate);
+			$this->set_template($block->get_template());
 			return $block->display(array(), $edit_mode);
 		}
 
 		return array(
-			'title'		=> 'LOGIN',
-			'content'	=> $content,
+			'title'	=> 'LOGIN',
+			'data'	=> $data,
 		);
 	}
 
@@ -114,5 +116,21 @@ class login extends block
 		{
 			$this->template->assign_var('S_USER_LOGGED_IN', true);
 		}
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_template()
+	{
+		return $this->block_template;
+	}
+
+	/**
+	 * @param string $template
+	 */
+	protected function set_template($template)
+	{
+		$this->block_template = $template;
 	}
 }

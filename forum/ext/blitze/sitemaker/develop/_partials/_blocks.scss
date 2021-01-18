@@ -60,10 +60,6 @@
 		margin: 0;
 	}
 
-	.info {
-		float: right;
-	}
-
 	li {
 		list-style-type: inherit;
 	}
@@ -91,9 +87,17 @@
 		padding-top: 0.3rem;
 	}
 
-	.header {
-		font-weight: bold;
+	.list-inner {
+		display: flex;
+		align-items: center;
+		width: 100%;
 	}
+}
+
+.sm-polar {
+	display: flex;
+	justify-content: space-between;
+	flex: 1;
 }
 
 .inner-spacing {

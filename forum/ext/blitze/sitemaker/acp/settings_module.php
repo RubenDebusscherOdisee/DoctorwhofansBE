@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package sitemaker
@@ -10,8 +11,8 @@
 namespace blitze\sitemaker\acp;
 
 /**
-* @package acp
-*/
+ * @package acp
+ */
 class settings_module
 {
 	/** @var \phpbb\config\config */
@@ -41,14 +42,11 @@ class settings_module
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var \blitze\sitemaker\services\icon_picker */
+	/** @var \blitze\sitemaker\services\icons\picker */
 	protected $icon;
 
 	/** @var \blitze\sitemaker\services\blocks\cleaner */
 	protected $blocks_cleaner;
-
-	/** @var \blitze\sitemaker\services\filemanager\settings */
-	protected $filemanager;
 
 	/** @var \blitze\sitemaker\model\mapper_factory */
 	protected $mapper_factory;
@@ -88,8 +86,7 @@ class settings_module
 		$this->finder = $phpbb_container->get('ext.manager')->get_finder();
 		$this->translator = $phpbb_container->get('language');
 		$this->blocks_cleaner = $phpbb_container->get('blitze.sitemaker.blocks.cleaner');
-		$this->filemanager = $phpbb_container->get('blitze.sitemaker.filemanager.settings');
-		$this->icon = $phpbb_container->get('blitze.sitemaker.icon_picker');
+		$this->icon = $phpbb_container->get('blitze.sitemaker.icons.picker');
 		$this->mapper_factory = $phpbb_container->get('blitze.sitemaker.mapper.factory');
 	}
 
@@ -124,7 +121,6 @@ class settings_module
 			'u_action'			=> $this->u_action,
 			'icon_picker'		=> $this->icon->picker(),
 			'config'			=> $this->config,
-			'filemanager'		=> $this->filemanager->get_settings(),
 			'styles'			=> $this->get_styles_data($layouts),
 			'layouts'			=> $layouts,
 			'menu_options'		=> $this->get_menu_options(),
@@ -179,7 +175,6 @@ class settings_module
 			$vars = array('settings');
 			extract($this->phpbb_dispatcher->trigger_event('blitze.sitemaker.acp_save_settings', compact($vars)));
 
-			$this->save_filemanager_settings($settings);
 			$this->save_config_settings($settings);
 
 			trigger_error($this->translator->lang('SETTINGS_SAVED') . adm_back_link($this->u_action));
@@ -284,27 +279,6 @@ class settings_module
 		foreach ($settings as $key => $value)
 		{
 			$this->config->set($key, $value);
-		}
-	}
-
-	/**
-	 * @param array $config
-	 * @return void
-	 */
-	protected function save_filemanager_settings(array &$config)
-	{
-		$settings = $this->request->variable('filemanager', array('' => ''));
-
-		if (sizeof($settings))
-		{
-			$settings['image_watermark_position'] = ($settings['image_watermark_coordinates']) ? $settings['image_watermark_coordinates'] : $settings['image_watermark_position'];
-			unset($settings['image_watermark_coordinates']);
-
-			$this->filemanager->save($settings);
-		}
-		else
-		{
-			$config['sm_filemanager'] = 0;
 		}
 	}
 

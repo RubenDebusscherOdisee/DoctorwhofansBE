@@ -20,7 +20,7 @@
 
 .xlsf-fragment {
 	position: absolute;
-	background: transparent url("https://forum.doctorwhofans.be/ext/prosk8er/snowstormlights/styles/all/template/snowstorm/image/image/bulbs-50x50-fragments.png") no-repeat 0px 0px;
+	background: transparent url("./image/bulbs-50x50-fragments.png") no-repeat 0px 0px;
 	width: 50px;
 	height: 50px;
 }

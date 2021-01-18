@@ -58,7 +58,8 @@ services:
             - '@language'
             - '@request'
             - '@template.twig.environment'
-            - '%core.cache_dir%/%core.environment%'
+            - '@blitze.sitemaker.simplepie'
+            - '%core.cache_dir%'
         calls:
             - [set_name, [blitze.sitemaker.block.feeds]]
         tags:
@@ -84,7 +85,7 @@ services:
             - '@content.visibility'
             - '@language'
             - '@user'
-            - '@truncator'
+            - '@blitze.sitemaker.truncator'
             - '@blitze.sitemaker.date_range'
             - '@blitze.sitemaker.forum.data'
             - '@blitze.sitemaker.forum.options'
@@ -178,8 +179,8 @@ services:
         class: blitze\sitemaker\blocks\stats
         arguments:
             - '@config'
-            - '@template'
             - '@language'
+            - '@template'
         calls:
             - [set_name, [blitze.sitemaker.block.stats]]
         tags:

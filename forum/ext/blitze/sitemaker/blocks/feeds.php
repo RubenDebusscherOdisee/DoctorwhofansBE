@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package sitemaker
@@ -25,6 +26,9 @@ class feeds extends block
 	/** @var \phpbb\template\twig\environment */
 	protected $twig;
 
+	/** @var \blitze\sitemaker\services\simplepie\feed */
+	protected $simplepie;
+
 	/** @var string */
 	protected $cache_dir;
 
@@ -37,17 +41,19 @@ class feeds extends block
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\language\language				$translator			Language object
-	 * @param \phpbb\request\request_interface		$request			Request object
-	 * @param \phpbb\template\twig\environment		$twig				Twig environment
-	 * @param string 								$cache_dir			Path to cache directory
+	 * @param \phpbb\language\language						$translator			Language object
+	 * @param \phpbb\request\request_interface				$request			Request object
+	 * @param \phpbb\template\twig\environment				$twig				Twig environment
+	 * @param \blitze\sitemaker\services\simplepie\feed		$simplepie			An extension of simple pie
+	 * @param string 										$cache_dir			Path to cache directory
 	 */
-	public function __construct(\phpbb\language\language $translator, \phpbb\request\request_interface $request, \phpbb\template\twig\environment $twig, $cache_dir)
+	public function __construct(\phpbb\language\language $translator, \phpbb\request\request_interface $request, \phpbb\template\twig\environment $twig, \blitze\sitemaker\services\simplepie\feed $simplepie, $cache_dir)
 	{
 		$this->translator = $translator;
 		$this->request = $request;
 		$this->twig = $twig;
-		$this->cache_dir = './cache/production/';
+		$this->simplepie = $simplepie;
+		$this->cache_dir = $cache_dir;
 	}
 
 	/**
@@ -57,7 +63,7 @@ class feeds extends block
 	{
 		$template_default = '<a target="_blank" href="{{ item.link }}">{{ item.title }}</a>';
 		return array(
-			'legend1'			=> 'SETTINGS',
+			'legend1'		=> 'SETTINGS',
 			'feeds'			=> array('lang' => 'FEED_URLS', 'type' => 'multi_input:0', 'default' => []),
 			'template'		=> array('type' => 'custom', 'default' => $template_default, 'object' => $this, 'method' => 'get_cfg_feeds_template'),
 			'max'			=> array('lang' => 'MAX_ITEMS', 'validate' => 'int:1', 'type' => 'number:1', 'default' => 5),
@@ -70,55 +76,60 @@ class feeds extends block
 	 */
 	public function display(array $bdata, $edit_mode = false)
 	{
-		$title = 'FEEDS';
-		$content = '';
 		$settings = $bdata['settings'];
 		$feed_urls = $this->get_feeds_array($settings['feeds']);
+		$status = 0;
 
-		if (sizeof($feed_urls))
+		try
 		{
-			if ($items = $this->get_feed_items($feed_urls, $content, $settings['max'], $settings['cache']))
-			{
-				// We try to render block with user-provided trig template
-				try
-				{
-					$template = $this->twig->createTemplate($this->get_template($settings['template']));
-
-					return array(
-						'title'		=> $title,
-						'content'	=> $template->render([
-							'items'	=> $items,
-						])
-					);
-				}
-				catch (\Exception $e)
-				{
-					$content = $e->getMessage();
-				}
-			}
+			$content = $this->render_feeds($feed_urls, $settings, $status);
+			$status = 1;
 		}
-		else
+		catch (\Exception $e)
 		{
-			$content = $this->translator->lang('FEED_URL_MISSING');
+			$content = $e->getMessage();
 		}
 
 		return array(
-			'title'		=> $title,
-			'content'	=> ($edit_mode) ? $content : '',
+			'title'		=> 'FEEDS',
+			'content'	=> $status || $edit_mode ? $content : '',
+			'status'	=> $status,
 		);
 	}
 
 	/**
-	 * @param string $template
+	 * @param array $feeds_url
+	 * @param array $settings
+	 * @param int $status
 	 * @return string
 	 */
-	public function get_cfg_feeds_template($template)
+	protected function render_feeds(array $feed_urls, array $settings, &$status)
 	{
-		$this->ptemplate->assign_vars([
-			'template'	=> $template,
-		]);
+		$content = '';
+		if ($items = $this->get_feed_items($feed_urls, $content, $settings['max'], $settings['cache']))
+		{
+			// We try to render block with user-provided trig template
+			$template = $this->twig->createTemplate($this->get_feed_template($settings['template']));
 
-		return $this->ptemplate->render_view('blitze/sitemaker', 'cfg_fields/feeds.html', 'cfg_feeds');
+			$status = 1;
+			$content = $template->render([
+				'items'	=> $items,
+			]);
+		}
+
+		return $content;
+	}
+
+	/**
+	 * @param string $source
+	 * @return string
+	 */
+	public function get_cfg_feeds_template($source)
+	{
+		$template = $this->twig->load('@blitze_sitemaker/cfg_fields/feeds.html');
+		return $template->render([
+			'template'	=> $source,
+		]);
 	}
 
 	/**
@@ -135,7 +146,8 @@ class feeds extends block
 		$message = '';
 		$data = array('items' => []);
 		$fields = array('items' => $this->get_field_defaults('items'));
-		$feed_items = $this->get_feed_items($feeds, $message, 0, 0, 1);
+
+		$feed_items = $this->get_feed_items($feeds, $message, 0, 0, 1, true);
 
 		foreach ($feed_items as $feed)
 		{
@@ -165,45 +177,45 @@ class feeds extends block
 	 * @param string $message
 	 * @param int $max
 	 * @param int $cache
+	 * @param bool $quiet
 	 * @return array
 	 */
-	protected function get_feed_items(array $feed_urls, &$message, $max, $cache = 0, $items_per_feed = 0)
+	protected function get_feed_items(array $feed_urls, &$message, $max, $cache = 0, $items_per_feed = 0, $quiet = false)
 	{
+		if (!sizeof($feed_urls))
+		{
+			if (!$quiet)
+			{
+				throw new \Exception($this->translator->lang('FEED_URL_MISSING'));
+			}
+			return [];
+		}
+
 		$items = [];
 
-		if (sizeof($feed_urls))
+		try
 		{
-			try
+			$this->simplepie->set_feed_url($feed_urls);
+			$this->simplepie->enable_cache((bool) $cache);
+			$this->simplepie->set_cache_location($this->cache_dir);
+			$this->simplepie->set_cache_duration($cache * 3600);
+
+			if ($items_per_feed)
 			{
-				/**
-				 * The below class cannot be added as a non-shared service using DI
-				 * as it does not follow best practises for class contructs.
-				 * It contains logic and method calls in the contructor for one thing.
-				 * Passing it as a non-shared service does not work
-				 */
-				$feed = new \blitze\sitemaker\services\simplepie\feed;
-				$feed->set_feed_url($feed_urls);
-				$feed->enable_cache((bool) $cache);
-				$feed->set_cache_location($this->cache_dir);
-				$feed->set_cache_duration($cache * 3600);
-
-				if ($items_per_feed)
-				{
-					$feed->set_item_limit($items_per_feed);
-				}
-
-				$feed->init();
-				$feed->handle_content_type();
-
-				if (!($items = $feed->get_items(0, $max)))
-				{
-					$message = $this->translator->lang('FEED_PROBLEMS');
-				}
+				$this->simplepie->set_item_limit($items_per_feed);
 			}
-			catch (\Exception $e)
+
+			$this->simplepie->init();
+			$this->simplepie->handle_content_type();
+
+			if (!($items = $this->simplepie->get_items(0, $max)))
 			{
-				$message = $e->getMessage();
+				$message = $this->translator->lang('FEED_PROBLEMS');
 			}
+		}
+		catch (\Exception $e)
+		{
+			$message = $e->getMessage();
 		}
 
 		return array_filter((array) $items);
@@ -304,7 +316,7 @@ class feeds extends block
 	 * @param string $tpl
 	 * @return string
 	 */
-	protected function get_template($item_tpl)
+	protected function get_feed_template($item_tpl)
 	{
 		$item_tpl = html_entity_decode(trim($item_tpl));
 		return "<ul class=\"sm-list\">

@@ -1,4 +1,3 @@
-/* global $ */
 import LayoutPreviewer from '../../components/LayoutPreviewer';
 
 import 'jquery-ui/ui/widgets/accordion';
@@ -15,7 +14,7 @@ $(document).ready(() => {
 		// Init icon picker
 		.iconPicker({
 			selector: '.icon-select',
-			onSelect: ($item, iconClass) => $item.prev().val(iconClass),
+			onSelect: ($item, iconClass) => $item.next().val(iconClass),
 		})
 		// make settings sections in accordion
 		.accordion({
