@@ -85,11 +85,11 @@ RewriteEngine On
 
 RewriteCond %(REQUEST_FILENAME) !-f
 RewriteCond %(REQUEST_FILENAME) !-d
-RewriteRule ^Quotes/([0-9]+)$ /index.php?menu=Quotes&id=$1 [L]
+RewriteRule ^Quotes/([0-9]+).html$ /index.php?menu=Quotes&id=$1 [L]
 
 RewriteCond %(REQUEST_FILENAME) !-f
 RewriteCond %(REQUEST_FILENAME) !-d
-RewriteRule ^Video/([0-9]+)$ /index.php?menu=Video&id=$1 [L]
+RewriteRule ^Video/([0-9]+).html$ /index.php?menu=Video&id=$1 [L]
 
 RewriteCond %(REQUEST_FILENAME) !-f
 RewriteCond %(REQUEST_FILENAME) !-d

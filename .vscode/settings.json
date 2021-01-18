@@ -26,5 +26,6 @@
         "tmpnam",
         "transient"
     ],
-    "discord.enabled": true
+    "discord.enabled": true,
+    "phpcs.errorSeverity": 10
 }

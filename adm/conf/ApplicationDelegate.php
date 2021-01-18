@@ -19,7 +19,7 @@ class conf_ApplicationDelegate {
        if (isset($_GET['-table'])){
            $currentTable=$_GET['-table'];
 
-        }else{$currentTable='management__users';};
+        }else{$currentTable='content__items';};
         $mytable =& Dataface_Table::loadTable($currentTable) ; // load the table named 'my_table'
 
         $auth =& Dataface_AuthenticationTool::getInstance();
