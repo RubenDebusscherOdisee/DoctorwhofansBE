@@ -1,6 +1,6 @@
 <?php session_start();
 $_SESSION["Menu"]="";?>
-<!Doctype html lang="nl-BE">
+<!Doctype>
 <?php 
     if(isset($_GET['menu'])){
         $menu=$_GET['menu'];
@@ -15,7 +15,7 @@ $_SESSION["Menu"]="";?>
 
     
 ?>
-<html lang="nl">
+<html lang="nl-BE">
 
 <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -26,21 +26,24 @@ $_SESSION["Menu"]="";?>
     <meta charset=UTF-8 />
     <meta http-equiv=X-UA-Compatible content="chrome=1, IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="https://www.doctorwhofans.be/manifest.json">
     <meta name="theme-color" content="#306090"/>
-    <link rel="apple-touch-icon" href="images/logo/apple-icon.png">
+    <link rel="apple-touch-icon" href="https://ww.doctorwhofans.be/images/logo/apple-icon.png">
     <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    // Registration was successful
-                    //console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }, function(err) {
-                    // registration failed :(
-                    console.error('ServiceWorker registration failed: ', err);
-                    });
-                });
-            }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async ()=> {
+                let sw = await navigator.serviceWorker.register('https://www.doctorwhofans.be/sw.js');
+                console.log(sw);
+            })
+        }
+        /* async function subscribe(){
+            let sw = await navigator.serviceWorker.ready;
+            let push = await sw.pushManager.subscribe({
+                userVisibleOnly:true,
+                applicationServerKey:'BAZuh0JHL2M50rX6FSoS-YIRVP6MG1px1f33YAFfxeAEAm40F1xq-Fk8jRe8qV-sJwkCWCux0YWD-acG-HAoWIc'
+            })
+            console.log(JSON.stringify(push));
+        } */
         </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107369097-3"></script>
@@ -78,6 +81,17 @@ $_SESSION["Menu"]="";?>
         include_once 'includes/overlays.html';
         include_once 'includes/footer.html';
     ?>
+    <script type="application/javascript" src="https://sdki.truepush.com/sdk/v2.0.2/app.js" async></script>
+<script>
+var truepush = window.truepush || [];
+truepush.push(function(){
+    truepush.Init({
+        id: "5fee1993ac24647e216e7ad2"
+        }, function(error){
+          if(error) console.error(error);
+        })
+    })
+</script>
 </body>
 
 </html>
@@ -85,6 +99,7 @@ $_SESSION["Menu"]="";?>
 
 <script>
         var menu = "<?php echo $menu?>";
+        var id=Number("<?php echo $id?>");
         if (menu==""){
             menu="Home"
         }

@@ -5,6 +5,7 @@ var urlsToCache = [
   'https://www.doctorwhofans.be/images',
   'https://www.doctorwhofans.be/'
 ];
+// @ts-ignore
 let deferredPrompt;
 
 self.addEventListener('beforeinstallprompt', function (event){
@@ -64,7 +65,7 @@ self.addEventListener('fetch', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-  var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
+  var cacheWhitelist = ['my-site-cache-v2'];
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(
@@ -76,15 +77,58 @@ self.addEventListener('activate', function (event) {
       );
     })
   );
+  console.log('service worker activate');
+
 });
 
 
-
-
-
 function showInstallPromotion(){
-  console.log('install');
   $('.installButton').show();
-
-
 }
+/* self.addEventListener('push', function(e) {
+  var options = {
+    body: event.data.body,
+    icon: 'https://www.doctorwhofans.be/images/logo/logo.png',
+    badge:'https://www.doctorwhofans.be/images/logo/logo.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: '2'
+    },
+    actions: [
+      {action: 'explore', title: 'Explore this new world',
+        icon: 'images/checkmark.png'},
+      {action: 'close', title: 'Close',
+        icon: 'images/xmark.png'},
+    ]
+  };
+  e.waitUntil(
+    self.registration.showNotification('Hello world!', options)
+  );
+}); */
+
+
+var version = "v2.0.2";
+var swPath;
+var urlObject = new URL(location);
+var host;
+if (urlObject.searchParams.get("swPath")) {
+    swPath = urlObject.searchParams.get("swPath");
+}
+else {
+    if (urlObject.searchParams.get("version")) {
+        version = urlObject.searchParams.get("version");
+    }
+    if (urlObject.searchParams.get("swJSHost")) {
+        host = "https://" + urlObject.searchParams.get("swJSHost");
+    }
+
+
+
+
+    else {
+        host = "https://sdki.truepush.com/sdk/";
+    }
+    swPath = host + version + "/sw.js";
+}
+importScripts(swPath);
