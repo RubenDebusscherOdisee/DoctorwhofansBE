@@ -1,4 +1,5 @@
 <?php
+	// TODO: #59 fetch all strings for a given language, in order to full localise the site
 	require("cors.php");
 	require("connect.php");
 	if ($conn->connect_error) {
@@ -12,6 +13,7 @@
 	}
 	$menu=$_POST['menu'];
 	$language = $_POST['lang'];
+	$id=$_POST['Itemid'];
 	$ip=json_encode(apache_request_headers());
 	$session=$_COOKIE['PHPSESSID'];
 	if(!$stmt->bind_param("sss",$menu,$ip,$session)){
@@ -21,8 +23,17 @@
 		die("Statement execution failed: " . $stmt->error);
 	}else{
 		$result = $stmt->get_result();
-		if($result->num_rows === 0) {
-			echo 'false';
+		if((stripos($menu,'Category:')!==false)){
+			$antwoord['Page'] = $result->fetch_all(MYSQLI_ASSOC);
+			$current_Page=$antwoord['Page'][0]['page_Link'];
+			$current_Page_Id =$antwoord['Page'][0]['page_Id'];
+			$prefix = $antwoord['Page'][0]['pagetype_Name'];
+			$Page_Name = substr(strrchr($current_Page, "/"), 1);
+			$stmt->close();
+			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
+		}else if($result->num_rows === 0 & stripos($menu,'Category')==false) {
+			$antwoord['Page']=false;
+			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 			return;
 		}else{
 			$antwoord['Page'] = $result->fetch_all(MYSQLI_ASSOC);
@@ -99,30 +110,25 @@
 			}
 			switch ($prefix) {
 				case "Sitemap":
+					$stmtMap = $conn->prepare("SELECT page_Id,page_Link,page_Name,page_parent_id,exists(select 1 from management__pages t1 where t1.page_Parent_Id = management__pages.page_Id) collapsible FROM `management__pages` order by page_parent_id asc,collapsible desc,page_Order asc,page_Name asc");
+					if(!$stmtMap){
+							die("Statement preparing failed: " . $conn->error);
+					}
+					
+					
+					if(!$stmtMap->execute()){
+							die("Statement execution failed: " . $stmtMap->error);
+					}else{
+							//return de json data
+							$result = $stmtMap->get_result();
+							if($result->num_rows === 0) {
+								$antwoord['Sitemap'] = "No Sitemap found";
 
+							}else{
+								$antwoord['Sitemap'] = $result->fetch_all(MYSQLI_ASSOC);
 
-
-
-
-				$stmtMap = $conn->prepare("SELECT page_Id,page_Link,page_Name,page_parent_id,exists(select 1 from management__pages t1 where t1.page_Parent_Id = management__pages.page_Id) collapsible FROM `management__pages` order by page_parent_id asc,collapsible desc,page_Order asc,page_Name asc");
-				if(!$stmtMap){
-						die("Statement preparing failed: " . $conn->error);
-				}
-				
-				
-				if(!$stmtMap->execute()){
-						die("Statement execution failed: " . $stmtMap->error);
-				}else{
-						//return de json data
-						$result = $stmtMap->get_result();
-						if($result->num_rows === 0) {
-							$antwoord['Sitemap'] = "No Sitemap found";
-
-						}else{
-							$antwoord['Sitemap'] = $result->fetch_all(MYSQLI_ASSOC);
-
-						}
-				}
+							}
+					}
 					$stmtMap->close();
 					break;
 				case "Episode":
@@ -202,48 +208,83 @@
 					}
 					break;
 				case "Doctor":
-				$stmtDoctor = $conn->prepare("select * from api__characters where character_Id=?");
-				if(!$stmtDoctor){
-					die("Statement prepare failed: " . $conn->connect_error);
-				}
-				$API_Item = $antwoord['Page'][0]['page_API_Item'];
-				if(!$stmtDoctor->bind_param("i",$API_Item)){
-					die("Statement binding failed: " . $conn->connect_error);
-				}
-				if(!$stmtDoctor->execute()){
-					die("Statement execution failed: " . $stmtDoctor->error);
-				}else{
-					//return de json data
-					$result = $stmtDoctor->get_result();
-					if($result->num_rows === 0){
-						$antwoord['Doctor']="No Doctor found";
-					}else{
-						$antwoord['Doctor'] = $result->fetch_all(MYSQLI_ASSOC);
-						$stmtDoctor->close();
+					$stmtDoctor = $conn->prepare("select * from Characters_With_Actor where character_Id=?");
+					if(!$stmtDoctor){
+						die("Statement prepare failed: " . $conn->connect_error);
 					}
-				}
+					$API_Item = $antwoord['Page'][0]['page_API_Item'];
+					if(!$stmtDoctor->bind_param("i",$API_Item)){
+						die("Statement binding failed: " . $conn->connect_error);
+					}
+					if(!$stmtDoctor->execute()){
+						die("Statement execution failed: " . $stmtDoctor->error);
+					}else{
+						//return de json data
+						$result = $stmtDoctor->get_result();
+						if($result->num_rows === 0){
+							$antwoord['Doctor']="No Doctor found";
+						}else{
+							$antwoord['Doctor'] = $result->fetch_all(MYSQLI_ASSOC);
+							$stmtDoctor->close();
+						}
+					}
+					// TODO: #60 Fetch list of all actors who played this role, same for other characters
+					$stmtActorsForDoctor = $conn->prepare('select *,api__characters_actors.AC_Type from Actors_With_Link left join api__characters_actors on actor_Id = AC_Actor_Id where AC_Character_Id=?');
+					if(!$stmtActorsForDoctor){
+						die('Statement preparing failed: ' . $conn->error);
+					}
+					if(!$stmtActorsForDoctor->bind_param("i",$API_Item)){
+						die('Statement binding failed: ' . $conn->connect_error);
+					}
+					if(!$stmtActorsForDoctor->execute()){
+						die('Statement execution failed: ' . $stmtActorsForDoctor->error);
+					}else{
+						$result = $stmtActorsForDoctor->get_result();
+						if($result->num_rows === 0){
+							$antwoord['Doctor'][0]['ActorList']='No rows';
+						} else{
+							$antwoord['Doctor'][0]['ActorList']= $result->fetch_all(MYSQLI_ASSOC);
+						}
+					}
 					break;
 				case "Character":
 					$stmtCharacter = $conn->prepare("select * from api__characters where character_Id=?");
-				if(!$stmtCharacter){
-					die("Statement prepare failed: " . $conn->connect_error);
-				}
-				$API_Item = $antwoord['Page'][0]['page_API_Item'];
-				if(!$stmtCharacter->bind_param("i",$API_Item)){
-					die("Statement binding failed: " . $conn->connect_error);
-				}
-				if(!$stmtCharacter->execute()){
-					die("Statement execution failed: " . $stmtCharacter->error);
-				}else{
-					//return de json data
-					$result = $stmtCharacter->get_result();
-					if($result->num_rows === 0){
-						$antwoord['Character']=" Character found";
-					}else{
-						$antwoord['Character'] = $result->fetch_all(MYSQLI_ASSOC);
-						$stmtCharacter->close();
+					if(!$stmtCharacter){
+						die("Statement prepare failed: " . $conn->connect_error);
 					}
-				}
+					$API_Item = $antwoord['Page'][0]['page_API_Item'];
+					if(!$stmtCharacter->bind_param("i",$API_Item)){
+						die("Statement binding failed: " . $conn->connect_error);
+					}
+					if(!$stmtCharacter->execute()){
+						die("Statement execution failed: " . $stmtCharacter->error);
+					}else{
+						//return de json data
+						$result = $stmtCharacter->get_result();
+						if($result->num_rows === 0){
+							$antwoord['Character']=" Character found";
+						}else{
+							$antwoord['Character'] = $result->fetch_all(MYSQLI_ASSOC);
+							$stmtCharacter->close();
+						}
+					}
+					$stmtActorsForCharacter = $conn->prepare('select *,api__characters_actors.AC_Type from Actors_With_Link left join api__characters_actors on actor_Id = AC_Actor_Id where AC_Character_Id=?');
+					if(!$stmtActorsForCharacter){
+						die('Statement preparing failed: ' . $conn->error);
+					}
+					if(!$stmtActorsForCharacter->bind_param("i",$API_Item)){
+						die('Statement binding failed: ' . $conn->connect_error);
+					}
+					if(!$stmtActorsForCharacter->execute()){
+						die('Statement execution failed: ' . $stmtActorsForDoctor->error);
+					}else{
+						$result = $stmtActorsForCharacter->get_result();
+						if($result->num_rows === 0){
+							$antwoord['Character'][0]['ActorList']='No rows';
+						} else{
+							$antwoord['Character'][0]['ActorList']= $result->fetch_all(MYSQLI_ASSOC);
+						}
+					}
 					break;
 				case "Book":
 					echo "Zoek de data van een Book: ".$Page_Name;
@@ -251,8 +292,60 @@
 				case "Crew":
 					echo "Zoek de data van een Crewlid: ".$Page_Name;
 					break;
+				case "Quotes":
+					if($id!==null){
+						$stmtMainQuote = $conn->prepare('select * from Quotes where quote_Id=?');
+						if(!$stmtMainQuote){
+							die('Statement preparing failed: ' . $conn->error);
+						}
+						if(!$stmtMainQuote->bind_param("i",$id)){
+							die('Statement binding failed: ' . $conn->connect_error);
+						}
+						if(!$stmtMainQuote->execute()){
+							die('Statement execution failed: ' . $stmtMainQuote->error);
+						}else{
+							$result = $stmtMainQuote->get_result();
+							if($result->num_rows === 0){
+								$antwoord['MainQuote']='No rows';
+							} else{
+								$antwoord['MainQuote'] = $result->fetch_all(MYSQLI_ASSOC);
+							}
+						}
+						$stmtOtherQuotes = $conn->prepare('select * from Quotes where quote_Id !=?');
+						if(!$stmtOtherQuotes){
+							die('Statement preparing failed: ' . $conn->error);
+						}
+						if(!$stmtOtherQuotes->bind_param("i",$id)){
+							die('Statement binding failed: ' . $conn->connect_error);
+						}
+						if(!$stmtOtherQuotes->execute()){
+							die('Statement execution failed: ' . $stmtOtherQuotes->error);
+						}else{
+							$result = $stmtOtherQuotes->get_result();
+							if($result->num_rows === 0){
+								$antwoord['Quotes']='No rows';
+							} else{
+								$antwoord['Quotes'] = $result->fetch_all(MYSQLI_ASSOC);
+							}
+						}
+					}else{
+						$stmtQuotes = $conn->prepare('select * from Quotes');
+						if(!$stmtQuotes){
+							die('Statement preparing failed: ' . $conn->error);
+						}
+						if(!$stmtQuotes->execute()){
+							die('Statement execution failed: ' . $stmtQuotes->error);
+						}else{
+							$result = $stmtQuotes->get_result();
+							if($result->num_rows === 0){
+								$antwoord['Quotes']='No rows';
+							} else{
+								$antwoord['Quotes'] = $result->fetch_all(MYSQLI_ASSOC);
+							}
+						}}
+					
 			}
-			$stmtChildPages = $conn->prepare('SELECT page_Link,page_Name FROM management__pages where page_Parent_Id=? order by page_Name');
+			$stmtChildPages = $conn->prepare('SELECT page_Link,page_Name FROM management__pages where page_Parent_Id=? order by page_Order,page_Name');
 			if(!$stmtChildPages){
 				die('Statement preparing failed: ' . $conn->error);
 			}
@@ -270,6 +363,23 @@
 				}
 			}
 			$stmtChildPages->close();
+			$stmtTags = $conn->prepare('select category_Name,concat("Category:",replace(category_Name," ","_"),".html") as category_Link from management__categories inner join management__pages_categories on PC_category_Id=category_Id where PC_page_Id=?');
+			if(!$stmtTags){
+				die('Statement preparing failed: ' . $conn->error);
+			}
+			if(!$stmtTags->bind_param("i",$current_Page_Id)){
+				die('Statement binding failed: ' . $conn->connect_error);
+			}
+			if(!$stmtTags->execute()){
+				die('Statement execution failed: ' . $stmtTags->error);
+			}else{
+				$result = $stmtTags->get_result();
+				if($result->num_rows === 0){
+					$antwoord['Tags']='';
+				} else{
+					$antwoord['Tags'] = $result->fetch_all(MYSQLI_ASSOC);
+				}
+			}
 			$stmtContent = $conn->prepare('SELECT * FROM content_With_Lang where item_Page=? and language_Name=?');
 			if(!$stmtContent){
 				die('Statement preparing failed: ' . $conn->error);
@@ -287,7 +397,6 @@
 					$antwoord['Content'] = $resultContent->fetch_all(MYSQLI_ASSOC);
 				}
 			}
-			//$antwoord['Content']="Er is nog geen content gevonden";
 			$stmtContent->close();
 			$stmtDownloads = $conn->prepare('select * from Downloads where download_Page=?');
 			if(!$stmtDownloads){
@@ -306,8 +415,8 @@
 					$antwoord['Downloads'] = $resultDownloads->fetch_all(MYSQLI_ASSOC);
 				}
 			}
+			$stmtDownloads->close();
 			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
-			return;
 		}
 	}
 	$conn->close();
