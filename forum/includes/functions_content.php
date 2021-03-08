@@ -532,7 +532,7 @@ function strip_bbcode(&$text, $uid = '')
 
 	if (preg_match('#^<[rt][ >]#', $text))
 	{
-		$text = $phpbb_container->get('text_formatter.utils')->clean_formatting($text);
+		$text = utf8_htmlspecialchars($phpbb_container->get('text_formatter.utils')->clean_formatting($text));
 	}
 	else
 	{
@@ -924,9 +924,9 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 * make_clickable function
 *
 * Replace magic urls of form http://xxx.xxx., www.xxx. and xxx@xxx.xxx.
-* Cuts down displayed size of link if over 50 chars, turns absolute links
-* into relative versions when the server/script path matches the link
-*/
+ * Cuts down displayed size of link if over 50 chars, turns absolute links
+ * into relative versions when the server/script path matches the link
+ */
 function make_clickable($text, $server_url = false, $class = 'postlink')
 {
 	if ($server_url === false)
@@ -948,32 +948,32 @@ function make_clickable($text, $server_url = false, $class = 'postlink')
 			$magic_url_match_args = array();
 		}
 
-		// relative urls for this board
+			// relative urls for this board
 		$magic_url_match_args[$server_url][] = array(
-			'#(^|[\n\t (>.])(' . preg_quote($server_url, '#') . ')/(' . get_preg_expression('relative_url_inline') . ')#iu',
-			MAGIC_URL_LOCAL,
-			$local_class,
+				'#(^|[\n\t (>.])(' . preg_quote($server_url, '#') . ')/(' . get_preg_expression('relative_url_inline') . ')#iu',
+				MAGIC_URL_LOCAL,
+				$local_class,
 		);
 
-		// matches a xxxx://aaaaa.bbb.cccc. ...
+			// matches a xxxx://aaaaa.bbb.cccc. ...
 		$magic_url_match_args[$server_url][] = array(
-			'#(^|[\n\t (>.])(' . get_preg_expression('url_inline') . ')#iu',
-			MAGIC_URL_FULL,
-			$class,
+				'#(^|[\n\t (>.])(' . get_preg_expression('url_inline') . ')#iu',
+				MAGIC_URL_FULL,
+				$class,
 		);
 
-		// matches a "www.xxxx.yyyy[/zzzz]" kinda lazy URL thing
+			// matches a "www.xxxx.yyyy[/zzzz]" kinda lazy URL thing
 		$magic_url_match_args[$server_url][] = array(
-			'#(^|[\n\t (>])(' . get_preg_expression('www_url_inline') . ')#iu',
-			MAGIC_URL_WWW,
-			$class,
+				'#(^|[\n\t (>])(' . get_preg_expression('www_url_inline') . ')#iu',
+				MAGIC_URL_WWW,
+				$class,
 		);
 
-		// matches an email@domain type address at the start of a line, or after a space or after what might be a BBCode.
+			// matches an email@domain type address at the start of a line, or after a space or after what might be a BBCode.
 		$magic_url_match_args[$server_url][] = array(
-			'/(^|[\n\t (>])(' . get_preg_expression('email') . ')/iu',
-			MAGIC_URL_EMAIL,
-			'',
+				'/(^|[\n\t (>])(' . get_preg_expression('email') . ')/iu',
+				MAGIC_URL_EMAIL,
+				'',
 		);
 	}
 
@@ -981,6 +981,11 @@ function make_clickable($text, $server_url = false, $class = 'postlink')
 	{
 		if (preg_match($magic_args[0], $text, $matches))
 		{
+			// Only apply $class from the corresponding function call argument (excepting emails which never has a class)
+			if ($magic_args[1] != MAGIC_URL_EMAIL && $magic_args[3] != $static_class)
+			{
+				continue;
+			}
 			$text = preg_replace_callback($magic_args[0], function($matches) use ($magic_args)
 			{
 				$relative_url = isset($matches[3]) ? $matches[3] : '';
