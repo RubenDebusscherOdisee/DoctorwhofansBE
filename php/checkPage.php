@@ -30,9 +30,11 @@
 			$prefix = $antwoord['Page'][0]['pagetype_Name'];
 			$Page_Name = substr(strrchr($current_Page, "/"), 1);
 			$stmt->close();
+			$conn->close();
 			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 		}else if($result->num_rows === 0 & stripos($menu,'Category')==false) {
 			$antwoord['Page']=false;
+			$conn->close();
 			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 			return;
 		}else{
@@ -262,7 +264,7 @@
 						//return de json data
 						$result = $stmtCharacter->get_result();
 						if($result->num_rows === 0){
-							$antwoord['Character']=" Character found";
+							$antwoord['Character']=" Character not found";
 						}else{
 							$antwoord['Character'] = $result->fetch_all(MYSQLI_ASSOC);
 							$stmtCharacter->close();
@@ -293,57 +295,59 @@
 					echo "Zoek de data van een Crewlid: ".$Page_Name;
 					break;
 				case "Quotes":
-					if($id!==null){
-						$stmtMainQuote = $conn->prepare('select * from Quotes where quote_Id=?');
-						if(!$stmtMainQuote){
+					$QuoteIdFromURL =$_POST['Itemid'];
+					if($QuoteIdFromURL==0){
+						$MaxLimit = $conn->prepare('select max(quote_Id) as max from Quotes');
+						if(!$MaxLimit){
 							die('Statement preparing failed: ' . $conn->error);
 						}
-						if(!$stmtMainQuote->bind_param("i",$id)){
-							die('Statement binding failed: ' . $conn->connect_error);
-						}
-						if(!$stmtMainQuote->execute()){
-							die('Statement execution failed: ' . $stmtMainQuote->error);
+						if(!$MaxLimit->execute()){
+							die('Statement execution failed: ' . $MaxLimit->error);
 						}else{
-							$result = $stmtMainQuote->get_result();
-							if($result->num_rows === 0){
-								$antwoord['MainQuote']='No rows';
+							$resultMaxQuoteId = $MaxLimit->get_result();
+							if($resultMaxQuoteId->num_rows === 0){
+								$antwoord['MaxQuoteId']='No rows';
 							} else{
-								$antwoord['MainQuote'] = $result->fetch_all(MYSQLI_ASSOC);
+								$MaxQuoteId = $resultMaxQuoteId->fetch_all(MYSQLI_ASSOC);
 							}
 						}
-						$stmtOtherQuotes = $conn->prepare('select * from Quotes where quote_Id !=?');
-						if(!$stmtOtherQuotes){
-							die('Statement preparing failed: ' . $conn->error);
-						}
-						if(!$stmtOtherQuotes->bind_param("i",$id)){
-							die('Statement binding failed: ' . $conn->connect_error);
-						}
-						if(!$stmtOtherQuotes->execute()){
-							die('Statement execution failed: ' . $stmtOtherQuotes->error);
-						}else{
-							$result = $stmtOtherQuotes->get_result();
-							if($result->num_rows === 0){
-								$antwoord['Quotes']='No rows';
-							} else{
-								$antwoord['Quotes'] = $result->fetch_all(MYSQLI_ASSOC);
-							}
-						}
+						$QuoteIdFromURL=rand(1,$MaxQuoteId[0]['max']);
+
+					}
+					$stmtMainQuote = $conn->prepare('select * from Quotes where quote_Id=?');
+					if(!$stmtMainQuote){
+						die('Statement preparing failed: ' . $conn->error);
+					}
+					if(!$stmtMainQuote->bind_param("i",$QuoteIdFromURL)){
+						die('Statement binding failed: ' . $conn->connect_error);
+					}
+					if(!$stmtMainQuote->execute()){
+						die('Statement execution failed: ' . $stmtMainQuote->error);
 					}else{
-						$stmtQuotes = $conn->prepare('select * from Quotes');
-						if(!$stmtQuotes){
-							die('Statement preparing failed: ' . $conn->error);
+						$result = $stmtMainQuote->get_result();
+						if($result->num_rows === 0){
+							$antwoord['MainQuote']=$QuoteIdFromURL;
+						} else{
+							$antwoord['MainQuote'] = $result->fetch_all(MYSQLI_ASSOC);
 						}
-						if(!$stmtQuotes->execute()){
-							die('Statement execution failed: ' . $stmtQuotes->error);
-						}else{
-							$result = $stmtQuotes->get_result();
-							if($result->num_rows === 0){
-								$antwoord['Quotes']='No rows';
-							} else{
-								$antwoord['Quotes'] = $result->fetch_all(MYSQLI_ASSOC);
-							}
-						}}
-					
+					}
+					$stmtOtherQuotes = $conn->prepare('select quote_Id,left(replace(fn_RemoveHTMLTag(quote_Item),"\r\n"," "),70) as short_Quote from Quotes where quote_Id !=?');
+					if(!$stmtOtherQuotes){
+						die('Statement preparing failed: ' . $conn->error);
+					}
+					if(!$stmtOtherQuotes->bind_param("i",$id)){
+						die('Statement binding failed: ' . $conn->connect_error);
+					}
+					if(!$stmtOtherQuotes->execute()){
+						die('Statement execution failed: ' . $stmtOtherQuotes->error);
+					}else{
+						$result = $stmtOtherQuotes->get_result();
+						if($result->num_rows === 0){
+							$antwoord['Quotes']='No rows';
+						} else{
+							$antwoord['Quotes'] = $result->fetch_all(MYSQLI_ASSOC);
+						}
+					}
 			}
 			$stmtChildPages = $conn->prepare('SELECT page_Link,page_Name FROM management__pages where page_Parent_Id=? order by page_Order,page_Name');
 			if(!$stmtChildPages){
@@ -416,10 +420,9 @@
 				}
 			}
 			$stmtDownloads->close();
+			$conn->close();
 			echo json_encode($antwoord, JSON_UNESCAPED_UNICODE);
 		}
-	}
-	$conn->close();
 
-	
+	}
 ?>

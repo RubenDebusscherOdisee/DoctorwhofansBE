@@ -3046,6 +3046,12 @@ h1 {
     max-width: 50%;
 }
 
+
+.trumbowyg-button-pane {
+    isolation: isolate;
+    z-index: 0 !important;
+}
+
 #WikiDetails {
     float: right;
     min-width: 15%;
@@ -3162,6 +3168,33 @@ table tr {
 
 }
 
+.MainQuote {
+    min-height: 4em;
+    display: inline-block;
+    width: 100%;
+    clear: both;
+}
+
+.MainQuote img {
+    max-width: 40%;
+    float: right;
+    margin-right: 5%;
+    margin-left: 5%;
+
+}
+
+.MainQuote p {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: block;
+}
+
+.QuoteChoice{display:block;
+
+}
+.QuoteChoice a{     width: 49%;
+    display: inline-block;}
+
 main article img {
     width: 100%;
 }
@@ -3183,20 +3216,27 @@ input:invalid {
 }
 
 input:valid {
-    background: #306090;color:white
+    background: #306090;
+    color: white
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
     color: white;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
     color: white;
-  }
+}
+
 
 #Sitemap {
     list-style-type: none;

@@ -20,8 +20,9 @@
       $result = $stmt1->get_result();
       if($result->num_rows === 0) exit('No rows');
         $antwoord['data'] = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($antwoord, JSON_PRETTY_PRINT);
   }
   $stmt1->close();
   $conn->close();
+  echo json_encode($antwoord, JSON_PRETTY_PRINT);
+
 ?>

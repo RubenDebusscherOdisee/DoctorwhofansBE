@@ -300,12 +300,14 @@ function Search() {
     var SearchEl = "";
     if (response.results.length > 0) {
       for (var i = 0; i < response.results.length; i++) {
-        SearchEl += "<section><a href='" + window.location.origin + "/" + response.results[i].link + ".html'>" + response.results[i].title + "</a>";
-        SearchEl += "<p>" + response.results[i].body + "...</p>";
+        SearchEl += "<section><a href='" + window.location.origin + "/" + response.results[i].link + ".html'>" + response.results[i].title.replaceAll(searchString.toString(), "<b>" + searchString.toString() + "</b>") + "</a>";
+        SearchEl += "<p>" + response.results[i].body.replaceAll(searchString.toString(), "<b>" + searchString.toString() + "</b>") + "...</p>";
         SearchEl += "</section>";
       }
       // @ts-ignore
-      $('.modal-content article').html(SearchEl.replaceAll(searchString.toString(), "<b>" + searchString.toString() + "</b>"));
+
+      
+      $('.modal-content article').html(SearchEl);
 
     } else {
       $('.modal-content article').html("Niets gevonden, probeer opnieuw, of zoek eens in onze <i class='fa fa-sitemap' aria-hidden='true'></i> <a href='" + window.location.origin + "/Sitemap.html'>Sitemap</a>");
@@ -377,7 +379,8 @@ function GetContent(menu, id) {
             break;
           case "Quotes":
           //  TODO: #56 Add Quotes in Front End (Already added in Request)
-
+          AddMainQuoteToDom(response.MainQuote);
+          AddQuoteSelectionToDom(response.Quotes);
             console.log("Quotes");
             break;
           case "Sitemap":
@@ -404,6 +407,28 @@ function GetContent(menu, id) {
 }
 
 
+function AddMainQuoteToDom(mainQuote){
+  var MainQuoteElem = "";
+  var MainQuoteImage="";
+  MainQuoteImage="<img src='https://www.doctorwhofans.be/images/content__quotes/"+mainQuote[0].quote_Image+"'/>";
+  MainQuoteElem +="<h2>"+mainQuote[0].Episode_Link+"</h2>";
+  MainQuoteElem += MainQuoteImage;
+  MainQuoteElem +="<p>"+mainQuote[0].quote_Item+"</p>";
+  MainQuoteElem += mainQuote[0].Character_Links;
+
+  $('.MainQuote').html(MainQuoteElem);
+}
+function AddQuoteSelectionToDom(quotes){
+  let Quoteselection = "";
+  if(quotes.length >0){
+    for (var i = 0; i < quotes.length; i++) {
+      Quoteselection += " <a href='" + window.location.origin + "/Quotes/" + quotes[i].quote_Id + ".html'>" + quotes[i].short_Quote + "</a>";
+    }
+    $('.QuoteChoice').html(Quoteselection);
+
+  }
+
+}
 function ChildPages(Pages) {
   var OverzichtEl = "";
   if (Pages.length > 0) {
