@@ -1,0 +1,8 @@
+services:
+    mot.ipdelete.listener:
+        class: mot\ipdelete\event\main_listener
+        arguments:
+            - '@dbal.conn'
+        tags:
+            - { name: event.listener }
+

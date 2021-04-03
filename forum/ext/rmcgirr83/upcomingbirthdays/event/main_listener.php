@@ -5,7 +5,7 @@
 *
 * @copyright (c) Rich McGirr
 * @author 2015 Rich McGirr (RMcGirr83)
-* @license GNU General Public License, version 2 (GPL-2.0)
+* @license GNU General Public License, version 2 (GPL-2.0-only)
 *
 */
 
@@ -16,7 +16,7 @@ namespace rmcgirr83\upcomingbirthdays\event;
 */
 use phpbb\auth\auth;
 use phpbb\config\config;
-use phpbb\db\driver\driver_interface;
+use phpbb\db\driver\driver_interface as db;
 use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\user;
@@ -24,28 +24,28 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class main_listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\auth\auth */
+	/** @var auth $auth */
 	protected $auth;
 
-	/** @var \phpbb\config\config */
+	/** @var config $config */
 	protected $config;
 
-	/** @var \phpbb\language\language */
+	/** @var language $language */
 	protected $language;
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var db $db */
 	protected $db;
 
-	/** @var \phpbb\template\template */
+	/** @var template $template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user $user */
 	protected $user;
 
 	public function __construct(
 		auth $auth,
 		config $config,
-		driver_interface $db,
+		db $db,
 		language $language,
 		template $template,
 		user $user)
@@ -60,9 +60,24 @@ class main_listener implements EventSubscriberInterface
 
 	static public function getSubscribedEvents()
 	{
-		return array(
+		return [
+			'core.acp_extensions_run_action_after'	=>	'acp_extensions_run_action_after',
 			'core.index_modify_page_title'			=> 'main',
-		);
+		];
+	}
+	/* Display additional metdate in extension details
+	*
+	* @param $event			event object
+	* @param return null
+	* @access public
+	*/
+	public function acp_extensions_run_action_after($event)
+	{
+		if ($event['ext_name'] == 'rmcgirr83/upcomingbirthdays' && $event['action'] == 'details')
+		{
+			$this->language->add_lang('common', $event['ext_name']);
+			$this->template->assign_var('S_BUY_ME_A_BEER_UCBL', true);
+		}
 	}
 
 	public function main($event)
@@ -92,8 +107,8 @@ class main_listener implements EventSubscriberInterface
 		$date_end = $date_start + ((int) $this->config['allow_birthdays_ahead'] * $secs_per_day);
 
 		// Only care about dates ahead of today.  Start date is always tomorrow
-		$sql_array = array();
-		while ($date_while <= $date_end)
+		$sql_array = [];
+		while ($date_while < $date_end)
 		{
 			$day = date('j', $date_while);
 			$month = date('n', $date_while);
@@ -108,11 +123,11 @@ class main_listener implements EventSubscriberInterface
 			WHERE (b.ban_id IS NULL
 				OR b.ban_exclude = 1)
 				AND (" . implode(' OR ', $sql_array) . ")
-				AND " . $this->db->sql_in_set('u.user_type', array(USER_NORMAL , USER_FOUNDER));
+				AND " . $this->db->sql_in_set('u.user_type', [USER_NORMAL , USER_FOUNDER]);
 		// cache the query for 5 minutes
 		$result = $this->db->sql_query($sql, 300);
 
-		$upcomingbirthdays = array();
+		$upcomingbirthdays = [];
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$bdday = $bdmonth = 0;
@@ -132,14 +147,14 @@ class main_listener implements EventSubscriberInterface
 				}
 			}
 
-			$upcomingbirthdays[] = array(
+			$upcomingbirthdays[] = [
 				'user_birthday_tstamp' 	=> 	strtotime($bddate. ' UTC'),
 				'username'				=>	$row['username'],
 				'user_birthdayyear' 	=> 	$bdyear,
 				'user_birthday' 		=> 	$row['user_birthday'],
 				'user_id'				=>	$row['user_id'],
 				'user_colour'			=>	$row['user_colour'],
-			);
+			];
 
 		}
 		$this->db->sql_freeresult($result);
@@ -149,7 +164,7 @@ class main_listener implements EventSubscriberInterface
 		$username = array_column($upcomingbirthdays, 'username');
 		array_multisort($bd_tstamp, SORT_ASC, SORT_NUMERIC, $username, SORT_ASC, SORT_STRING|SORT_FLAG_CASE, $upcomingbirthdays);
 
-		$birthday_ahead_list = array();
+		$birthday_ahead_list = [];
 
 		for ($i = 0, $end = sizeof($upcomingbirthdays); $i < $end; $i++)
 		{
@@ -158,8 +173,16 @@ class main_listener implements EventSubscriberInterface
 				$user_link = get_username_string('full', $upcomingbirthdays[$i]['user_id'], $upcomingbirthdays[$i]['username'], $upcomingbirthdays[$i]['user_colour']);
 				$birthdate = phpbb_gmgetdate($upcomingbirthdays[$i]['user_birthday_tstamp']);
 
-				//lets add to the birthday_ahead list.
-				$birthday_ahead_list[$i] = '<span title="' . $birthdate['mday'] . '-' . $birthdate['mon'] . '-' . $birthdate['year'] . '">' . $user_link . '</span>';
+				// the default hover of the extension
+				$birthdate_hover = $birthdate['mday'] . '-' . $birthdate['mon'] . '-' . $birthdate['year'];
+
+				if ($this->config['ubl_date_format'])
+				{
+					$birthdate_hover = $birthdate['mon'] . '-' . $birthdate['mday'] . '-' . $birthdate['year'];
+				}
+
+				$birthday_ahead_list[$i] = '<span title="' . $birthdate_hover . '">' . $user_link . '</span>';
+
 				if ($age = (int) substr($upcomingbirthdays[$i]['user_birthday'], -4))
 				{
 					$birthday_ahead_list[$i] .= ' (' . ($upcomingbirthdays[$i]['user_birthdayyear'] - $age) . ')';
@@ -175,10 +198,10 @@ class main_listener implements EventSubscriberInterface
 		}
 
 		// Assign index specific vars
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'BIRTHDAYS_AHEAD_LIST'	=> $birthday_ahead_list,
 			'L_BIRTHDAYS_AHEAD'	=> $this->language->lang('BIRTHDAYS_AHEAD', (int) $this->config['allow_birthdays_ahead']),
-		));
+		]);
 	}
 
 	private function is_leap_year($year = null)

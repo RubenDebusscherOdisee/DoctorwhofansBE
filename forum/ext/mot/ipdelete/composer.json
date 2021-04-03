@@ -1,0 +1,37 @@
+{
+    "name": "mot/ipdelete",
+    "type": "phpbb-extension",
+    "description": "Extension to delete IP addresses related to a phpBB user to be deleted",
+    "homepage": "https://www.mike-on-tour.com",
+    "version": "1.0.3",
+    "time": "2021-01-06 12:11:57",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Michael Vormwald",
+            "email": "webmaster@mike-on-tour.de",
+            "homepage": "https://www.mike-on-tour.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.2",
+        "composer/installers": "~1.0.0"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "IP Address Deletion",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/ip_address_deletion",
+            "filename": "version_check",
+            "ssl": true
+        }
+    }
+}

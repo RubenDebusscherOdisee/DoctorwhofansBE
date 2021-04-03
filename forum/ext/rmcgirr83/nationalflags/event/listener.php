@@ -16,7 +16,7 @@ namespace rmcgirr83\nationalflags\event;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\controller\helper;
-use phpbb\db\driver\driver_interface;
+use phpbb\db\driver\driver_interface as db;
 use phpbb\language\language;
 use phpbb\request\request;
 use phpbb\template\template;
@@ -30,31 +30,31 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\auth\auth */
+	/** @var auth $auth */
 	protected $auth;
 
-	/** @var \phpbb\config\config */
+	/** @var config $config */
 	protected $config;
 
-	/** @var \phpbb\controller\helper */
+	/** @var helper $helper*/
 	protected $helper;
 
-	/** @var \phpbb\db\driver\driver */
+	/** @var db $db */
 	protected $db;
 
-	/** @var \phpbb\language\language */
+	/** @var language $language */
 	protected $language;
 
-	/** @var \phpbb\request\request */
+	/** @var request $request */
 	protected $request;
 
-	/** @var \phpbb\template\template */
+	/** @var template $template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user $user */
 	protected $user;
 
-	/** @var \phpbb\extension\manager "Extension Manager" */
+	/** @var ext_manager $ext_manager */
 	protected $ext_manager;
 
 	/** @var string phpBB root path */
@@ -63,38 +63,38 @@ class listener implements EventSubscriberInterface
 	/** @var string phpEx */
 	protected $php_ext;
 
-	/* @var \rmcgirr83\nationalflags\core\nationalflags */
+	/* @var nationalflags $nationalflags */
 	protected $nationalflags;
 
 	/**
 	* Constructor
 	*
-	* @param \phpbb\auth\auth					$auth			Auth object
-	* @param \phpbb\config\config               $config         Config object
-	* @param \phpbb\controller\helper           $helper         Controller helper object
-	* @param \phpbb\db\driver\driver			$db				Database object
-	* @param \phpbb\language\language			$language		Language object
-	* @param \phpbb\request\request				$request		Request object
-	* @param \phpbb\template\template           $template       Template object
-	* @param \phpbb\user                        $user           User object
-	* @param \phpbb\extension\manager			$ext_manager	Extension manager object
-	* @param string                             $root_path		phpBB root path
-	* @param string                             $php_ext		phpEx
-	* @param \rmcgirr83\nationalflags\core\nationalflags	$nationalflags	methods to be used by class
+	* @param auth					$auth			Auth object
+	* @param config               	$config         Config object
+	* @param helper           		$helper         Controller helper object
+	* @param db						$db				Database object
+	* @param language				$language		Language object
+	* @param request				$request		Request object
+	* @param template          		$template       Template object
+	* @param user                   $user           User object
+	* @param ext_manager			$ext_manager	Extension manager object
+	* @param string                 $root_path		phpBB root path
+	* @param string                 $php_ext		phpEx
+	* @param nationalflags			$nationalflags	methods to be used by class
 	* @access public
 	*/
 	public function __construct(
 			auth $auth,
 			config $config,
 			helper $helper,
-			driver_interface $db,
+			db $db,
 			language $language,
 			request $request,
 			template $template,
 			user $user,
 			manager $ext_manager,
-			$root_path,
-			$php_ext,
+			string $root_path,
+			string $php_ext,
 			nationalflags $nationalflags)
 	{
 		$this->auth = $auth;
