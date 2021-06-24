@@ -1,31 +1,35 @@
 {
-    "git.ignoreLimitWarning": true,
-    "search.useIgnoreFiles": false,
-    "todo-tree.tree.showBadges": false,
-    "cSpell.enableFiletypes": [
-        "gitignore",
-        "http",
-        "ini",
-        "log",
-        "sql"
-    ],
-    "cSpell.ignoreWords": [
-        "data",
-        "only",
-        "read",
-        "set",
-        "set read data only"
-    ],
-    "cSpell.words": [
-        "PHPSESSID",
-        "Serial",
-        "Xataface",
-        "framework",
-        "savepath",
-        "tempdir",
-        "tmpnam",
-        "transient"
-    ],
-    "discord.enabled": true,
-    "phpcs.errorSeverity": 10
+  "git.ignoreLimitWarning": true,
+  "search.useIgnoreFiles": false,
+  "todo-tree.tree.showBadges": false,
+  "cSpell.enableFiletypes": [
+    "gitignore",
+    "http",
+    "ini",
+    "log",
+    "sql"
+  ],
+  "cSpell.ignoreWords": [
+    "data",
+    "only",
+    "read",
+    "set",
+    "set read data only"
+  ],
+  "cSpell.words": [
+    "PHPSESSID",
+    "Serial",
+    "Xataface",
+    "framework",
+    "savepath",
+    "tempdir",
+    "tmpnam",
+    "transient"
+  ],
+  "discord.enabled": true,
+  "phpcs.errorSeverity": 10,
+  "files.exclude": {
+    "**/(hidden)": true,
+    "php\\connect.hidden.php": true
+  }
 }

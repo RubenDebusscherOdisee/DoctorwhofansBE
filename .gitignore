@@ -13,7 +13,7 @@ Localsettings.php
 *.old
 *2.php
 *2.html
-
+*.hidden.*
 Video
 downloads
 docs

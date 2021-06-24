@@ -24,4 +24,5 @@
     }
       $stmt1->close();
       $conn->close();
+      //this is a test
 ?>
