@@ -1,5 +1,5 @@
 <?php
-	// TODO: #59 fetch all strings for a given language, in order to full localise the site
+	// TODO: #59 fetch all strings for a given language, in order to fully localise the site
 	require("cors.php");
 	require("connect.php");
 	if ($conn->connect_error) {

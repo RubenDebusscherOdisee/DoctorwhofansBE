@@ -3460,7 +3460,7 @@ main article a:focus {
         border-color: transparent var(--bg-color-darkBlue) transparent transparent
     }
 
-    .leftt::after,
+    .left::after,
     .right::after {
         left: 15px
     }

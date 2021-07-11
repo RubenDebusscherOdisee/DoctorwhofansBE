@@ -8,3 +8,4 @@ Disallow: /video/
 Disallow: /connect.php
 Disallow: /dbConfig.php
 Disallow: /*.ini$
+Disallow: /adm/

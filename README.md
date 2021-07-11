@@ -1,4 +1,5 @@
 # DoctorwhofansBE
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/RubenDebusscher/DoctorWhoFansBE)
 
 ## Consists of: 
 * Main Site built from Scratch
